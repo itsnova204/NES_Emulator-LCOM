@@ -1,10 +1,9 @@
 # LCOM Project
 
-LCOM Project for group T&lt;m&gt;&lt;n&gt;G&lt;p&gt;&lt;q&gt;.
+LCOM Project for group T05-G05.
 
 Group members:
 
-1. &lt;first name&gt; &lt;family name&gt; (&lt;email address&gt;)
-2. &lt;first name&gt; &lt;family name&gt; (&lt;email address&gt;)
-3. &lt;first name&gt; &lt;family name&gt; (&lt;email address&gt;)
-4. &lt;first name&gt; &lt;family name&gt; (&lt;email address&gt;)
+1. Gonçalo Remelhe (up202205318@fe.up.pt)
+2. Ricardo Yang    (up202208465@fe.up.pt)
+3. Leonor Santos   (up202204354@fe.up.pt)
