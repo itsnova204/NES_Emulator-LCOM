@@ -18,7 +18,7 @@ int(util_get_MSB)(uint16_t val, uint8_t *msb) {
   return 0;
 }
 
-//Objetivo é transformar 32 bits em 8 bits
+//Leitura do valor que está no 'port' e armazenar no 'value'
 //INT -> quantidade de bits é sempre igual à arquitetura
 int (util_sys_inb)(int port, uint8_t *value) {
   if (value == NULL) return 1;
