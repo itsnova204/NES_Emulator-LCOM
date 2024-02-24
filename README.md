@@ -7,3 +7,4 @@ Group members:
 1. Gonçalo Remelhe (up202205318@fe.up.pt)
 2. Ricardo Yang    (up202208465@fe.up.pt)
 3. Leonor Santos   (up202204354@fe.up.pt)
+4. Tiago Aleixo    (up202004996@fe.up.pt)
