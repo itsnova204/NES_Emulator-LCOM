@@ -95,6 +95,26 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
 
 int (timer_display_conf)(uint8_t timer, uint8_t st, enum timer_status_field field) {
   if (timer > 2 || timer < 0) return 1;   //validar o timer
-  //todo
-  return 1;
+  
+  union timer_status_field_val conf;
+
+  switch (field) {
+    case tsf_all:
+      conf.byte = st;
+      break;
+    case tsf_initial:
+      conf.in_mode = (st >> 4) & 0x03;
+      break;
+    case tsf_mode:
+      conf.count_mode = (st >> 1) & 0x07;
+      break;
+    case tsf_base:
+      conf.bcd = st & 0x01;
+      break;
+    default:
+      return 1;
+  }
+
+  timer_print_config(timer, field, conf);
+  return 0;
 }
