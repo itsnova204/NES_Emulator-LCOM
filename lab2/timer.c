@@ -96,25 +96,68 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
 int (timer_display_conf)(uint8_t timer, uint8_t st, enum timer_status_field field) {
   if (timer > 2 || timer < 0) return 1;   //validar o timer
   
+  //configuracao que nao sabemos
   union timer_status_field_val conf;
 
+  //descubrir o tipo do field (enum)
   switch (field) {
+
+    //tsf_all-> Display status byte, in hexadecimal
     case tsf_all:
+    //byte-> The status byte
       conf.byte = st;
       break;
+
+    //Display the initialization mode, only
     case tsf_initial:
-      conf.in_mode = (st >> 4) & 0x03;
+      //BIT (4) e BIT (5)
+      st = (st >> 4) & 0x03;
+
+      switch (st) {
+        //01-> LSB
+        case (1):
+          conf.in_mode = LSB_only;
+          break;
+
+        //10-> MSB
+        case (2):
+          conf.in_mode = MSB_only;
+          break;
+
+        //11-> LSB followed by MSB
+        case (3):
+          conf.in_mode = MSB_after_LSB;
+          break;
+
+        //invalid value
+        default:
+          conf.in_mode = INVAL_val;
+          break;
+      }
       break;
+
+    //Display the counting mode, only
     case tsf_mode:
+
+      //count_mode-> The counting mode: 0, 1,.., 5 (BIT 1,2,3)
+      //em LCOM apenas até ao mode 3 (0111 = 0x7)
       conf.count_mode = (st >> 1) & 0x07;
       break;
+
+    //Display the counting base, only 
     case tsf_base:
+      //bcd-> The counting base, true if BCD
+      //first bit of st
       conf.bcd = st & 0x01;
       break;
+
+    //invalid field
     default:
       return 1;
   }
 
+  //print config, functions defined in <lcf.h>
   timer_print_config(timer, field, conf);
+  
   return 0;
 }
