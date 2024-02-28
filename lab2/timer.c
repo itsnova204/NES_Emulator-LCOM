@@ -29,6 +29,7 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
 
   //atualizar a controlWord de acordo com o timer escolhido
   //selectedTimer possui a porta para o timer escolhido (40h,41h,42h)
+  // "|=" -> OU BIT a BIT
   uint8_t selectedTimer;
   switch (timer) {
     case 0:
@@ -53,6 +54,7 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   // Injetar o valor inicial do contador (lsb seguido de msb) diretamente no registo correspondente
   if (sys_outb(selectedTimer, LSB) != 0) return 1;
   if (sys_outb(selectedTimer, MSB) != 0) return 1;
+  
   return 0;
 }
 
