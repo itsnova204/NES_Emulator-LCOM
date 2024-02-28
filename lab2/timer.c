@@ -14,9 +14,10 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
     return 1;
   }
 
+  //Control Word-> palavra de controlo usado para configurar o timer
   //consultar configuracao atual do timer
   uint8_t controlWord;
-  if (timer_get_conf(timer, &controlWord) != 0) return 1;
+  timer_get_conf(timer, &controlWord);
 
   // Novo comando de configuração, ativamos os bits da zona 'LSB followed by MSB' e mantemos os restantes
   controlWord = (controlWord & 0x0F) | TIMER_LSB_MSB; 
@@ -51,10 +52,10 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   //avisar o i8254 que vamos configurar o timer
   if (sys_outb(TIMER_CTRL, controlWord) != 0) return 1;
 
-  // Injetar o valor inicial do contador (lsb seguido de msb) diretamente no registo correspondente
-  if (sys_outb(selectedTimer, LSB) != 0) return 1;
-  if (sys_outb(selectedTimer, MSB) != 0) return 1;
-  
+  // Injetar o valor inicial do contador (LSB followed by MSB) diretamente no registo correspondente
+  sys_outb(selectedTimer, LSB);
+  sys_outb(selectedTimer, MSB);
+
   return 0;
 }
 
@@ -73,16 +74,27 @@ void (timer_int_handler)() {
   //todo
 }
 
+//ler o status do timer, nao o counter
+//st -> status do timer
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
   if (st == NULL || timer > 2 || timer < 0) return 1; //validar o timer e o st
 
-  //todo
-  return 1;
+  //RBC -> read-back command, usado para obter informações sobre o estado atual do timer
+  //ativar o RBC, desativar o count (logica negada), selectionar o timer
+  // bit(7) | bit (6) | bit(5) | t
+  uint8_t RBC = TIMER_RB_CMD | TIMER_RB_COUNT_ | TIMER_RB_SEL(timer);
+  
+  //antes de ler é necessario enviar o READ-BACK CMD para avisar o timer a preparar a informação (pedido de GET)
+  sys_outb(TIMER_CTRL, RBC);
+
+  //ler o status do timer
+  util_sys_inb(0x40 + timer, st);
+
+  return 0;
 }
 
-int (timer_display_conf)(uint8_t timer, uint8_t st,
-                        enum timer_status_field field) {
-
+int (timer_display_conf)(uint8_t timer, uint8_t st, enum timer_status_field field) {
+  if (timer > 2 || timer < 0) return 1;   //validar o timer
   //todo
   return 1;
 }
