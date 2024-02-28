@@ -22,8 +22,8 @@ int(util_get_MSB)(uint16_t val, uint8_t *msb) {
 //INT -> quantidade de bits é sempre igual à arquitetura
 int (util_sys_inb)(int port, uint8_t *value) {
   if (value == NULL) return 1;
-  uint32_t val;
-  int ret = sys_inb(port, &val);  
-  *value = val & 0xFF;
-  return ret;
+  uint32_t temp;
+  sys_inb(port, &temp);  
+  *value = temp & 0xFF;
+  return 0;
 }
