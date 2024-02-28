@@ -92,7 +92,6 @@ int (timer_display_conf)(uint8_t timer, uint8_t st,
   union timer_status_field_val data;
 
   switch (field) {
-
     case tsf_all: 
       data.byte = st; 
       break;
