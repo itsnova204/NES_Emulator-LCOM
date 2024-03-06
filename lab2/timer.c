@@ -4,7 +4,7 @@
 #include "i8254.h"
 
 int hook_id = 0;
-
+int counter = 0;
 
 //sys_out -> escrever dados numa porta
 //sys_int -> ler dados de uma porta
@@ -78,7 +78,7 @@ int (timer_unsubscribe_int)() {
 }
 
 void (timer_int_handler)() {
-  //todo
+  counter++;
 }
 
 //ler o status do timer, nao o counter
