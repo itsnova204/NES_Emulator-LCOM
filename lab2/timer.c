@@ -4,7 +4,11 @@
 #include "i8254.h"
 
 int hook_id = 0;
-int counter = 0;
+static int counter = 0;
+
+int (get_counter)() {
+  return counter;
+}
 
 //sys_out -> escrever dados numa porta
 //sys_int -> ler dados de uma porta
