@@ -5,30 +5,62 @@
 
 #include "i8254.h"
 
-int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
+int hook_id = 0;
+int counter = 0;
 
-  return 1;
+int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
+  
+  uint8_t st;
+  timer_get_conf(timer, &st);
+
+  st = (st & 0x0F) | TIMER_LSB_MSB; 
+
+  uint32_t val = TIMER_FREQ / freq;
+
+  uint8_t MSB, LSB;
+  util_get_MSB(val, &MSB);
+  util_get_LSB(val, &LSB);
+
+  uint8_t selectedTimer = TIMER_0 + timer;  
+
+
+  switch (timer)
+  {
+  case 0:
+    st |= TIMER_SEL0;
+    break;
+  case 1:
+    st |= TIMER_SEL1;
+    break;
+  case 2:
+    st |= TIMER_SEL2;
+    break;
+  
+  default:
+    break;
+  }
+
+  sys_outb(TIMER_CTRL, st);
+
+  if (sys_outb(selectedTimer, LSB) != 0) return 1;
+  if (sys_outb(selectedTimer, MSB) != 0) return 1;
+
+  return 0;
 }
 
 int (timer_subscribe_int)(uint8_t *bit_no) {
-    /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  if(bit_no == NULL) return 1; 
+  *bit_no = BIT(hook_id);       
 
-  return 1;
+  return sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id);
 }
 
 int (timer_unsubscribe_int)() {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
-
-  return 1;
+  return sys_irqrmpolicy(&hook_id);
 }
 
 void (timer_int_handler)() {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  counter++;
 }
 
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
@@ -43,10 +75,38 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
   return 0;
 }
 
-int (timer_display_conf)(uint8_t timer, uint8_t st,
-                        enum timer_status_field field) {
-  /* To be implemented by the students */
-  printf("%s is not yet implemented!\n", __func__);
+int (timer_display_conf)(uint8_t timer, uint8_t st, enum timer_status_field field) {
+  union timer_status_field_val val;
 
+  switch (field) {
+    case tsf_all: 
+      val.byte = st; 
+      break;
+
+    case tsf_initial:                                       
+      st = (st >> 4) & 0x03;
+      val.in_mode = st;
+
+      if (st < 1 || st > 3) val.in_mode = INVAL_val;
+      break;
+
+    case tsf_mode:
+      st = (st >> 1) & 0x07;
+
+      if(st == 6) val.count_mode = 2;
+      else if(st == 7) val.count_mode = 3;
+      else val.count_mode = st;
+
+      break;
+    
+    case tsf_base:
+      val.bcd = st & TIMER_BCD;
+      break;        
+
+    default:
+      return 1;
+  }
+
+  if (timer_print_config(timer, field, val) != 0) return 1;
   return 1;
 }
