@@ -3,14 +3,20 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "keyboard.h"
 #include "i8042.h"
 #include "util.h"
 
 static int hook_id = 1;
+static uint8_t scancode;
 
 int counter = 0;
 
-bool data_mouse = false;
+bool mouse_data_read = false;
+
+uint8_t getKBCscancode(){
+  return scancode;
+}
 
 int (kbc_subscribe_int)(uint8_t *bit_no) {
   if(bit_no == NULL) return 1; 
@@ -24,65 +30,81 @@ int (kbc_unsubscribe_int)() {
 }
 
 void (kbc_ih)() {
-
-  uint8_t data;
-  util_sys_inb(KBC_STATUS_REG, &data);
-
-  kbc_check_status(data);
-  
-  
-
+  kbc_read_output(scancode, false);
 }
 
-int kbc_read_output(uint8_t port, uint8_t* output, bool isMouse){
+int kbc_read_output(uint8_t output, bool reading_mouse){
 
-  int status = kbc_check_status();
-  if (status < 0){
-    printf("error reading from keyboard status\n");
-    return 1;
-  }
-  
+  int attempts = 10;
+  int status;
 
-  switch (status)
-  {
-  case PARITY_ERR:
-    printf("KBC PARITY_ERR\n");
-    return 1;
-    break;
-  case TIMEOUT_ERR:
-    printf("KBC TIMEOUT_ERR\n");
-    return 1;
-    break;
-  case IN_BUF_FULL:
-    //todo
-    break;
-  case OUT_BUF_NOT_FULL:
-    sleep()
-    break;
+  while (attempts != 0){
+      status = kbc_check_status();
+      if (status < 0){
+        printf("error reading from keyboard status\n");
+        return 1;
+      }
+      
+      if ((status & OUT_BUF_FULL) == 0)
+      {
+        continue;
+      }
+      
 
-  
-  default:
-    break;
+      switch (status){
+      case OUT_BUF_FULL: //output buffer is ready to be read.
+        if (mouse_data_read && reading_mouse){ //if data is for mouse and we are reading mouse data
+          //todo
+        }
+          printf("reading kbc out buf\n");
+        if(!mouse_data_read && !reading_mouse){ //if data is for keyboard and we are reading keyboard data
+          if(util_sys_inb(KBC_OUT_BUF, &output) != 0){
+            printf("error reading scancode\n");
+            return 1;
+          }
+        }
+        break;
+      case PARITY_ERR:
+        printf("KBC PARITY_ERR\n");
+        return 1;
+        break;
+      case TIMEOUT_ERR:
+        printf("KBC TIMEOUT_ERR\n");
+        return 1;
+        break;
+      case IN_BUF_FULL:
+        //todo
+        break;
+      case OUT_BUF_NOT_FULL:
+        //todo
+        break;
+      
+      default:
+        break;
+      }
+
+      tickdelay(micros_to_ticks(20000)); //wait 20ms between atempts
+      attempts--;
   }
 
   return 0;
 }
 
 int kbc_check_status(){
-  uint8_t *data;
+  uint8_t data = 0x00;
 
-  if(util_sys_inb(KBC_OUT_BUF, data) != 0) return -1;
+  if(util_sys_inb(KBC_OUT_BUF, &data) != 0) return -1;
 
-  if((*data & KBC_AUX) != 0){   //check if it is outputing mouse data
-    data_mouse = true;
+  if((data & KBC_AUX) != 0){   //check if it is outputing mouse data
+    mouse_data_read = true;
   }else{
-    data_mouse = false;
+    mouse_data_read = false;
   }
     
-  if((*data & KBC_ERR_PARITY) != 0)   return PARITY_ERR;  //check for parity error
-  if((*data & KBC_ERR_TIMEOUT) != 0)  return TIMEOUT_ERR;  //check for timeout error
-  if((*data & KBC_IBF) != 0)          return IN_BUF_FULL;  //check for input buffer full
-  if((*data & KBC_OUT_BUF_FULL) == 0) return OUT_BUF_NOT_FULL;  //check for output buffer full
+  if((data & KBC_ERR_PARITY) != 0)   return PARITY_ERR;  //check for parity error
+  if((data & KBC_ERR_TIMEOUT) != 0)  return TIMEOUT_ERR;  //check for timeout error
+  if((data & KBC_IBF) != 0)          return IN_BUF_FULL;  //check for input buffer full
+  if((data & KBC_OUT_BUF_FULL) == 0) return OUT_BUF_NOT_FULL;  //check for output buffer full
 
   return OUT_BUF_FULL;
 }
