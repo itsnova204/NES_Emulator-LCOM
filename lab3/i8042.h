@@ -1,6 +1,8 @@
 #ifndef _LCOM_I8042_H_
 #define _LCOM_I8042_H_
 
+#include <lcom/lcf.h>
+
 #define KBD_IRQ 1         // interrupt request
 #define KBD_STAT_REG 0x64
 #define KBD_IN_BUF 0x60

@@ -1,9 +1,13 @@
 #include <lcom/lcf.h>
-
 #include <lcom/lab3.h>
 
 #include <stdbool.h>
 #include <stdint.h>
+
+#include "i8042.h"
+#include "i8254.h"
+#include "keyboard.c"
+#include "timer.c"
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
