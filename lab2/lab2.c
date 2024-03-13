@@ -50,7 +50,8 @@ int(timer_test_int)(uint8_t time) {
   message msg;
   uint8_t irq_set;
 
-  timer_subscribe_int(&irq_set);
+  if(timer_subscribe_int(&irq_set) != 0) return 1;
+  
   while( time > 0 ) { /* You may want to use a different condition */
       /* Get a request message. */
       if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 

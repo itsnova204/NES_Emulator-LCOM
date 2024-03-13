@@ -6,8 +6,10 @@
 
 #include "i8042.h"
 #include "i8254.h"
-#include "keyboard.c"
+#include "keyboard.h"
 #include "timer.c"
+
+uint8_t scan_code;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -34,8 +36,33 @@ int main(int argc, char *argv[]) {
 }
 
 int(kbd_test_scan)() {
-  /* To be completed by the students */
-  printf("%s is not yet implemented!\n", __func__);
+
+  int ipc_status, r;
+  message msg;
+  uint8_t irq_set;
+  
+  if (kbd_subscribe_int(&irq_set) != 0) return 1;
+
+  while (scan_code != KBD_ESC_BREAK_CODE) {
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) { 
+      rintf("keyboard driver_receive failed with: %d", r);
+      continue;
+    }
+
+    if (is_ipc_notify(ipc_status)) { /* received notification */
+          switch (_ENDPOINT_P(msg.m_source)) {
+              case HARDWARE: /* hardware interrupt notification */				
+                  if (msg.m_notify.interrupts & irq_set) { /* subscribed interrupt */
+                    //todo
+                  }
+                  break;
+              default:
+                  break; /* no other notifications expected: do nothing */	
+          }
+      } else { /* received a standard message, not a notification */
+          /* no standard messages expected: do nothing */
+      }
+  }
 
   return 1;
 }
