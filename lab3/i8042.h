@@ -15,7 +15,7 @@
 #define KBD_OUT_BUF_FULL BIT(0)
 
 #define KBD_ESC_BREAK_CODE 0x81
-#define KBD_MAKE_CODE BIT(7)  
+#define KBD_MAKE_CODE BIT(7)    //1 if make
 #define KBD_TWO_BYTE 0xE0
 
 #endif

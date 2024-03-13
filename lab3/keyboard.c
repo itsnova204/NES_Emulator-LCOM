@@ -1,7 +1,12 @@
 #include "keyboard.h"
 
 int kbd_hook_id = 1;
-uint8_t scan_code;
+static uint8_t scan_code;
+static bool valid = true;
+
+bool isScanCodeValid() {
+  return valid;
+}
 
 uint8_t(get_scan_code)() {
   return scan_code;
@@ -21,35 +26,31 @@ int(kbd_unsubscribe_int)() {
   return 0;
 }
 
-void(kbd_int_handler)() {
-  if (utils_sys_inb(KBD_STAT_REG, &scan_code) != 0) {
+void(kbc_ih)() {
+  uint8_t status;
+
+  if (util_sys_inb(KBD_STAT_REG, &status) != 0) {
     printf("Keyboard ERROR: Couldn't read status\n");
+    valid = false;
     return;
   }
 
-  if (scan_code & KBD_PARITY_ERR) {
+  if (status & KBD_OUT_BUF_FULL) {
+    if (util_sys_inb(KBD_OUT_BUF, &scan_code) != 0) {
+      printf("Keyboard ERROR: Couldn't read output buffer\n");
+      return;
+    }
+    valid = true;
+  }
+
+  if (status & KBD_PARITY_ERR) {
     printf("Keyboard Parity error - invalid data\n");
-    return;
+    valid = false;
   }
 
-  if (scan_code & KBD_TIMEOUT_ERR) {
+  if (status & KBD_TIMEOUT_ERR) {
     printf("Keyboard Timeout error - invalid data\n");
-    return;
-  }
-
-  if (scan_code & KBD_INHIBIT_FLAG) {
-    printf("Keyboard Inhibit flag: 0 if keyboard is inhibited\n");
-    return;
-  }
-
-  if (scan_code & KBD_OUT_BUF_FULL) {
-    printf("Keyboard Output buffer full - data available for reading\n");
-    return;
+    valid = false;
   }
 }
-
-
-
-
-
 

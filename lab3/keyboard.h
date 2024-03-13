@@ -5,9 +5,10 @@
 #include <stdint.h>
 #include "i8042.h"
 
+bool isScanCodeValid();
 uint8_t(get_scan_code)();
 int(kbd_subscribe_int)(uint8_t *bit_no);
 int(kbd_unsubscribe_int)();
-void(kbd_int_handler)();
+void(kbc_ih)();
 
 #endif
