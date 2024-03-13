@@ -153,6 +153,10 @@ int (timer_display_conf)(uint8_t timer, uint8_t st, enum timer_status_field fiel
       //count_mode-> The counting mode: 0, 1,.., 5 (BIT 1,2,3)
       //em LCOM apenas até ao mode 3 (0111 = 0x7)
       conf.count_mode = (st >> 1) & 0x07;
+
+      if (conf.count_mode == 6) conf.count_mode = 2;
+      else if (conf.count_mode == 7) conf.count_mode = 3;
+      
       break;
 
     //Display the counting base, only 
