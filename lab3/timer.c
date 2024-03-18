@@ -17,14 +17,14 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   //base freq is 1193182 Hz
   //timer has 16 bits, maximum divisor is 65535 (0XFFFF)
   //minimum freq is 1193182/65535 = 18.2 Hz
-  if (freq > TIMER_FREQ || freq < (TIMER_FREQ/0xFFFF)) {
+  if (freq > TIMER_FREQ || freq < 19 || timer > 2) {
     return 1;
   }
 
   //Control Word-> palavra de controlo usado para configurar o timer
   //consultar configuracao atual do timer
   uint8_t controlWord;
-  timer_get_conf(timer, &controlWord);
+  if (timer_get_conf(timer, &controlWord)) return 1;
 
   // Novo comando de configuração, ativamos os bits da zona 'LSB followed by MSB' e mantemos os restantes
   controlWord = (controlWord & 0x0F) | TIMER_LSB_MSB; 
@@ -32,8 +32,8 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   //calcular o valor inicial do contador
   uint32_t initialValue = TIMER_FREQ / freq;
   uint8_t MSB, LSB;
-  util_get_MSB(initialValue, &MSB);
-  util_get_LSB(initialValue, &LSB);
+  if (util_get_MSB(initialValue, &MSB)) return 1;
+  if (util_get_LSB(initialValue, &LSB)) return 1;
 
   //atualizar a controlWord de acordo com o timer escolhido
   //selectedTimer possui a porta para o timer escolhido (40h,41h,42h)
@@ -60,8 +60,8 @@ int (timer_set_frequency)(uint8_t timer, uint32_t freq) {
   if (sys_outb(TIMER_CTRL, controlWord) != 0) return 1;
 
   // Injetar o valor inicial do contador (LSB followed by MSB) diretamente no registo correspondente
-  sys_outb(selectedTimer, LSB);
-  sys_outb(selectedTimer, MSB);
+  if (sys_outb(selectedTimer, LSB)) return 1;
+  if (sys_outb(selectedTimer, MSB)) return 1;
 
   return 0;
 }
@@ -96,10 +96,10 @@ int (timer_get_conf)(uint8_t timer, uint8_t *st) {
   uint8_t RBC = TIMER_RB_CMD | TIMER_RB_COUNT_ | TIMER_RB_SEL(timer);
   
   //antes de ler é necessario enviar o READ-BACK CMD para avisar o timer a preparar a informação (pedido de GET)
-  sys_outb(TIMER_CTRL, RBC);
+  if (sys_outb(TIMER_CTRL, RBC)) return 1;
 
   //ler o status do timer
-  util_sys_inb(0x40 + timer, st);
+  if (util_sys_inb(0x40 + timer, st)) return 1;
 
   return 0;
 }
@@ -153,6 +153,10 @@ int (timer_display_conf)(uint8_t timer, uint8_t st, enum timer_status_field fiel
       //count_mode-> The counting mode: 0, 1,.., 5 (BIT 1,2,3)
       //em LCOM apenas até ao mode 3 (0111 = 0x7)
       conf.count_mode = (st >> 1) & 0x07;
+
+      if (conf.count_mode == 6) conf.count_mode = 2;
+      else if (conf.count_mode == 7) conf.count_mode = 3;
+      
       break;
 
     //Display the counting base, only 
@@ -168,7 +172,7 @@ int (timer_display_conf)(uint8_t timer, uint8_t st, enum timer_status_field fiel
   }
 
   //print config, functions defined in <lcf.h>
-  timer_print_config(timer, field, conf);
+  if (timer_print_config(timer, field, conf)) return 1;
   
   return 0;
 }
