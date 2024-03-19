@@ -1,4 +1,4 @@
-#include <lcom/lcf.h>
+ #include <lcom/lcf.h>
 #include <lcom/lab3.h>
 
 #include <stdbool.h>
@@ -53,16 +53,11 @@ int(kbd_test_scan)() {
               case HARDWARE: /* hardware interrupt notification */				
                   if (msg.m_notify.interrupts & irq_set) { /* subscribed interrupt */
                     kbc_ih();
+                    if (!is_valid()) continue;
 
                     scan_code = get_scan_code();
-                    if (!isScanCodeValid()) {
-                      continue;
-                    }
 
-                    uint8_t size = 1;
-                    if (scan_code == KBD_TWO_BYTE) size = 2;
-
-                    kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), size, &scan_code);
+                    kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
                   }
                   break;
               default:
@@ -79,10 +74,13 @@ int(kbd_test_scan)() {
 }
 
 int(kbd_test_poll)() {
-  /* To be completed by the students */
-  printf("%s is not yet implemented!\n", __func__);
-
-  return 1;
+  uint8_t scan_code = 0 ;
+  while (scan_code != KBD_ESC_BREAK_CODE) {
+    if (!kbc_read_output(KBD_OUT_BUF, &scan_code)) {
+      kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
+    }
+  }
+  return kbd_restore();
 }
 
 int(kbd_test_timed_scan)(uint8_t n) {

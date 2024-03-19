@@ -2,7 +2,7 @@
 PROG=lab3
 
 # source code files to be compiled
-SRCS = lab3.c utils.c keyboard.c
+SRCS = lab3.c utils.c keyboard.c KBC.c
 
 # additional compilation flags
 # "-Wall -Wextra -Werror -I . -std=c11 -Wno-unused-parameter" are already set

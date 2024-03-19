@@ -2,14 +2,14 @@
 
 int kbd_hook_id = 1;
 static uint8_t scan_code;
-static bool valid = true;
-
-bool isScanCodeValid() {
-  return valid;
-}
+static bool valid = false;
 
 uint8_t(get_scan_code)() {
   return scan_code;
+}
+
+bool(is_valid)() {
+  return valid;
 }
 
 int(kbd_subscribe_int)(uint8_t *bit_no) {
@@ -27,30 +27,28 @@ int(kbd_unsubscribe_int)() {
 }
 
 void(kbc_ih)() {
-  uint8_t status;
-
-  if (util_sys_inb(KBD_STAT_REG, &status) != 0) {
-    printf("Keyboard ERROR: Couldn't read status\n");
+  if (kbc_read_output(KBD_OUT_BUF, &scan_code)) {
     valid = false;
     return;
   }
-
-  if (status & KBD_OUT_BUF_FULL) {
-    if (util_sys_inb(KBD_OUT_BUF, &scan_code) != 0) {
-      printf("Keyboard ERROR: Couldn't read output buffer\n");
-      return;
-    }
-    valid = true;
-  }
-
-  if (status & KBD_PARITY_ERR) {
-    printf("Keyboard Parity error - invalid data\n");
-    valid = false;
-  }
-
-  if (status & KBD_TIMEOUT_ERR) {
-    printf("Keyboard Timeout error - invalid data\n");
-    valid = false;
-  }
+  valid = true;
 }
 
+int(getScanCodeSize)(uint8_t scan_code) {
+  if (scan_code == KBD_TWO_BYTE) return 2;
+  return 1;
+}
+
+int (kbd_restore)() {
+    uint8_t commandByte;
+
+    if (kbc_write_command(KBD_IN_BUF, KBC_READ_CMD)) return 1;          
+    if (kbc_read_output(KBD_OUT_BUF, &commandByte)) return 1; 
+
+    commandByte |= KBD_OUT_BUF_FULL;  
+
+    if (kbc_write_command(KBD_IN_BUF, KBC_WRITE_CMD)) return 1;    
+    if (kbc_write_command(KBC_WRITE_CMD, commandByte)) return 1;
+
+    return 0;
+}
