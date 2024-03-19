@@ -31,6 +31,7 @@ void(kbc_ih)() {
     valid = false;
     return;
   }
+  
   valid = true;
 }
 
@@ -43,7 +44,7 @@ int (kbd_restore)() {
     uint8_t commandByte;
 
     if (kbc_write_command(KBD_IN_BUF, KBC_READ_CMD)) return 1;          
-    if (kbc_read_output(KBD_OUT_BUF, &commandByte)) return 1; 
+    if (kbc_read_output(KBD_OUT_BUF, &commandByte)) return 1;
 
     commandByte |= KBD_OUT_BUF_FULL;  
 
