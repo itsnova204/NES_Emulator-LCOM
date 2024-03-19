@@ -68,22 +68,21 @@ int(kbd_test_scan)() {
       }
   }
 
-  if (kbd_unsubscribe_int() != 0) return 1;
-
-  return 0;
+  return kbd_unsubscribe_int();
 }
 
 int(kbd_test_poll)() {
-  uint8_t scan_code = 0, prev_scan_code = 0;
-  
+  uint8_t scan_code = 0;
+
   while (scan_code != KBD_ESC_BREAK_CODE) {
     if (kbc_read_output(KBD_OUT_BUF, &scan_code)) break;
     
-    if (scan_code != prev_scan_code) {
+    kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
+    
+    /*if (scan_code != prev_scan_code) {
       kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
       prev_scan_code = scan_code;
-    }
-    //kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
+    }*/
   }
   return kbd_restore();
 }
