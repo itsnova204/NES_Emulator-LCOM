@@ -10,6 +10,10 @@ int (get_counter)() {
   return counter;
 }
 
+void (reset_counter)() {
+  counter = 0;
+}
+
 //sys_out -> escrever dados numa porta
 //sys_int -> ler dados de uma porta
 

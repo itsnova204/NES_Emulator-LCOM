@@ -34,7 +34,6 @@ int main(int argc, char *argv[]) {
 }
 
 int(kbd_test_scan)() {
-
   int ipc_status, r;
   message msg;
   uint8_t irq_set;
@@ -63,8 +62,8 @@ int(kbd_test_scan)() {
               default:
                   break; /* no other notifications expected: do nothing */	
           }
-      } else { /* received a standard message, not a notification */
-          /* no standard messages expected: do nothing */
+      } else {
+          
       }
   }
 
@@ -73,23 +72,69 @@ int(kbd_test_scan)() {
 
 int(kbd_test_poll)() {
   uint8_t scan_code = 0;
+  bool flag_two_byte = false;
 
   while (scan_code != KBD_ESC_BREAK_CODE) {
     if (kbc_read_output(KBD_OUT_BUF, &scan_code, false)) break;
-    
-    kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
-    
-    /*if (scan_code != prev_scan_code) {
-      kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
-      prev_scan_code = scan_code;
-    }*/
+
+    int scanCodeSize = getScanCodeSize(scan_code);
+    if (scanCodeSize == 2) {
+      flag_two_byte = true;
+    } else {
+      kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), scanCodeSize, &scan_code);
+      flag_two_byte = false;
+    }
   }
+
   return kbd_restore();
 }
 
 int(kbd_test_timed_scan)(uint8_t n) {
-  /* To be completed by the students */
-  printf("%s is not yet implemented!\n", __func__);
+  int ipc_status, r;
+  message msg;
+  uint8_t timer_irq_set, kbd_irq_set;
 
-  return 1;
+  int timer_counter = get_counter();
+  uint8_t scan_code = 0, timer_seconds = n;
+
+  if (timer_subscribe_int(&timer_irq_set) != 0) return 1;
+  if (kbd_subscribe_int(&kbd_irq_set) != 0) return 1;
+
+  while (scan_code != KBD_ESC_BREAK_CODE && timer_seconds > 0) {
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) { 
+      printf("keyboard driver_receive failed with: %d", r);
+      continue;
+    }
+
+    if (is_ipc_notify(ipc_status)) { /* received notification */
+          switch (_ENDPOINT_P(msg.m_source)) {
+              case HARDWARE: /* hardware interrupt notification */	
+                  if (msg.m_notify.interrupts & timer_irq_set) {
+                    timer_int_handler();
+                    if (timer_counter % 60 == 0) {
+                      timer_seconds--;
+                    }
+                  }
+
+                  if (msg.m_notify.interrupts & kbd_irq_set) { /* subscribed interrupt */
+                    kbc_ih();
+                    if (!is_valid()) continue;
+
+                    scan_code = get_scan_code();
+
+                    kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
+
+                    timer_seconds = n;
+                    reset_counter();
+                    timer_counter = get_counter();
+                  }
+          }
+      } else { /* received a standard message, not a notification */
+          /* no standard messages expected: do nothing */
+      }
+  }
+  if (kbd_unsubscribe_int()) return 1;
+  if (timer_unsubscribe_int()) return 1;
+
+  return 0;
 }
