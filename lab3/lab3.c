@@ -76,13 +76,27 @@ int(kbd_test_scan)() {
 }
 
 int(kbd_test_poll)() {
+  uint8_t scan_code_array[2];
+  int index = 0;
   while (scan_code != KBD_ESC_BREAK_CODE) {
     if (kbc_read_output(KBD_OUT_BUF, &scan_code, false)) break;
 
-    flag_two_byte = is_two_byte_scan_code(scan_code);
-    if (!flag_two_byte) {
-      kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
+    if (is_two_byte_scan_code(scan_code) && !flag_two_byte) {
+      scan_code_array[index++] = scan_code;
+      flag_two_byte = true;
+      continue;
+    } 
+    
+    if (flag_two_byte) {
+      flag_two_byte = false;
+      scan_code_array[index] = scan_code;
+      index = 0;
+      kbd_print_scancode(!(KBD_MAKE_CODE & scan_code_array[1]), 2, scan_code_array);
+      memset(scan_code_array, 0, 2);
+      continue;
     }
+    
+    kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), 1, &scan_code);
   }
 
   return kbd_restore();
