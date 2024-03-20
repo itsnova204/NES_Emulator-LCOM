@@ -37,6 +37,9 @@ int(kbd_test_scan)() {
   int ipc_status, r;
   message msg;
   uint8_t irq_set;
+  uint8_t scancode = 0x00;
+  int multiple_bytes = 0;
+  uint8_t bytes[5]; //ask teacher if this is correct
 
   uint8_t scancode = 0x00;
 
@@ -132,3 +135,4 @@ int(kbd_test_timed_scan)(uint8_t n) {
   
   return 0;
 }
+

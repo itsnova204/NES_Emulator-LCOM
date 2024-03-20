@@ -3,7 +3,10 @@
 
 #define KBC_IRQ   1
 
+#define MULTIPLE_BYTES 0xE0
+#define MAKE_CODE BIT(7)
 #define BREAK_ESC 0x81
+
 
 #define KBC_OUT_BUF 0x60
 #define KBC_STATUS_REG 0x64
@@ -34,3 +37,4 @@
 #define OUT_BUF_FULL 0
 
 #endif
+

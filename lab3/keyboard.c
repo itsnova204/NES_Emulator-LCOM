@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "keyboard.h"
 #include "i8042.h"
 #include "util.h"
 #include "keyboard.h"
@@ -10,6 +11,7 @@
 struct kbc_status status_struct;
 
 static int hook_id = 1;
+static uint8_t scancode;
 
 static uint8_t output = 0x00;
 
@@ -120,3 +122,4 @@ int kbc_restore(){
 
   return 0;
 }
+
