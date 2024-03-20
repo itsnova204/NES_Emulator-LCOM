@@ -19,7 +19,7 @@
 #define KBC_SEND_NEW_CMD 0x60
 
 #define KBC_MULTICODE 0xE0
-#define MAKE_CODE       BIT(7)
+#define BREAK_CODE       BIT(7)
 
 //keyboard status codes
 #define KBC_ERR_PARITY BIT(7)

@@ -14,11 +14,11 @@ int main(int argc, char *argv[]) {
 
   // enables to log function invocations that are being "wrapped" by LCF
   // [comment this out if you don't want/need it]
-  lcf_trace_calls("/home/lcom/labs/lab3/trace.txt");
+  lcf_trace_calls("/home/lcom/labs/g5/lab3/trace.txt");
 
   // enables to save the output of printf function calls on a file
   // [comment this out if you don't want/need it]
-  lcf_log_output("/home/lcom/labs/lab3/output.txt");
+  lcf_log_output("/home/lcom/labs/g5/lab3/output.txt");
 
   // handles control over to LCF
   // [LCF handles command line arguments and invokes the right function]
@@ -52,7 +52,8 @@ int(kbd_test_scan)() {
                   if (msg.m_notify.interrupts & irq_set) { /* subscribed interrupt */
                       kbc_ih();
                       scancode = get_kbc_output();
-                      kbd_print_scancode((scancode & MAKE_CODE) != 0,scancode == KBC_MULTICODE? 2: 1,&scancode); 
+                    
+                      kbd_print_scancode((scancode & BREAK_CODE) == 0,scancode == KBC_MULTICODE? 2: 1,&scancode); 
                   }
                   break;
               default:
@@ -76,7 +77,7 @@ int(kbd_test_poll)() {
     kbc_read_output(false);
     
     scancode = get_kbc_output();
-    kbd_print_scancode((scancode & MAKE_CODE) != 0,scancode == KBC_MULTICODE? 2: 1,&scancode);
+    kbd_print_scancode((scancode & BREAK_CODE) == 0,scancode == KBC_MULTICODE? 2: 1,&scancode);
 
     tickdelay(micros_to_ticks(1000));
   }
@@ -108,8 +109,9 @@ int(kbd_test_timed_scan)(uint8_t n) {
                   if (msg.m_notify.interrupts & kbd_irq_set) { /* subscribed interrupt */
                       kbc_ih();
                       scancode = get_kbc_output();
-                      kbd_print_scancode((scancode & MAKE_CODE) != 0,scancode == KBC_MULTICODE? 2: 1,&scancode);
+                      kbd_print_scancode((scancode & BREAK_CODE) == 0,scancode == KBC_MULTICODE? 2: 1,&scancode);
                       time = n;
+                      set_counter(0);
                   }
                   if (msg.m_notify.interrupts & timer_irq_set) { /* subscribed interrupt */
                       timer_int_handler();//increases counter of how many interrupts were received;

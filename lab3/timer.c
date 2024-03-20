@@ -67,6 +67,9 @@ void (timer_int_handler)() {
 int get_counter(){
   return counter;
 }
+void set_counter(int value){
+  counter = value;
+}
 
 int (timer_get_conf)(uint8_t timer, uint8_t *st) {
   if (st == NULL) return 1;
