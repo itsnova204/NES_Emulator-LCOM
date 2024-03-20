@@ -6,8 +6,7 @@
 #include <stdint.h>
 
 #include <keyboard.h>
-#include <timer.h>
-int get_counter();
+#include <timer_utils.h>
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -37,10 +36,6 @@ int(kbd_test_scan)() {
   int ipc_status, r;
   message msg;
   uint8_t irq_set;
-  uint8_t scancode = 0x00;
-  int multiple_bytes = 0;
-  uint8_t bytes[5]; //ask teacher if this is correct
-
   uint8_t scancode = 0x00;
 
   if (kbc_subscribe_int(&irq_set) != 0) return 1;
@@ -74,6 +69,8 @@ int(kbd_test_scan)() {
 
 int(kbd_test_poll)() {
   uint8_t scancode = 0x00;
+
+  SetInfiniteAttempts(true);
 
   while (scancode != BREAK_ESC){
     kbc_read_output(false);
@@ -117,7 +114,7 @@ int(kbd_test_timed_scan)(uint8_t n) {
                   if (msg.m_notify.interrupts & timer_irq_set) { /* subscribed interrupt */
                       timer_int_handler();//increases counter of how many interrupts were received;
                       if(get_counter()%60==0){
-                        timer_print_elapsed_time();
+                        printf("Time left: %d\n",time);
                         time--;
                       }
                   }

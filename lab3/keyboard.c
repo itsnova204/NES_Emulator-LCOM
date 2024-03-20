@@ -11,8 +11,7 @@
 struct kbc_status status_struct;
 
 static int hook_id = 1;
-static uint8_t scancode;
-
+static bool isInfiniteAttempts = false;
 static uint8_t output = 0x00;
 
 int (kbc_subscribe_int)(uint8_t *bit_no) {
@@ -26,6 +25,10 @@ int (kbc_unsubscribe_int)() {
   return sys_irqrmpolicy(&hook_id);
 }
 
+int kbc_setAttempts(int attempts){
+  return 0;
+}
+
 void (kbc_ih)() {
   kbc_read_output(false);
 }
@@ -34,10 +37,14 @@ uint8_t get_kbc_output(){
   return output;
 }
 
+void SetInfiniteAttempts(bool infinite){
+  isInfiniteAttempts = infinite;
+}
+
 int kbc_read_output(bool lookingForMouse){
-  int attempts  = 3;
+  int attempts = 3;
   
-  while (attempts > 0){
+  while (attempts != 0 || isInfiniteAttempts){
     if (kbc_check_status() != 0){
       return -1;
     }

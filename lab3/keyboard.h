@@ -23,6 +23,8 @@ void (kbc_ih)();
 
 uint8_t get_kbc_output();
 
+void SetInfiniteAttempts(bool infinite);
+
 int kbc_read_output(bool lookingForMouse);
 
 int kbc_check_status();
