@@ -9,6 +9,9 @@
 #include "keyboard.h"
 #include "timer.c"
 
+uint8_t scan_code = 0;
+bool flag_two_byte = false;
+
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
   lcf_set_language("EN-US");
@@ -40,7 +43,6 @@ int(kbd_test_scan)() {
 
   if (kbd_subscribe_int(&irq_set) != 0) return 1;
 
-  uint8_t scan_code = 0;
   while (scan_code != KBD_ESC_BREAK_CODE) {
     if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) { 
       printf("keyboard driver_receive failed with: %d", r);
@@ -56,7 +58,10 @@ int(kbd_test_scan)() {
 
                     scan_code = get_scan_code();
 
-                    kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
+                    flag_two_byte = is_two_byte_scan_code(scan_code);
+                    if (!flag_two_byte) {
+                      kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
+                    }
                   }
                   break;
               default:
@@ -71,18 +76,12 @@ int(kbd_test_scan)() {
 }
 
 int(kbd_test_poll)() {
-  uint8_t scan_code = 0;
-  bool flag_two_byte = false;
-
   while (scan_code != KBD_ESC_BREAK_CODE) {
     if (kbc_read_output(KBD_OUT_BUF, &scan_code, false)) break;
 
-    int scanCodeSize = getScanCodeSize(scan_code);
-    if (scanCodeSize == 2) {
-      flag_two_byte = true;
-    } else {
-      kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), scanCodeSize, &scan_code);
-      flag_two_byte = false;
+    flag_two_byte = is_two_byte_scan_code(scan_code);
+    if (!flag_two_byte) {
+      kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
     }
   }
 
@@ -90,12 +89,9 @@ int(kbd_test_poll)() {
 }
 
 int(kbd_test_timed_scan)(uint8_t n) {
-  int ipc_status, r;
+  int ipc_status, r, timer_counter = get_counter();
   message msg;
-  uint8_t timer_irq_set, kbd_irq_set;
-
-  int timer_counter = get_counter();
-  uint8_t scan_code = 0, timer_seconds = n;
+  uint8_t timer_irq_set, kbd_irq_set, timer_seconds = n;
 
   if (timer_subscribe_int(&timer_irq_set) != 0) return 1;
   if (kbd_subscribe_int(&kbd_irq_set) != 0) return 1;
@@ -111,9 +107,8 @@ int(kbd_test_timed_scan)(uint8_t n) {
               case HARDWARE: /* hardware interrupt notification */	
                   if (msg.m_notify.interrupts & timer_irq_set) {
                     timer_int_handler();
-                    if (timer_counter % 60 == 0) {
-                      timer_seconds--;
-                    }
+                    timer_counter = get_counter();
+                    if (timer_counter % 60 == 0) timer_seconds--;
                   }
 
                   if (msg.m_notify.interrupts & kbd_irq_set) { /* subscribed interrupt */
@@ -122,7 +117,10 @@ int(kbd_test_timed_scan)(uint8_t n) {
 
                     scan_code = get_scan_code();
 
-                    kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
+                    flag_two_byte = is_two_byte_scan_code(scan_code);
+                    if (!flag_two_byte) {
+                      kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
+                    }
 
                     timer_seconds = n;
                     reset_counter();

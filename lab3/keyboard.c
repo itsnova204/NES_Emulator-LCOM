@@ -12,6 +12,15 @@ bool(is_valid)() {
   return valid;
 }
 
+int(getScanCodeSize)(uint8_t scan_code) {
+  if (scan_code == KBD_TWO_BYTE) return 2;
+  return 1;
+}
+
+bool is_two_byte_scan_code(uint8_t scan_code) {
+    return (getScanCodeSize(scan_code) == 2);
+}
+
 int(kbd_subscribe_int)(uint8_t *bit_no) {
   if( bit_no == NULL) return 1;   // validar o apontador
 
@@ -33,11 +42,6 @@ void(kbc_ih)() {
   }
   
   valid = true;
-}
-
-int(getScanCodeSize)(uint8_t scan_code) {
-  if (scan_code == KBD_TWO_BYTE) return 2;
-  return 1;
 }
 
 int (kbd_restore)() {
