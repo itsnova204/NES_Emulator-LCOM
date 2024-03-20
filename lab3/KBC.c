@@ -8,11 +8,11 @@ int(kbc_read_status)(uint8_t* status) {
   return 0;
 }
 
-int(kbc_read_output)(uint8_t port, uint8_t* output) {
+int(kbc_read_output)(uint8_t port, uint8_t* output, bool max_attemps) {
   uint8_t status;
   int attemps = MAX_ATTEMPS;
 
-  while (attemps > 0) {
+  while (!max_attemps || attemps > 0) {
     if (kbc_read_status(&status)) {
       printf("Keyboard ERROR: Couldn't read status\n");
       return 1;

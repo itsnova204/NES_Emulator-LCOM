@@ -75,7 +75,7 @@ int(kbd_test_poll)() {
   uint8_t scan_code = 0;
 
   while (scan_code != KBD_ESC_BREAK_CODE) {
-    if (kbc_read_output(KBD_OUT_BUF, &scan_code)) break;
+    if (kbc_read_output(KBD_OUT_BUF, &scan_code, false)) break;
     
     kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), getScanCodeSize(scan_code), &scan_code);
     

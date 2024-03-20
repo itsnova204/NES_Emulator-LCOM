@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include "i8042.h"
 
-int(kbc_read_output)(uint8_t port, uint8_t* output);
+int(kbc_read_output)(uint8_t port, uint8_t* output, bool max_attemps);
 int(kbc_read_status)(uint8_t* status);
 int(kbc_write_command)(uint8_t port, uint8_t command);
 
