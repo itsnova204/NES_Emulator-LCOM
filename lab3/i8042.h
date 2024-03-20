@@ -8,7 +8,15 @@
 #define KBC_OUT_BUF 0x60
 #define KBC_STATUS_REG 0x64
 
+#define KBC_CMD_OUT_REG 0x60
+#define KBC_CMD_IN_REG 0x64
+#define KBC_READ_CMD 0x20 
+#define KBC_SET_CMD 0x60
 
+#define KBC_SEND_NEW_CMD 0x60
+
+#define KBC_MULTICODE 0xE0
+#define MAKE_CODE       BIT(7)
 
 //keyboard status codes
 #define KBC_ERR_PARITY BIT(7)
