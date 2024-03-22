@@ -51,6 +51,15 @@
 #define MOUSE_RIGHT           BIT(1)
 #define MOUSE_LEFT            BIT(0)
 
+//mouse comands
+#define MOUSE_WRITE_CMD 0xD4
+
+#define ACK   0xFA
+#define NACK  0xFE
+#define ERROR 0xFC
+
+#define DATA_REPORTING_ENABLE_CMD 0xF4
+#define DATA_REPORTING_DISABLE_CMD 0xF5
 
 #endif
 

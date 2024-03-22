@@ -53,6 +53,7 @@ int mouse_store_bytes(){
     mouse_update_packet();
     return 3;
   }
+  return 0;
 }
 
 struct packet get_mouse_packet(){
@@ -78,4 +79,27 @@ void mouse_update_packet(){
   }else{
     packet.delta_x = bytes[1] - 256;
   }
+}
+
+int mouse_write_command(uint8_t command){
+
+  uint8_t response = 0x00;
+  uint8_t attempts = 3;
+
+  while (attempts > 0){
+    if(kbc_write_command(MOUSE_WRITE_CMD, KBC_CMD_IN_REG) != 0) return 1;
+    if (kbc_write_command(command, KBC_CMD_OUT_REG)) return 1; //comand sent!
+
+    tickdelay(micros_to_ticks(20000));
+    
+    if (util_sys_inb(KBC_CMD_OUT_REG, &response)) return 1; //check response
+    if (response == ACK) return 0;
+
+    attempts--;
+  }
+
+  printf("ERROR: Mouse write command ran out of attempts\n");
+  if (response == NACK) return 1;
+  if (response == ERROR) return 1;
+  return 1;
 }
