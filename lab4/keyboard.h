@@ -9,10 +9,10 @@
 #include "i8042.h"
 #include "util.h"
 
-struct kbc_status{
-  bool reading_mouse;
-  bool input_buffer_full;
-  bool output_buffer_full;
+struct kbc_status_struct{
+  bool isOutputMouse;
+  bool isInputBufferFull;
+  bool isOutputBufferFull;
 };
 
 int (kbc_subscribe_int)(uint8_t *bit_no);
