@@ -33,7 +33,7 @@ uint8_t get_kbc_output(){
   return outputBuffer;
 }
 
-void SetInfiniteAttempts(bool infinite){
+void Set_isInfiniteAttempts(bool infinite){
   isInfiniteAttempts = infinite;
 }
 
