@@ -8,11 +8,11 @@
 #include "util.h"
 #include "keyboard.h"
 
-struct kbc_status status_struct;
+struct kbc_status_struct kbc_status;
 
 static int hook_id = 1;
 static bool isInfiniteAttempts = false;
-static uint8_t output = 0x00;
+static uint8_t outputBuffer = 0x00;
 
 int (kbc_subscribe_int)(uint8_t *bit_no) {
   if(bit_no == NULL) return 1; 
@@ -25,16 +25,12 @@ int (kbc_unsubscribe_int)() {
   return sys_irqrmpolicy(&hook_id);
 }
 
-int kbc_setAttempts(int attempts){
-  return 0;
-}
-
 void (kbc_ih)() {
   kbc_read_output(false);
 }
 
 uint8_t get_kbc_output(){
-  return output;
+  return outputBuffer;
 }
 
 void SetInfiniteAttempts(bool infinite){
@@ -44,14 +40,12 @@ void SetInfiniteAttempts(bool infinite){
 int kbc_read_output(bool lookingForMouse){
   int attempts = 3;
   
-  while (attempts != 0 || isInfiniteAttempts){
-    if (kbc_check_status() != 0){
-      return -1;
-    }
+  while (attempts > 0 || isInfiniteAttempts){
+    if (kbc_check_status() != 0) return -1;
    
-    if (status_struct.output_buffer_full && (status_struct.reading_mouse == lookingForMouse)){
+    if (kbc_status.isOutputBufferFull && (kbc_status.isOutputMouse == lookingForMouse)){
 
-      if(util_sys_inb(KBC_OUT_BUF, &output)) return -1;
+      if(util_sys_inb(KBC_OUT_BUF, &outputBuffer)) return -1;
        
       return 0;
     }
@@ -65,39 +59,39 @@ int kbc_read_output(bool lookingForMouse){
 }
 
 int kbc_check_status(){
-  uint8_t data = 0x00;
+  uint8_t status = 0x00;
 
-  if(util_sys_inb(KBC_STATUS_REG, &data) != 0){
+  if(util_sys_inb(KBC_STATUS_REG, &status) != 0){
     printf("ERROR: reading from keyboard status\n");
     return -1;
   } 
 
-  if((data & KBC_AUX) != 0){   //check if it is outputing mouse data
-    status_struct.reading_mouse = true;
+  if((status & KBC_AUX) != 0){   //check if it is outputing mouse data
+    kbc_status.isOutputMouse = true;
   }else{
-    status_struct.reading_mouse = false;
+    kbc_status.isOutputMouse = false;
   }
   
-  if ((data & KBC_IBF)){ //check if input buffer is full
-    status_struct.input_buffer_full = true;
+  if ((status & KBC_IBF)){ //check if input buffer is full
+    kbc_status.isInputBufferFull = true;
   }else{
-    status_struct.input_buffer_full = false;
+    kbc_status.isInputBufferFull = false;
   }
   
-  if((data & KBC_OUT_BUF_FULL) != 0){//check for output buffer full
-    status_struct.output_buffer_full = true;
+  if((status & KBC_OUT_BUF_FULL) != 0){//check for output buffer full
+    kbc_status.isOutputBufferFull = true;
 
-    if((data & KBC_ERR_PARITY) != 0){//check for parity error
+    if((status & KBC_ERR_PARITY) != 0){//check for parity error
       printf("ERROR: kbc output parity error\n");
       return PARITY_ERR;  
     } 
-    if((data & KBC_ERR_TIMEOUT) != 0) {//check for timeout error
+    if((status & KBC_ERR_TIMEOUT) != 0) {//check for timeout error
       printf("ERROR: kbc output timeout error\n");
       return TIMEOUT_ERR;  
     }   
 
   }else{
-    status_struct.output_buffer_full = false;
+    kbc_status.isOutputBufferFull = false;
   }
 
   return 0;
@@ -108,7 +102,7 @@ int kbc_write_command(uint8_t command, uint8_t port){
   while (true){
     if (kbc_check_status() != 0) return -1;
    
-    if (status_struct.input_buffer_full == false){
+    if (kbc_status.isInputBufferFull == false){
 
       if(sys_outb(port, command)) return -1;
        
@@ -125,7 +119,7 @@ int kbc_restore(){
   if(kbc_read_output(false) != 0) return 1; 
 
   if(kbc_write_command(KBC_SET_CMD, KBC_CMD_IN_REG) != 0) return 1;
-  if(kbc_write_command(output | BIT(0), KBC_SEND_NEW_CMD) != 0) return 1;
+  if(kbc_write_command(outputBuffer | BIT(0), KBC_SEND_NEW_CMD) != 0) return 1;
 
   return 0;
 }
