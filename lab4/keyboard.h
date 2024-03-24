@@ -31,5 +31,7 @@ int kbc_check_status();
 
 int kbc_restore();
 
+int kbc_write_command(uint8_t command, uint8_t port)
+
 #endif //_KEYBOARD_H_
 
