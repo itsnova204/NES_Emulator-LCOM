@@ -38,6 +38,7 @@
 
 //#################################
 //MOUSE
+#define MOUSE_IRQ 12
 
 //mouse first byte:
 #define MOUSE_Y_OVF           BIT(7)
