@@ -61,6 +61,10 @@ struct packet get_mouse_packet(){
 }
 
 void mouse_update_packet(){
+  mouse_packet.bytes[0] = bytes[0];
+  mouse_packet.bytes[1] = bytes[1];
+  mouse_packet.bytes[2] = bytes[2];
+
   mouse_packet.y_ov = bytes[0] & MOUSE_Y_OVF;
   mouse_packet.x_ov = bytes[0] & MOUSE_X_OVF;
 
@@ -80,6 +84,7 @@ void mouse_update_packet(){
     mouse_packet.delta_x = bytes[1] - 256;
   }
 }
+
 
 int mouse_write_command(uint8_t command){
 
