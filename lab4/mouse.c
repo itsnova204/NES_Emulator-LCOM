@@ -4,25 +4,23 @@
 #include "i8042.h"
 #include "keyboard.h"
 
-#define MOUSE_IRQ 12
+static int mouse_hook_id = 3;
 
-static int hook_id = 3;
-
-uint8_t current_byte;
-int byte_counter = 0;
-uint8_t bytes[3];
+static uint8_t current_byte;
+static int byte_counter = 0;
+static uint8_t bytes[3];
 
 struct packet mouse_packet; 
 
 int (mouse_subscribe_int)(uint8_t *bit_no){
   if(bit_no == NULL) return 1; 
-  *bit_no = BIT(hook_id);       
+  *bit_no = BIT(mouse_hook_id);       
 
-  return sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id);
+  return sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &mouse_hook_id);
 }
 
 int (mouse_unsubscribe_int)(){
-  return sys_irqrmpolicy(&hook_id);
+  return sys_irqrmpolicy(&mouse_hook_id);
 }
 
 void (mouse_ih)(){
@@ -100,11 +98,14 @@ int mouse_write_command(uint8_t command){
     if (util_sys_inb(KBC_CMD_OUT_REG, &response)) return 1; //check response
     if (response == ACK) return 0;
 
+    if (response == ERROR){ //0xFE response, it should retry the offending command. https://web.fe.up.pt/~pfs/aulas/lcom2324/labs/lab4/lab4_3.html TODO: check if this is correct with professor
+      attempts = 3;
+    } 
+
     attempts--;
   }
 
   printf("ERROR: Mouse write command ran out of attempts\n");
-  if (response == NACK) return 1;
-  if (response == ERROR) return 1;
+  if (response == NACK) return 1; //0xFE
   return 1;
 }

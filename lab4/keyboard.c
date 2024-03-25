@@ -10,19 +10,19 @@
 
 struct kbc_status_struct kbc_status;
 
-static int hook_id = 1;
+static int kbc_hook_id = 1;
 static bool isInfiniteAttempts = false;
 static uint8_t outputBuffer = 0x00;
 
 int (kbc_subscribe_int)(uint8_t *bit_no) {
   if(bit_no == NULL) return 1; 
-  *bit_no = BIT(hook_id);       
+  *bit_no = BIT(kbc_hook_id);       
 
-  return sys_irqsetpolicy(KBC_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id);
+  return sys_irqsetpolicy(KBC_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &kbc_hook_id);
 }
 
 int (kbc_unsubscribe_int)() {
-  return sys_irqrmpolicy(&hook_id);
+  return sys_irqrmpolicy(&kbc_hook_id);
 }
 
 void (kbc_ih)() {
