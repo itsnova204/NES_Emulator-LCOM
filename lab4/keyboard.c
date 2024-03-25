@@ -33,10 +33,10 @@ uint8_t get_kbc_output(){
   return outputBuffer;
 }
 
-void Set_isInfiniteAttempts(bool infinite){
-  isInfiniteAttempts = infinite;
+void set_isInfiniteAttempts(bool isInfinite){
+  isInfiniteAttempts = isInfinite;
 }
-
+ 
 int kbc_read_output(bool lookingForMouse){
   int attempts = 3;
   
@@ -123,4 +123,3 @@ int kbc_restore(){
 
   return 0;
 }
-

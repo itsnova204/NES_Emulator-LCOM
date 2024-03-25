@@ -36,9 +36,8 @@
 #define OUT_BUF_NOT_FULL  4
 #define OUT_BUF_FULL 0
 
-
-
-//mouse stuff
+//#################################
+//MOUSE
 
 //mouse first byte:
 #define MOUSE_Y_OVF           BIT(7)
@@ -52,14 +51,15 @@
 #define MOUSE_LEFT            BIT(0)
 
 //mouse comands
-#define MOUSE_WRITE_CMD 0xD4
+#define MOUSE_WRITE_CMD 0xD4 
 
+//cmd responses:
 #define ACK   0xFA
 #define NACK  0xFE
 #define ERROR 0xFC
 
-#define DATA_REPORTING_ENABLE_CMD 0xF4
-#define DATA_REPORTING_DISABLE_CMD 0xF5
+#define MOUSE_DATA_REPORTING_ENABLE_CMD 0xF4
+#define MOUSE_DATA_REPORTING_DISABLE_CMD 0xF5
 
 #endif
 

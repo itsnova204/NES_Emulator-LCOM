@@ -9,7 +9,7 @@ int (mouse_unsubscribe_int)();
 
 void (mouse_ih)();
 
-void reset_mouse_packet_counter();
+void mouse_reset_packet_counter();
 
 int mouse_store_bytes();
 
