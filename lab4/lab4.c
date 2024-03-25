@@ -32,7 +32,6 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-
 int (mouse_test_packet)(uint32_t cnt) {
     uint8_t mouse_irq_set;
 
@@ -40,38 +39,43 @@ int (mouse_test_packet)(uint32_t cnt) {
     message msg;
 
     if (mouse_subscribe_int(&mouse_irq_set) != 0) return 1;
+    
     if (mouse_enable_data_reporting() != 0) return 1;
+    //if (mouse_write_command(MOUSE_DATA_REPORTING_ENABLE_CMD) != 0) return 1;
 
     struct packet mouse_packet;   
 
-    while(cnt > 0) { /* You may want to use a different condition */
-      /* Get a request message. */
-      if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
-          printf("driver_receive failed with: %d", r);
-          continue;
-      }
-      if (is_ipc_notify(ipc_status)) { /* received notification */
-          switch (_ENDPOINT_P(msg.m_source)) {
-              case HARDWARE: /* hardware interrupt notification */				
-                  if (msg.m_notify.interrupts & mouse_irq_set) { /* subscribed interrupt */
-                      mouse_ih();
-                      if (mouse_store_bytes() == 3){
-                        mouse_packet = get_mouse_packet();
-                        mouse_print_packet(&mouse_packet);
-                        reset_mouse_packet_counter();
-                        cnt--;
-                      }
-                  }
-                  break;
-              default:
-                  break; /* no other notifications expected: do nothing */	
-          }
-      } else { /* received a standard message, not a notification */
-          /* no standard messages expected: do nothing */
-      }
-  }
+    while(cnt > 0) {
+        /* Get a request message. */
+        if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+            printf("driver_receive failed with: %d", r);
+            continue;
+        }
+        if (is_ipc_notify(ipc_status)) { /* received notification */
+            switch (_ENDPOINT_P(msg.m_source)) {
+                case HARDWARE: /* hardware interrupt notification */				
+                    if (msg.m_notify.interrupts & mouse_irq_set) { /* subscribed interrupt */
+                        mouse_ih();
+                        if (mouse_store_bytes() == 3){
+                            mouse_packet = get_mouse_packet();
+                            mouse_print_packet(&mouse_packet);
+                            mouse_reset_packet_counter();
+                            cnt--;
+                        }
+                    }
+                    break;
+                default:
+                    break; /* no other notifications expected: do nothing */	
+            }
+        } else { /* received a standard message, not a notification */
+            /* no standard messages expected: do nothing */
+        }
+    }
 
-    mouse_unsubscribe_int();
+
+    if (mouse_write_command(MOUSE_DATA_REPORTING_DISABLE_CMD) != 0) return 1;
+    if (mouse_unsubscribe_int() != 0) return 1;
+
     return 0;
 }
 

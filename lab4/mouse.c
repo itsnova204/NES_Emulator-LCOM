@@ -6,13 +6,13 @@
 
 #define MOUSE_IRQ 12
 
-static int hook_id = 12;
+static int hook_id = 3;
 
 uint8_t current_byte;
 int byte_counter = 0;
 uint8_t bytes[3];
 
-struct packet packet; 
+struct packet mouse_packet; 
 
 int (mouse_subscribe_int)(uint8_t *bit_no){
   if(bit_no == NULL) return 1; 
@@ -30,7 +30,7 @@ void (mouse_ih)(){
   current_byte = get_kbc_output();
 }
 
-void reset_mouse_packet_counter(){
+void mouse_reset_packet_counter(){
   byte_counter = 0;
 }
 
@@ -57,27 +57,27 @@ int mouse_store_bytes(){
 }
 
 struct packet get_mouse_packet(){
-  return packet;
+  return mouse_packet;
 }
 
 void mouse_update_packet(){
-  packet.y_ov = bytes[0] & MOUSE_Y_OVF;
-  packet.x_ov = bytes[0] & MOUSE_X_OVF;
+  mouse_packet.y_ov = bytes[0] & MOUSE_Y_OVF;
+  mouse_packet.x_ov = bytes[0] & MOUSE_X_OVF;
 
-  packet.mb = bytes[0] & MOUSE_MIDLE;
-  packet.rb = bytes[0] & MOUSE_RIGHT;
-  packet.lb = bytes[0] & MOUSE_LEFT;
+  mouse_packet.mb = bytes[0] & MOUSE_MIDLE;
+  mouse_packet.rb = bytes[0] & MOUSE_RIGHT;
+  mouse_packet.lb = bytes[0] & MOUSE_LEFT;
 
   if((bytes[0] & MOUSE_MSB_Y_DELTA) == 0){
-    packet.delta_y = bytes[2];
+    mouse_packet.delta_y = bytes[2];
   }else{
-    packet.delta_y = bytes[2] - 256;
+    mouse_packet.delta_y = bytes[2] - 256;
   }
 
   if((bytes[0] & MOUSE_MSB_X_DELTA) == 0){
-    packet.delta_x = bytes[1];
+    mouse_packet.delta_x = bytes[1];
   }else{
-    packet.delta_x = bytes[1] - 256;
+    mouse_packet.delta_x = bytes[1] - 256;
   }
 }
 
@@ -87,7 +87,7 @@ int mouse_write_command(uint8_t command){
   uint8_t attempts = 3;
 
   while (attempts > 0){
-    if(kbc_write_command(MOUSE_WRITE_CMD, KBC_CMD_IN_REG) != 0) return 1;
+    if(kbc_write_command(MOUSE_WRITE_CMD, KBC_CMD_IN_REG) != 0) return 1; //tell the kbc we are going to write a command to the mouse
     if (kbc_write_command(command, KBC_CMD_OUT_REG)) return 1; //comand sent!
 
     tickdelay(micros_to_ticks(20000));
