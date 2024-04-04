@@ -118,8 +118,8 @@ uint8_t fetch(){
 }
 
 /*addressing modes: DOCS: https://www.nesdev.org/obelisk-6502-guide/addressing.html
-													https://www.masswerk.at/6502/6502_instruction_set.html
-													../doc/rockwell_r65c00_microprocessors.pdf
+                          https://www.masswerk.at/6502/6502_instruction_set.html
+                          ../doc/rockwell_r65c00_microprocessors.pdf
 */
 
 uint8_t ADR_IMP(){
