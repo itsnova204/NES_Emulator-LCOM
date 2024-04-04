@@ -3,7 +3,7 @@
 uint8_t ram[64 * 1024];
 
 void ram_init(){
-  memset(&ram, 0,64 * 1024);
+  memset(&ram, 0, 64 * 1024);
 }
 
 void bus_write(uint16_t addr, uint8_t data){
