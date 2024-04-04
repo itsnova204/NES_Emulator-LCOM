@@ -2,14 +2,14 @@
 #pragma once
 
 typedef enum{
-  carry_bit,
-  zero_bit,
-  interrupt_disable_bit,
-  decimal_mode_bit, //not used as the 6502 version used in NES didnt have this
-  break_bit,
-  unused_bit, // this is always 1
-  overflow_bit,
-  negative_bit,
+  carry_bit = BIT(0),
+  zero_bit = BIT(1),
+  interrupt_disable_bit = BIT(2),
+  decimal_mode_bit = BIT(3), //not used as the 6502 version used in NES didnt have this
+  break_bit = BIT(4),
+  unused_bit = BIT(5), // this is always 1
+  overflow_bit = BIT(6),
+  negative_bit = BIT(7),
 } p6502_flag;
 
 #define  stack_ofset 0x0100
@@ -94,7 +94,4 @@ static uint8_t ADR_IZX(); static uint8_t ADR_IZY();
       { "CPX", &INST_CPX, &ADR_IMM, 2 },{ "SBC", &INST_SBC, &ADR_IZX, 6 },{ "???", &INST_NOP, &ADR_IMP, 2 },{ "???", &INST_XXX, &ADR_IMP, 8 },{ "CPX", &INST_CPX, &ADR_ZP0, 3 },{ "SBC", &INST_SBC, &ADR_ZP0, 3 },{ "INC", &INST_INC, &ADR_ZP0, 5 },{ "???", &INST_XXX, &ADR_IMP, 5 },{ "INX", &INST_INX, &ADR_IMP, 2 },{ "SBC", &INST_SBC, &ADR_IMM, 2 },{ "NOP", &INST_NOP, &ADR_IMP, 2 },{ "???", &INST_SBC, &ADR_IMP, 2 },{ "CPX", &INST_CPX, &ADR_ABS, 4 },{ "SBC", &INST_SBC, &ADR_ABS, 4 },{ "INC", &INST_INC, &ADR_ABS, 6 },{ "???", &INST_XXX, &ADR_IMP, 6 },
       { "BEQ", &INST_BEQ, &ADR_REL, 2 },{ "SBC", &INST_SBC, &ADR_IZY, 5 },{ "???", &INST_XXX, &ADR_IMP, 2 },{ "???", &INST_XXX, &ADR_IMP, 8 },{ "???", &INST_NOP, &ADR_IMP, 4 },{ "SBC", &INST_SBC, &ADR_ZPX, 4 },{ "INC", &INST_INC, &ADR_ZPX, 6 },{ "???", &INST_XXX, &ADR_IMP, 6 },{ "SED", &INST_SED, &ADR_IMP, 2 },{ "SBC", &INST_SBC, &ADR_ABY, 4 },{ "NOP", &INST_NOP, &ADR_IMP, 2 },{ "???", &INST_XXX, &ADR_IMP, 7 },{ "???", &INST_NOP, &ADR_IMP, 4 },{ "SBC", &INST_SBC, &ADR_ABX, 4 },{ "INC", &INST_INC, &ADR_ABX, 7 },{ "???", &INST_XXX, &ADR_IMP, 7 },
     };
-
-
-
-
+    
