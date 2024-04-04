@@ -242,9 +242,9 @@ uint8_t ADR_REL(){
 }
 
 /*Instructions  DOCS: https://www.nesdev.org/obelisk-6502-guide/reference.html
-											https://www.masswerk.at/6502/6502_instruction_set.html
-											../doc/rockwell_r65c00_microprocessors.pdf
-											../doc/instructionset.png
+                      https://www.masswerk.at/6502/6502_instruction_set.html
+                      ../doc/rockwell_r65c00_microprocessors.pdf
+                      ../doc/instructionset.png
 
 */
 uint8_t INST_RTI(){ //return from interrupt
