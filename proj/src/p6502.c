@@ -54,7 +54,7 @@ instructionSet lookup[] =
 
 void cpu_clock(){
 	if (cycles_left == 0){
-		opcode = mainBus_read(program_counter);
+		opcode = sysBus_read(program_counter);
 		program_counter++;
 
 		cycles_left = lookup[opcode].cycles;
@@ -76,8 +76,8 @@ void cpu_reset(){
 	stack_ptr = 0xFD;
 	status = 0x00 | unused_bit;
 	address_abs = 0xFFFC; //as per docs when cpu resets it looks here for new program conter val
-	uint8_t lsb = mainBus_read(address_abs);
-	uint8_t msb = mainBus_read(address_abs + 1);
+	uint8_t lsb = sysBus_read(address_abs);
+	uint8_t msb = sysBus_read(address_abs + 1);
 
 	program_counter = (msb << 8) | lsb;
 
@@ -92,21 +92,21 @@ void cpu_reset(){
 void cpu_irq(){ //interrupt request (IRQ) - can be ignored
 	if(get_flag(interrupt_disable_bit) == 0){//do nothing if bit is set as it means we are not accepting interrupts
 		//save current status to the stack
-		mainBus_write(stack_ofset + stack_ptr, (program_counter >> 8) & 0x00FF); //save pc msb
+		sysBus_write(stack_ofset + stack_ptr, (program_counter >> 8) & 0x00FF); //save pc msb
 		stack_ptr--;
-		mainBus_write(stack_ofset + stack_ptr, program_counter & 0x00FF); //save pc lsb
+		sysBus_write(stack_ofset + stack_ptr, program_counter & 0x00FF); //save pc lsb
 		stack_ptr--;
 
 		set_flag(break_bit, 0);
 		set_flag(unused_bit, 1);
 		set_flag(interrupt_disable_bit, 1);
-		mainBus_write(stack_ofset + stack_ptr, status);
+		sysBus_write(stack_ofset + stack_ptr, status);
 		stack_ptr--;
 
 		//handle it
 		address_abs = 0xFFFE;
-		uint8_t lsb = mainBus_read(address_abs);
-		uint8_t msb = mainBus_read(address_abs + 1);
+		uint8_t lsb = sysBus_read(address_abs);
+		uint8_t msb = sysBus_read(address_abs + 1);
 		program_counter = (msb << 8) | lsb;
 
 		cycles_left = 7;
@@ -116,21 +116,21 @@ void cpu_irq(){ //interrupt request (IRQ) - can be ignored
 void cpu_nmi(){ //non maskable interrupt (NMI) - we cant ignore this one
 
 		//save current status to the stack
-		mainBus_write(stack_ofset + stack_ptr, (program_counter >> 8) & 0x00FF); //save pc msb
+		sysBus_write(stack_ofset + stack_ptr, (program_counter >> 8) & 0x00FF); //save pc msb
 		stack_ptr--;
-		mainBus_write(stack_ofset + stack_ptr, program_counter & 0x00FF); //save pc lsb
+		sysBus_write(stack_ofset + stack_ptr, program_counter & 0x00FF); //save pc lsb
 		stack_ptr--;
 
 		set_flag(break_bit, 0);
 		set_flag(unused_bit, 1);
 		set_flag(interrupt_disable_bit, 1);
-		mainBus_write(stack_ofset + stack_ptr, status);
+		sysBus_write(stack_ofset + stack_ptr, status);
 		stack_ptr--;
 
 		//handle it
 		address_abs = 0xFFFA;
-		uint8_t lsb = mainBus_read(address_abs);
-		uint8_t msb = mainBus_read(address_abs + 1);
+		uint8_t lsb = sysBus_read(address_abs);
+		uint8_t msb = sysBus_read(address_abs + 1);
 		program_counter = (msb << 8) | lsb;
 
 		cycles_left = 8;
@@ -152,7 +152,7 @@ void set_flag(p6502_flag flag, bool enable){
 //helper:
 uint8_t fetch(){
 	if(!(lookup[opcode].ADR_MODE == &ADR_IMP))
-		fetched = mainBus_read(address_abs);
+		fetched = sysBus_read(address_abs);
 	return fetched;
 }
 
@@ -172,30 +172,30 @@ uint8_t ADR_IMM(){
 }
 
 uint8_t ADR_ZP0(){
-	address_abs = mainBus_read(program_counter);
+	address_abs = sysBus_read(program_counter);
 	program_counter++;
 	address_abs = address_abs & 0x00FF; // we are reading from page 0 so we dont need MSB
 	return 0;
 }
 
 uint8_t ADR_ZPX(){
-	address_abs = mainBus_read(program_counter + x_reg);
+	address_abs = sysBus_read(program_counter + x_reg);
 	program_counter++;
 	address_abs = address_abs & 0x00FF; // we are reading from page 0 so we dont need MSB
 	return 0;
 }
 
 uint8_t ADR_ZPY(){
-	address_abs = mainBus_read(program_counter + y_reg);
+	address_abs = sysBus_read(program_counter + y_reg);
 	program_counter++;
 	address_abs = address_abs & 0x00FF; // we are reading from page 0 so we dont need MSB
 	return 0;
 }
 
 uint8_t ADR_ABS(){
-	uint8_t lsb = mainBus_read(program_counter);
+	uint8_t lsb = sysBus_read(program_counter);
 	program_counter++;
-	uint8_t msb = mainBus_read(program_counter);
+	uint8_t msb = sysBus_read(program_counter);
 	program_counter++;
 
 	address_abs = (msb << 8) | lsb;
@@ -203,9 +203,9 @@ uint8_t ADR_ABS(){
 }
 
 uint8_t ADR_ABX(){
-	uint8_t lsb = mainBus_read(program_counter);
+	uint8_t lsb = sysBus_read(program_counter);
 	program_counter++;
-	uint8_t msb = mainBus_read(program_counter);
+	uint8_t msb = sysBus_read(program_counter);
 	program_counter++;
 
 	address_abs = (msb << 8) | lsb;
@@ -216,9 +216,9 @@ uint8_t ADR_ABX(){
 }
 
 uint8_t ADR_ABY(){
-	uint8_t lsb = mainBus_read(program_counter);
+	uint8_t lsb = sysBus_read(program_counter);
 	program_counter++;
-	uint8_t msb = mainBus_read(program_counter);
+	uint8_t msb = sysBus_read(program_counter);
 	program_counter++;
 
 	address_abs = (msb << 8) | lsb;
@@ -230,41 +230,41 @@ uint8_t ADR_ABY(){
 
 
 uint8_t ADR_IND(){
-	uint8_t lsb = mainBus_read(program_counter);
+	uint8_t lsb = sysBus_read(program_counter);
 	program_counter++;
-	uint8_t msb = mainBus_read(program_counter);
+	uint8_t msb = sysBus_read(program_counter);
 	program_counter++;
 
 	uint16_t ptr = (msb << 8) | lsb;
 
-	address_abs = (mainBus_read(program_counter + 1) << 8) | mainBus_read(program_counter);
+	address_abs = (sysBus_read(program_counter + 1) << 8) | sysBus_read(program_counter);
 	
 	if(lsb == 0x00FF){ //if reading the msb from the bus would make it overflow and switch page the 6502 would actually bug and start reading from the start of the current page, this behavior is emulated here. for further reading consult: https://www.nesdev.org/6502bugs.txt
-		address_abs = (mainBus_read(ptr & 0xFF00) << 8) | mainBus_read(ptr);
+		address_abs = (sysBus_read(ptr & 0xFF00) << 8) | sysBus_read(ptr);
 	}else{//if no overflow then it behaves normaly
-		address_abs = (mainBus_read(ptr + 1) << 8) | mainBus_read(ptr);
+		address_abs = (sysBus_read(ptr + 1) << 8) | sysBus_read(ptr);
 	}
 	
 	return 0;
 }
 
 uint8_t ADR_IZX(){
-	uint8_t ptr = mainBus_read(program_counter);
+	uint8_t ptr = sysBus_read(program_counter);
 	program_counter++;
 
-	uint8_t lsb = mainBus_read(ptr + x_reg);
-	uint8_t msb = mainBus_read(ptr + x_reg + 1);
+	uint8_t lsb = sysBus_read(ptr + x_reg);
+	uint8_t msb = sysBus_read(ptr + x_reg + 1);
 	
 	address_abs = (msb << 8) | lsb;
 	return 0;
 }
 
 uint8_t ADR_IZY(){
-	uint8_t ptr = mainBus_read(program_counter);
+	uint8_t ptr = sysBus_read(program_counter);
 	program_counter++;
 
-	uint8_t lsb = mainBus_read(ptr);
-	uint8_t msb = mainBus_read(ptr + 1);
+	uint8_t lsb = sysBus_read(ptr);
+	uint8_t msb = sysBus_read(ptr + 1);
 	
 	address_abs = (msb << 8) | lsb;
 	address_abs += y_reg;
@@ -274,7 +274,7 @@ uint8_t ADR_IZY(){
 }
 
 uint8_t ADR_REL(){
-	address_rel = mainBus_read(program_counter);
+	address_rel = sysBus_read(program_counter);
 	program_counter++;
 	
 	if (address_rel & BIT(7)) address_rel |= 0xFF00;
@@ -293,14 +293,14 @@ check here: https://www.nesdev.org/obelisk-6502-guide/reference.html to see if t
 
 uint8_t INST_RTI(){ //return from interrupt
 	stack_ptr++;
-	status = mainBus_read(stack_ofset + stack_ptr);
+	status = sysBus_read(stack_ofset + stack_ptr);
 	status &= ~break_bit;
 	status &= ~unused_bit;
 
 	stack_ptr++;
-	program_counter = (uint16_t)mainBus_read(stack_ofset + stack_ptr);
+	program_counter = (uint16_t)sysBus_read(stack_ofset + stack_ptr);
 	stack_ptr++;
-	program_counter |= (uint16_t)mainBus_read(stack_ofset + stack_ptr) << 8;
+	program_counter |= (uint16_t)sysBus_read(stack_ofset + stack_ptr) << 8;
 
 	return 0;
 }
@@ -398,17 +398,17 @@ uint8_t INST_BPL(){
 uint8_t INST_BRK(){
 	program_counter++;
 	set_flag(interrupt_disable_bit, true);
-	mainBus_write(stack_ofset + stack_ptr, (program_counter >> 8) & 0x00FF); //save pc msb
+	sysBus_write(stack_ofset + stack_ptr, (program_counter >> 8) & 0x00FF); //save pc msb
 	stack_ptr--;
-	mainBus_write(stack_ofset + stack_ptr, program_counter & 0x00FF); //save pc lsb
+	sysBus_write(stack_ofset + stack_ptr, program_counter & 0x00FF); //save pc lsb
 	stack_ptr--;
 
 	set_flag(break_bit, true);
-	mainBus_write(stack_ofset + stack_ptr, status);
+	sysBus_write(stack_ofset + stack_ptr, status);
 	stack_ptr--;
 	set_flag(break_bit, false);
 
-	program_counter = (uint16_t)mainBus_read(0xFFFE) | ((uint16_t)mainBus_read(0xFFFF) << 8);
+	program_counter = (uint16_t)sysBus_read(0xFFFE) | ((uint16_t)sysBus_read(0xFFFF) << 8);
 
 	return 0;
 }
@@ -448,7 +448,7 @@ uint8_t INST_ASL(){
 	if(lookup[opcode].ADR_MODE == &ADR_IMP){
 		accumulator = temp & 0x00FF;
 	}else{
-		mainBus_write(address_abs, temp & 0x00FF);
+		sysBus_write(address_abs, temp & 0x00FF);
 	}
 	return 0;
 }
@@ -504,7 +504,7 @@ uint8_t INST_CPY(){
 uint8_t INST_DEC(){
 	fetch();
 	uint8_t temp = fetched - 1;
-	mainBus_write(address_abs, temp);
+	sysBus_write(address_abs, temp);
 	set_flag(zero_bit, temp == 0);
 	set_flag(negative_bit, temp & BIT(7));
 	return 0;
@@ -535,7 +535,7 @@ uint8_t INST_EOR(){
 uint8_t INST_INC(){
 	fetch();
 	uint8_t temp = fetched + 1;
-	mainBus_write(address_abs, temp);
+	sysBus_write(address_abs, temp);
 	set_flag(zero_bit, temp == 0);
 	set_flag(negative_bit, temp & BIT(7));
 	return 0;
@@ -563,9 +563,9 @@ uint8_t INST_JMP(){ //todo recreate bug
 uint8_t INST_JSR(){
 	program_counter--;
 
-	mainBus_write(stack_ofset + stack_ptr, (program_counter >> 8) & 0x00FF);
+	sysBus_write(stack_ofset + stack_ptr, (program_counter >> 8) & 0x00FF);
 	stack_ptr--;
-	mainBus_write(stack_ofset + stack_ptr, program_counter & 0x00FF);
+	sysBus_write(stack_ofset + stack_ptr, program_counter & 0x00FF);
 	stack_ptr--;
 
 	program_counter = address_abs;
@@ -606,7 +606,7 @@ uint8_t INST_LSR(){
 	if(lookup[opcode].ADR_MODE == &ADR_IMP){
 		accumulator = temp & 0x00FF;
 	}else{
-		mainBus_write(address_abs, temp & 0x00FF);
+		sysBus_write(address_abs, temp & 0x00FF);
 	}
 	return 0;
 }
@@ -662,13 +662,13 @@ uint8_t INST_SUB(){
 }
 
 uint8_t INST_PHA(){
-	mainBus_write(stack_ofset + stack_ptr, accumulator);
+	sysBus_write(stack_ofset + stack_ptr, accumulator);
 	stack_ptr--;
 	return 0;
 }
 
 uint8_t INST_PHP(){
-	mainBus_write(stack_ofset + stack_ptr, status | break_bit | unused_bit);
+	sysBus_write(stack_ofset + stack_ptr, status | break_bit | unused_bit);
 	set_flag(break_bit, 0);
 	set_flag(unused_bit, 0);
 	stack_ptr--;
@@ -677,7 +677,7 @@ uint8_t INST_PHP(){
 
 uint8_t INST_PLA(){
 	stack_ptr++;
-	accumulator = mainBus_read(stack_ofset + stack_ptr);
+	accumulator = sysBus_read(stack_ofset + stack_ptr);
 	set_flag(zero_bit, accumulator == 0);
 	set_flag(negative_bit, accumulator & BIT(7));
 	return 0;
@@ -685,7 +685,7 @@ uint8_t INST_PLA(){
 
 uint8_t INST_PLP(){
 	stack_ptr++;
-	status = mainBus_read(stack_ofset + stack_ptr);
+	status = sysBus_read(stack_ofset + stack_ptr);
 	set_flag(unused_bit, 1);
 	return 0;
 }
@@ -700,7 +700,7 @@ uint8_t INST_ROL(){
 	if(lookup[opcode].ADR_MODE == &ADR_IMP){
 		accumulator = temp & 0x00FF;
 	}else{
-		mainBus_write(address_abs, temp & 0x00FF);
+		sysBus_write(address_abs, temp & 0x00FF);
 	}
 	return 0;
 }
@@ -715,16 +715,16 @@ uint8_t INST_ROR(){
 	if(lookup[opcode].ADR_MODE == &ADR_IMP){
 		accumulator = temp & 0x00FF;
 	}else{
-		mainBus_write(address_abs, temp & 0x00FF);
+		sysBus_write(address_abs, temp & 0x00FF);
 	}
 	return 0;
 }
 
 uint8_t INST_RTS(){
 	stack_ptr++;
-	program_counter = mainBus_read(stack_ofset + stack_ptr);
+	program_counter = sysBus_read(stack_ofset + stack_ptr);
 	stack_ptr++;
-	program_counter |= (uint16_t)mainBus_read(stack_ofset + stack_ptr) << 8;
+	program_counter |= (uint16_t)sysBus_read(stack_ofset + stack_ptr) << 8;
 
 	program_counter++;
 	return 0;
@@ -760,17 +760,17 @@ uint8_t INST_SEI(){
 }
 
 uint8_t INST_STA(){
-	mainBus_write(address_abs, accumulator);
+	sysBus_write(address_abs, accumulator);
 	return 0;
 }	
 
 uint8_t INST_STX(){
-	mainBus_write(address_abs, x_reg);
+	sysBus_write(address_abs, x_reg);
 	return 0;
 }
 
 uint8_t INST_STY(){
-	mainBus_write(address_abs, y_reg);
+	sysBus_write(address_abs, y_reg);
 	return 0;
 }
 

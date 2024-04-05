@@ -20,16 +20,16 @@ uint16_t mapper_map(uint16_t addr, enum Type type){
 
 uint16_t mapper_000(uint16_t addr, enum Type type){ //bounds are checked in the cartridge
   switch (type){
-  case sys_read:
+  case type_sysBus_read:
       return addr & (mapper_nPRGbanks > 1 ? 0x7FFF : 0x3FFF);
     break;
-  case sys_write:
+  case type_sysBus_write:
     return addr & (mapper_nPRGbanks > 1 ? 0x7FFF : 0x3FFF);
     break;
-  case ppu_read:
+  case type_ppuBus_read_bus:
       return addr;
       break;
-  case ppu_write:
+  case type_ppuBus_write:
       return addr; 
       break; 
   default:
