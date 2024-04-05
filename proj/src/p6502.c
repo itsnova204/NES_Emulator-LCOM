@@ -1,4 +1,3 @@
-#include <lcom/lcf.h>
 #include "p6502.h"
 #include "bus.h"
 
@@ -36,7 +35,7 @@ void cpu_reset(){
 	y_reg = 0;
 	stack_ptr = 0xFD;
 	status = 0x00 | unused_bit;
-	address_abs + 0xFFFC; //as per docs when cpu resets it looks here for new program conter val
+	address_abs = 0xFFFC; //as per docs when cpu resets it looks here for new program conter val
 	uint8_t lsb = mainBus_read(address_abs);
 	uint8_t msb = mainBus_read(address_abs + 1);
 
@@ -68,7 +67,7 @@ void cpu_irq(){ //interrupt request (IRQ) - can be ignored
 		address_abs = 0xFFFE;
 		uint8_t lsb = mainBus_read(address_abs);
 		uint8_t msb = mainBus_read(address_abs + 1);
-		program_counter + (msb << 8) | lsb;
+		program_counter = (msb << 8) | lsb;
 
 		cycles_left = 7;
 	}
@@ -92,7 +91,7 @@ void cpu_nmi(){ //non maskable interrupt (NMI) - we cant ignore this one
 		address_abs = 0xFFFA;
 		uint8_t lsb = mainBus_read(address_abs);
 		uint8_t msb = mainBus_read(address_abs + 1);
-		program_counter + (msb << 8) | lsb;
+		program_counter = (msb << 8) | lsb;
 
 		cycles_left = 8;
 }
@@ -236,7 +235,7 @@ uint8_t ADR_IZY(){
 
 uint8_t ADR_REL(){
 	address_rel = mainBus_read(program_counter);
-	program_counter;
+	program_counter++;
 	
 	if (address_rel & BIT(7)) address_rel |= 0xFF00;
 	return 0;
@@ -410,18 +409,6 @@ uint8_t INST_ASL(){
 		accumulator = temp & 0x00FF;
 	}else{
 		mainBus_write(address_abs, temp & 0x00FF);
-	}
-	return 0;
-}
-
-uint8_t INST_BCS(){
-	if(get_flag(carry_bit) == 1){
-		cycles_left++;
-		address_abs = program_counter + address_rel;
-
-		if((address_abs & 0xFF00) != (program_counter & 0xFF00)) cycles_left++;
-
-		program_counter = address_abs;
 	}
 	return 0;
 }
@@ -642,8 +629,8 @@ uint8_t INST_PHA(){
 
 uint8_t INST_PHP(){
 	mainBus_write(stack_ofset + stack_ptr, status | break_bit | unused_bit);
-	SetFlag(break_bit, 0);
-	SetFlag(unused_bit, 0);
+	set_flag(break_bit, 0);
+	set_flag(unused_bit, 0);
 	stack_ptr--;
 	return 0;
 }
