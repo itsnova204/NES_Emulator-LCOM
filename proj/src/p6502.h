@@ -1,4 +1,4 @@
-#include <lcom/lcf.h>
+#include "lcf_mock.h"
 #pragma once
 
 typedef enum{
@@ -17,7 +17,7 @@ typedef enum{
 void cpu_clock();
 void cpu_reset();
 void cpu_irq(); //these can be ignore depending on policy
-void cpu_mni(); //these cannot be ignored!
+void cpu_nmi(); //these cannot be ignored!
 
 static uint8_t fetch();
 static uint8_t fetched = 0x00;
@@ -69,9 +69,9 @@ static uint8_t ADR_IZX(); static uint8_t ADR_IZY();
   static uint8_t INST_XXX(); //if opcode dosent exist
 
   typedef struct{
-    char name[3]; //name
-    int (*INST_CODE)();
-    int (*ADR_MODE)();
+    char name[4]; //name
+    uint8_t (*INST_CODE)();
+    uint8_t (*ADR_MODE)();
     uint8_t cycles;
   }instructionSet;
 
