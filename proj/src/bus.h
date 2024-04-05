@@ -1,8 +1,12 @@
-#include <lcom/lcf.h>
+#include "lcf_mock.h"
+
 #pragma once
 
-void ram_init();
+void bus_init();
 
-void bus_write(uint16_t addr, uint8_t data);
+void mainBus_write(uint16_t addr, uint8_t data);
+uint8_t mainBus_read(uint16_t addr);
 
-uint8_t bus_read(uint16_t addr);
+void ppuBus_write(uint16_t addr, uint8_t data);
+uint8_t ppuBus_read(uint16_t addr);
+

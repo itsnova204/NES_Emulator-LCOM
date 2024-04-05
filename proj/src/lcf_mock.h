@@ -1,4 +1,5 @@
 #pragma once
+//this file is used to automaticly include the correct libraries for testing outside of the Minix environment
 
 #ifdef TEST
 
