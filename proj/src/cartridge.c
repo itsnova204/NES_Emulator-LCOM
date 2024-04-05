@@ -1,5 +1,8 @@
 #include "cartridge.h"
 
+#include "mapper.h"
+#include "bus.h"
+
 static uint8_t mapper_id = 0;
 static uint8_t nPRG_membanks = 0;
 static uint8_t nCHR_membanks = 0;
@@ -24,18 +27,18 @@ struct cart_header {
 	} header;
 
 enum MIRROR
-	{
-		HORIZONTAL,
-		VERTICAL,
-		ONESCREEN_LO,
-		ONESCREEN_HI,
-	} mirror_type;
+{
+    HORIZONTAL,
+    VERTICAL,
+    ONESCREEN_LO,
+    ONESCREEN_HI,
+  } mirror_type;
 
 enum ROM_FORMAT {
-  NES,
-  INES,
-  NES2,
-} rom_format = INES;
+    NES,
+    INES,
+    NES2,
+  } rom_format = INES;
 
 int cart_insert(){//TODO: implement dynamic rom path
   //read header
@@ -139,3 +142,30 @@ void print_header(){
   printf("tv_system2: %d\n", header.tv_system2);
   printf("unused: %c%c%c%c%c\n", header.unused[0], header.unused[1], header.unused[2], header.unused[3], header.unused[4]);
 }
+
+uint8_t sys_readFromCard(uint16_t addr){
+  if (addr >= 0x8000){ //no need to check upper bound, addr data type cant go avobe 0xFFFF
+    return PRGmem[mapper_map(addr, sys_read)];
+  }
+  return 0;
+}
+
+void sys_writeToCard(uint16_t addr, uint8_t data){
+  if (addr >= 0x8000){ //no need to check upper bound, addr data type cant go avobe 0xFFFF
+    PRGmem[mapper_map(addr, sys_write)] = data;
+  }
+}
+
+uint8_t ppu_readFromCard(uint16_t addr){
+  if (addr >= 0x0000 && addr <= 0x1FFF){
+    return CHRmem[mapper_map(addr, ppu_read)];
+  }
+  return 0;
+}
+
+void ppu_writeToCard(uint16_t addr, uint8_t data){
+  if (addr >= 0x0000 && addr <= 0x1FFF){
+    CHRmem[mapper_map(addr, ppu_write)] = data;
+  }
+}
+
