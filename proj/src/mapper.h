@@ -2,10 +2,10 @@
 #pragma once
 
 enum Type{
-  sys_read,
-  sys_write,
-  ppu_read,
-  ppu_write,
+  sysBus_read,
+  sysBus_write,
+  ppuBus_read_bus,
+  ppuBus_write,
 };
 
 uint8_t set_mapper(uint8_t id, uint8_t nPRGbanks, uint8_t nCHRbanks);

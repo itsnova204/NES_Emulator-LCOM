@@ -2,5 +2,6 @@
 
 int main(){
   cart_insert();
+  cart_remove();
   return 0;
 }
