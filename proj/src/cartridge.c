@@ -145,27 +145,27 @@ void print_header(){
 
 uint8_t sys_readFromCard(uint16_t addr){
   if (addr >= 0x8000){ //no need to check upper bound, addr data type cant go avobe 0xFFFF
-    return PRGmem[mapper_map(addr, sys_read)];
+    return PRGmem[mapper_map(addr, type_sysBus_read)];
   }
   return 0;
 }
 
 void sys_writeToCard(uint16_t addr, uint8_t data){
   if (addr >= 0x8000){ //no need to check upper bound, addr data type cant go avobe 0xFFFF
-    PRGmem[mapper_map(addr, sys_write)] = data;
+    PRGmem[mapper_map(addr, type_sysBus_write)] = data;
   }
 }
 
 uint8_t ppu_readFromCard(uint16_t addr){
-  if (addr >= 0x0000 && addr <= 0x1FFF){
-    return CHRmem[mapper_map(addr, ppu_read)];
+  if (addr <= 0x1FFF){
+    return CHRmem[mapper_map(addr, type_ppuBus_read_bus)];
   }
   return 0;
 }
 
 void ppu_writeToCard(uint16_t addr, uint8_t data){
-  if (addr >= 0x0000 && addr <= 0x1FFF){
-    CHRmem[mapper_map(addr, ppu_write)] = data;
+  if (addr <= 0x1FFF){
+    CHRmem[mapper_map(addr, type_ppuBus_write)] = data;
   }
 }
 
