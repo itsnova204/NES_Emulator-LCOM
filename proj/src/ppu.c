@@ -6,8 +6,8 @@
 ==                                                               ==
 == Tiago Aleixo, 2024                                            ==
 =================================================================*/
-#include <lcom/lcf.h>
 #include "ppu.h"
+
 #include "bus.h"
 
 uint8_t ppu_nametable_ram[2][1024]; //2kb of ram for nametables
