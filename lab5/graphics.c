@@ -63,3 +63,21 @@ int set_frame_buffer(uint16_t mode){ //TODO: using panic() instead of printf() f
   return 0;
 }
 
+int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color){
+  if(x >= hRES || y >= vRES){//check out of bounds
+    printf("DRIVER ERROR [VIDEO]: Tried to draw pixel out of bounds!\n");
+    return -1;
+  }
+
+  //find position of pixel in frame_buffer
+  uint8_t* pixel_ptr = (uint8_t)frame_buffer + (y * hRES + x) * (vbe_mode_info.BitsPerPixel / 8);
+
+  //draw pixel
+  if (memcpy(pixel_ptr, &color, vbe_mode_info.BitsPerPixel/8) == NULL){
+    printf("DRIVER ERROR [VIDEO]: Drawing pixel failed!\n");
+    return -1;
+  }
+
+  return 0;
+}
+
