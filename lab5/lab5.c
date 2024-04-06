@@ -35,10 +35,9 @@ int main(int argc, char *argv[]) {
 }
 
 int(video_test_init)(uint16_t mode, uint8_t delay) {
-  if(!vg_init_mode(mode)) return -1;
-
+  if(vg_init_mode(mode) != 0) return -1;
   sleep(delay);
-
+  
   return vg_exit();
 }
 
