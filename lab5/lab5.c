@@ -41,13 +41,21 @@ int(video_test_init)(uint16_t mode, uint8_t delay) {
   return vg_exit();
 }
 
-int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
-                          uint16_t width, uint16_t height, uint32_t color) {
-  /* To be completed */
-  printf("%s(0x%03X, %u, %u, %u, %u, 0x%08x): under construction\n",
-         __func__, mode, x, y, width, height, color);
+int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
+  
+  if (vg_init_framebuffer(mode) != 0) return -1;
+  if (vg_init_mode(mode) != 0)        return -1;
 
-  return 1;
+  if (vg_draw_rectangle(x, y, width, height, color) != 0){
+    vg_exit();
+    printf("Error drawing rectangle\n");
+    return -1;
+  }
+    
+
+  sleep(3);
+
+  return vg_exit();
 }
 
 int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {

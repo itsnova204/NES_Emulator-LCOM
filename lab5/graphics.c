@@ -30,9 +30,9 @@ int vg_init_mode(uint16_t mode){
   return 0;
 }
 
-int set_frame_buffer(uint16_t mode){ //TODO: using panic() instead of printf() feels wrong as we can fall back on text mode no? ask teacher.
+int vg_init_framebuffer(uint16_t mode){ //TODO: using panic() instead of printf() feels wrong as we can fall back on text mode no? ask teacher.
   memset(&vbe_mode_info, 0, sizeof(vbe_mode_info)); //reset vbe_mode_info
-  if(be_get_mode_info(mode, &vbe_mode_info)){       //get vbe_mode_info
+  if(vbe_get_mode_info(mode, &vbe_mode_info)){       //get vbe_mode_info
     printf("create_frame_buffer(): vbe_get_mode_info() failed\n");
     return -1;
   }
@@ -40,10 +40,11 @@ int set_frame_buffer(uint16_t mode){ //TODO: using panic() instead of printf() f
   int r; //variable to store the return value of sys_privctl
   struct minix_mem_range mr;
 
-  unsigned int vram_base = vbe_get_vram_base();
-  unsigned int vram_size = vbe_get_vram_size();
-  vRES = vbe_get_vres();
-  hRES = vbe_get_hres();
+  unsigned int vram_base = vbe_mode_info.PhysBasePtr;
+  unsigned int vram_size = vbe_mode_info.XResolution * vbe_mode_info.YResolution * (vbe_mode_info.BitsPerPixel / 8);
+
+  hRES = vbe_mode_info.XResolution;
+  vRES = vbe_mode_info.YResolution;
 
   mr.mr_base = (phys_bytes)vram_base;
   mr.mr_limit = mr.mr_base + (phys_bytes)vram_size;
@@ -63,14 +64,14 @@ int set_frame_buffer(uint16_t mode){ //TODO: using panic() instead of printf() f
   return 0;
 }
 
-int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color){
+int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
   if(x >= hRES || y >= vRES){//check out of bounds
     printf("DRIVER ERROR [VIDEO]: Tried to draw pixel out of bounds!\n");
     return -1;
   }
 
   //find position of pixel in frame_buffer
-  uint8_t* pixel_ptr = (uint8_t)frame_buffer + (y * hRES + x) * (vbe_mode_info.BitsPerPixel / 8);
+  uint8_t* pixel_ptr = (uint8_t*)frame_buffer + (y * hRES + x) * (vbe_mode_info.BitsPerPixel / 8);
 
   //draw pixel
   if (memcpy(pixel_ptr, &color, vbe_mode_info.BitsPerPixel/8) == NULL){
@@ -81,7 +82,7 @@ int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color){
   return 0;
 }
 
-int vg_draw_hline(uint16_t x, uint16_t y, uint16_t len, uint32_t color){ //draws a horizontal line
+int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color){ //draws a horizontal line
   if(x >= hRES || y >= vRES){//check out of bounds
     printf("DRIVER ERROR [VIDEO]: Tried to draw line out of bounds!\n");
     return -1;
@@ -98,7 +99,7 @@ int vg_draw_hline(uint16_t x, uint16_t y, uint16_t len, uint32_t color){ //draws
 }
 
 
-int vg_draw_rectangle(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color){
+int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color){
   if(x >= hRES || y >= vRES){//check out of bounds
     printf("DRIVER ERROR [VIDEO]: Tried to draw rectangle out of bounds!\n");
     return -1;
