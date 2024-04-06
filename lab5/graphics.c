@@ -81,3 +81,20 @@ int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color){
   return 0;
 }
 
+int vg_draw_hline(uint16_t x, uint16_t y, uint16_t len, uint32_t color){ //draws a horizontal line
+  if(x >= hRES || y >= vRES){//check out of bounds
+    printf("DRIVER ERROR [VIDEO]: Tried to draw line out of bounds!\n");
+    return -1;
+  }
+  
+  for (uint16_t i = 0 ; i < len ; i++) {
+    if(vg_draw_pixel(x + i,y,color) != 0) {
+      printf("DRIVER ERROR [VIDEO]: Drawing hline failed!\n");
+      return -1;
+    }
+  }
+
+  return 0;
+}
+
+
