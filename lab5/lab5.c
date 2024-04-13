@@ -6,6 +6,9 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#include "VBE.h"
+#include "graphics.h"
+
 // Any header files included below this line should have been created by you
 
 int main(int argc, char *argv[]) {
@@ -14,11 +17,11 @@ int main(int argc, char *argv[]) {
 
   // enables to log function invocations that are being "wrapped" by LCF
   // [comment this out if you don't want/need it]
-  lcf_trace_calls("/home/lcom/labs/lab5/trace.txt");
+  lcf_trace_calls("/home/lcom/labs/g5/lab5/trace.txt");
 
   // enables to save the output of printf function calls on a file
   // [comment this out if you don't want/need it]
-  lcf_log_output("/home/lcom/labs/lab5/output.txt");
+  lcf_log_output("/home/lcom/labs/g5/lab5/output.txt");
 
   // handles control over to LCF
   // [LCF handles command line arguments and invokes the right function]
@@ -33,10 +36,10 @@ int main(int argc, char *argv[]) {
 }
 
 int(video_test_init)(uint16_t mode, uint8_t delay) {
-  /* To be completed */
-  printf("%s(0x%03x, %u): under construction\n", __func__, mode, delay);
+  if (graphics_set_mode(mode) != 0) return vg_exit();
+  sleep(delay);
 
-  return 1;
+  return graphics_set_default_text_mode();
 }
 
 int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
