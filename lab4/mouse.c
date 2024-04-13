@@ -16,6 +16,9 @@ int (mouse_subscribe_int)(uint8_t *bit_no){
   return 0;
 }
 
-
+int (mouse_unsubscribe_int)() {
+  if (sys_irqrmpolicy(&mouse_hook_id)) return 1;
+  return 0;
+}
 
 
