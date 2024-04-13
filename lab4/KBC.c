@@ -5,7 +5,7 @@ static bool flag_two_byte = false;
 static int index_ = 0;
 
 int(kbc_read_status)(uint8_t* status) {
-  if (util_sys_inb(KBD_STAT_REG, status)) {
+  if (util_sys_inb(KBC_STATUS_REG, status)) {
     return 1;
   }
 
@@ -23,7 +23,7 @@ int(kbc_read_output)(uint8_t port, uint8_t* output, bool max_attemps, uint8_t mo
     }
 
     if (status & KBD_OUT_BUF_FULL) {
-      if (util_sys_inb(KBD_OUT_BUF, output)) {
+      if (util_sys_inb(port, output)) {
         printf("Keyboard ERROR: Couldn't read output buffer\n");
         return 1;
       }

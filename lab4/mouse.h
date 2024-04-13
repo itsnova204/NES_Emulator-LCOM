@@ -5,16 +5,15 @@
 #include "i8042.h"
 #include "KBC.h"
 
+bool(is_valid)();
+uint8_t getByteIndex();
+void resetByteIndex();
+
 int (mouse_subscribe_int)(uint8_t *bit_no);
-
 int (mouse_unsubscribe_int)();
-
 void (mouse_ih)();
-
 void (mouse_sync_bytes)();
-
 void (mouse_bytes_to_packet)();
-
 int (mouse_write)(uint8_t command);
 
 #endif

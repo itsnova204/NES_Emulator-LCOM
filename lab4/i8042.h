@@ -5,9 +5,9 @@
 
 #define KBD_IRQ                     1
 
-#define KBD_STAT_REG                0x64
-#define KBD_IN_BUF                  0x64
-#define KBD_OUT_BUF                 0x60
+#define KBC_STATUS_REG              0x64
+#define KBC_IN_CMD                  0x64
+#define KBC_OUT_CMD                 0x60
 #define KBC_READ_CMD                0x20
 #define KBC_WRITE_CMD               0x60
 
@@ -41,5 +41,8 @@
 
 #define MAX_ATTEMPS 10
 #define DELAY 10000     // 10 ms
+
+#define ACK 0xFA    
+#define NACK 0xFE
 
 #endif
