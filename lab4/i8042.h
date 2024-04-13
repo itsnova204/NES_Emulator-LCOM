@@ -3,13 +3,11 @@
 
 #include <lcom/lcf.h>
 
-// KEYBOARD RELATED
 #define KBD_IRQ                     1
 
 #define KBD_STAT_REG                0x64
 #define KBD_IN_BUF                  0x64
 #define KBD_OUT_BUF                 0x60
-
 #define KBC_READ_CMD                0x20
 #define KBC_WRITE_CMD               0x60
 
@@ -24,8 +22,6 @@
 #define KBD_TWO_BYTE                0xE0
 
 
-
-// MOUSE RELATED
 #define MOUSE_IRQ 12
 
 #define MOUSE_LB                    BIT(0)
@@ -43,7 +39,6 @@
 #define MOUSE_READ_DATA             0xEB
 #define MOUSE_WRITE_BYTE            0xD4
 
-// GENERAL
 #define MAX_ATTEMPS 10
 #define DELAY 10000     // 10 ms
 
