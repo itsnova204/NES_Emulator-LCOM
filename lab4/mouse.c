@@ -3,20 +3,14 @@
 int mouse_hook_id = 2;
 uint8_t mouse_bytes[3];
 uint8_t current_byte;
+
 struct packet mouse_packet;
+uint8_t byte_index = 0;
 
 static bool valid = false;
-static uint8_t byte_index = 0;
 
 bool(is_valid)() {
   return valid;
-}
-uint8_t getByteIndex() {
-  return byte_index;
-}
-
-void resetByteIndex() {
-  byte_index = 0;
 }
 
 int (mouse_subscribe_int)(uint8_t *bit_no){
@@ -74,14 +68,15 @@ int (mouse_write)(uint8_t command) {
   uint8_t attemps = MAX_ATTEMPS;
   uint8_t mouse_response;
 
-  do {
-    attemps--;
+  while (attemps) {
     if (kbc_write_command(KBC_IN_CMD, MOUSE_WRITE_BYTE)) return 1;
     if (kbc_write_command(KBC_OUT_CMD, command)) return 1;
     tickdelay(micros_to_ticks(DELAY));
     if (util_sys_inb(KBC_OUT_CMD, &mouse_response)) return 1;
     if (mouse_response == ACK) return 0;
-  } while (mouse_response != ACK && attemps);
+
+    attemps--;
+  }
 
   return 1;
 }
