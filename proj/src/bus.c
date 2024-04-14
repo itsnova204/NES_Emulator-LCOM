@@ -23,9 +23,12 @@ void bus_clock(){
 }
 
 uint8_t sysBus_read(uint16_t addr){
-  if (addr >= 0x8000){ //access cartridge
-    return sys_readFromCard(addr);
-  }
+  uint16_t data;
+  bool hijack = false;
+
+  data = sys_readFromCard(addr, &hijack);
+  if(hijack) return data;
+
   if (addr <= 0x1FFF){ //access sys_ram
     return sys_ram[addr & 0x07FF];
   }
@@ -37,10 +40,13 @@ uint8_t sysBus_read(uint16_t addr){
 }
 
 void sysBus_write(uint16_t addr, uint8_t data){
-  if (addr >= 0x8000){ //access cartridge
-    return sys_writeToCard(addr, data);
+    uint16_t address;
+  bool hijack = false;
 
-  }else if (addr <= 0x1FFF){ //access sys_ram
+  sys_writeToCard(addr, data, &hijack);
+  if(hijack) return;
+  
+  if (addr >= 0x8000 && addr <= 0x1FFF){ //access sys_ram
     sys_ram[addr & 0x07FF] = data;
 
   }else if (addr >= 0x2000 && addr <= 0x3FFF){ //access ppu registers

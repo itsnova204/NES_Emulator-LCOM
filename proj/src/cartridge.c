@@ -143,29 +143,28 @@ void print_header(){
   printf("unused: %c%c%c%c%c\n", header.unused[0], header.unused[1], header.unused[2], header.unused[3], header.unused[4]);
 }
 
-uint8_t sys_readFromCard(uint16_t addr){
+uint8_t sys_readFromCard(uint16_t addr, bool* hijack){
+  return PRGmem[mapper_map(addr, type_sysBus_read, hijack)];
+}
+
+void sys_writeToCard(uint16_t addr, uint8_t data, bool* hijack){
   if (addr >= 0x8000){ //no need to check upper bound, addr data type cant go avobe 0xFFFF
-    return PRGmem[mapper_map(addr, type_sysBus_read)];
+    PRGmem[mapper_map(addr, type_sysBus_write, hijack)] = data;
+  }
+}
+
+//TODO: this is a ppu function, why is it here!
+uint8_t ppu_readFromCard(uint16_t addr, bool* hijack){
+  if (addr <= 0x1FFF){
+    return CHRmem[mapper_map(addr, type_ppuBus_read_bus, hijack)];
   }
   return 0;
 }
 
-void sys_writeToCard(uint16_t addr, uint8_t data){
-  if (addr >= 0x8000){ //no need to check upper bound, addr data type cant go avobe 0xFFFF
-    PRGmem[mapper_map(addr, type_sysBus_write)] = data;
-  }
-}
-
-uint8_t ppu_readFromCard(uint16_t addr){
+//TODO: this is a ppu function, why is it here!
+void ppu_writeToCard(uint16_t addr, uint8_t data, bool* hijack){
   if (addr <= 0x1FFF){
-    return CHRmem[mapper_map(addr, type_ppuBus_read_bus)];
-  }
-  return 0;
-}
-
-void ppu_writeToCard(uint16_t addr, uint8_t data){
-  if (addr <= 0x1FFF){
-    CHRmem[mapper_map(addr, type_ppuBus_write)] = data;
+    CHRmem[mapper_map(addr, type_ppuBus_write, hijack)] = data;
   }
 }
 
