@@ -6,9 +6,10 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include <graphics.h>
 
 // Any header files included below this line should have been created by you
+#include <graphics.h>
+#include <keyboard.h>
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -51,9 +52,41 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y, uint16_t width,
     printf("Error drawing rectangle\n");
     return -1;
   }
-    
 
-  sleep(3);
+  int ipc_status, r;
+  message msg;
+  uint8_t irq_set;
+  uint8_t scancode = 0x00;
+
+  if (kbc_subscribe_int(&irq_set) != 0) return 1;
+
+  while(scancode != BREAK_ESC) { /* You may want to use a different condition */
+      /* Get a request message. */
+      if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+          printf("driver_receive failed with: %d", r);
+          continue;
+      }
+      if (is_ipc_notify(ipc_status)) { /* received notification */
+          switch (_ENDPOINT_P(msg.m_source)) {
+              case HARDWARE: /* hardware interrupt notification */				
+                  if (msg.m_notify.interrupts & irq_set) { /* subscribed interrupt */
+                      kbc_ih();
+                      scancode = get_kbc_output();
+                  }
+                  break;
+              default:
+                  break; /* no other notifications expected: do nothing */	
+          }
+      } else { /* received a standard message, not a notification */
+          /* no standard messages expected: do nothing */
+      }
+  }
+
+  
+  if(kbc_unsubscribe_int()){
+    vg_exit();
+    return 1;
+  }
 
   return vg_exit();
 }
