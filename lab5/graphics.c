@@ -48,6 +48,12 @@ int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
 
   int PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel); // bytes por pixel
 
+  uint8_t* pixel = frame_buffer + (y * vbe_mode_info.XResolution + x) * PixelColorBytes;  // posicao do pixel
+
+  for (int i = 0; i < PixelColorBytes; i++) {
+    *pixel = (uint8_t) (color >> (i * 8)); // escrever a cor no pixel
+    pixel++;
+  }
 
   return 0;
 }
