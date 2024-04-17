@@ -58,6 +58,19 @@ int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
   return 0;
 }
 
+int vg_draw_rectangle(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
+  for (int i = 0; i < height; i++) {
+    for (int j = 0; j < width; j++) {
+      if (vg_draw_pixel(x + j, y + i, color) != 0) {
+        printf("vg_draw_rectangle(): vg_draw_pixel() failed \n");
+        return 1;
+      }
+    }
+  }
+
+  return 0;
+}
+
 
 int numberOfBytesForBits(int bits) {
   return (bits + 7) / 8;
