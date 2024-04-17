@@ -4,6 +4,10 @@
 static vbe_mode_info_t vbe_mode_info; // modo do video atual
 static uint8_t* frame_buffer;         // VRAM - armazenar os valores de cor de cada pixel
 
+size_t numberOfBytesForBits(size_t bits) {
+  return (bits + 7) / 8;
+}
+
 int set_graphic_mode(uint16_t mode) {
   reg86_t reg86;
   memset(&reg86, 0, sizeof(reg86));   // alocar memória para a estrutura reg86
@@ -20,14 +24,14 @@ int set_graphic_mode(uint16_t mode) {
   return 0;
 }
 
-int set_frame_buffer(uint16_t mode) {
+int (set_frame_buffer)(uint16_t mode) {
   if (vbe_get_mode_info(VBE_MODE_INDEXED, &vbe_mode_info) != 0) {
     printf("set_frame_buffer(): vbe_get_mode_info() failed \n");
     return 1;
   }
 
-  int PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel); // bytes por pixel
-  int TotalBytes = vbe_mode_info.XResolution * vbe_mode_info.YResolution * PixelColorBytes; // total de bytes para armazenar toda a informacao de cor
+  size_t PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel); // bytes por pixel
+  size_t TotalBytes = vbe_mode_info.XResolution * vbe_mode_info.YResolution * PixelColorBytes; // total de bytes para armazenar toda a informacao de cor
 
   if (sys_privctl(SELF, SYS_PRIV_ADD_MEM, &vbe_mode_info.PhysBasePtr) != 0) {
     printf("set_frame_buffer(): sys_privctl() failed \n");
@@ -40,8 +44,7 @@ int set_frame_buffer(uint16_t mode) {
 }
 
 int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
-
-  if (x > vbe_mode_info.XResolution || y > vbe_mode_info.YResolution) {
+  if (x > vbe_mode_info.XResolution || x < 0 || y > vbe_mode_info.YResolution || y < 0) {
     printf("vg_draw_pixel(): coordinates exceed resolution \n");
     return 1;
   }
@@ -58,20 +61,27 @@ int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
   return 0;
 }
 
-int vg_draw_rectangle(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
-  for (int i = 0; i < height; i++) {
-    for (int j = 0; j < width; j++) {
-      if (vg_draw_pixel(x + j, y + i, color) != 0) {
-        printf("vg_draw_rectangle(): vg_draw_pixel() failed \n");
-        return 1;
-      }
+int (vg_draw_hline)(uint16_t x, uint16_t y, uint16_t len, uint32_t color) {
+  for (int i = 0; i < len; i++) {
+    if (vg_draw_pixel(x + i, y, color) != 0) {
+      printf("vg_draw_hline(): vg_draw_pixel() failed \n");
+      vg_exit();
+      return 1;
     }
   }
 
   return 0;
 }
 
+int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
+  for (int i = 0; i < height; i++) {
+    if (vg_draw_hline(x, y + i, width, color) != 0) {
+      printf("vg_draw_rectangle(): vg_draw_hline() failed \n");
+      vg_exit();
+      return 1;
+    }
+  }
 
-int numberOfBytesForBits(int bits) {
-  return (bits + 7) / 8;
+  return 0;
 }
+
