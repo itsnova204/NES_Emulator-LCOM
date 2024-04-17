@@ -7,7 +7,10 @@
 #ifndef _LCOM_GRAPHICS_H_
 #define _LCOM_GRAPHICS_H_
 
-int graphics_set_default_text_mode();
-int graphics_set_mode(uint16_t mode);
+int set_graphic_mode(uint16_t mode);
+
+int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color);
+
+
 
 #endif

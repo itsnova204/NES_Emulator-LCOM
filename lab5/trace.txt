@@ -1,14 +1,11 @@
 @lcflib.a:2019, lcf_start
-  video_test_init(mode, delay)
-> video_test_init(0x110, 2)
-  @graphics.c:16, graphics_set_mode
+  video_test_rectangle(mode, x, y, width, height, color)
+> video_test_rectangle(0x001, 1, 1, 1, 1, 0x00000001 [1])
+  @graphics.c:12, set_graphic_mode
     sys_int86(&reg86)
-  > sys_int86(addr: 0xeffff630 [AX: 4f02, BX: 4110, CX: 0000, DX: 0000, ES: 0000, DI: 0000])
-  < sys_int86(addr: 0xeffff630 [AX: 004f, BX: 4110, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
-  @lab5.c:40, video_test_init
-    sleep(delay)
-  > sleep(2)
-  @graphics.c:5, graphics_set_default_text_mode
-    vg_exit()
-  < vg_exit() -> (ret: 0)
-< video_test_init(0x110, 2) -> (ret: 0)
+  > sys_int86(addr: 0xeffff5e8 [AX: 4f02, BX: 4001, CX: 0000, DX: 0000, ES: 0000, DI: 0000])
+  < sys_int86(addr: 0xeffff5e8 [AX: 004f, BX: 4001, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
+  @lab5.c:50, video_test_rectangle
+    printf("%d", calc)
+    "0"
+< video_test_rectangle(0x001, 1, 1, 1, 1, 0x00000001 [1]) -> (ret: 1)
