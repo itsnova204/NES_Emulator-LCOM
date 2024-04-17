@@ -25,6 +25,7 @@ int set_graphic_mode(uint16_t mode) {
 }
 
 int (set_frame_buffer)(uint16_t mode) {
+  // obter informacao do modo de video
   if (vbe_get_mode_info(VBE_MODE_INDEXED, &vbe_mode_info) != 0) {
     printf("set_frame_buffer(): vbe_get_mode_info() failed \n");
     return 1;
@@ -33,17 +34,26 @@ int (set_frame_buffer)(uint16_t mode) {
   size_t PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel); // bytes por pixel
   size_t TotalBytes = vbe_mode_info.XResolution * vbe_mode_info.YResolution * PixelColorBytes; // total de bytes para armazenar toda a informacao de cor
 
-  if (sys_privctl(SELF, SYS_PRIV_ADD_MEM, &vbe_mode_info.PhysBasePtr) != 0) {
+  // range do endereco fisico da memoria
+  struct minix_mem_range memory_range = {
+    vbe_mode_info.PhysBasePtr,              // base address
+    vbe_mode_info.PhysBasePtr + TotalBytes  // end address
+  };
+
+  // alocacao da memoria fisica
+  if (sys_privctl(SELF, SYS_PRIV_ADD_MEM, &memory_range) != 0) {
     printf("set_frame_buffer(): sys_privctl() failed \n");
     return 1;
   } 
 
+  // mapear a memoria fisica para a memoria virtual
   frame_buffer = (uint8_t*) vm_map_phys(SELF, (void*) vbe_mode_info.PhysBasePtr, TotalBytes);
 
   return (frame_buffer == NULL);
 }
 
 int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
+  // verificar se as coordenadas estao dentro da resolucao
   if (x > vbe_mode_info.XResolution || x < 0 || y > vbe_mode_info.YResolution || y < 0) {
     printf("vg_draw_pixel(): coordinates exceed resolution \n");
     return 1;
@@ -53,9 +63,9 @@ int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
 
   uint8_t* pixel = frame_buffer + (y * vbe_mode_info.XResolution + x) * PixelColorBytes;  // posicao do pixel
 
-  for (int i = 0; i < PixelColorBytes; i++) {
-    *pixel = (uint8_t) (color >> (i * 8)); // escrever a cor no pixel
-    pixel++;
+  if (memcpy(pixel, &color, PixelColorBytes) == NULL) {
+    printf("vg_draw_pixel(): memccpy() failed \n");
+    return 1;
   }
 
   return 0;
