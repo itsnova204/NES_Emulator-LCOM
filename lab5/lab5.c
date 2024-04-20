@@ -45,11 +45,11 @@ int(video_test_init)(uint16_t mode, uint8_t delay) {
 int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
                           uint16_t width, uint16_t height, uint32_t color) {
   
-  if (set_frame_buffer(mode) != 0) return 1;
+  if (set_frame_buffer(mode) != 0) return -1;
   if (set_graphic_mode(mode) != 0) return 1;
-  if (vg_draw_rectangle(x, y, width, height, color) != 0) return 1;
+  if (vg_draw_rectangle(x, y, width, height, color) != 0) return -1;
 
-  sleep(2000);
+  sleep(3);
 
   return vg_exit();
 }

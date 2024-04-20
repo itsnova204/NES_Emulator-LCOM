@@ -54,7 +54,7 @@ int (set_frame_buffer)(uint16_t mode) {
 
 int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
   // verificar se as coordenadas estao dentro da resolucao
-  if (x > vbe_mode_info.XResolution || x < 0 || y > vbe_mode_info.YResolution || y < 0) {
+  if (x > vbe_mode_info.XResolution || y > vbe_mode_info.YResolution) {
     printf("vg_draw_pixel(): coordinates exceed resolution \n");
     return 1;
   }

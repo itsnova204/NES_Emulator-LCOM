@@ -1,6 +1,6 @@
 @lcflib.a:2019, lcf_start
   video_test_rectangle(mode, x, y, width, height, color)
-> video_test_rectangle(0x110, 0, 0, 100, 100, 0x00123123 [1192227])
+> video_test_rectangle(0x110, 100, 300, 100, 200, 0x00000123 [291])
   @graphics.c:29, set_frame_buffer
     vbe_get_mode_info(VBE_MODE_INDEXED, &vbe_mode_info)
   > vbe_get_mode_info(0x105, addr: 0x822ce38)
@@ -18,308 +18,612 @@
   < sys_int86(addr: 0xeffff5d0 [AX: 004f, BX: 4110, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
   @lab5.c:50, video_test_rectangle
     vg_draw_rectangle(x, y, width, height, color)
-  > vg_draw_rectangle(0, 0, 100, 100, 0x00123123 [1192227])
+  > vg_draw_rectangle(100, 300, 100, 200, 0x00000123 [291])
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 0, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 300, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 1, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 301, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 2, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 302, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 3, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 303, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 4, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 304, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 5, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 305, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 6, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 306, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 7, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 307, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 8, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 308, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 9, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 309, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 10, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 310, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 11, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 311, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 12, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 312, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 13, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 313, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 14, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 314, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 15, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 315, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 16, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 316, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 17, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 317, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 18, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 318, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 19, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 319, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 20, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 320, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 21, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 321, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 22, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 322, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 23, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 323, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 24, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 324, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 25, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 325, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 26, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 326, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 27, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 327, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 28, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 328, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 29, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 329, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 30, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 330, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 31, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 331, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 32, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 332, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 33, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 333, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 34, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 334, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 35, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 335, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 36, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 336, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 37, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 337, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 38, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 338, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 39, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 339, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 40, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 340, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 41, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 341, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 42, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 342, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 43, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 343, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 44, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 344, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 45, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 345, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 46, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 346, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 47, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 347, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 48, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 348, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 49, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 349, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 50, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 350, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 51, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 351, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 52, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 352, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 53, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 353, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 54, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 354, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 55, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 355, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 56, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 356, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 57, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 357, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 58, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 358, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 59, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 359, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 60, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 360, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 61, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 361, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 62, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 362, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 63, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 363, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 64, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 364, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 65, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 365, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 66, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 366, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 67, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 367, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 68, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 368, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 69, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 369, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 70, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 370, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 71, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 371, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 72, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 372, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 73, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 373, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 74, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 374, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 75, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 375, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 76, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 376, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 77, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 377, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 78, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 378, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 79, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 379, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 80, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 380, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 81, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 381, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 82, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 382, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 83, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 383, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 84, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 384, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 85, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 385, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 86, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 386, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 87, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 387, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 88, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 388, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 89, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 389, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 90, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 390, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 91, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 391, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 92, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 392, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 93, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 393, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 94, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 394, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 95, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 395, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 96, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 396, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 97, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 397, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 98, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 398, 100, 0x00000123 [291]) -> (ret: 0)
     @graphics.c:88, vg_draw_rectangle
       vg_draw_hline(x, y + i, width, color)
-    < vg_draw_hline(0, 99, 100, 0x00123123 [1192227]) -> (ret: 0)
-  < vg_draw_rectangle(0, 0, 100, 100, 0x00123123 [1192227]) -> (ret: 0)
+    < vg_draw_hline(100, 399, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 400, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 401, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 402, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 403, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 404, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 405, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 406, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 407, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 408, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 409, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 410, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 411, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 412, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 413, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 414, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 415, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 416, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 417, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 418, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 419, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 420, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 421, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 422, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 423, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 424, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 425, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 426, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 427, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 428, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 429, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 430, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 431, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 432, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 433, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 434, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 435, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 436, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 437, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 438, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 439, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 440, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 441, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 442, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 443, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 444, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 445, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 446, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 447, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 448, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 449, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 450, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 451, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 452, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 453, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 454, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 455, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 456, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 457, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 458, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 459, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 460, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 461, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 462, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 463, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 464, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 465, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 466, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 467, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 468, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 469, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 470, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 471, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 472, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 473, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 474, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 475, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 476, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 477, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 478, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 479, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 480, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 481, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 482, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 483, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 484, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 485, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 486, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 487, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 488, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 489, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 490, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 491, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 492, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 493, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 494, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 495, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 496, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 497, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 498, 100, 0x00000123 [291]) -> (ret: 0)
+    @graphics.c:88, vg_draw_rectangle
+      vg_draw_hline(x, y + i, width, color)
+    < vg_draw_hline(100, 499, 100, 0x00000123 [291]) -> (ret: 0)
+  < vg_draw_rectangle(100, 300, 100, 200, 0x00000123 [291]) -> (ret: 0)
   @lab5.c:52, video_test_rectangle
-    sleep(2000)
-  > sleep(2000)
+    sleep(3)
+  > sleep(3)
+  @lab5.c:54, video_test_rectangle
+    vg_exit()
+  < vg_exit() -> (ret: 0)
+< video_test_rectangle(0x110, 100, 300, 100, 200, 0x00000123 [291]) -> (ret: 0)
