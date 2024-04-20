@@ -26,7 +26,7 @@ int set_graphic_mode(uint16_t mode) {
 
 int (set_frame_buffer)(uint16_t mode) {
   // obter informacao do modo de video
-  if (vbe_get_mode_info(VBE_MODE_INDEXED, &vbe_mode_info) != 0) {
+  if (vbe_get_mode_info(mode, &vbe_mode_info) != 0) {
     printf("set_frame_buffer(): vbe_get_mode_info() failed \n");
     return 1;
   }
