@@ -95,3 +95,32 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
   return 0;
 }
 
+int vg_draw_xpm(xpm_map_t xpm, uint16_t x, uint16_t y) {
+  xpm_image_t xpm_image;
+
+  // carregar as cores do xpm num mapa
+  uint8_t *colors = xpm_load(xpm, XPM_INDEXED, &xpm_image);
+
+  if (colors == NULL) {
+    printf("vg_draw_xpm(): xpm_load() failed \n");
+    return 1;
+  }
+
+  // Iterar sobre a imagem XPM.
+  for (int height = 0; height < xpm_image.height; height++) {
+    for (int width = 0; width < xpm_image.width; width++) {
+      // Calcular o índice do pixel atual na matriz de cores.
+      int index = (height * xpm_image.width) + width;
+
+      if (vg_draw_pixel(x + width, y + height, colors[index]) != 0) {
+        printf("vg_draw_xpm(): vg_draw_pixel() failed \n");
+        vg_exit(); 
+        return 1;
+      }
+    }
+  }
+
+
+  return 0;
+}
+

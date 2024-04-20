@@ -45,11 +45,11 @@ int(video_test_init)(uint16_t mode, uint8_t delay) {
 int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
                           uint16_t width, uint16_t height, uint32_t color) {
   
-  if (set_frame_buffer(mode) != 0) return -1;
+  if (set_frame_buffer(mode) != 0) return 1;
   if (set_graphic_mode(mode) != 0) return 1;
-  if (vg_draw_rectangle(x, y, width, height, color) != 0) return -1;
+  if (vg_draw_rectangle(x, y, width, height, color) != 0) return 1;
 
-  sleep(3);
+  sleep(5);
 
   return vg_exit();
 }
@@ -63,10 +63,14 @@ int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, ui
 }
 
 int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
-  /* To be completed */
-  printf("%s(%8p, %u, %u): under construction\n", __func__, xpm, x, y);
+  if (set_frame_buffer(VBE_MODE_INDEXED) != 0) return 1; // it is required to use this mode
+  if (set_graphic_mode(VBE_MODE_INDEXED) != 0) return 1;
 
-  return 1;
+  if (vg_draw_xpm(xpm, x, y) != 0) return 1;
+
+  sleep(5);
+
+  return vg_exit();
 }
 
 int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint16_t yf,
