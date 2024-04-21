@@ -4,12 +4,27 @@
 #include "ppu.h"
 #include "cartridge.h"
 
+//The bus is the main fabric connecting all the components of the NES together.
+//It is responsible for routing data between the CPU, PPU, and cartridge.
+//The bus also contains the system RAM, which is used by the CPU for general purpose memory storage.
+//The bus is clocked by the main system clock, which is used to synchronize the operation of all the components.
+
+
+
 static uint32_t mainClockCounter = 0;
-uint8_t sys_ram[64 * 1024];
+static uint8_t sys_ram[64 * 1024];
 
 void bus_init(){
   //start sys_ram with 0;
   memset(&sys_ram, 0, 2048); //nes has 2kb of ram (0x0000 - 0x07FF)
+  //TODO init ppu and cart
+}
+
+int bus_exit(){
+  cart_remove();
+  ppu_exit();
+
+  return 0;
 }
 
 void bus_clock(){

@@ -14,11 +14,11 @@ uint8_t set_mapper(uint8_t id, uint8_t nPRGbanks, uint8_t nCHRbanks){
   return 0;
 }
 
-uint16_t mapper_map(uint16_t addr, enum Type type, bool* hijack){
-  return mapper_table[mapper_id](addr, type, hijack);
+uint16_t mapper_map(uint16_t addr, enum Type type, bool* takeOver){
+  return mapper_table[mapper_id](addr, type, takeOver);
 }
 
-uint16_t mapper_000(uint16_t addr, enum Type type, bool* hijack){ //bounds are checked in the cartridge
+uint16_t mapper_000(uint16_t addr, enum Type type, bool* takeOver){ //bounds are checked in the cartridge
   switch (type){
   case type_sysBus_read:
       return addr & (mapper_nPRGbanks > 1 ? 0x7FFF : 0x3FFF);
