@@ -26,19 +26,17 @@ struct cart_header {
 		char unused[5];
 	} header;
 
-enum MIRROR
-{
-    HORIZONTAL,
-    VERTICAL,
-    ONESCREEN_LO,
-    ONESCREEN_HI,
-  } mirror_type;
+enum MIRROR mirror_type;
 
 enum ROM_FORMAT {
     NES,
     INES,
     NES2,
   } rom_format = INES;
+
+enum MIRROR cart_get_mirror_type(){
+  return mirror_type;
+}
 
 int cart_insert(){//TODO: implement dynamic rom path
   //read header
@@ -153,7 +151,6 @@ void sys_writeToCard(uint16_t addr, uint8_t data, bool* hijack){
   }
 }
 
-//TODO: this is a ppu function, why is it here!
 uint8_t ppu_readFromCard(uint16_t addr, bool* hijack){
   if (addr <= 0x1FFF){
     return CHRmem[mapper_map(addr, type_ppuBus_read_bus, hijack)];
@@ -161,7 +158,6 @@ uint8_t ppu_readFromCard(uint16_t addr, bool* hijack){
   return 0;
 }
 
-//TODO: this is a ppu function, why is it here!
 void ppu_writeToCard(uint16_t addr, uint8_t data, bool* hijack){
   if (addr <= 0x1FFF){
     CHRmem[mapper_map(addr, type_ppuBus_write, hijack)] = data;
