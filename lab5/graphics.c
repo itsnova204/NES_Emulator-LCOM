@@ -1,7 +1,7 @@
 #include "graphics.h"
 #include "VBE.h"
 
-static vbe_mode_info_t vbe_mode_info; // modo do video atual
+static vbe_mode_info_t vbe_mode_info; // informacao do modo de video atual
 static uint8_t* frame_buffer;         // VRAM - armazenar os valores de cor de cada pixel
 
 size_t numberOfBytesForBits(size_t bits) {
@@ -32,30 +32,34 @@ int set_graphic_mode(uint16_t mode) {
 }
 
 int (set_frame_buffer)(uint16_t mode) {
-  // obter informacao do modo de video
+  // obter informacao do modo que fica guardada em $vbe_mode_info
   if (vbe_get_mode_info(mode, &vbe_mode_info) != 0) {
     printf("set_frame_buffer(): vbe_get_mode_info() failed \n");
     return 1;
   }
+  
+  // calcular o numero de bytes necessarios para armazenar a cor de cada pixel
+  size_t PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel); 
 
-  size_t PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel); // bytes por pixel
-  size_t TotalBytes = vbe_mode_info.XResolution * vbe_mode_info.YResolution * PixelColorBytes; // total de bytes para armazenar toda a informacao de cor
+  // numero total de bytes para alocar no buffer
+  size_t TotalBytes = vbe_mode_info.XResolution * vbe_mode_info.YResolution * PixelColorBytes; 
 
-  // range do endereco fisico da memoria
+  // intervalo de memoria para alocar o buffer
   struct minix_mem_range memory_range = {
     vbe_mode_info.PhysBasePtr,              // base address
     vbe_mode_info.PhysBasePtr + TotalBytes  // end address
-  };
+  }; // representa um range [initial, final] na memoria VRAM
 
-  // alocacao da memoria fisica
+  // aloca o buffer na memoria fisica
   if (sys_privctl(SELF, SYS_PRIV_ADD_MEM, &memory_range) != 0) {
     printf("set_frame_buffer(): sys_privctl() failed \n");
     return 1;
   } 
 
-  // mapear a memoria fisica para a memoria virtual
+  // mapear o buffer virtual (ponteiro) para a memoria fisica
   frame_buffer = (uint8_t*) vm_map_phys(SELF, (void*) vbe_mode_info.PhysBasePtr, TotalBytes);
 
+  // retornar 0 se alocacao falhar
   return (frame_buffer == NULL);
 }
 
