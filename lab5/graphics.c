@@ -8,15 +8,22 @@ size_t numberOfBytesForBits(size_t bits) {
   return (bits + 7) / 8;
 }
 
+// ativar modo grafico
 int set_graphic_mode(uint16_t mode) {
   reg86_t reg86;
-  memset(&reg86, 0, sizeof(reg86));   // alocar memória para a estrutura reg86
 
-  reg86.intno = 0x10;       // BIOS video services
+  // alocar memória para a estrutura reg86
+  memset(&reg86, 0, sizeof(reg86));   
+
+  // numero da interrupcao para a BIOS video services
+  reg86.intno = 0x10;
+
   reg86.ax = VBE_SET_MODE;  // set VBE mode
-  reg86.bx = mode | LINEAR_FRAME_BUF; 
+  reg86.bx = mode | LINEAR_FRAME_BUF;  // set mode & linear frame buffer 
 
-  if(sys_int86(&reg86) != 0 || reg86.al != 0x4F || reg86.ah != 0x00) {
+  // reg86.al -> registo pós interrupcao para verificar se o modo foi ativado com sucesso
+  // reg86.ah -> registo pós interrupcao para verificar se hardware suporta o modo
+  if(sys_int86(&reg86) != 0 || reg86.al != VBE_FUNCTION_INVOKE || reg86.ah != VBE_FUNCTION_SUCCESSFULLY) {
     printf("vg_init_mode(): sys_int86() failed \n");
     return -1;
   }
@@ -95,6 +102,37 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
   return 0;
 }
 
+// desenhar pattern de retangulos
+int vg_draw_pattern(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
+  
+  // calcular o tamanho de cada retangulo
+  uint16_t width = vbe_mode_info.XResolution / no_rectangles;
+  uint16_t height = vbe_mode_info.YResolution / no_rectangles;
+
+  uint32_t color;
+  // iterar para desenhar cada retangulo
+  for (int i = 0; i < no_rectangles; i++) {
+    for (int j = 0; j < no_rectangles; j++) {
+      
+      // cor do retangulo
+      // first -> cor inicial (base)
+      // step -> incremento da cor (soma com a cor base)
+      // vbe_mode_info.BitsPerPixel -> numero de bits por pixel
+      // (1 << vbe_mode_info.BitsPerPixel) -> numero de cores possiveis
+      color = (first + (i * no_rectangles + j) * step) % (1 << vbe_mode_info.BitsPerPixel);
+      
+      if (vg_draw_rectangle(j * width, i * height, width, height, color) != 0) {
+        printf("vg_draw_pattern(): vg_draw_rectangle() failed \n");
+        vg_exit();
+        return 1;
+      }
+    }
+  }
+
+  return 0;
+}
+
+// desenhar uma imagem XPM
 int vg_draw_xpm(xpm_map_t xpm, uint16_t x, uint16_t y) {
   xpm_image_t xpm_image;
 
@@ -106,10 +144,13 @@ int vg_draw_xpm(xpm_map_t xpm, uint16_t x, uint16_t y) {
     return 1;
   }
 
-  // Iterar sobre a imagem XPM.
+  // Iterar sobre a imagem XPM
+  // Percorrer todos os pixeis da imagem XPM
   for (int height = 0; height < xpm_image.height; height++) {
     for (int width = 0; width < xpm_image.width; width++) {
-      // Calcular o índice do pixel atual na matriz de cores.
+
+      // Calcular o índice do pixel atual na matriz de cores
+      // Cor do pixel -> colors[index] (second element no mapa de cores em que a key=index)
       int index = (height * xpm_image.width) + width;
 
       if (vg_draw_pixel(x + width, y + height, colors[index]) != 0) {
@@ -119,7 +160,6 @@ int vg_draw_xpm(xpm_map_t xpm, uint16_t x, uint16_t y) {
       }
     }
   }
-
 
   return 0;
 }
