@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "cartridge.h": "c",
-        "lcf_mock.h": "c"
+        "lcf_mock.h": "c",
+        "timer.h": "c"
     }
 }
