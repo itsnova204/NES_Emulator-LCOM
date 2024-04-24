@@ -10,9 +10,13 @@
 #include "graphics.h"
 #include "KBC.h"
 #include "i8042.h"
+#include "colors.h"
+#include "i8254.h"
 #include "keyboard.h"
+#include "KBC.h"
 
 uint8_t scan_code = 0;
+int get_counter();
 
 // Any header files included below this line should have been created by you
 
@@ -118,11 +122,85 @@ int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
 
 int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint16_t yf,
                      int16_t speed, uint8_t fr_rate) {
-  /* To be completed */
-  printf("%s(%8p, %u, %u, %u, %u, %d, %u): under construction\n",
-         __func__, xpm, xi, yi, xf, yf, speed, fr_rate);
+  // considerar apenas moviementos retos
+  if (xi != xf && yi != yf) {
+    printf("video_test_move(): only straight movements are allowed\n");
+    return 1;
+  }
+  bool isMovementHorizontal = true; // true if the movement is horizontal, false if it is vertical
 
-  return 1;
+  if (xi == xf) isMovementHorizontal = false;
+  else if (yi == yf) isMovementHorizontal = true;
+  else return 1;
+
+  // definir o buffer de video
+  if (set_frame_buffer(VBE_MODE_INDEXED) != 0) return 1; // it is required to use this mode
+  if (set_graphic_mode(VBE_MODE_INDEXED) != 0) return 1;
+
+  // SETUP e ciclo de interrupcoes do timer e do teclado
+  int ipc_status, r;
+  message msg;
+  uint8_t irq_set_timer, irq_set_kbd;
+
+  // subcricao das interrupcoes do timer e do teclado
+  if(timer_subscribe_int(&irq_set_timer) != 0) return 1;
+  if(kbd_subscribe_int(&irq_set_kbd) != 0) return 1;
+
+  // definir o frame rate do timer
+  if (timer_set_frequency(0, fr_rate) != 0) return 1;   
+
+  bool finished = false;  // flag que indica se o movimento terminou
+  while( scan_code != KBD_ESC_BREAK_CODE && !finished ) {
+      /* Get a request message. */
+      if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+          printf("driver_receive failed with: %d", r);
+          continue;
+      }
+
+      if (is_ipc_notify(ipc_status)) { /* received notification */
+          switch (_ENDPOINT_P(msg.m_source)) {
+              case HARDWARE: /* hardware interrupt notification */		
+
+                  if (msg.m_notify.interrupts & irq_set_kbd) {
+                    kbc_ih();
+                    if (!is_valid()) continue;
+
+                    scan_code = get_scan_code();
+                  }
+
+                  if (msg.m_notify.interrupts & irq_set_timer) {
+                    // cover the previous image (clean screen)
+                    //if (vg_draw_rectangle(xi, yi, 100, 100, 0xFFFFFF) != 0) return 1;
+                    
+                    // atualizar coordenadas
+                    if (isMovementHorizontal) {
+                        xi += speed;
+                        if (xi > xf) xi = xf; // se passar do limite, coloca no limite
+                    } else {
+                        yi += speed;
+                        if (yi > yf) yi = yf;
+                    }
+                    
+                    // desenhar imagem
+                    if (vg_draw_xpm(xpm, xi, yi) != 0) return 1;
+
+                    // verificar se o movimento terminou
+                    if (xi == xf && yi == yf) finished = true;
+                  }
+                  break;
+              default:
+                  break; /* no other notifications expected: do nothing */	
+          }
+      } else { /* received a standard message, not a notification */
+          /* no standard messages expected: do nothing */
+      }
+  }
+
+  if (vg_exit() != 0) return 1;
+  if (timer_unsubscribe_int() != 0) return 1;
+  if (kbd_unsubscribe_int() != 0) return 1;
+
+  return 0;
 }
 
 int(video_test_controller)() {
