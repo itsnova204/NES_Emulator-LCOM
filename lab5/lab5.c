@@ -8,6 +8,11 @@
 
 #include "VBE.h"
 #include "graphics.h"
+#include "KBC.h"
+#include "i8042.h"
+#include "keyboard.h"
+
+uint8_t scan_code = 0;
 
 // Any header files included below this line should have been created by you
 
@@ -35,6 +40,42 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
+int(keyboard_ESC)() {
+  int ipc_status, r;
+  message msg;
+  uint8_t irq_set;
+
+  if (kbd_subscribe_int(&irq_set) != 0) return 1;
+
+  while (scan_code != KBD_ESC_BREAK_CODE) {
+    if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) { 
+      printf("keyboard driver_receive failed with: %d", r);
+      continue;
+    }
+
+    if (is_ipc_notify(ipc_status)) { /* received notification */
+          switch (_ENDPOINT_P(msg.m_source)) {
+              case HARDWARE: /* hardware interrupt notification */				
+                  if (msg.m_notify.interrupts & irq_set) { /* subscribed interrupt */
+                    kbc_ih();
+                    if (!is_valid()) continue;
+
+                    scan_code = get_scan_code();
+
+                    if (print_scancode(scan_code)) return 1;
+                  }
+                  break;
+              default:
+                  break; /* no other notifications expected: do nothing */	
+          }
+      } else {
+      }
+  }
+
+  return kbd_unsubscribe_int();
+}
+
+
 int(video_test_init)(uint16_t mode, uint8_t delay) {
   if (set_graphic_mode(mode) != 0) return 1;
   sleep(delay);
@@ -49,7 +90,7 @@ int(video_test_rectangle)(uint16_t mode, uint16_t x, uint16_t y,
   if (set_graphic_mode(mode) != 0) return 1;
   if (vg_draw_rectangle(x, y, width, height, color) != 0) return 1;
 
-  sleep(5);
+  if (keyboard_ESC() != 0) return 1;
 
   return vg_exit();
 }
@@ -59,7 +100,7 @@ int(video_test_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, ui
   if (set_graphic_mode(mode) != 0) return 1;
   if (vg_draw_pattern(mode, no_rectangles, first, step) != 0) return 1;
 
-  sleep(5);
+  if (keyboard_ESC() != 0) return 1;
 
   return vg_exit();
 }
@@ -70,7 +111,7 @@ int(video_test_xpm)(xpm_map_t xpm, uint16_t x, uint16_t y) {
 
   if (vg_draw_xpm(xpm, x, y) != 0) return 1;
 
-  sleep(5);
+  if (keyboard_ESC() != 0) return 1;
 
   return vg_exit();
 }
