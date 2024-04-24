@@ -22,4 +22,7 @@
 
 #define LINEAR_FRAME_BUF                BIT(14)
 
+#define DIRECT_COLOR                    0x06
+#define INDEXED_COLOR                   0x105
+
 #endif

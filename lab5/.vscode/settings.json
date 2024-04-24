@@ -8,6 +8,8 @@
   "editor.wordWrapColumn": 100,
   "files.associations": {
     "graphics.h": "c",
-    "ios": "c"
+    "ios": "c",
+    "functional": "c",
+    "vbe.h": "c"
   },
 }

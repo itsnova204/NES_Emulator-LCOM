@@ -5,6 +5,30 @@
 
 int get_counter();
 
+int main(int argc, char *argv[]) {
+  // sets the language of LCF messages (can be either EN-US or PT-PT)
+  lcf_set_language("EN-US");
+
+  // enables to log function invocations that are being "wrapped" by LCF
+  // [comment this out if you don't want/need it]
+  lcf_trace_calls("/home/lcom/labs/g5/proj/trace.txt");
+
+  // enables to save the output of printf function calls on a file
+  // [comment this out if you don't want/need it]
+  lcf_log_output("/home/lcom/labs/g5/proj/output.txt");
+
+  // handles control over to LCF
+  // [LCF handles command line arguments and invokes the right function]
+  if (lcf_start(argc, argv))
+    return 1;
+
+  // LCF clean up tasks
+  // [must be the last statement before return]
+  lcf_cleanup();
+
+  return 0;
+}
+
 int(timer_init)(uint8_t time) {
   
   int ipc_status, r;
@@ -44,17 +68,9 @@ int(timer_init)(uint8_t time) {
   return 0;
 }
 
-int (page_main_loop_x)() {
+int (proj_main_loop)() {
     if (timer_set_frequency(0, 60) != 0) return 1; 
-    if (timer_init(1) != 0) return 1;
-
-    return 0;
-}
-
-int main() {
-    if (page_main_loop_x() != 0) return 1;
-
-    printf("Timer init successful\n");
+    if (timer_init(10) != 0) return 1;
 
     return 0;
 }

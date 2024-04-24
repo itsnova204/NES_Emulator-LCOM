@@ -8,6 +8,10 @@ size_t numberOfBytesForBits(size_t bits) {
   return (bits + 7) / 8;
 }
 
+vbe_mode_info_t (get_vbe_mode_info)() {
+  return vbe_mode_info;
+}
+
 // ativar modo grafico
 int set_graphic_mode(uint16_t mode) {
   reg86_t reg86;
@@ -108,11 +112,6 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
 
 // desenhar pattern de retangulos
 int vg_draw_pattern(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
-  if (mode != VBE_MODE_INDEXED && mode != VBE_MODE_DC_24) {
-    vg_exit();
-    return 1;
-  }
-
   // calcular o tamanho de cada retangulo
   uint16_t width = vbe_mode_info.XResolution / no_rectangles;
   uint16_t height = vbe_mode_info.YResolution / no_rectangles;
@@ -121,13 +120,19 @@ int vg_draw_pattern(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_
   // iterar para desenhar cada retangulo
   for (int i = 0; i < no_rectangles; i++) {
     for (int j = 0; j < no_rectangles; j++) {
-      
-      // cor do retangulo
-      // first -> cor inicial (base)
-      // step -> incremento da cor (soma com a cor base)
-      // vbe_mode_info.BitsPerPixel -> numero de bits por pixel
-      // (1 << vbe_mode_info.BitsPerPixel) -> numero de cores possiveis
-      color = (first + (i * no_rectangles + j) * step) % (1 << vbe_mode_info.BitsPerPixel);
+
+      if (vbe_mode_info.MemoryModel == 6) {
+        color = Red(j, step, first) << vbe_mode_info.RedFieldPosition | 
+                Green(i, step, first) << vbe_mode_info.GreenFieldPosition | 
+                Blue(j, i, step, first) << vbe_mode_info.BlueFieldPosition;
+      } else {
+        // cor do retangulo
+        // first -> cor inicial (base)
+        // step -> incremento da cor (soma com a cor base)
+        // vbe_mode_info.BitsPerPixel -> numero de bits por pixel
+        // (1 << vbe_mode_info.BitsPerPixel) -> numero de cores possiveis
+        color = (first + (i * no_rectangles + j) * step) % (1 << vbe_mode_info.BitsPerPixel);
+      }
       
       if (vg_draw_rectangle(j * width, i * height, width, height, color) != 0) {
         printf("vg_draw_pattern(): vg_draw_rectangle() failed \n");
@@ -172,3 +177,26 @@ int vg_draw_xpm(xpm_map_t xpm, uint16_t x, uint16_t y) {
   return 0;
 }
 
+uint32_t (Red)(unsigned j, uint8_t step, uint32_t first) {
+  return (R(first) + j * step) % (1 << vbe_mode_info.RedMaskSize);
+}
+
+uint32_t (Green)(unsigned i, uint8_t step, uint32_t first) {
+  return (G(first) + i * step) % (1 << vbe_mode_info.GreenMaskSize);
+}
+
+uint32_t (Blue)(unsigned j, unsigned i, uint8_t step, uint32_t first) {
+  return (B(first) + (i + j) * step) % (1 << vbe_mode_info.BlueMaskSize);
+}
+
+uint32_t (R)(uint32_t first){
+  return ((1 << vbe_mode_info.RedMaskSize) - 1) & (first >> vbe_mode_info.RedFieldPosition);
+}
+
+uint32_t (G)(uint32_t first){
+  return ((1 << vbe_mode_info.GreenMaskSize) - 1) & (first >>vbe_mode_info.GreenFieldPosition);
+}
+
+uint32_t (B)(uint32_t first){
+  return ((1 << vbe_mode_info.BlueMaskSize) - 1) & (first >> vbe_mode_info.BlueFieldPosition);
+}
