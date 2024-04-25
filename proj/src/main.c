@@ -3,7 +3,16 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "VBE.h"
+#include "graphics.h"
+#include "KBC.h"
+#include "i8042.h"
+#include "i8254.h"
+#include "keyboard.h"
+#include "KBC.h"
+
 int get_counter();
+uint8_t scan_code = 0;
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -69,8 +78,86 @@ int(timer_init)(uint8_t time) {
 }
 
 int (proj_main_loop)() {
-    if (timer_set_frequency(0, 60) != 0) return 1; 
-    if (timer_init(10) != 0) return 1;
+  // definir o buffer de video
+  if (set_frame_buffer(VBE_MODE_DC_24) != 0) return 1; // it is required to use this mode
+  if (set_graphic_mode(VBE_MODE_DC_24) != 0) return 1;
 
-    return 0;
+  // SETUP e ciclo de interrupcoes do timer e do teclado
+  int ipc_status, r;
+  message msg;
+  uint8_t irq_set_timer, irq_set_kbd;
+
+  // subcricao das interrupcoes do timer e do teclado
+  if(timer_subscribe_int(&irq_set_timer) != 0) return 1;
+  if(kbd_subscribe_int(&irq_set_kbd) != 0) return 1;
+
+  // definir o frame rate do timer
+  if (timer_set_frequency(0, 60) != 0) return 1;   
+
+  bool is_second_scan_code = false;
+  uint32_t square_color = 0x000000, background_color = 0xffffff;
+  uint16_t square_size = 30, speed = 15, x = 50, y = 50;
+
+  if (vg_draw_rectangle(0, 0, get_vbe_mode_info().XResolution, get_vbe_mode_info().YResolution, background_color) != 0) return 1; // desenhar o fundo
+  if (vg_draw_rectangle(x, y, 30, 30, square_color) != 0) return 1; // desenhar imagem inicial
+
+  while( scan_code != KBD_ESC_BREAK_CODE ) {
+      /* Get a request message. */
+      if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+          printf("driver_receive failed with: %d", r);
+          continue;
+      }
+
+      if (is_ipc_notify(ipc_status)) { /* received notification */
+          switch (_ENDPOINT_P(msg.m_source)) {
+              case HARDWARE: /* hardware interrupt notification */		
+
+                  if (msg.m_notify.interrupts & irq_set_kbd) {
+                    kbc_ih();
+                    if (!is_valid()) continue;
+
+                    scan_code = get_scan_code();
+
+                    if (is_two_byte_scan_code(scan_code) && !is_second_scan_code) {
+                      is_second_scan_code = true;
+                      continue;
+                    } else if (is_second_scan_code) {
+                      is_second_scan_code = false;
+                    }
+
+                    if (vg_draw_rectangle(x, y, 30, 30, background_color) != 0) return 1;  // apagar a imagem anterior
+
+                    if (scan_code == KBD_ESC_BREAK_CODE) break;
+                    if (scan_code == 0x50) {  //down arrow
+                      y += speed;
+                    } else if (scan_code == 0x48) {  //up arrow
+                      if (y >= speed) y -= speed; // definir limite das bordas
+                      else y = 0;
+                    } else if (scan_code == 0x4b) {  //left arrow
+                      if (x >= speed) x -= speed;
+                      else x = 0;
+                    } else if (scan_code == 0x4d) {  //right arrow
+                      x += speed;
+                    }
+
+                    // definir limites
+                    if (x > get_vbe_mode_info().XResolution - square_size) x = get_vbe_mode_info().XResolution - square_size;
+                    if (y > get_vbe_mode_info().YResolution - square_size) y = get_vbe_mode_info().YResolution - square_size;
+                    
+                    if (vg_draw_rectangle(x, y, square_size, square_size, square_color) != 0) return 1;  // nova imagem
+                  }
+                  break;
+              default:
+                  break; /* no other notifications expected: do nothing */	
+          }
+      } else { /* received a standard message, not a notification */
+          /* no standard messages expected: do nothing */
+      }
+  }
+
+  if (vg_exit() != 0) return 1;
+  if (timer_unsubscribe_int() != 0) return 1;
+  if (kbd_unsubscribe_int() != 0) return 1;
+
+  return 0;
 }
