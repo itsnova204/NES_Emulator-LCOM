@@ -168,8 +168,7 @@ int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint1
                   }
 
                   if (msg.m_notify.interrupts & irq_set_timer) {
-                    // cover the previous image (clean screen)
-                    //if (vg_draw_rectangle(xi, yi, 100, 100, 0xFFFFFF) != 0) return 1;
+                    if (vg_clear_screen() != 0) return 1; // limpar o ecrã (apagar a imagem)
                     
                     // atualizar coordenadas
                     if (isMovementHorizontal) {

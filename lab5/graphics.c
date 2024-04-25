@@ -177,6 +177,16 @@ int vg_draw_xpm(xpm_map_t xpm, uint16_t x, uint16_t y) {
   return 0;
 }
 
+int vg_clear_screen() {
+  if (vg_draw_rectangle(0, 0, vbe_mode_info.XResolution, vbe_mode_info.YResolution, 0) != 0) {
+    printf("vg_clear_screen(): vg_draw_rectangle() failed \n");
+    vg_exit();
+    return 1;
+  }
+  
+  return 0;
+}
+
 uint32_t (Red)(unsigned j, uint8_t step, uint32_t first) {
   return (R(first) + j * step) % (1 << vbe_mode_info.RedMaskSize);
 }
