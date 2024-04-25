@@ -10,7 +10,6 @@
 #include "graphics.h"
 #include "KBC.h"
 #include "i8042.h"
-#include "colors.h"
 #include "i8254.h"
 #include "keyboard.h"
 #include "KBC.h"
