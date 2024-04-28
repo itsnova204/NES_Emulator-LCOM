@@ -38,15 +38,17 @@ enum MIRROR cart_get_mirror_type(){
   return mirror_type;
 }
 
-int cart_insert(){//TODO: implement dynamic rom path
+int cart_insert(char* cart_filePath){
   //read header
-  FILE *fp = fopen("./Super_mario_brothers.nes", "rb");
+  printf("[CART] Loading rom: %s\n", cart_filePath);
+  
+  FILE *fp = fopen(cart_filePath, "rb");
   if (fp == NULL){
     printf("Error: Could not open rom\n");
     return 1;
   }
 
-  printf("LOADING STARTED!:\n");
+  printf("LOADING STARTED!\n");
   header_parse(fp);
 
   //TODO: implement rom format detection ROM_FORMAT
@@ -129,7 +131,6 @@ uint8_t ines_parse(FILE *fp){
 }
 
 void print_header(){
-  printf("Header:\n");
   printf("Name: %c%c%c%c\n", header.name[0], header.name[1], header.name[2], header.name[3]);
   printf("nPRG_rom_chunks: %d\n", header.nPRG_rom_chunks);
   printf("nCHR_rom_chunks: %d\n", header.nCHR_rom_chunks);
