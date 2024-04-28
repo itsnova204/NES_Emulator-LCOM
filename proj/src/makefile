@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 
 # Source files
-SRCS = main.c ./src/mapper.c ./src/cartridge.c ./src/bus.c ./src/p6502.c ./src/ppu.c
+SRCS = main.c ./nes_emu/mapper.c ./nes_emu/cartridge.c ./nes_emu/bus.c ./nes_emu/p6502.c 
 
 # Object files
 OBJS = $(SRCS:.c=.o)
@@ -16,7 +16,7 @@ all: $(TARGET)
 
 # Compile source files into object files
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c -g $< -o $@
 
 # Link object files into the executable
 $(TARGET): $(OBJS)

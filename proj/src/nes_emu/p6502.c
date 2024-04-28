@@ -59,13 +59,19 @@ void cpu_clock(){
 
 		cycles_left = lookup[opcode].cycles;
 
+		printf("pc: %04x op name: %s\n",program_counter, lookup[opcode].name);
 		uint8_t additional_cycles1 = lookup[opcode].ADR_MODE();
 		uint8_t additional_cycles2 = lookup[opcode].INST_CODE();
 
 		cycles_left += (additional_cycles1 & additional_cycles2); //if we pass page boundary we need to use an aditional clock cycle in certain instrctions
+		usleep(10000);
 	}
 
 	cycles_left--;
+}
+
+void cpu_init(){
+	program_counter = 0xC000;
 }
 
 void cpu_reset(){
