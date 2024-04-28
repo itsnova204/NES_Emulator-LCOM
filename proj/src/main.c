@@ -1,7 +1,7 @@
 #include "./nes_emu/bus.h"
 
 int main(){
-  char* cart_filePath = "./roms/nestest.nes";
+  char* cart_filePath = "../roms/nestest.nes";
   printf("Starting NES emulator\n");
   bus_init(cart_filePath);
 
