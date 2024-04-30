@@ -1,14 +1,18 @@
 #include "lcf_mock.h"
 
 enum ctrler_buttons_t{
-  up,
-  left,
-  down,
-  right,
+  button_up,
+  button_left,
+  button_down,
+  button_right,
   
-  start,
-  select,
+  button_start,
+  button_select,
 
-  a,
-  b
+  button_a,
+  button_b
 };
+
+void controler_init(uint8_t controller[2]);
+void controler_press(uint8_t controller, enum ctrler_buttons_t button);
+void controler_unpress(uint8_t controller, enum ctrler_buttons_t button);

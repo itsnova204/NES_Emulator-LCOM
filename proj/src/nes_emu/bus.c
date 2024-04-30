@@ -21,7 +21,7 @@ void bus_init(char* cart_filePath){
   //start sys_ram with 0;
   memset(&sys_ram, 0, 2048); //nes has 2kb of ram (0x0000 - 0x07FF)
 
-  controler_init(&controller);
+  controler_init(controller);
 
   //TODO init ppu and cart
   cart_insert(cart_filePath);
