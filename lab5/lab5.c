@@ -133,8 +133,8 @@ int(video_test_move)(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint1
   else return 1;
 
   // definir o buffer de video
-  if (set_frame_buffer(VBE_MODE_DC_24) != 0) return 1; // it is required to use this mode
-  if (set_graphic_mode(VBE_MODE_DC_24D) != 0) return 1;
+  if (set_frame_buffer(VBE_MODE_INDEXED) != 0) return 1; // it is required to use this mode
+  if (set_graphic_mode(VBE_MODE_INDEXED) != 0) return 1;
 
   // SETUP e ciclo de interrupcoes do timer e do teclado
   int ipc_status, r;
