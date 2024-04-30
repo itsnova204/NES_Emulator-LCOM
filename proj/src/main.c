@@ -10,6 +10,7 @@
 #include "i8254.h"
 #include "keyboard.h"
 #include "KBC.h"
+#include "image.h"
 
 int get_counter();
 uint8_t scan_code = 0;
@@ -38,49 +39,10 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-int(timer_init)(uint8_t time) {
-  
-  int ipc_status, r;
-  message msg;
-  uint8_t irq_set;
-
-  if(timer_subscribe_int(&irq_set) != 0) return 1;
-  
-  while( time > 0 ) { /* You may want to use a different condition */
-      /* Get a request message. */
-      if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
-          printf("driver_receive failed with: %d", r);
-          continue;
-      }
-      if (is_ipc_notify(ipc_status)) { /* received notification */
-          switch (_ENDPOINT_P(msg.m_source)) {
-              case HARDWARE: /* hardware interrupt notification */				
-                  if (msg.m_notify.interrupts & irq_set) { /* subscribed interrupt */
-                    timer_int_handler();
-                    int counter = get_counter();
-                    if (counter%60 == 0) {
-                      time--;
-                      timer_print_elapsed_time();
-                    }
-                  }
-                  break;
-              default:
-                  break; /* no other notifications expected: do nothing */	
-          }
-      } else { /* received a standard message, not a notification */
-          /* no standard messages expected: do nothing */
-      }
-  }
-
-  if (timer_unsubscribe_int() != 0) return 1;
-
-  return 0;
-}
-
 int (proj_main_loop)() {
   // definir o buffer de video
-  if (set_frame_buffer(VBE_MODE_DC_24) != 0) return 1; // it is required to use this mode
-  if (set_graphic_mode(VBE_MODE_DC_24) != 0) return 1;
+  if (set_frame_buffer(VBE_MODE_INDEXED) != 0) return 1; // it is required to use this mode
+  if (set_graphic_mode(VBE_MODE_INDEXED) != 0) return 1;
 
   // SETUP e ciclo de interrupcoes do timer e do teclado
   int ipc_status, r;
@@ -95,11 +57,9 @@ int (proj_main_loop)() {
   if (timer_set_frequency(0, 60) != 0) return 1;   
 
   bool is_second_scan_code = false;
-  uint32_t square_color = 0x000000, background_color = 0xffffff;
-  uint16_t square_size = 30, speed = 15, x = 50, y = 50;
 
-  if (vg_draw_rectangle(0, 0, get_vbe_mode_info().XResolution, get_vbe_mode_info().YResolution, background_color) != 0) return 1; // desenhar o fundo
-  if (vg_draw_rectangle(x, y, 30, 30, square_color) != 0) return 1; // desenhar imagem inicial
+  //if (vg_draw_rectangle(0, 0, get_vbe_mode_info().XResolution, get_vbe_mode_info().YResolution, background_color) != 0) return 1; // desenhar o fundo
+  //if (vg_draw_rectangle(x, y, 30, 30, square_color) != 0) return 1; // desenhar imagem inicial
 
   while( scan_code != KBD_ESC_BREAK_CODE ) {
       /* Get a request message. */
@@ -125,8 +85,8 @@ int (proj_main_loop)() {
                       is_second_scan_code = false;
                     }
 
-                    if (vg_draw_rectangle(x, y, 30, 30, background_color) != 0) return 1;  // apagar a imagem anterior
-
+                    //if (vg_draw_rectangle(x, y, 30, 30, background_color) != 0) return 1;  // apagar a imagem anterior
+/*
                     if (scan_code == KBD_ESC_BREAK_CODE) break;
                     if (scan_code == 0x50) {  //down arrow
                       y += speed;
@@ -138,13 +98,16 @@ int (proj_main_loop)() {
                       else x = 0;
                     } else if (scan_code == 0x4d) {  //right arrow
                       x += speed;
-                    }
-
+                    }*/
+/*
                     // definir limites
                     if (x > get_vbe_mode_info().XResolution - square_size) x = get_vbe_mode_info().XResolution - square_size;
                     if (y > get_vbe_mode_info().YResolution - square_size) y = get_vbe_mode_info().YResolution - square_size;
                     
-                    if (vg_draw_rectangle(x, y, square_size, square_size, square_color) != 0) return 1;  // nova imagem
+                    //if (vg_draw_rectangle(x, y, square_size, square_size, square_color) != 0) return 1;  // nova imagem*/
+
+                    if (vg_draw_xpm(cat_01, 100, 100) != 0) return 1; // desenhar imagem XPM
+
                   }
                   break;
               default:

@@ -2,6 +2,10 @@
     "files.associations": {
         "cartridge.h": "c",
         "lcf_mock.h": "c",
-        "timer.h": "c"
+        "timer.h": "c",
+        "images.h": "c",
+        "xpm.h": "c",
+        "stddef.h": "c",
+        "stdbool.h": "c"
     }
 }
