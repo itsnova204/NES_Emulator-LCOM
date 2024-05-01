@@ -12,21 +12,14 @@ vbe_mode_info_t (get_vbe_mode_info)() {
   return vbe_mode_info;
 }
 
-// ativar modo grafico
 int set_graphic_mode(uint16_t mode) {
   reg86_t reg86;
-
-  // alocar memória para a estrutura reg86
   memset(&reg86, 0, sizeof(reg86));   
-
-  // numero da interrupcao para a BIOS video services
   reg86.intno = 0x10;
 
-  reg86.ax = VBE_SET_MODE;  // set VBE mode
-  reg86.bx = mode | LINEAR_FRAME_BUF;  // set mode & linear frame buffer 
+  reg86.ax = VBE_SET_MODE;
+  reg86.bx = mode | LINEAR_FRAME_BUF;
 
-  // reg86.al -> registo pós interrupcao para verificar se o modo foi ativado com sucesso
-  // reg86.ah -> registo pós interrupcao para verificar se hardware suporta o modo
   if(sys_int86(&reg86) != 0 || reg86.al != VBE_FUNCTION_INVOKE || reg86.ah != VBE_FUNCTION_SUCCESSFULLY) {
     printf("vg_init_mode(): sys_int86() failed \n");
     return -1;
@@ -36,52 +29,39 @@ int set_graphic_mode(uint16_t mode) {
 }
 
 int (set_frame_buffer)(uint16_t mode) {
-  // obter informacao do modo que fica guardada em $vbe_mode_info
   if (vbe_get_mode_info(mode, &vbe_mode_info) != 0) {
     printf("set_frame_buffer(): vbe_get_mode_info() failed \n");
     return 1;
   }
   
-  // calcular o numero de bytes necessarios para armazenar a cor de cada pixel
   size_t PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel); 
-
-  // numero total de bytes para alocar no buffer
   size_t TotalBytes = vbe_mode_info.XResolution * vbe_mode_info.YResolution * PixelColorBytes; 
 
-  // intervalo de memoria para alocar o buffer
   struct minix_mem_range memory_range = {
     vbe_mode_info.PhysBasePtr,              // base address
     vbe_mode_info.PhysBasePtr + TotalBytes  // end address
-  }; // representa um range [initial, final] na memoria VRAM
+  };
 
-  // aloca o buffer na memoria fisica
   if (sys_privctl(SELF, SYS_PRIV_ADD_MEM, &memory_range) != 0) {
     printf("set_frame_buffer(): sys_privctl() failed \n");
     return 1;
   } 
 
-  // mapear o buffer virtual (ponteiro) para a memoria fisica
   frame_buffer = (uint8_t*) vm_map_phys(SELF, (void*) vbe_mode_info.PhysBasePtr, TotalBytes);
 
-  // retornar 0 se alocacao falhar
   return (frame_buffer == NULL);
 }
 
 int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
-  // verificar se as coordenadas estao dentro da resolucao
   if (x > vbe_mode_info.XResolution || y > vbe_mode_info.YResolution) {
     printf("vg_draw_pixel(): coordinates exceed resolution \n");
     return 1;
   }
 
-  int PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel); // bytes por pixel
+  int PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel);
+  uint8_t* pixel = frame_buffer + (y * vbe_mode_info.XResolution + x) * PixelColorBytes;
 
-  uint8_t* pixel = frame_buffer + (y * vbe_mode_info.XResolution + x) * PixelColorBytes;  // posicao do pixel
-
-  if (memcpy(pixel, &color, PixelColorBytes) == NULL) {
-    printf("vg_draw_pixel(): memccpy() failed \n");
-    return 1;
-  }
+  memcpy(pixel, &color, PixelColorBytes);
 
   return 0;
 }
@@ -110,14 +90,11 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
   return 0;
 }
 
-// desenhar pattern de retangulos
 int vg_draw_pattern(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
-  // calcular o tamanho de cada retangulo
   uint16_t width = vbe_mode_info.XResolution / no_rectangles;
   uint16_t height = vbe_mode_info.YResolution / no_rectangles;
 
   uint32_t color;
-  // iterar para desenhar cada retangulo
   for (int i = 0; i < no_rectangles; i++) {
     for (int j = 0; j < no_rectangles; j++) {
 
@@ -126,11 +103,6 @@ int vg_draw_pattern(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_
                 Green(i, step, first) << vbe_mode_info.GreenFieldPosition | 
                 Blue(j, i, step, first) << vbe_mode_info.BlueFieldPosition;
       } else {
-        // cor do retangulo
-        // first -> cor inicial (base)
-        // step -> incremento da cor (soma com a cor base)
-        // vbe_mode_info.BitsPerPixel -> numero de bits por pixel
-        // (1 << vbe_mode_info.BitsPerPixel) -> numero de cores possiveis
         color = (first + (i * no_rectangles + j) * step) % (1 << vbe_mode_info.BitsPerPixel);
       }
       
@@ -145,35 +117,67 @@ int vg_draw_pattern(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_
   return 0;
 }
 
-// desenhar uma imagem XPM
-int vg_draw_xpm(xpm_map_t xpm, uint16_t x, uint16_t y) {
+uint32_t normalizeColor(uint32_t color, uint16_t mode) {
+  if (mode == VBE_MODE_INDEXED) {
+    return color;
+  } else if (mode == VBE_MODE_DC_15) {
+    return ((color & 0x1F) << 3) | ((color & 0x3E0) << 6) | ((color & 0x7C00) << 9);
+  } else if (mode == VBE_MODE_DC_16) {
+    return ((color & 0x1F) << 3) | ((color & 0x7E0) << 5) | ((color & 0xF800) << 8);
+  } else if (mode == VBE_MODE_DC_24) {
+    return color;
+  } else if (mode == VBE_MODE_DC_32) {
+    return color;
+  } else {
+    printf("normalizeColor(): invalid mode \n");
+    return 0;
+  }
+}
+
+int vg_draw_xpm(xpm_map_t xpm, uint16_t x, uint16_t y, uint16_t mode) {
   xpm_image_t xpm_image;
 
-  // carregar as cores do xpm num mapa
-  uint8_t *colors = xpm_load(xpm, XPM_INDEXED, &xpm_image);
+  switch(mode) {
+    case VBE_MODE_INDEXED:
+      xpm_image.type = XPM_INDEXED;
+      break;
+    case VBE_MODE_DC_15:
+      xpm_image.type = XPM_1_5_5_5;
+      break;
+    case VBE_MODE_DC_16:
+      xpm_image.type = XPM_5_6_5;
+      break;
+    case VBE_MODE_DC_24:
+      xpm_image.type = XPM_8_8_8;
+      break;
+    case VBE_MODE_DC_32:
+      xpm_image.type = XPM_8_8_8_8;
+      break;
+    default:
+      printf("vg_draw_xpm(): invalid mode \n");
+      return 1;
+  }
+  
+  uint8_t *colorMap = xpm_load(xpm, xpm_image.type, &xpm_image);
 
-  if (colors == NULL) {
+  if (colorMap == NULL) {
     printf("vg_draw_xpm(): xpm_load() failed \n");
+    vg_exit();
     return 1;
   }
-
-  // Iterar sobre a imagem XPM
-  // Percorrer todos os pixeis da imagem XPM
   for (int height = 0; height < xpm_image.height; height++) {
     for (int width = 0; width < xpm_image.width; width++) {
+      int colorIndex = (height * xpm_image.width) + width;
+      uint32_t color = normalizeColor(*(uint32_t*) &colorMap[colorIndex * 4], mode);
 
-      // Calcular o índice do pixel atual na matriz de cores
-      // Cor do pixel -> colors[index] (second element no mapa de cores em que a key=index)
-      int index = (height * xpm_image.width) + width;
-
-      if (vg_draw_pixel(x + width, y + height, colors[index]) != 0) {
+      if (vg_draw_pixel(x + width, y + height, color) != 0) {
         printf("vg_draw_xpm(): vg_draw_pixel() failed \n");
         vg_exit(); 
         return 1;
       }
     }
   }
-
+  
   return 0;
 }
 
