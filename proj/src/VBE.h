@@ -8,11 +8,11 @@
 #define VBE_FUNCTION_HW_NOT_SUPPORTED   0x02
 #define VBE_FUNCTION_INVALID_IN_MODE    0x03
 
-#define VBE_MODE_INDEXED                0x105 //1024x768
-#define VBE_MODE_DC_15                  0x110 //640x480
-#define VBE_MODE_DC_24                  0x115 //800x600
-#define VBE_MODE_DC_16                  0x11A //1280x1024
-#define VBE_MODE_DC_32                  0x14C //1152x864
+#define VBE_MODE_INDEXED                0x105 //1024x768    8 per pixel
+#define VBE_MODE_DC_15                  0x110 //640x480     15((1:)5:5:5)
+#define VBE_MODE_DC_24                  0x115 //800x600     24(8:8:8)
+#define VBE_MODE_DC_16                  0x11A //1280x1024   16(5:6:5)
+#define VBE_MODE_DC_32                  0x14C //1152x864    32((8:)8:8:8)
 
 #define VBE_SET_MODE                    0x4F02
 #define VBE_GET_MODE_INFO               0x4F01
