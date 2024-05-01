@@ -95,7 +95,7 @@ int (proj_main_loop)() {
                     //if (vg_draw_rectangle(x, y, 30, 30, background_color) != 0) return 1;  // apagar a imagem anterior
                     
                     
-                    if (vg_draw_rectangle(x, y, 30, 80, 0x000000) != 0) return 1;
+                    if (vg_draw_rectangle(x, y, 80, 30, 0x000000) != 0) return 1;
                     if (scan_code == KBD_ESC_BREAK_CODE) break;
                     if (scan_code == 0x50) {  //down arrow
                       y += speed;
