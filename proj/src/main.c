@@ -10,7 +10,9 @@
 #include "i8254.h"
 #include "keyboard.h"
 #include "KBC.h"
+
 #include "image.h"
+#include "obstacles.h"
 #include "COLORS.h"
 
 int get_counter();
@@ -67,6 +69,12 @@ int (proj_main_loop)() {
 
   int indexCat = 0;
   if (vg_draw_xpm(cat_01, x, y, mode) != 0) return 1;
+
+  if (vg_draw_xpm(antenna, 130, 30, mode) != 0) return 1;
+  if (vg_draw_xpm(spacex, 230, 30, mode) != 0) return 1;
+  if (vg_draw_xpm(alien, 330, 30, mode) != 0) return 1;
+  if (vg_draw_xpm(ufo, 430, 30, mode) != 0) return 1;
+  if (vg_draw_xpm(asteroid, 530, 30, mode) != 0) return 1;
 
   //if (vg_draw_xpm(cat_02, x + 100, y, mode) != 0) return 1;
 
