@@ -172,7 +172,7 @@ int vg_draw_xpm(xpm_map_t xpm, uint16_t x, uint16_t y, uint16_t mode) {
       uint32_t color = normalizeColor(*(uint32_t*) &colorMap[colorIndex * 4], mode);
 
       uint16_t xf = x + width; 
-      if (xf >= vbe_mode_info.XResolution) {
+      if (xf >= vbe_mode_info.XResolution || x < 0) {
         break;
       }
 
@@ -277,5 +277,57 @@ int vg_draw_rectangle_from_bottom_left_corner(uint16_t x, uint16_t y, uint16_t w
     }
   }
 
+  return 0;
+}
+
+int vg_draw_xpm_partial(xpm_map_t xpm, uint16_t x, uint16_t y, uint16_t image_start_x, uint16_t mode) {
+  xpm_image_t xpm_image;
+
+  switch(mode) {
+    case VBE_MODE_INDEXED:
+      xpm_image.type = XPM_INDEXED;
+      break;
+    case VBE_MODE_DC_15:
+      xpm_image.type = XPM_1_5_5_5;
+      break;
+    case VBE_MODE_DC_16:
+      xpm_image.type = XPM_5_6_5;
+      break;
+    case VBE_MODE_DC_24:
+      xpm_image.type = XPM_8_8_8;
+      break;
+    case VBE_MODE_DC_32:
+      xpm_image.type = XPM_8_8_8_8;
+      break;
+    default:
+      printf("vg_draw_xpm(): invalid mode \n");
+      return 1;
+  }
+  
+  uint8_t *colorMap = xpm_load(xpm, xpm_image.type, &xpm_image);
+
+  if (colorMap == NULL) {
+    printf("vg_draw_xpm(): xpm_load() failed \n");
+    vg_exit();
+    return 1;
+  }
+  for (int height = 0; height < xpm_image.height; height++) {
+    for (int width = image_start_x; width < xpm_image.width; width++) {
+      int colorIndex = (height * xpm_image.width) + width;
+      uint32_t color = normalizeColor(*(uint32_t*) &colorMap[colorIndex * 4], mode);
+
+      uint16_t xf = x + width; 
+      if (xf >= vbe_mode_info.XResolution || x < 0) {
+        break;
+      }
+
+      if (vg_draw_pixel(xf, y + height, color) != 0) {
+        printf("vg_draw_xpm(): vg_draw_pixel() failed \n");
+        vg_exit(); 
+        return 1;
+      }
+    }
+  }
+  
   return 0;
 }

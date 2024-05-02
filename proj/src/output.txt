@@ -1,0 +1,5 @@
+draw_next_platform_frame(): end position_x = -100 
+draw_next_platform_frame(): end position_x = -200 
+draw_next_platform_frame(): end position_x = -300 
+draw_next_platform_frame(): end position_x = -400 
+draw_next_platform_frame(): end position_x = -500 

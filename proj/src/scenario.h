@@ -7,9 +7,9 @@
 
 #include "platform.h"
 
-int (init_scenario)(uint16_t mode, uint16_t speed, int x, int y);
+int (init_scenario)(uint16_t mode, int speed, int y);
 int draw_scenario();
 int draw_platform();
-int next_frame();
+int draw_next_platform_frame();
 
 #endif
