@@ -55,7 +55,8 @@ int (set_frame_buffer)(uint16_t mode) {
 int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
   if (x > vbe_mode_info.XResolution || y > vbe_mode_info.YResolution) {
     printf("vg_draw_pixel(): coordinates exceed resolution \n");
-    return 1;
+    //return 1;
+    return 0;
   }
 
   int PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel);
@@ -213,4 +214,63 @@ uint32_t (G)(uint32_t first){
 
 uint32_t (B)(uint32_t first){
   return ((1 << vbe_mode_info.BlueMaskSize) - 1) & (first >> vbe_mode_info.BlueFieldPosition);
+}
+
+int vg_draw_xpm_from_bottom_left_corner(xpm_map_t xpm, uint16_t x, uint16_t y, uint16_t mode) {
+  xpm_image_t xpm_image;
+
+  switch(mode) {
+    case VBE_MODE_INDEXED:
+      xpm_image.type = XPM_INDEXED;
+      break;
+    case VBE_MODE_DC_15:
+      xpm_image.type = XPM_1_5_5_5;
+      break;
+    case VBE_MODE_DC_16:
+      xpm_image.type = XPM_5_6_5;
+      break;
+    case VBE_MODE_DC_24:
+      xpm_image.type = XPM_8_8_8;
+      break;
+    case VBE_MODE_DC_32:
+      xpm_image.type = XPM_8_8_8_8;
+      break;
+    default:
+      printf("vg_draw_xpm(): invalid mode \n");
+      return 1;
+  }
+  
+  uint8_t *colorMap = xpm_load(xpm, xpm_image.type, &xpm_image);
+
+  if (colorMap == NULL) {
+    printf("vg_draw_xpm(): xpm_load() failed \n");
+    vg_exit();
+    return 1;
+  }
+  for (int height = 0; height < xpm_image.height; height++) {
+    for (int width = 0; width < xpm_image.width; width++) {
+      int colorIndex = (height * xpm_image.width) + width;
+      uint32_t color = normalizeColor(*(uint32_t*) &colorMap[colorIndex * 4], mode);
+
+      if (vg_draw_pixel(x + width, y - xpm_image.height + 1 + height, color) != 0) {
+        printf("vg_draw_xpm(): vg_draw_pixel() failed \n");
+        vg_exit(); 
+        return 1;
+      }
+    }
+  }
+  
+  return 0;
+}
+
+int vg_draw_rectangle_from_bottom_left_corner(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
+  for (int i = 0; i < height; i++) {
+    if (vg_draw_hline(x, y - height + 1 + i, width, color) != 0) {
+      printf("vg_draw_rectangle(): vg_draw_hline() failed \n");
+      vg_exit();
+      return 1;
+    }
+  }
+
+  return 0;
 }

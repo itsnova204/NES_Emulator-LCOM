@@ -60,7 +60,7 @@ int (proj_main_loop)() {
   bool is_second_scan_code = false;
 
 
-  uint8_t x = 30, y = 30;
+  uint8_t x = 30, y = 100;
   uint8_t speed = 10;
 
   //if (vg_draw_rectangle(0, 0, get_vbe_mode_info().XResolution, get_vbe_mode_info().YResolution, background_color) != 0) return 1; // desenhar o fundo
@@ -68,13 +68,13 @@ int (proj_main_loop)() {
   
 
   int indexCat = 0;
-  if (vg_draw_xpm(cat_01, x, y, mode) != 0) return 1;
+  if (vg_draw_xpm_from_bottom_left_corner(cat_01, x, y, mode) != 0) return 1;
 
-  if (vg_draw_xpm(antenna, 130, 30, mode) != 0) return 1;
-  if (vg_draw_xpm(spacex, 230, 30, mode) != 0) return 1;
-  if (vg_draw_xpm(alien, 330, 30, mode) != 0) return 1;
-  if (vg_draw_xpm(ufo, 430, 30, mode) != 0) return 1;
-  if (vg_draw_xpm(asteroid, 530, 30, mode) != 0) return 1;
+  if (vg_draw_xpm_from_bottom_left_corner(antenna, 130, y, mode) != 0) return 1;
+  if (vg_draw_xpm_from_bottom_left_corner(spacex, 230, y, mode) != 0) return 1;
+  if (vg_draw_xpm_from_bottom_left_corner(alien, 330, y, mode) != 0) return 1;
+  if (vg_draw_xpm_from_bottom_left_corner(ufo, 430, y, mode) != 0) return 1;
+  if (vg_draw_xpm_from_bottom_left_corner(asteroid, 530, y, mode) != 0) return 1;
 
   //if (vg_draw_xpm(cat_02, x + 100, y, mode) != 0) return 1;
 
@@ -104,7 +104,7 @@ int (proj_main_loop)() {
                     //if (vg_draw_rectangle(x, y, 30, 30, background_color) != 0) return 1;  // apagar a imagem anterior
                     
                     
-                    if (vg_draw_rectangle(x, y, 80, 30, BLACK) != 0) return 1;
+                    if (vg_draw_rectangle_from_bottom_left_corner(x, y, 80, 30, BLACK) != 0) return 1;
                     if (scan_code == KBD_ESC_BREAK_CODE) break;
                     if (scan_code == 0x50) {  //down arrow
                       y += speed;
@@ -129,17 +129,17 @@ int (proj_main_loop)() {
                     timer_int_handler();
                     int counter = get_counter();
                     if (counter % 10 == 0) {    // 1/6 segundos
-                      if (vg_draw_rectangle(x, y, 80, 30, BLACK) != 0) return 1;
+                      //if (vg_draw_rectangle(x, y, 80, 30, BLACK) != 0) return 1;
                       indexCat = (indexCat + 1) % 3;
                       switch (indexCat) {
                         case 0:
-                          if (vg_draw_xpm(cat_01, x, y, mode) != 0) return 1;
+                          if (vg_draw_xpm_from_bottom_left_corner(cat_01, x, y, mode) != 0) return 1;
                           break;
                         case 1:
-                          if (vg_draw_xpm(cat_02, x, y, mode) != 0) return 1;
+                          if (vg_draw_xpm_from_bottom_left_corner(cat_02, x, y, mode) != 0) return 1;
                           break;
                         case 2:
-                          if (vg_draw_xpm(cat_03, x, y, mode) != 0) return 1;
+                          if (vg_draw_xpm_from_bottom_left_corner(cat_03, x, y, mode) != 0) return 1;
                           break;
                       }
                     }
