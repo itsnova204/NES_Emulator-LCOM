@@ -4,7 +4,6 @@
 #include <lcom/lcf.h>
 #include "graphics.h"
 #include "COLORS.h"
-#include ""
 
 
 #endif

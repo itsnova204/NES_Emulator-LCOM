@@ -1,3 +1,0 @@
-vg_draw_pixel(): coordinates exceed resolution 
-vg_draw_hline(): vg_draw_pixel() failed 
-vg_draw_rectangle(): vg_draw_hline() failed 

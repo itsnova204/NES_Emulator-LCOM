@@ -7,6 +7,7 @@
   "editor.wordWrap": "bounded",
   "editor.wordWrapColumn": 100,
   "files.associations": {
-    "lcf.h": "c"
+    "lcf.h": "c",
+    "platform.h": "c"
   },
 }
