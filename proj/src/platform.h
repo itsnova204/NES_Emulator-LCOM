@@ -1,4 +1,4 @@
-q#include <lcom/lcf.h>
+#include <lcom/lcf.h>
 
 xpm_row_t platform[] = {
 "573 180 19 1 ",
