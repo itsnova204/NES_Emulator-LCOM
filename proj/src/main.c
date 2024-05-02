@@ -77,7 +77,7 @@ int (proj_main_loop)() {
   if (vg_draw_xpm_from_bottom_left_corner(cat_01, x, y, mode) != 0) return 1;
 
   //if (vg_draw_xpm(platform, 0, 200, mode) != 0) return 1;
-  if (init_scenario(mode, 100, 200) != 0) return 1;
+  if (init_scenario(mode, speed, 200) != 0) return 1;
 
   if (vg_draw_xpm_from_bottom_left_corner(antenna, 130, y, mode) != 0) return 1;
   if (vg_draw_xpm_from_bottom_left_corner(spacex, 230, y, mode) != 0) return 1;
@@ -154,7 +154,7 @@ int (proj_main_loop)() {
                           break;
                       }
                     }
-                    if (counter % (60 * 2) == 0) {
+                    if (counter % (60 / 3) == 0) {
                       if (draw_next_platform_frame() != 0) return 1;
                     }
                   }
