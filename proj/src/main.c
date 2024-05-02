@@ -45,6 +45,8 @@ int main(int argc, char *argv[]) {
 }
 
 int (proj_main_loop)() {
+  // modes (DC_24, DC_15, DC_16 and INDEXED) not working, probably color normalizing issue
+  // only DC_32 working correctly
   uint16_t mode = VBE_MODE_DC_32;
   if (set_frame_buffer(mode) != 0) return 1;
   if (set_graphic_mode(mode) != 0) return 1;
