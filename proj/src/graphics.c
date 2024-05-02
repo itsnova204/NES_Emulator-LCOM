@@ -53,7 +53,7 @@ int (set_frame_buffer)(uint16_t mode) {
 }
 
 int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
-  if (x > vbe_mode_info.XResolution || y > vbe_mode_info.YResolution) {
+  if (x >= vbe_mode_info.XResolution || y >= vbe_mode_info.YResolution) {
     printf("vg_draw_pixel(): coordinates exceed resolution \n");
     //return 1;
     return 0;
@@ -171,7 +171,12 @@ int vg_draw_xpm(xpm_map_t xpm, uint16_t x, uint16_t y, uint16_t mode) {
       int colorIndex = (height * xpm_image.width) + width;
       uint32_t color = normalizeColor(*(uint32_t*) &colorMap[colorIndex * 4], mode);
 
-      if (vg_draw_pixel(x + width, y + height, color) != 0) {
+      uint16_t xf = x + width; 
+      if (xf >= vbe_mode_info.XResolution) {
+        break;
+      }
+
+      if (vg_draw_pixel(xf, y + height, color) != 0) {
         printf("vg_draw_xpm(): vg_draw_pixel() failed \n");
         vg_exit(); 
         return 1;

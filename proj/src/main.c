@@ -13,9 +13,11 @@
 
 #include "image.h"
 #include "obstacles.h"
-#include "platform.h"
+//#include "platform.h"
 
 #include "COLORS.h"
+
+#include "scenario.h"
 
 int get_counter();
 uint8_t scan_code = 0;
@@ -74,7 +76,9 @@ int (proj_main_loop)() {
   int indexCat = 0;
   if (vg_draw_xpm_from_bottom_left_corner(cat_01, x, y, mode) != 0) return 1;
 
-  if (vg_draw_xpm(platform, 0, 200, mode) != 0) return 1;
+  //if (vg_draw_xpm(platform, 0, 200, mode) != 0) return 1;
+  if (init_scenario(mode, 30, 0, 200) != 0) return 1;
+  
   if (vg_draw_xpm_from_bottom_left_corner(antenna, 130, y, mode) != 0) return 1;
   if (vg_draw_xpm_from_bottom_left_corner(spacex, 230, y, mode) != 0) return 1;
   if (vg_draw_xpm_from_bottom_left_corner(alien, 330, y, mode) != 0) return 1;
