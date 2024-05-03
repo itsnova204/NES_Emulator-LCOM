@@ -68,6 +68,7 @@ int (set_frame_buffer)(uint16_t mode) {
 
 void swap_buffers() {
   memcpy(frame_buffer, back_buffer, frame_buffer_size);
+  memset(back_buffer, 0, frame_buffer_size);
 }
 
 int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
