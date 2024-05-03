@@ -3,6 +3,8 @@
 
 static vbe_mode_info_t vbe_mode_info; // informacao do modo de video atual
 static uint8_t* frame_buffer;         // VRAM - armazenar os valores de cor de cada pixel
+static uint8_t* back_buffer;
+size_t frame_buffer_size;
 
 size_t numberOfBytesForBits(size_t bits) {
   return (bits + 7) / 8;
@@ -37,6 +39,8 @@ int (set_frame_buffer)(uint16_t mode) {
   size_t PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel); 
   size_t TotalBytes = vbe_mode_info.XResolution * vbe_mode_info.YResolution * PixelColorBytes; 
 
+  frame_buffer_size = TotalBytes;
+
   struct minix_mem_range memory_range = {
     vbe_mode_info.PhysBasePtr,              // base address
     vbe_mode_info.PhysBasePtr + TotalBytes  // end address
@@ -48,8 +52,22 @@ int (set_frame_buffer)(uint16_t mode) {
   } 
 
   frame_buffer = (uint8_t*) vm_map_phys(SELF, (void*) vbe_mode_info.PhysBasePtr, TotalBytes);
+  if (frame_buffer == MAP_FAILED) {
+    printf("set_frame_buffer(): vm_map_phys() failed \n");
+    return 1;
+  }
 
-  return (frame_buffer == NULL);
+  back_buffer = (uint8_t*) malloc(TotalBytes);
+  if (back_buffer == NULL) {
+    printf("set_frame_buffer(): malloc() failed \n");
+    return 1;
+  }
+
+  return 0;
+}
+
+void swap_buffers() {
+  memcpy(frame_buffer, back_buffer, frame_buffer_size);
 }
 
 int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
@@ -60,7 +78,7 @@ int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
   }
 
   int PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel);
-  uint8_t* pixel = frame_buffer + (y * vbe_mode_info.XResolution + x) * PixelColorBytes;
+  uint8_t* pixel = back_buffer + (y * vbe_mode_info.XResolution + x) * PixelColorBytes;
 
   memcpy(pixel, &color, PixelColorBytes);
 
