@@ -154,9 +154,6 @@ int (proj_main_loop)() {
                           if (vg_draw_xpm_from_bottom_left_corner(cat_03, x, y, mode) != 0) return 1;
                           break;
                       }
-                      //swap_buffers();
-                    }
-                    if (counter % (60 / 3) == 0) {
                       if (draw_next_platform_frame() != 0) return 1;
                       swap_buffers();
                     }

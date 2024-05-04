@@ -335,7 +335,7 @@ int vg_draw_xpm_partial(xpm_map_t xpm, uint16_t x, uint16_t y, uint16_t image_st
       int colorIndex = (height * xpm_image.width) + width;
       uint32_t color = normalizeColor(*(uint32_t*) &colorMap[colorIndex * 4], mode);
 
-      uint16_t xf = x + width; 
+      uint16_t xf = x + width - image_start_x; 
       if (xf >= vbe_mode_info.XResolution || x < 0) {
         break;
       }

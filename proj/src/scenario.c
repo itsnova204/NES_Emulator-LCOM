@@ -41,7 +41,7 @@ int draw_platform() {
   int current_position_x = position_x;
   while (true) {
     if (current_position_x < 0) {
-      if (vg_draw_xpm_partial(platform, 0, position_y, current_position_x, vg_mode) != 0) {
+      if (vg_draw_xpm_partial(platform, 0, position_y, (-current_position_x), vg_mode) != 0) {
         printf("draw_platform(): draw_xpm_partial() failed \n");
         vg_exit();
         return 1;
