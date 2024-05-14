@@ -50,6 +50,16 @@ int (proj_main_loop)() {
   // modes (DC_24, DC_15, DC_16 and INDEXED) not working, probably color normalizing issue
   // only DC_32 working correctly
   uint16_t mode = VBE_MODE_DC_32;
+
+  xpm_image_t cat1_image;
+  uint8_t *cat1_map = xpm_load(cat_01, XPM_8_8_8_8, &cat1_image);
+
+  xpm_image_t cat2_image;
+  uint8_t *cat2_map = xpm_load(cat_02, XPM_8_8_8_8, &cat2_image);
+
+  xpm_image_t cat3_image;
+  uint8_t *cat3_map = xpm_load(cat_03, XPM_8_8_8_8, &cat3_image);
+
   if (set_frame_buffer(mode) != 0) return 1;
   if (set_graphic_mode(mode) != 0) return 1;
 
@@ -74,22 +84,20 @@ int (proj_main_loop)() {
   
 
   int indexCat = 0;
-  if (vg_draw_xpm_from_bottom_left_corner(cat_01, x, y, mode) != 0) return 1;
+  if (vg_draw_xpm_from_bottom_left_corner(cat1_image, cat1_map, x, y, mode) != 0) return 1;
 
   //if (vg_draw_xpm(platform, 0, 200, mode) != 0) return 1;
   if (init_scenario(mode, speed, 200) != 0) return 1;
 
+/* WILL USE
   if (vg_draw_xpm_from_bottom_left_corner(antenna, 130, y, mode) != 0) return 1;
   if (vg_draw_xpm_from_bottom_left_corner(spacex, 230, y, mode) != 0) return 1;
   if (vg_draw_xpm_from_bottom_left_corner(alien, 330, y, mode) != 0) return 1;
   if (vg_draw_xpm_from_bottom_left_corner(ufo, 430, y, mode) != 0) return 1;
-  if (vg_draw_xpm_from_bottom_left_corner(asteroid, 530, y, mode) != 0) return 1;
+  if (vg_draw_xpm_from_bottom_left_corner(asteroid, 530, y, mode) != 0) return 1;*/
 
-  swap_buffers();
   //if (vg_draw_xpm_partial(platform, 30, 500, 250, mode) != 0) return 1;
-
   //if (vg_draw_xpm(cat_02, x + 100, y, mode) != 0) return 1;
-
   //if (vg_draw_xpm(cat_03, x + 200, y, mode) != 0) return 1;
 
   while( scan_code != KBD_ESC_BREAK_CODE ) {
@@ -145,17 +153,20 @@ int (proj_main_loop)() {
                       indexCat = (indexCat + 1) % 3;
                       switch (indexCat) {
                         case 0:
-                          if (vg_draw_xpm_from_bottom_left_corner(cat_01, x, y, mode) != 0) return 1;
+                          if (vg_draw_xpm_from_bottom_left_corner(cat1_image, cat1_map, x, y, mode) != 0) return 1;
                           break;
                         case 1:
-                          if (vg_draw_xpm_from_bottom_left_corner(cat_02, x, y, mode) != 0) return 1;
+                          if (vg_draw_xpm_from_bottom_left_corner(cat2_image, cat2_map, x, y, mode) != 0) return 1;
                           break;
                         case 2:
-                          if (vg_draw_xpm_from_bottom_left_corner(cat_03, x, y, mode) != 0) return 1;
+                          if (vg_draw_xpm_from_bottom_left_corner(cat3_image, cat3_map, x, y, mode) != 0) return 1;
                           break;
                       }
+
                       if (draw_next_platform_frame() != 0) return 1;
-                      swap_buffers();
+                    }
+                    if (counter % (60 / 3) == 0) {
+                    //  if (draw_next_platform_frame() != 0) return 1;
                     }
                   }
                   break;
