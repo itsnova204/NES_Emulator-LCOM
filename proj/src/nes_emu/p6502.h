@@ -16,6 +16,7 @@ typedef enum{
 #define  stack_ofset 0x0100
 
 void cpu_clock();
+void cpu_init();
 void cpu_reset();
 void cpu_irq(); //these can be ignore depending on policy
 void cpu_nmi(); //these cannot be ignored!

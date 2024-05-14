@@ -19,6 +19,8 @@ uint16_t mapper_map(uint16_t addr, enum Type type, bool* takeOver){
 }
 
 uint16_t mapper_000(uint16_t addr, enum Type type, bool* takeOver){ //bounds are checked in the cartridge
+  *takeOver = false;
+
   switch (type){
   case type_sysBus_read:
       return addr & (mapper_nPRGbanks > 1 ? 0x7FFF : 0x3FFF);
