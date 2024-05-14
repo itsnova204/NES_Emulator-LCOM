@@ -81,7 +81,7 @@ int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
   int PixelColorBytes = numberOfBytesForBits(vbe_mode_info.BitsPerPixel);
   uint8_t* pixel = back_buffer + (y * vbe_mode_info.XResolution + x) * PixelColorBytes;
 
-  memcpy(pixel, &color, PixelColorBytes);
+  memcpy(pixel, &color ,PixelColorBytes);
 
   return 0;
 }
@@ -241,6 +241,7 @@ uint32_t (B)(uint32_t first){
 }
 
 int vg_draw_xpm_from_bottom_left_corner(xpm_image_t xpm_image, uint8_t *colorMap, uint16_t x, uint16_t y, uint16_t mode) {
+  printf("draw xpm from bottom\n");
   /*switch(mode) {
     case VBE_MODE_INDEXED:
       xpm_image.type = XPM_INDEXED;
@@ -273,6 +274,7 @@ int vg_draw_xpm_from_bottom_left_corner(xpm_image_t xpm_image, uint8_t *colorMap
     for (int width = 0; width < xpm_image.width; width++) {
       int colorIndex = (height * xpm_image.width) + width;
       uint32_t color = normalizeColor(*(uint32_t*) &colorMap[colorIndex * 4], mode);
+
 
       if (vg_draw_pixel(x + width, y - xpm_image.height + 1 + height, color) != 0) {
         printf("vg_draw_xpm(): vg_draw_pixel() failed \n");

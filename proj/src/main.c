@@ -150,6 +150,8 @@ int (proj_main_loop)() {
                     int counter = get_counter();
                     if (counter % 10 == 0) {    // 1/6 segundos
                       //if (vg_draw_rectangle(x, y, 80, 30, BLACK) != 0) return 1;
+                      if (draw_next_platform_frame() != 0) return 1;
+                      
                       indexCat = (indexCat + 1) % 3;
                       switch (indexCat) {
                         case 0:
@@ -162,11 +164,12 @@ int (proj_main_loop)() {
                           if (vg_draw_xpm_from_bottom_left_corner(cat3_image, cat3_map, x, y, mode) != 0) return 1;
                           break;
                       }
-
-                      if (draw_next_platform_frame() != 0) return 1;
+                      
+                      swap_buffers();
+                      //if (draw_next_platform_frame() != 0) return 1;
                     }
                     if (counter % (60 / 3) == 0) {
-                    //  if (draw_next_platform_frame() != 0) return 1;
+                      
                     }
                   }
                   break;
