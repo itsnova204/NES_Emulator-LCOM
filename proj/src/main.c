@@ -77,7 +77,7 @@ int (proj_main_loop)() {
 
 
   uint8_t x = 30, y = 100;
-  uint8_t speed = 10;
+  uint8_t speed = 20;
 
   //if (vg_draw_rectangle(0, 0, get_vbe_mode_info().XResolution, get_vbe_mode_info().YResolution, background_color) != 0) return 1; // desenhar o fundo
   //if (vg_draw_rectangle(x, y, 30, 30, square_color) != 0) return 1; // desenhar imagem inicial
@@ -148,7 +148,7 @@ int (proj_main_loop)() {
                   if (msg.m_notify.interrupts & irq_set_timer) {
                     timer_int_handler();
                     int counter = get_counter();
-                    if (counter % 10 == 0) {    // 1/6 segundos
+                    if (counter % 5 == 0) {    // 1/6 segundos
                       //if (vg_draw_rectangle(x, y, 80, 30, BLACK) != 0) return 1;
                       if (draw_next_platform_frame() != 0) return 1;
                       
