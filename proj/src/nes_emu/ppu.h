@@ -58,6 +58,26 @@ union ppu_registers{ //https://www.nesdev.org/wiki/PPU_registers
   };
 };
 
+//https://forums.nesdev.org/viewtopic.php?t=664
+//loopy's registers
+union loopy_register{
+  struct{
+    uint16_t coarse_x : 5;
+    uint16_t coarse_y : 5;
+    uint16_t nametable_x : 1;
+    uint16_t nametable_y : 1;
+    uint16_t fine_y : 3;
+    uint16_t unused : 1;
+  };
+
+  uint16_t reg;
+};
+
+loopy_register vram_addr; // Active "pointer" address into nametable to extract background tile info
+loopy_register temp_addr; // Temporary store of information to be "transferred" into "pointer" at various times
+
+
+
 void ppu_clock();
 
 uint8_t sys_readFromPPU(uint16_t addr);
