@@ -41,97 +41,16 @@ uint16_t bg_shifter_pattern_msb = 0x0000;
 uint16_t bg_shifter_attrib_lsb  = 0x0000;
 uint16_t bg_shifter_attrib_msb  = 0x0000;
 
+uint8_t bg_next_tile_lsb 		= 0x00;
+uint8_t bg_next_tile_msb 		= 0x00;
+uint8_t bg_next_tile_attrib = 0x00;
+uint8_t bg_next_tile_id     = 0x00;
+
 bool nmi = false;
 frame_complete = false;
 
 //NES can only display 64 diferent colors 
 uint8_t bytes_per_pixel = 6; 
-
-
-void ppu_clock(){ //TODO finish this (oh boy this is gonna be a journey) 
-
-
-		if (scanline >= -1 && scanline < 240){		
-
-			if (scanline == 0 && ppu_cycle == 0){
-				// "Odd Frame" cycle skip
-				ppu_cycle = 1;
-			}
-
-			if (scanline == -1 && ppu_cycle == 1){
-				ppu_regs.vertical_blank = 0;
-			}
-
-			if ((ppu_cycle >= 2 && ppu_cycle < 258) || (ppu_cycle >= 321 && ppu_cycle < 338)){
-				// Render Background
-			}
-
-	}
-
-
-
-//missing stuff here!
-
-
-
-	if (scanline == 240){
-		// Post Render Scanline - Do Nothing
-	}
-
-	if (scanline >= 241 && scanline < 261){
-		if (scanline == 241 && ppu_cycle == 1){
-			// Effectively end of frame, so set vertical blank flag
-			ppu_regs.vertical_blank = 1;
-
-			if (ppu_regs.NMI_enable == 1) 
-				nmi = true;
-		}
-	}
-
-	uint8_t background_pixel = 0;
-	uint8_t background_palette = 0;
-
-	if (ppu_regs.bg_enable = 1){ //TODO fix this!
-
-		// Handle Pixel Selection by selecting the relevant bit
-		// depending upon fine x scolling. This has the effect of
-		// offsetting ALL background rendering by a set number
-		// of pixels, permitting smooth scrolling
-		uint16_t bit_mux = 0x8000 >> fine_x;
-
-		// Select Plane pixels by extracting from the shifter 
-		// at the required location. 
-		uint8_t p0_pixel = (bg_shifter_pattern_lsb & bit_mux) > 0;
-		uint8_t p1_pixel = (bg_shifter_pattern_msb & bit_mux) > 0;
-
-		// Combine to form pixel index
-		background_pixel = (p1_pixel << 1) | p0_pixel;
-
-		// Get palette
-		uint8_t background_palette_0 = (bg_shifter_attrib_lsb & bit_mux) > 0;
-		uint8_t background_palette_1 = (bg_shifter_attrib_msb & bit_mux) > 0;
-		background_palette = (background_palette_1 << 1) | background_palette_0;
-	}
-
-
-	//TODO: draw frame here
-
-
-
-
-	//Simple PPU clock behaviour 
-	ppu_cycle++;
-	if (ppu_cycle >= 341)
-	{
-		ppu_cycle = 0;
-		scanline++;
-		if (scanline >= 261)
-		{
-			scanline = -1;
-			frame_complete = true;
-		}
-	}
-}
 
 int ppu_init(vbe_mode_info_t mode){//todo make vbe_mode_info updatable so it can change video mode during execution
 	vbe_mode_info = mode;
@@ -187,8 +106,93 @@ void getPatternTable(uint8_t patternTable, uint8_t palette){ //TODO finish this
 
 }}}
 
+//================================================================================================
+//Redndering helpers
 
+void IncrementScrollX(){
+	if (ppu_regs.bg_enable || ppu_regs.sprite_enable){
+		if (vram_addr.coarse_x == 31){
 
+			// Leaving nametable so wrap address round
+			vram_addr.coarse_x = 0;
+			// Flip target nametable bit
+			vram_addr.nametable_x = ~vram_addr.nametable_x;
+		}else{
+			// Staying in current nametable, so just increment
+			vram_addr.coarse_x++;
+		}
+	}
+};
+
+void IncrementScrollY(){
+		// Ony if rendering is enabled
+		if (ppu_regs.bg_enable || ppu_regs.sprite_enable)
+		{
+			// If possible, just increment the fine y offset
+			if (vram_addr.fine_y < 7){
+				vram_addr.fine_y++;
+
+			}else{
+				// If we have gone beyond the height of a row, we need to
+				// increment the row, potentially wrapping into neighbouring
+				// vertical nametables. Dont forget however, the bottom two rows
+				// do not contain tile information. The coarse y offset is used
+				// to identify which row of the nametable we want, and the fine
+				// y offset is the specific "scanline"
+
+				// Reset fine y offset
+				vram_addr.fine_y = 0;
+
+				// Check if we need to swap vertical nametable targets
+				if (vram_addr.coarse_y == 29)
+				{
+					// We do, so reset coarse y offset
+					vram_addr.coarse_y = 0;
+					// And flip the target nametable bit
+					vram_addr.nametable_y = ~vram_addr.nametable_y;
+				}
+				else if (vram_addr.coarse_y == 31)
+				{
+					// In case the pointer is in the attribute memory, we
+					// just wrap around the current nametable
+					vram_addr.coarse_y = 0;
+				}
+				else
+				{
+					// None of the above boundary/wrapping conditions apply
+					// so just increment the coarse y offset
+					vram_addr.coarse_y++;
+				}
+			}
+		} 
+	};
+
+	void TransferAddressX(){
+		// Ony if rendering is enabled
+		if (ppu_regs.bg_enable || ppu_regs.sprite_enable)
+		{
+			vram_addr.nametable_x = temp_addr.nametable_x;
+			vram_addr.coarse_x    = temp_addr.coarse_x;
+		}
+	};
+
+	void TransferAddressY(){
+		// Ony if rendering is enabled
+		if (ppu_regs.bg_enable || ppu_regs.sprite_enable)
+		{
+			vram_addr.fine_y      = temp_addr.fine_y;
+			vram_addr.nametable_y = temp_addr.nametable_y;
+			vram_addr.coarse_y    = temp_addr.coarse_y;
+		}
+	};
+
+	void LoadBackgroundShifters(){	
+		bg_shifter_pattern_lsb = (bg_shifter_pattern_lsb & 0xFF00) | bg_next_tile_lsb;
+		bg_shifter_pattern_msb = (bg_shifter_pattern_lsb & 0xFF00) | bg_next_tile_msb;
+
+		bg_shifter_attrib_lsb  = (bg_shifter_attrib_lsb & 0xFF00) | ((bg_next_tile_attrib & 0b01) ? 0xFF : 0x00);
+		bg_shifter_attrib_msb  = (bg_shifter_attrib_msb & 0xFF00) | ((bg_next_tile_attrib & 0b10) ? 0xFF : 0x00);
+	};
 
 //================================================================================================
 //BUS IO:
@@ -264,7 +268,149 @@ void sys_writeToPPU(uint16_t addr, uint8_t data){//TODO finish this
 	}
   
 }
+void ppu_clock(){ //TODO finish this (oh boy this is gonna be a journey) 
 
+		if (scanline >= -1 && scanline < 240){		
+
+			//Background rendering:
+
+			if (scanline == 0 && ppu_cycle == 0){
+				// "Odd Frame" cycle skip
+				ppu_cycle = 1;
+			}
+
+			if (scanline == -1 && ppu_cycle == 1){
+				ppu_regs.vertical_blank = 0;
+			}
+
+			if ((ppu_cycle >= 2 && ppu_cycle < 258) || (ppu_cycle >= 321 && ppu_cycle < 338)){
+				UpdateShifters();
+
+				switch ((ppu_cycle - 1) % 8)
+				{
+				case 0:
+					LoadBackgroundShifters();
+
+
+					bg_next_tile_id = ppuRead(0x2000 | (vram_addr.reg & 0x0FFF));
+
+					break;
+				case 2:		
+					bg_next_tile_attrib = ppuRead(0x23C0 | (vram_addr.nametable_y << 11) 
+																						| (vram_addr.nametable_x << 10) 
+																						| ((vram_addr.coarse_y >> 2) << 3) 
+																						| (vram_addr.coarse_x >> 2));
+					
+			
+					if (vram_addr.coarse_y & 0x02) bg_next_tile_attrib >>= 4;
+					if (vram_addr.coarse_x & 0x02) bg_next_tile_attrib >>= 2;
+					bg_next_tile_attrib &= 0x03;
+					break;
+
+				case 4: 
+
+					bg_next_tile_lsb = ppuRead((ppu_regs.bg_pattern_table << 12) 
+																	+ ((uint16_t)bg_next_tile_id << 4) 
+																	+ (vram_addr.fine_y) + 0);
+
+					break;
+				case 6:
+
+					bg_next_tile_msb = ppuRead((ppu_regs.bg_pattern_table << 12)
+																	+ ((uint16_t)bg_next_tile_id << 4)
+																	+ (vram_addr.fine_y) + 8);
+					break;
+				case 7:
+					IncrementScrollX();
+					break;
+				}
+			}
+		
+		// End of a visible scanline, so increment downwards...
+		if (ppu_cycle == 256)
+		{
+			IncrementScrollY();
+		}
+
+		//...and reset the x position
+		if (ppu_cycle == 257)
+		{
+			LoadBackgroundShifters();
+			TransferAddressX();
+		}
+
+		// Superfluous reads of tile id at end of scanline
+		if (ppu_cycle == 338 || ppu_cycle == 340)
+		{
+			bg_next_tile_id = ppuRead(0x2000 | (vram_addr.reg & 0x0FFF));
+		}
+
+		if (scanline == -1 && ppu_cycle >= 280 && ppu_cycle < 305)
+		{
+			// End of vertical blank period so reset the Y address ready for rendering
+			TransferAddressY();
+		}
+	
+	}
+
+
+	if (scanline == 240){
+		// Post Render Scanline - Do Nothing
+	}
+
+	if (scanline >= 241 && scanline < 261){
+		if (scanline == 241 && ppu_cycle == 1){
+			// Effectively end of frame, so set vertical blank flag
+			ppu_regs.vertical_blank = 1;
+
+			if (ppu_regs.NMI_enable == 1) 
+				nmi = true;
+		}
+	}
+
+	uint8_t background_pixel = 0;
+	uint8_t background_palette = 0;
+
+	if (ppu_regs.bg_enable = 1){ //TODO fix this!
+
+		// Handle Pixel Selection by selecting the relevant bit
+		// depending upon fine x scolling. This has the effect of
+		// offsetting ALL background rendering by a set number
+		// of pixels, permitting smooth scrolling
+		uint16_t bit_mux = 0x8000 >> fine_x;
+
+		// Select Plane pixels by extracting from the shifter 
+		// at the required location. 
+		uint8_t p0_pixel = (bg_shifter_pattern_lsb & bit_mux) > 0;
+		uint8_t p1_pixel = (bg_shifter_pattern_msb & bit_mux) > 0;
+
+		// Combine to form pixel index
+		background_pixel = (p1_pixel << 1) | p0_pixel;
+
+		// Get palette
+		uint8_t background_palette_0 = (bg_shifter_attrib_lsb & bit_mux) > 0;
+		uint8_t background_palette_1 = (bg_shifter_attrib_msb & bit_mux) > 0;
+		background_palette = (background_palette_1 << 1) | background_palette_0;
+	}
+
+
+	//TODO: draw frame here
+
+
+
+	//Simple PPU clock behaviour 
+	ppu_cycle++;
+	if (ppu_cycle >= 341)
+	{
+		ppu_cycle = 0;
+		scanline++;
+		if (scanline >= 261)
+		{
+			scanline = -1;
+			frame_complete = true;
+		}
+	}
+}
 
 uint8_t ppuBus_read(uint16_t addr){ //DONE
 
@@ -376,3 +522,120 @@ void ppuBus_write(uint16_t addr, uint8_t data){//DONE
 		ppu_palette_ram[addr] = data;
 	}
 }
+
+
+
+
+
+void ppu_clock(){ //TODO finish this (oh boy this is gonna be a journey) 
+
+
+		if (scanline >= -1 && scanline < 240){		
+
+			//Background rendering:
+
+			if (scanline == 0 && ppu_cycle == 0){
+				// "Odd Frame" cycle skip
+				ppu_cycle = 1;
+			}
+
+			if (scanline == -1 && ppu_cycle == 1){
+				ppu_regs.vertical_blank = 0;
+			}
+
+			if ((ppu_cycle >= 2 && ppu_cycle < 258) || (ppu_cycle >= 321 && ppu_cycle < 338)){
+				// Render Background
+			}
+			
+					// End of a visible scanline, so increment downwards...
+		if (cycle == 256)
+		{
+			IncrementScrollY();
+		}
+
+		//...and reset the x position
+		if (cycle == 257)
+		{
+			LoadBackgroundShifters();
+			TransferAddressX();
+		}
+
+		// Superfluous reads of tile id at end of scanline
+		if (ppu_cycle == 338 || ppu_cycle == 340)
+		{
+			bg_next_tile_id = ppuRead(0x2000 | (vram_addr.reg & 0x0FFF));
+		}
+
+		if (scanline == -1 && ppu_cycle >= 280 && ppu_cycle < 305)
+		{
+			// End of vertical blank period so reset the Y address ready for rendering
+			TransferAddressY();
+		}
+
+	}
+
+
+
+
+
+
+
+	if (scanline == 240){
+		// Post Render Scanline - Do Nothing
+	}
+
+	if (scanline >= 241 && scanline < 261){
+		if (scanline == 241 && ppu_cycle == 1){
+			// Effectively end of frame, so set vertical blank flag
+			ppu_regs.vertical_blank = 1;
+
+			if (ppu_regs.NMI_enable == 1) 
+				nmi = true;
+		}
+	}
+
+	uint8_t background_pixel = 0;
+	uint8_t background_palette = 0;
+
+	if (ppu_regs.bg_enable == 1){
+
+		// Handle Pixel Selection by selecting the relevant bit
+		// depending upon fine x scolling. This has the effect of
+		// offsetting ALL background rendering by a set number
+		// of pixels, permitting smooth scrolling
+		uint16_t bit_mux = 0x8000 >> fine_x;
+
+		// Select Plane pixels by extracting from the shifter 
+		// at the required location. 
+		uint8_t p0_pixel = (bg_shifter_pattern_lsb & bit_mux) > 0;
+		uint8_t p1_pixel = (bg_shifter_pattern_msb & bit_mux) > 0;
+
+		// Combine to form pixel index
+		background_pixel = (p1_pixel << 1) | p0_pixel;
+
+		// Get palette
+		uint8_t background_palette_0 = (bg_shifter_attrib_lsb & bit_mux) > 0;
+		uint8_t background_palette_1 = (bg_shifter_attrib_msb & bit_mux) > 0;
+		background_palette = (background_palette_1 << 1) | background_palette_0;
+	}
+
+
+	//TODO: draw frame here
+
+
+
+
+	//Simple PPU clock behaviour 
+	ppu_cycle++;
+	if (ppu_cycle >= 341)
+	{
+		ppu_cycle = 0;
+		scanline++;
+		if (scanline >= 261)
+		{
+			scanline = -1;
+			frame_complete = true;
+		}
+	}
+}
+
