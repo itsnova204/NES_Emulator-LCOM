@@ -32,17 +32,106 @@ void* ppu_out_buffer;
 uint16_t scanline  = 0;
 uint16_t ppu_cycle = 0;
 
-void ppu_clock(){ //TODO finish this (oh boy this is gonna be a journey) 
-	if (scanline >= -1 && scanline < 240){		
-		if (scanline == 0 && ppu_cycle == 0){
-			// "Odd Frame" cycle skip
-			ppu_cycle = 1;
-		}
 
-		if (scanline == -1 && ppu_cycle == 1){
-			ppu_regs.vertical_blank = 0;
+
+uint8_t fine_x = 0x00;
+//Background rendering
+uint16_t bg_shifter_pattern_lsb = 0x0000;
+uint16_t bg_shifter_pattern_msb = 0x0000;
+uint16_t bg_shifter_attrib_lsb  = 0x0000;
+uint16_t bg_shifter_attrib_msb  = 0x0000;
+
+bool nmi = false;
+frame_complete = false;
+
+//NES can only display 64 diferent colors 
+uint8_t bytes_per_pixel = 6; 
+
+
+void ppu_clock(){ //TODO finish this (oh boy this is gonna be a journey) 
+
+
+		if (scanline >= -1 && scanline < 240){		
+
+			if (scanline == 0 && ppu_cycle == 0){
+				// "Odd Frame" cycle skip
+				ppu_cycle = 1;
+			}
+
+			if (scanline == -1 && ppu_cycle == 1){
+				ppu_regs.vertical_blank = 0;
+			}
+
+			if ((ppu_cycle >= 2 && ppu_cycle < 258) || (ppu_cycle >= 321 && ppu_cycle < 338)){
+				// Render Background
+			}
+
+	}
+
+
+
+//missing stuff here!
+
+
+
+	if (scanline == 240){
+		// Post Render Scanline - Do Nothing
+	}
+
+	if (scanline >= 241 && scanline < 261){
+		if (scanline == 241 && ppu_cycle == 1){
+			// Effectively end of frame, so set vertical blank flag
+			ppu_regs.vertical_blank = 1;
+
+			if (ppu_regs.NMI_enable == 1) 
+				nmi = true;
 		}
-}}
+	}
+
+	uint8_t background_pixel = 0;
+	uint8_t background_palette = 0;
+
+	if (ppu_regs.bg_enable = 1){ //TODO fix this!
+
+		// Handle Pixel Selection by selecting the relevant bit
+		// depending upon fine x scolling. This has the effect of
+		// offsetting ALL background rendering by a set number
+		// of pixels, permitting smooth scrolling
+		uint16_t bit_mux = 0x8000 >> fine_x;
+
+		// Select Plane pixels by extracting from the shifter 
+		// at the required location. 
+		uint8_t p0_pixel = (bg_shifter_pattern_lsb & bit_mux) > 0;
+		uint8_t p1_pixel = (bg_shifter_pattern_msb & bit_mux) > 0;
+
+		// Combine to form pixel index
+		background_pixel = (p1_pixel << 1) | p0_pixel;
+
+		// Get palette
+		uint8_t background_palette_0 = (bg_shifter_attrib_lsb & bit_mux) > 0;
+		uint8_t background_palette_1 = (bg_shifter_attrib_msb & bit_mux) > 0;
+		background_palette = (background_palette_1 << 1) | background_palette_0;
+	}
+
+
+	//TODO: draw frame here
+
+
+
+
+	//Simple PPU clock behaviour 
+	ppu_cycle++;
+	if (ppu_cycle >= 341)
+	{
+		ppu_cycle = 0;
+		scanline++;
+		if (scanline >= 261)
+		{
+			scanline = -1;
+			frame_complete = true;
+		}
+	}
+}
 
 int ppu_init(vbe_mode_info_t mode){//todo make vbe_mode_info updatable so it can change video mode during execution
 	vbe_mode_info = mode;
@@ -60,7 +149,8 @@ int ppu_init(vbe_mode_info_t mode){//todo make vbe_mode_info updatable so it can
 	memset(ppu_palette_ram, 0, sizeof(ppu_palette_ram));
 	memset(ppu_patern_ram, 0, sizeof(ppu_patern_ram));
 
-	ppu_out_buffer = malloc(vbe_mode_info.XResolution * vbe_mode_info.YResolution * (vbe_mode_info.BitsPerPixel / 8));
+	//256x240pixels
+	ppu_out_buffer = malloc(256*240*bytes_per_pixel);
 	if (ppu_out_buffer == NULL){
 		printf("ppu_init(): malloc(frambuffer) failed\n");
 		return -1;
@@ -73,7 +163,7 @@ void ppu_exit(){
 }
 
 uint8_t getColorFromPalette(uint8_t palette, uint8_t pixel){
-  return ppu_palette_ram[(palette << 2) + pixel];
+  return ppu_palette_ram[ppuBus_read(0x3F00 + (palette << 2) + pixel)];
 }
 
 void getPatternTable(uint8_t patternTable, uint8_t palette){ //TODO finish this
@@ -97,6 +187,10 @@ void getPatternTable(uint8_t patternTable, uint8_t palette){ //TODO finish this
 
 }}}
 
+
+
+
+//================================================================================================
 //BUS IO:
 
 //https://www.nesdev.org/wiki/PPU_registers
@@ -136,7 +230,6 @@ uint8_t sys_readFromPPU(uint16_t addr){//TODO finish this
 	return 0;
 }
 
-//https://www.nesdev.org/wiki/PPU_registers
 void sys_writeToPPU(uint16_t addr, uint8_t data){//TODO finish this
   
 	switch (addr){
