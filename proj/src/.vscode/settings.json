@@ -8,6 +8,8 @@
   "editor.wordWrapColumn": 100,
   "files.associations": {
     "lcf.h": "c",
-    "platform.h": "c"
+    "platform.h": "c",
+    "keyboard.h": "c",
+    "image.h": "c"
   },
 }

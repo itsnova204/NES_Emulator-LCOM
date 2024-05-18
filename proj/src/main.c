@@ -3,24 +3,19 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "VBE.h"
-#include "graphics.h"
 #include "KBC.h"
 #include "i8042.h"
 #include "i8254.h"
 #include "keyboard.h"
-#include "KBC.h"
 
-#include "image.h"
-#include "obstacles.h"
-//#include "platform.h"
-
-#include "COLORS.h"
-
-#include "scenario.h"
+#include "sprite.h"
 
 int get_counter();
 uint8_t scan_code = 0;
+
+// DEFINE FPS
+#define FPS 60
+#define FRAME_INTERVAL (60 / FPS)
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -47,18 +42,8 @@ int main(int argc, char *argv[]) {
 }
 
 int (proj_main_loop)() {
-  // modes (DC_24, DC_15, DC_16 and INDEXED) not working, probably color normalizing issue
-  // only DC_32 working correctly
   uint16_t mode = VBE_MODE_DC_32;
-
-  xpm_image_t cat1_image;
-  uint8_t *cat1_map = xpm_load(cat_01, XPM_8_8_8_8, &cat1_image);
-
-  xpm_image_t cat2_image;
-  uint8_t *cat2_map = xpm_load(cat_02, XPM_8_8_8_8, &cat2_image);
-
-  xpm_image_t cat3_image;
-  uint8_t *cat3_map = xpm_load(cat_03, XPM_8_8_8_8, &cat3_image);
+  preloadSprites();
 
   if (set_frame_buffer(mode) != 0) return 1;
   if (set_graphic_mode(mode) != 0) return 1;
@@ -74,32 +59,6 @@ int (proj_main_loop)() {
   if (timer_set_frequency(0, 60) != 0) return 1;   
 
   bool is_second_scan_code = false;
-
-
-  uint8_t x = 30, y = 100;
-  uint8_t speed = 20;
-
-  //if (vg_draw_rectangle(0, 0, get_vbe_mode_info().XResolution, get_vbe_mode_info().YResolution, background_color) != 0) return 1; // desenhar o fundo
-  //if (vg_draw_rectangle(x, y, 30, 30, square_color) != 0) return 1; // desenhar imagem inicial
-  
-
-  int indexCat = 0;
-  if (vg_draw_xpm_from_bottom_left_corner(cat1_image, cat1_map, x, y, mode) != 0) return 1;
-
-  //if (vg_draw_xpm(platform, 0, 200, mode) != 0) return 1;
-  if (init_scenario(mode, speed, 200) != 0) return 1;
-
-/* WILL USE
-  if (vg_draw_xpm_from_bottom_left_corner(antenna, 130, y, mode) != 0) return 1;
-  if (vg_draw_xpm_from_bottom_left_corner(spacex, 230, y, mode) != 0) return 1;
-  if (vg_draw_xpm_from_bottom_left_corner(alien, 330, y, mode) != 0) return 1;
-  if (vg_draw_xpm_from_bottom_left_corner(ufo, 430, y, mode) != 0) return 1;
-  if (vg_draw_xpm_from_bottom_left_corner(asteroid, 530, y, mode) != 0) return 1;*/
-
-  //if (vg_draw_xpm_partial(platform, 30, 500, 250, mode) != 0) return 1;
-  //if (vg_draw_xpm(cat_02, x + 100, y, mode) != 0) return 1;
-  //if (vg_draw_xpm(cat_03, x + 200, y, mode) != 0) return 1;
-
   while( scan_code != KBD_ESC_BREAK_CODE ) {
       /* Get a request message. */
       if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
@@ -121,64 +80,26 @@ int (proj_main_loop)() {
                       is_second_scan_code = false;
                     }
 
-                    //if (vg_draw_rectangle(x, y, 30, 30, background_color) != 0) return 1;  // apagar a imagem anterior
-                    
-                    
-                    if (vg_draw_rectangle_from_bottom_left_corner(x, y, 80, 30, BLACK) != 0) return 1;
                     if (scan_code == KBD_ESC_BREAK_CODE) break;
-                    if (scan_code == 0x50) {  //down arrow
-                      y += speed;
-                    } else if (scan_code == 0x48) {  //up arrow
-                      if (y >= speed) y -= speed; // definir limite das bordas
-                      else y = 0;
-                    } else if (scan_code == 0x4b) {  //left arrow
-                      if (x >= speed) x -= speed;
-                      else x = 0;
-                    } else if (scan_code == 0x4d) {  //right arrow
-                      x += speed;
-                    }
-/*
-                    // definir limites
-                    if (x > get_vbe_mode_info().XResolution - square_size) x = get_vbe_mode_info().XResolution - square_size;
-                    if (y > get_vbe_mode_info().YResolution - square_size) y = get_vbe_mode_info().YResolution - square_size;
-                    
-                    //if (vg_draw_rectangle(x, y, square_size, square_size, square_color) != 0) return 1;  // nova imagem*/
                   }
 
                   if (msg.m_notify.interrupts & irq_set_timer) {
                     timer_int_handler();
                     int counter = get_counter();
-                    if (counter % 5 == 0) {    // 1/6 segundos
-                      //if (vg_draw_rectangle(x, y, 80, 30, BLACK) != 0) return 1;
-                      if (draw_next_platform_frame() != 0) return 1;
-                      
-                      indexCat = (indexCat + 1) % 3;
-                      switch (indexCat) {
-                        case 0:
-                          if (vg_draw_xpm_from_bottom_left_corner(cat1_image, cat1_map, x, y, mode) != 0) return 1;
-                          break;
-                        case 1:
-                          if (vg_draw_xpm_from_bottom_left_corner(cat2_image, cat2_map, x, y, mode) != 0) return 1;
-                          break;
-                        case 2:
-                          if (vg_draw_xpm_from_bottom_left_corner(cat3_image, cat3_map, x, y, mode) != 0) return 1;
-                          break;
-                      }
+
+                    // DRAW NEW FRAME
+                    if (counter % FRAME_INTERVAL == 0) {
+                      if (draw_sprite(MENU, 0, 0, mode) != 0) return 1;
                       
                       swap_buffers();
-                      //if (draw_next_platform_frame() != 0) return 1;
                     }
-                    if (counter % (60 / 3) == 0) {
-                      
-                    }
+                    //
                   }
                   break;
               default:
-                  break; /* no other notifications expected: do nothing */	
+                  break;
           }
-      } else { /* received a standard message, not a notification */
-          /* no standard messages expected: do nothing */
-      }
+      } else {}
   }
 
   if (vg_exit() != 0) return 1;
