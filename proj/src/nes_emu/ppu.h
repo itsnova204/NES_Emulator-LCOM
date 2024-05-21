@@ -12,10 +12,10 @@
 typedef size_t usize;
 
 typedef struct Color {
-    unsigned char r;        // Color red value
-    unsigned char g;        // Color green value
-    unsigned char b;        // Color blue value
-    unsigned char a;        // Color alpha value
+    uint8_t red;        // Color red value
+    uint8_t green;        // Color green value
+    uint8_t blue;        // Color blue value
+    uint8_t alpha;        // Color alpha value
 } Color;
 
 
