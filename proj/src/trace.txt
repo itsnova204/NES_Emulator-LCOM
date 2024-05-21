@@ -3,56 +3,56 @@
 > proj_main_loop(0, [NULL])
   @sprite.c:22, preloadSprites
     xpm_load(menu, XPM_TYPE_MENU, &images[0].image)
-  > xpm_load(addr: 0x81e6dc4, XPM_8_8_8_8, addr: 0x827afdc)
-  < xpm_load(addr: 0x81e6dc4, XPM_8_8_8_8, addr: 0x827afdc [1152x864 : 3981312 bytes]) -> (ret: 0x8282000)
+  > xpm_load(addr: 0x81e7fc8, XPM_8_8_8_8, addr: 0x827c22c)
+  < xpm_load(addr: 0x81e7fc8, XPM_8_8_8_8, addr: 0x827c22c [1152x864 : 3981312 bytes]) -> (ret: 0x8283000)
   @sprite.c:23, preloadSprites
     xpm_load(one, XPM_TYPE_MENU, &images[1].image)
-  > xpm_load(addr: 0x81e7bd0, XPM_8_8_8_8, addr: 0x827aff4)
-  < xpm_load(addr: 0x81e7bd0, XPM_8_8_8_8, addr: 0x827aff4 [16x16 : 1024 bytes]) -> (ret: 0x8281000)
+  > xpm_load(addr: 0x81e8dd4, XPM_8_8_8_8, addr: 0x827c244)
+  < xpm_load(addr: 0x81e8dd4, XPM_8_8_8_8, addr: 0x827c244 [16x16 : 1024 bytes]) -> (ret: 0x8282000)
   @sprite.c:24, preloadSprites
     xpm_load(two, XPM_TYPE_MENU, &images[2].image)
-  > xpm_load(addr: 0x81e7c1c, XPM_8_8_8_8, addr: 0x827b00c)
-  < xpm_load(addr: 0x81e7c1c, XPM_8_8_8_8, addr: 0x827b00c [16x16 : 1024 bytes]) -> (ret: 0x8281400)
+  > xpm_load(addr: 0x81e8e20, XPM_8_8_8_8, addr: 0x827c25c)
+  < xpm_load(addr: 0x81e8e20, XPM_8_8_8_8, addr: 0x827c25c [16x16 : 1024 bytes]) -> (ret: 0x8282400)
   @sprite.c:25, preloadSprites
     xpm_load(three, XPM_TYPE_MENU, &images[3].image)
-  > xpm_load(addr: 0x81e7c68, XPM_8_8_8_8, addr: 0x827b024)
-  < xpm_load(addr: 0x81e7c68, XPM_8_8_8_8, addr: 0x827b024 [16x16 : 1024 bytes]) -> (ret: 0x8281800)
+  > xpm_load(addr: 0x81e8e6c, XPM_8_8_8_8, addr: 0x827c274)
+  < xpm_load(addr: 0x81e8e6c, XPM_8_8_8_8, addr: 0x827c274 [16x16 : 1024 bytes]) -> (ret: 0x8282800)
   @sprite.c:26, preloadSprites
     xpm_load(four, XPM_TYPE_MENU, &images[4].image)
-  > xpm_load(addr: 0x81e7cb4, XPM_8_8_8_8, addr: 0x827b03c)
-  < xpm_load(addr: 0x81e7cb4, XPM_8_8_8_8, addr: 0x827b03c [16x16 : 1024 bytes]) -> (ret: 0x8281c00)
+  > xpm_load(addr: 0x81e8eb8, XPM_8_8_8_8, addr: 0x827c28c)
+  < xpm_load(addr: 0x81e8eb8, XPM_8_8_8_8, addr: 0x827c28c [16x16 : 1024 bytes]) -> (ret: 0x8282c00)
   @sprite.c:27, preloadSprites
     xpm_load(five, XPM_TYPE_MENU, &images[5].image)
-  > xpm_load(addr: 0x81e7d00, XPM_8_8_8_8, addr: 0x827b054)
-  < xpm_load(addr: 0x81e7d00, XPM_8_8_8_8, addr: 0x827b054 [16x16 : 1024 bytes]) -> (ret: 0x864e000)
+  > xpm_load(addr: 0x81e8f04, XPM_8_8_8_8, addr: 0x827c2a4)
+  < xpm_load(addr: 0x81e8f04, XPM_8_8_8_8, addr: 0x827c2a4 [16x16 : 1024 bytes]) -> (ret: 0x864f000)
   @sprite.c:28, preloadSprites
     xpm_load(six, XPM_TYPE_MENU, &images[6].image)
-  > xpm_load(addr: 0x81e7d4c, XPM_8_8_8_8, addr: 0x827b06c)
-  < xpm_load(addr: 0x81e7d4c, XPM_8_8_8_8, addr: 0x827b06c [16x16 : 1024 bytes]) -> (ret: 0x864e400)
+  > xpm_load(addr: 0x81e8f50, XPM_8_8_8_8, addr: 0x827c2bc)
+  < xpm_load(addr: 0x81e8f50, XPM_8_8_8_8, addr: 0x827c2bc [16x16 : 1024 bytes]) -> (ret: 0x864f400)
   @sprite.c:29, preloadSprites
     xpm_load(seven, XPM_TYPE_MENU, &images[7].image)
-  > xpm_load(addr: 0x81e7d98, XPM_8_8_8_8, addr: 0x827b084)
-  < xpm_load(addr: 0x81e7d98, XPM_8_8_8_8, addr: 0x827b084 [16x16 : 1024 bytes]) -> (ret: 0x864e800)
+  > xpm_load(addr: 0x81e8f9c, XPM_8_8_8_8, addr: 0x827c2d4)
+  < xpm_load(addr: 0x81e8f9c, XPM_8_8_8_8, addr: 0x827c2d4 [16x16 : 1024 bytes]) -> (ret: 0x864f800)
   @sprite.c:30, preloadSprites
     xpm_load(eight, XPM_TYPE_MENU, &images[8].image)
-  > xpm_load(addr: 0x81e7de4, XPM_8_8_8_8, addr: 0x827b09c)
-  < xpm_load(addr: 0x81e7de4, XPM_8_8_8_8, addr: 0x827b09c [16x16 : 1024 bytes]) -> (ret: 0x864ec00)
+  > xpm_load(addr: 0x81e8fe8, XPM_8_8_8_8, addr: 0x827c2ec)
+  < xpm_load(addr: 0x81e8fe8, XPM_8_8_8_8, addr: 0x827c2ec [16x16 : 1024 bytes]) -> (ret: 0x864fc00)
   @sprite.c:31, preloadSprites
     xpm_load(nine, XPM_TYPE_MENU, &images[9].image)
-  > xpm_load(addr: 0x81e7e30, XPM_8_8_8_8, addr: 0x827b0b4)
-  < xpm_load(addr: 0x81e7e30, XPM_8_8_8_8, addr: 0x827b0b4 [16x16 : 1024 bytes]) -> (ret: 0x864f000)
+  > xpm_load(addr: 0x81e9034, XPM_8_8_8_8, addr: 0x827c304)
+  < xpm_load(addr: 0x81e9034, XPM_8_8_8_8, addr: 0x827c304 [16x16 : 1024 bytes]) -> (ret: 0x8650000)
   @sprite.c:32, preloadSprites
     xpm_load(zero, XPM_TYPE_MENU, &images[10].image)
-  > xpm_load(addr: 0x81e7b84, XPM_8_8_8_8, addr: 0x827b0cc)
-  < xpm_load(addr: 0x81e7b84, XPM_8_8_8_8, addr: 0x827b0cc [16x16 : 1024 bytes]) -> (ret: 0x864f400)
+  > xpm_load(addr: 0x81e8d88, XPM_8_8_8_8, addr: 0x827c31c)
+  < xpm_load(addr: 0x81e8d88, XPM_8_8_8_8, addr: 0x827c31c [16x16 : 1024 bytes]) -> (ret: 0x8650400)
   @sprite.c:33, preloadSprites
     xpm_load(colon, XPM_TYPE_MENU, &images[11].image)
-  > xpm_load(addr: 0x81e7e7c, XPM_8_8_8_8, addr: 0x827b0e4)
-  < xpm_load(addr: 0x81e7e7c, XPM_8_8_8_8, addr: 0x827b0e4 [16x16 : 1024 bytes]) -> (ret: 0x864f800)
+  > xpm_load(addr: 0x81e9080, XPM_8_8_8_8, addr: 0x827c334)
+  < xpm_load(addr: 0x81e9080, XPM_8_8_8_8, addr: 0x827c334 [16x16 : 1024 bytes]) -> (ret: 0x8650800)
   @graphics.c:38, set_frame_buffer
     vbe_get_mode_info(mode, &vbe_mode_info)
-  > vbe_get_mode_info(0x14c, addr: 0x825f124)
-  < vbe_get_mode_info(0x14c, addr: 0x825f124 [0xe0000000, 1152x864, 8:8:8 (32) <3.79688 MiB>]) -> (ret: 0)
+  > vbe_get_mode_info(0x14c, addr: 0x8260374)
+  < vbe_get_mode_info(0x14c, addr: 0x8260374 [0xe0000000, 1152x864, 8:8:8 (32) <3.79688 MiB>]) -> (ret: 0)
   @graphics.c:53, set_frame_buffer
     sys_privctl(SELF, SYS_PRIV_ADD_MEM, &memory_range)
   > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff720 [0xe0000000 - 0xe03cc000 <3.79688 MiB>])
@@ -69,13 +69,13 @@
   > timer_subscribe_int(addr: 0xeffff75f [8])
     @timer.c:74, timer_subscribe_int
       sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id)
-    > sys_irqsetpolicy(0, 1, addr: 0x825f10c [0])
-    < sys_irqsetpolicy(0, 1, addr: 0x825f10c [9]) -> (ret: 0)
+    > sys_irqsetpolicy(0, 1, addr: 0x826035c [0])
+    < sys_irqsetpolicy(0, 1, addr: 0x826035c [9]) -> (ret: 0)
   < timer_subscribe_int(addr: 0xeffff75f [1]) -> (ret: 0)
   @keyboard.c:19, kbd_subscribe_int
     sys_irqsetpolicy(KEYBOARD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &kbd_hook_id)
-  > sys_irqsetpolicy(1, 3, addr: 0x825e498 [1])
-  < sys_irqsetpolicy(1, 3, addr: 0x825e498 [10]) -> (ret: 0)
+  > sys_irqsetpolicy(1, 3, addr: 0x825f6e8 [1])
+  < sys_irqsetpolicy(1, 3, addr: 0x825f6e8 [10]) -> (ret: 0)
   @main.c:59, proj_main_loop
     timer_set_frequency(0, 60)
   > timer_set_frequency(0, 60)
@@ -108,6 +108,558 @@
       sys_outb(selectedTimer, MSB)
     > sys_outb(0x40, 0x4d = 0b01001101)
   < timer_set_frequency(0, 60) -> (ret: 0)
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
+  @main.c:64, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:87, proj_main_loop
+    timer_int_handler()
   @main.c:64, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff760, addr: 0xeffff7a8)
@@ -727,10 +1279,10 @@
     timer_unsubscribe_int()
     @timer.c:80, timer_unsubscribe_int
       sys_irqrmpolicy(&hook_id)
-    > sys_irqrmpolicy(addr: 0x825f10c [9])
-    < sys_irqrmpolicy(addr: 0x825f10c [9]) -> (ret: 0)
+    > sys_irqrmpolicy(addr: 0x826035c [9])
+    < sys_irqrmpolicy(addr: 0x826035c [9]) -> (ret: 0)
   @keyboard.c:25, kbd_unsubscribe_int
     sys_irqrmpolicy(&kbd_hook_id)
-  > sys_irqrmpolicy(addr: 0x825e498 [10])
-  < sys_irqrmpolicy(addr: 0x825e498 [10]) -> (ret: 0)
+  > sys_irqrmpolicy(addr: 0x825f6e8 [10])
+  < sys_irqrmpolicy(addr: 0x825f6e8 [10]) -> (ret: 0)
 < proj_main_loop(0, [NULL]) -> (ret: 0)
