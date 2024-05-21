@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 
 # Source files
-SRCS = main.c ./nes_emu/mapper.c ./nes_emu/cartridge.c ./nes_emu/bus.c ./nes_emu/p6502.c ./nes_emu/controler.c
+SRCS = main.c ./nes_emu/mapper.c ./nes_emu/cartridge.c ./nes_emu/bus.c ./nes_emu/p6502.c ./nes_emu/controler.c ./nes_emu/ppu.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)
