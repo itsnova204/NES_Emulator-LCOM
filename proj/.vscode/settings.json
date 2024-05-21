@@ -4,7 +4,10 @@
   "diffEditor.ignoreTrimWhitespace": true,
   "editor.formatOnSave": false,
   "editor.tabSize": 2,
-  "editor.wordWrap": "bounded",
-  "editor.wordWrapColumn": 100,
-  "files.associations": { },
+  "editor.wordWrap": "off",
+  "editor.wordWrapColumn": 200,
+  "files.associations": {
+    "lcf.h": "c",
+    "bus.h": "c"
+  },
 }

@@ -1,9 +1,9 @@
 {
   "env": {
-    "minix.include": "${workspaceFolder}/../../.minix-src/include"
+    "minix.include": "${workspaceFolder}/../.minix-src/include"
   },
   "configurations": [{
-    "name": "Minix",
+    "name": "Minix Project",
     "compilerPath": "",
     "cStandard": "c11",
     "defines": ["__minix", "_MINIX", "_NETBSD_SOURCE", "__i386__"],
