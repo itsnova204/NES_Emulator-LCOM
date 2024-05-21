@@ -1,84 +1,131 @@
 #include "lcf_mock.h"
 #pragma once
+#ifndef PPU_H
+#define PPU_H
 
-#define PPU_CTRL          BIT(0)
-#define PPU_MASK          BIT(1)
-#define PPU_STATUS        BIT(2)
-#define PPU_OAM_ADDRESS   BIT(3)
-#define PPU_OAM_DATA      BIT(4)
-#define PPU_SCROLL        BIT(5)
-#define PPU_ADDRESS       BIT(6)
-#define PPU_DATA          BIT(7)
+#include "cartridge.h"
 
-union ppu_registers{ //https://www.nesdev.org/wiki/PPU_registers
-  struct{
-    uint8_t PPU_CTRL_reg;
-    uint8_t PPU_MASK_reg;
-    uint8_t PPU_STATUS_reg;
-    uint8_t OAMADDR_reg;
-    uint8_t OAMDATA_reg;
-    uint8_t PPU_SCROLL_reg;
-    uint8_t PPU_ADDR_reg;
-    uint8_t PPU_DATA_reg;   
-  };
-
-  struct{
-    //PPU_CTRL_reg
-    uint8_t NMI_enable : 1;
-    uint8_t PPU_master_slave : 1;
-    uint8_t sprite_size : 1;
-    uint8_t bg_pattern_table : 1;
-    uint8_t sprite_pattern_table : 1;
-    uint8_t VRAM_increment : 1;
-    uint8_t nametable_x : 1;
-    uint8_t nametable_y : 1;
-
-    //PPU_MASK_reg
-    uint8_t greyscale : 1;
-    uint8_t bg_left_column : 1;
-    uint8_t sprite_left_column : 1;
-    uint8_t bg_enable : 1;
-    uint8_t sprite_enable : 1;
-    uint8_t emphasis_red : 1;
-    uint8_t emphasis_green : 1;
-    uint8_t emphasis_blue : 1;
-
-    //PPU_STATUS_reg
-    uint8_t sprite_overflow : 1;
-    uint8_t sprite_zero_hit : 1;
-    uint8_t vertical_blank : 1;
-
-    uint32_t : 21; //not used
-
-    //PPU_SCROLL_reg
-    uint8_t fine_x : 3;
-    uint8_t : 2;
-    uint8_t coarse_x : 5;
-    uint8_t coarse_y : 5;
-  };
-};
-
-//https://forums.nesdev.org/viewtopic.php?t=664
-//loopy's registers
-union loopy_register{
-  struct{
-    uint16_t coarse_x : 5;
-    uint16_t coarse_y : 5;
-    uint16_t nametable_x : 1;
-    uint16_t nametable_y : 1;
-    uint16_t fine_y : 3;
-    uint16_t unused : 1;
-  };
-
-  uint16_t reg;
-};
-
-loopy_register vram_addr; // Active "pointer" address into nametable to extract background tile info
-loopy_register temp_addr; // Temporary store of information to be "transferred" into "pointer" at various times
+#include <inttypes.h>
+#include <stdbool.h>
 
 
+typedef size_t usize;
 
-void ppu_clock();
+typedef struct Color {
+    unsigned char r;        // Color red value
+    unsigned char g;        // Color green value
+    unsigned char b;        // Color blue value
+    unsigned char a;        // Color alpha value
+} Color;
 
-uint8_t sys_readFromPPU(uint16_t addr);
-void sys_writeToPPU(uint16_t addr, uint8_t data);
+
+typedef struct {
+    Color *pixels;
+    uint16_t width;
+    uint16_t height;
+} Sprite;
+
+Sprite *SpriteCreate(uint16_t width, uint16_t height);
+Color SpriteGetPixel(Sprite *sprite, uint16_t x, uint16_t y);
+bool SpriteSetPixel(Sprite *sprite, uint16_t x, uint16_t y, Color color);
+
+typedef union {
+    struct {
+        uint8_t nametableX : 1;
+        uint8_t nametableY : 1;
+        uint8_t incrementMode : 1;
+        uint8_t patternSprite : 1;
+        uint8_t patternBackground : 1;
+        uint8_t spriteSize : 1;
+        uint8_t slaveMode : 1;   // unused
+        uint8_t enableNmi : 1;
+    } bits;
+    uint8_t reg;
+} PpuCtrl;
+
+typedef union {
+    struct {
+        uint8_t unused : 5;
+        uint8_t spriteOverflow : 1;
+        uint8_t spriteZeroHit : 1;
+        uint8_t verticalBlank : 1;
+    } bits;
+    uint8_t reg;
+} PpuStatus;
+
+typedef union {
+    struct {
+        uint8_t grayscale : 1;
+        uint8_t renderBackgroundLeft : 1;
+        uint8_t renderSpritesLeft : 1;
+        uint8_t renderBackground : 1;
+        uint8_t renderSprites : 1;
+        uint8_t enhanceRed : 1;
+        uint8_t enhanceGreen : 1;
+        uint8_t enhanceBlue : 1;
+    } bits;
+    uint8_t reg;
+} PpuMask;
+
+typedef struct {
+    PpuCtrl ctrl;
+    PpuStatus status;
+    PpuMask mask;
+} PpuRegisters;
+
+typedef union {
+    struct {
+        uint16_t coarseX : 5;
+        uint16_t coarseY : 5;
+        uint16_t nametableX : 1;
+        uint16_t nametableY : 1;
+        uint16_t fineY : 3;
+        uint16_t unused : 1;
+    } bits;
+    uint16_t reg;
+} LoopyRegister;
+
+typedef struct {
+    uint8_t nameTable[2][1024];
+    uint8_t paletteTable[32];
+    uint8_t patternTable[2][4096];   // This table wont be used in the real emulation. Just keep it here for the moment for the design.
+    Color paletteScreen[64];
+    Sprite *spriteScreen;
+    Sprite *spriteNameTable[2];
+    Sprite *spritePatternTable[2];
+    int scanline;
+    int cycle;
+    bool frameCompleted;
+    PpuRegisters registers;
+    LoopyRegister vramAddr;
+    LoopyRegister tramAddr;
+    uint8_t addressLatch;
+    uint8_t ppuDataBuffer;
+    uint8_t fineX;
+    uint8_t bgNextTileId;
+    uint8_t bgNextTileAttr;
+    uint8_t bgNextTileLsb;
+    uint8_t bgNextTileMsb;
+    uint16_t bgShifterPatternLo;
+    uint16_t bgShifterPatternHi;
+    uint16_t bgShifterAttribLo;
+    uint16_t bgShifterAttribHi;
+    bool nmi;
+} Ppu2C02;
+
+void PpuInit();
+
+uint8_t CpuReadFromPpu(uint16_t addr, bool readOnly);
+void CpuWriteToPpu(uint16_t addr, uint8_t data);
+
+uint8_t PpuRead(uint16_t addr);
+void PpuWrite(uint16_t addr, uint8_t data);
+
+Ppu2C02 *PpuGet();
+
+void PpuClock();
+
+Color GetColourFromPaletteRam(uint8_t palette, uint8_t pixel);
+Sprite *GetPatternTable(uint8_t i, uint8_t palette);
+
+#endif  // PPU_H

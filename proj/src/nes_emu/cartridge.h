@@ -19,3 +19,7 @@ void print_header();
 
 uint8_t sys_readFromCard(uint16_t addr, bool* hijack);
 void sys_writeToCard(uint16_t addr, uint8_t data, bool* hijack);
+
+uint8_t ppu_readFromCard(uint16_t addr, bool* hijack);
+void ppu_writeToCard(uint16_t addr, uint8_t data, bool* hijack);
+
