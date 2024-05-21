@@ -1,7 +1,7 @@
 #include "bus.h"
 
 #include "p6502.h"
-//#include "ppu.h"
+#include "ppu.h"
 #include "cartridge.h"
 #include "controler.h"
 
@@ -26,17 +26,17 @@ void bus_init(char* cart_filePath){
   //TODO init ppu and cart
   cart_insert(cart_filePath);
   cpu_init();
+  ppu_init();
 }
 
 int bus_exit(){
   cart_remove();
-  //ppu_exit();
 
   return 0;
 }
 
 void bus_clock(){
-  //ppu_clock();
+  ppu_clock();
 
   if (mainClockCounter % 3 == 0){
 		cpu_clock();
@@ -57,7 +57,7 @@ uint8_t sysBus_read(uint16_t addr){
     return sys_ram[addr & 0x07FF];
   }
   if (addr >= 0x2000 && addr <= 0x3FFF){ //access ppu registers
-    //return sys_readFromPPU(addr & 0x0007);
+    return cpuBus_readPPU(addr & 0x0007);
   }else if (addr == 0x4016 || addr == 0x4017){ //controllers
     data = (controller_state[addr & 0x0001] & 0x80) > 0;
     controller_state[addr & 0x0001] <<= 1;
@@ -77,7 +77,7 @@ void sysBus_write(uint16_t addr, uint8_t data){
     sys_ram[addr & 0x07FF] = data;
 
   }else if (addr >= 0x2000 && addr <= 0x3FFF){ //access ppu registers
-    //sys_writeToPPU(addr, data);
+    cpuBus_writePPU(addr, data);
   }else if (addr == 0x4016 || addr == 0x4017){ //controller 1
     controller_state[addr & 0x0001] = controller[addr & 0x0001]; //update controller state
   }
