@@ -113,21 +113,21 @@ typedef struct {
     bool nmi;
 } Ppu2C02;
 
-void PpuInit();
+void ppu_init();
 
-uint8_t CpuReadFromPpu(uint16_t addr, bool readOnly);
-void CpuWriteToPpu(uint16_t addr, uint8_t data);
+uint8_t cpuBus_readPPU(uint16_t addr);
+void cpuBus_writePPU(uint16_t addr, uint8_t data);
 
-uint8_t PpuRead(uint16_t addr);
-void PpuWrite(uint16_t addr, uint8_t data);
+uint8_t ppuBus_read(uint16_t addr);
+void ppuBus_write(uint16_t addr, uint8_t data);
 
-Ppu2C02 *PpuGet();
+Ppu2C02 *ppu_get();
 
-void PpuClock();
+void ppu_clock();
 
-Color* PpuGetScreen();
+Color* ppu_get_screen();
 
-Color GetColourFromPaletteRam(uint8_t palette, uint8_t pixel);
-Sprite *GetPatternTable(uint8_t i, uint8_t palette);
+Color get_colorFromPaletteRam(uint8_t palette, uint8_t pixel);
+Sprite *get_patternTable(uint8_t i, uint8_t palette);
 
 #endif  // PPU_H
