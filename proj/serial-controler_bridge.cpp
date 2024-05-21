@@ -38,7 +38,7 @@ void setup() {
   digitalWrite(PULSE, 1);
   digitalWrite(DATA, 1); // data is up by default, goes to ground if key is pressed
 
-  //serial port stuff
+  //init serial
   Serial.begin(baudRate);
 }
 
@@ -57,23 +57,20 @@ char oldbuttons[8];
 void loop() {
     delayMicroseconds(16*1000);
 
-    cli();
     digitalWrite(LATCH, 1);
     delayMicroseconds(12);
     digitalWrite(LATCH, 0);
-    buttons[BUTTON_A] = 1 - digitalRead(DATA); // DATA goes to ground if button pressed
-    delayMicroseconds(6);
-    
-    for (int i=1;i<8;++i) {
-      digitalWrite(PULSE, 1);
+
+  
+    for (int i=0; i < 8; ++i) {
       delayMicroseconds(6);
-       buttons[i] = 1 - digitalRead(DATA);
+       buttons[i] = !digitalRead(DATA);
       digitalWrite(PULSE, 0);
       
       delayMicroseconds(5);
+      digitalWrite(PULSE, 1);
     }
 
-    sei();
 
     // Light up the LED if any key was pressed.
     int blink = 0;
