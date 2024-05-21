@@ -82,6 +82,9 @@ void (swap_buffers)() {
 /**** FUNCTIONS RELATED TO DRAWING ON BUFFER ****/
 
 int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
+  if (color == 0xff000000) return 0;
+  //printf("%x\n", color);
+
   if (x >= vbe_mode_info.XResolution || y >= vbe_mode_info.YResolution) {
     printf("vg_draw_pixel(): coordinates exceed resolution \n");
     return 0;

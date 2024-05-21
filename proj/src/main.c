@@ -91,6 +91,17 @@ int (proj_main_loop)() {
                     if (counter % FRAME_INTERVAL == 0) {
                       if (draw_sprite(MENU, 0, 0, mode) != 0) return 1;
                       
+                      // THIS HAVE TO BE MOVED TO SPRITE
+                      if (draw_sprite(ZERO, 10, 95, mode) != 0) return 1; 
+                      if (draw_sprite(ONE, 30, 95, mode) != 0) return 1; 
+                      if (draw_sprite(TWO, 50, 95, mode) != 0) return 1; 
+                      if (draw_sprite(THREE, 70, 95, mode) != 0) return 1; 
+                      if (draw_sprite(FOUR, 90, 95, mode) != 0) return 1; 
+                      if (draw_sprite(FIVE, 110, 95, mode) != 0) return 1; 
+                      if (draw_sprite(SIX, 130, 95, mode) != 0) return 1; 
+                      if (draw_sprite(SEVEN, 150, 95, mode) != 0) return 1; 
+                      if (draw_sprite(EIGHT, 170, 95, mode) != 0) return 1; 
+                      if (draw_sprite(NINE, 190, 95, mode) != 0) return 1; 
                       swap_buffers();
                     }
                     //
