@@ -125,6 +125,8 @@ Ppu2C02 *PpuGet();
 
 void PpuClock();
 
+Color* PpuGetScreen();
+
 Color GetColourFromPaletteRam(uint8_t palette, uint8_t pixel);
 Sprite *GetPatternTable(uint8_t i, uint8_t palette);
 

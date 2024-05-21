@@ -10,9 +10,6 @@
 //NOTE: scrolling is hard, here is a thread explaining implmentation
 //https://forums.nesdev.org/viewtopic.php?t=664
 #include "ppu.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 
 Color ColorBuild(uint8_t r, uint8_t g, uint8_t b) {
     return (Color){r,g,b,255};
@@ -535,4 +532,8 @@ void PpuClock() {
             ppu.frameCompleted = true;
         }
     }
+}
+
+Color* PpuGetScreen() {
+		return ppu.spriteScreen->pixels;
 }
