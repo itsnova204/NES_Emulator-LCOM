@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 
 int (proj_main_loop)() {
   uint16_t mode = VBE_MODE_DC_32;
-  preloadSprites();
+  preloadSprites(mode);
 
   if (set_frame_buffer(mode) != 0) return 1;
   if (set_graphic_mode(mode) != 0) return 1;
@@ -89,22 +89,15 @@ int (proj_main_loop)() {
 
                     // DRAW NEW FRAME
                     if (counter % FRAME_INTERVAL == 0) {
-                      if (draw_sprite(MENU, 0, 0, mode) != 0) return 1;
-                      
-                      // THIS HAVE TO BE MOVED TO SPRITE
-                      if (draw_sprite(ZERO, 10, 95, mode) != 0) return 1; 
-                      if (draw_sprite(ONE, 30, 95, mode) != 0) return 1; 
-                      if (draw_sprite(TWO, 50, 95, mode) != 0) return 1; 
-                      if (draw_sprite(THREE, 70, 95, mode) != 0) return 1; 
-                      if (draw_sprite(FOUR, 90, 95, mode) != 0) return 1; 
-                      if (draw_sprite(FIVE, 110, 95, mode) != 0) return 1; 
-                      if (draw_sprite(SIX, 130, 95, mode) != 0) return 1; 
-                      if (draw_sprite(SEVEN, 150, 95, mode) != 0) return 1; 
-                      if (draw_sprite(EIGHT, 170, 95, mode) != 0) return 1; 
-                      if (draw_sprite(NINE, 190, 95, mode) != 0) return 1; 
+                      if (draw_sprite(MENU, 0, 0) != 0) return 1;
+
+                      // blink colon every 2 seconds
+                      bool draw_colon = (counter / (FRAME_INTERVAL * 2)) % 2 == 0;
+                      if (draw_hours(12, 34, 10, 95, draw_colon) != 0) return 1;
+
                       swap_buffers();
                     }
-                    //
+
                   }
                   break;
               default:
