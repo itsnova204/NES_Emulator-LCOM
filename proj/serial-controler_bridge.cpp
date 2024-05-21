@@ -5,6 +5,8 @@
 
 //Tiago Aleixo, May 2021
 
+//usefull doc: https://tresi.github.io/nes/
+
 /*
   chinese controler dosent respect color coding
   but the pinout is this:
