@@ -53,10 +53,22 @@ void setup() {
 #define BUTTON_LEFT (6)
 #define BUTTON_RIGHT (7)
 
-char buttons[8];
-char oldbuttons[8];
+#define BYTE_TO_BINARY_PATTERN " %c%c%c%c%c%c%c%c "
+#define BYTE_TO_BINARY(byte)  \
+  ((byte) & 0x80 ? '1' : '0'), \
+  ((byte) & 0x40 ? '1' : '0'), \
+  ((byte) & 0x20 ? '1' : '0'), \
+  ((byte) & 0x10 ? '1' : '0'), \
+  ((byte) & 0x08 ? '1' : '0'), \
+  ((byte) & 0x04 ? '1' : '0'), \
+  ((byte) & 0x02 ? '1' : '0'), \
+  ((byte) & 0x01 ? '1' : '0') 
+  
+uint8_t buttons;
+uint8_t oldbuttons;
 
 void loop() {
+    buttons = 0;
     delayMicroseconds(16*1000);
 
     digitalWrite(LATCH, 1);
@@ -66,7 +78,7 @@ void loop() {
   
     for (int i=0; i < 8; ++i) {
       delayMicroseconds(6);
-       buttons[i] = !digitalRead(DATA);
+      buttons |= (!digitalRead(DATA) << i);
       digitalWrite(PULSE, 0);
       
       delayMicroseconds(5);
@@ -75,22 +87,25 @@ void loop() {
 
 
     // Light up the LED if any key was pressed.
-    int blink = 0;
-    for (int i=0;i<8;++i) {
-      blink = blink || buttons[i];
-    }
-    digitalWrite(LED, blink);
 
-    if (buttons[0] == oldbuttons[0] && buttons[1] == oldbuttons[1] && buttons[2] == oldbuttons[2] && buttons[3] == oldbuttons[3] && buttons[4] == oldbuttons[4] && buttons[5] == oldbuttons[5] && buttons[6] == oldbuttons[6] && buttons[7] == oldbuttons[7]) {
+    if (buttons != 0){
+      digitalWrite(LED, 1);
+    }else{
+      digitalWrite(LED, 0);
+    }
+    
+
+    if (buttons == oldbuttons) {
       return;
     }
+
+    //visual print to Serial Monitor
+    Serial.printf("Buttons: " BYTE_TO_BINARY_PATTERN "\n", BYTE_TO_BINARY(buttons)); 
     
-    Serial.printf("OLD Buttons: %d %d %d %d %d %d %d %d\n", oldbuttons[0], oldbuttons[1], oldbuttons[2], oldbuttons[3], oldbuttons[4], oldbuttons[5], oldbuttons[6], oldbuttons[7]); 
-    Serial.printf("Buttons: %d %d %d %d %d %d %d %d\n", buttons[0], buttons[1], buttons[2], buttons[3], buttons[4], buttons[5], buttons[6], buttons[7]); 
-    
-    for (size_t i = 0; i < 8; i++){
-      oldbuttons[i] = buttons[i];
-    }
+    //TODO: package the data and send it to the serial port as bits
+    //Serial.write(buttons);
+
+    oldbuttons = buttons;
     
     delay(100);
 
