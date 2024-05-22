@@ -92,7 +92,7 @@ int (proj_main_loop)() {
                       if (draw_sprite(MENU, 0, 0) != 0) return 1;
 
                       // blink colon every 2 seconds
-                      bool draw_colon = (counter / (FRAME_INTERVAL * 2)) % 2 == 0;
+                      bool draw_colon = (counter / (FRAME_INTERVAL * 32)) % 2 == 0;
                       if (draw_hours(12, 34, 10, 95, draw_colon) != 0) return 1;
 
                       swap_buffers();
