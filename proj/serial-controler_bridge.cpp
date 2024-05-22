@@ -23,7 +23,7 @@
     |  +-------> Latch  (green)
     +----------> Data   (white)
 */
-const int baudRate = 9600;
+const int baudRate = 230400;
 
 const int LED = 14;
 const int PULSE = 0; // yellow
