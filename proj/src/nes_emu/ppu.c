@@ -15,7 +15,7 @@ Color ColorBuild(uint8_t r, uint8_t g, uint8_t b) {
     return (Color){r,g,b,255};
 }
 
-static Ppu2C02 ppu = {0};
+static Ppu2C02 ppu;
 
 void ppu_init() {
     ppu.paletteScreen[0x00] = ColorBuild(84, 84, 84);
@@ -95,15 +95,13 @@ void ppu_init() {
     ppu.cycle = 0;
     ppu.frameCompleted = false;
 
-    ppu.registers.ctrl = (PpuCtrl){0};
-    ppu.registers.status = (PpuStatus){0};
-    ppu.registers.mask = (PpuMask){0};
+    ppu.registers.ctrl.reg = 0;
+    ppu.registers.status.reg = 0;
+    ppu.registers.mask.reg = 0;
 
     ppu.addressLatch = 0x00;
     ppu.ppuDataBuffer = 0x00;
-    ppu.vramAddr = (LoopyRegister){0};
     ppu.vramAddr.reg = 0x0000;
-    ppu.tramAddr = (LoopyRegister){0};
     ppu.tramAddr.reg = 0x0000;
     ppu.fineX = 0x00;
 
@@ -399,8 +397,8 @@ void PpuTransferAddressY() {
 void PpuLoadBackgroundShifters() {
     ppu.bgShifterPatternLo = (ppu.bgShifterPatternLo & 0xFF00) | ppu.bgNextTileLsb;
     ppu.bgShifterPatternHi = (ppu.bgShifterPatternHi & 0xFF00) | ppu.bgNextTileMsb;
-    ppu.bgShifterAttribLo = (ppu.bgShifterAttribLo & 0xFF00) | ((ppu.bgNextTileAttr & 0b01) ? 0xFF : 0x00);
-    ppu.bgShifterAttribHi = (ppu.bgShifterAttribHi & 0xFF00) | ((ppu.bgNextTileAttr & 0b10) ? 0xFF : 0x00);
+    ppu.bgShifterAttribLo = (ppu.bgShifterAttribLo & 0xFF00) | ((ppu.bgNextTileAttr & BIT(0)) ? 0xFF : 0x00);
+    ppu.bgShifterAttribHi = (ppu.bgShifterAttribHi & 0xFF00) | ((ppu.bgNextTileAttr & BIT(1)) ? 0xFF : 0x00);
 }
 
 void PpuUpdateShifters() {
