@@ -17,7 +17,9 @@ Color ColorBuild(uint8_t r, uint8_t g, uint8_t b) {
 
 static Ppu2C02 ppu;
 
-void ppu_init() {
+void ppu_init(bool *ppu_nmi) {
+    ppu_nmi = &ppu.nmi;
+
     ppu.paletteScreen[0x00] = ColorBuild(84, 84, 84);
     ppu.paletteScreen[0x01] = ColorBuild(0, 30, 116);
     ppu.paletteScreen[0x02] = ColorBuild(8, 16, 144);
@@ -318,11 +320,8 @@ void ppuBus_write(uint16_t addr, uint8_t data) {
     }
 }
 
-Ppu2C02 *ppu_get() {
-    return &ppu;
-}
-
 Color get_colorFromPaletteRam(uint8_t palette, uint8_t pixel) {
+
     return ppu.paletteScreen[ppuBus_read(0x3F00 + (palette << 2) + pixel) & 0x3F];
 }
 
@@ -508,6 +507,6 @@ void ppu_clock() {
     }
 }
 
-Color* ppu_get_screen() {
-		return ppu.spriteScreen->pixels;
+Sprite* ppu_get_screen_ptr() {
+		return ppu.spriteScreen;
 }

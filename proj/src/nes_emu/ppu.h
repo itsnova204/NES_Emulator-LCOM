@@ -18,6 +18,8 @@ typedef struct Color {
     uint8_t alpha;        // Color alpha value
 } Color;
 
+Color ColorBuild(uint8_t red, uint8_t green, uint8_t blue);
+
 
 typedef struct {
     Color *pixels;
@@ -121,13 +123,13 @@ void cpuBus_writePPU(uint16_t addr, uint8_t data);
 uint8_t ppuBus_read(uint16_t addr);
 void ppuBus_write(uint16_t addr, uint8_t data);
 
-Ppu2C02 *ppu_get();
-
 void ppu_clock();
 
 Color* ppu_get_screen();
 
 Color get_colorFromPaletteRam(uint8_t palette, uint8_t pixel);
 Sprite *get_patternTable(uint8_t i, uint8_t palette);
+
+Sprite *ppu_get_screen_ptr();
 
 #endif  // PPU_H

@@ -16,6 +16,8 @@ uint8_t controller_state[2] = {0, 0};
 static uint32_t mainClockCounter = 0;
 static uint8_t sys_ram[2 * 1024];
 
+bool ppu_nmi;
+
 int bus_init(char* cart_filePath){
    printf("[BUS] Starting rom: %s\n", cart_filePath);
   //start sys_ram with 0;
@@ -26,7 +28,7 @@ int bus_init(char* cart_filePath){
   if (cart_insert(cart_filePath))return 1;
   
   cpu_init();
-  ppu_init();
+  ppu_init(&ppu_nmi);
 
   return 0;
 }
@@ -44,10 +46,21 @@ void bus_clock(){
 		cpu_clock();
 	}
 
+  if (ppu_nmi){
+		ppu_nmi = false;
+		cpu_nmi();
+	}
+
 	mainClockCounter++;
 }
 
 uint8_t sysBus_read(uint16_t addr){
+  //random nunmber between 0 and 2000
+  /*
+  int num = rand() % 2000;
+  printf("random ram value: %d\n", sys_ram[num]);
+  */
+  
   uint16_t data;
   bool hijack = false;
 
@@ -55,7 +68,6 @@ uint8_t sysBus_read(uint16_t addr){
   if(hijack) return data;
 
   if (addr <= 0x1FFF){ //access sys_ram
-    printf("reading sys_ram!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     return sys_ram[addr & 0x07FF];
   }
   if (addr >= 0x2000 && addr <= 0x3FFF){ //access ppu registers
@@ -69,14 +81,15 @@ uint8_t sysBus_read(uint16_t addr){
 }
 
 void sysBus_write(uint16_t addr, uint8_t data){
+  //printf("writing to ram adr: %02x data %01x \n", addr, data);
   bool hijack = false;
 
   sys_writeToCard(addr, data, &hijack);
   if(hijack) return;
   
-  if (addr >= 0x8000 && addr <= 0x1FFF){ //access sys_ram
-    printf("Writing to sys_ram!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+  if (addr <= 0x1FFF){ //access sys_ram
     sys_ram[addr & 0x07FF] = data;
+    //printf("written:%02x\n", sys_ram[addr & 0x07FF]);
 
   }else if (addr >= 0x2000 && addr <= 0x3FFF){ //access ppu registers
     cpuBus_writePPU(addr, data);
