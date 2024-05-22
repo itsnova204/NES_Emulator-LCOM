@@ -1,32 +1,19 @@
-# Compiler and flags
-CC = gcc
-CFLAGS = -Wall -Wextra -g
+# name of the program (Minix service)
+PROG=proj 
 
-# Source files
-SRCS = main.c ./nes_emu/mapper.c ./nes_emu/cartridge.c ./nes_emu/bus.c ./nes_emu/p6502.c ./nes_emu/controler.c ./nes_emu/ppu.c
+# source code files to be compiled
+.PATH: ${.CURDIR}/nes_emu
 
-# Object files
-OBJS = $(SRCS:.c=.o)
+SRCS = ./main.c ./mapper.c ./cartridge.c ./bus.c ./p6502.c ./controler.c ./ppu.c
 
-# Executable name
-TARGET = main
 
-# Default target
-all: $(TARGET)
+# additional compilation flags
+# "-Wall -Wextra -Werror -I . -std=c11 -Wno-unused-parameter" are already set
+CFLAGS += -pedantic -D_LCOM_OPTIMIZED_
 
-# Compile source files into object files
-%.o: %.c
-	$(CC) $(CFLAGS) -c -g $< -o $@
+# list of library dependencies
+DPADD += ${LIBLCF}
+LDADD += -llcf -lxpm -llm
 
-# Link object files into the executable
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
-
-# Debug target
-test: CFLAGS += -DTEST
-test: clean all
-
-# Clean up object files and the executable
-clean:
-	rm -f $(OBJS) $(TARGET)
-TARGET = main
+# include LCOM's makefile that does all the "heavy lifting"
+.include <minix.lcom.mk>

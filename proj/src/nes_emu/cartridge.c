@@ -41,8 +41,8 @@ enum MIRROR cart_get_mirror_type(){
 int cart_insert(char* cart_filePath){
   //read header
   printf("[CART] Loading rom: %s\n", cart_filePath);
-  
-  FILE *fp = fopen(cart_filePath, "rb");
+
+  FILE *fp = fopen(cart_filePath, "r");
   if (fp == NULL){
     printf("Error: Could not open rom\n");
     return 1;
