@@ -30,7 +30,7 @@ uint8_t status = 0x00;
 uint16_t program_counter = 0x0000; 
 uint8_t get_flag(p6502_flag flag);
 void set_flag(p6502_flag flag, bool enable);
-
+ 
 instructionSet lookup[] = 
 	{
 		{ "BRK", &INST_BRK, &ADR_IMM, 7 },{ "ORA", &INST_ORA, &ADR_IZX, 6 },{ "???", &INST_XXX, &ADR_IMP, 2 },{ "???", &INST_XXX, &ADR_IMP, 8 },{ "???", &INST_NOP, &ADR_IMP, 3 },{ "ORA", &INST_ORA, &ADR_ZP0, 3 },{ "ASL", &INST_ASL, &ADR_ZP0, 5 },{ "???", &INST_XXX, &ADR_IMP, 5 },{ "PHP", &INST_PHP, &ADR_IMP, 3 },{ "ORA", &INST_ORA, &ADR_IMM, 2 },{ "ASL", &INST_ASL, &ADR_IMP, 2 },{ "???", &INST_XXX, &ADR_IMP, 2 },{ "???", &INST_NOP, &ADR_IMP, 4 },{ "ORA", &INST_ORA, &ADR_ABS, 4 },{ "ASL", &INST_ASL, &ADR_ABS, 6 },{ "???", &INST_XXX, &ADR_IMP, 6 },
@@ -55,6 +55,7 @@ bool isCPU_complete(){
 	return cycles_left == 0;
 }
 int instcounter = 0;
+
 void cpu_clock(){
 	if (cycles_left == 0){
 		instcounter++;
@@ -81,8 +82,19 @@ void cpu_clock(){
 	cycles_left--;
 }
 
-void cpu_init(){
-	program_counter = 0x0000;
+void CpuInit() {
+    accumulator = 0x00;
+    x_reg = 0x00;
+    y_reg = 0x00;
+    program_counter = 0x0000;
+    stack_ptr = 0x00;
+    status = 0;   // CPU Status set all flags to 0
+
+    fetched = 0x00;
+    address_abs = 0x0000;
+    address_abs = 0x0000;
+    opcode = 0x00;
+    cycles_left = 0;
 }
 
 void cpu_reset(){
@@ -156,7 +168,7 @@ void cpu_nmi(){ //non maskable interrupt (NMI) - we cant ignore this one
 
 
 uint8_t get_flag(p6502_flag flag){
-  return status & flag;
+    return ((status & flag) > 0) ? 1 : 0;
 }
 
 void set_flag(p6502_flag flag, bool enable){
@@ -269,7 +281,7 @@ uint8_t ADR_IZX(){
 	return 0;
 }
 
-uint8_t ADR_IZY(){
+uint8_t ADR_IZY() {
     uint16_t ptr = sysBus_read(program_counter++);
     uint16_t lsb = sysBus_read(ptr & 0x00FF);
     uint16_t msb = sysBus_read((ptr + 1) & 0x00FF);
