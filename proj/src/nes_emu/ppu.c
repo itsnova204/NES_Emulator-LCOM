@@ -25,10 +25,13 @@ void ppu_setFrameCompleted(bool value) {
     ppu.frameCompleted = value;
 }
 
+void ppu_disable_nmi(){
+    ppu.nmi = false;
+}
+
 int debugcount = 0;
-void ppu_init(bool *ppu_nmi) {
+void ppu_init() {
     printf("[PPU] Initializing PPU\n");
-    ppu_nmi = &ppu.nmi;
 
     ppu.paletteScreen[0x00] = ColorBuild(84, 84, 84);
     ppu.paletteScreen[0x01] = ColorBuild(0, 30, 116);
@@ -197,35 +200,37 @@ uint8_t cpuBus_readPPU(uint16_t addr) { //known good
     return data;
 }
 
-void cpuBus_writePPU(uint16_t addr, uint8_t data) { //known good
-    switch (addr) {
-        case 0x0000: // Control
-            ppu.registers.ctrl.reg = data;
-            ppu.tramAddr.bits.nametableX = ppu.registers.ctrl.bits.nametableX;
-            ppu.tramAddr.bits.nametableY = ppu.registers.ctrl.bits.nametableY;
-            break;
-        case 0x0001: // Mask
-            ppu.registers.mask.reg = data;
-            break;
-        case 0x0002: // Status
-            break;
-        case 0x0003: // OAM Address
-            break;
-        case 0x0004: // OAM Data
-            break;
-        case 0x0005: // Scroll
-            if (ppu.addressLatch == 0) {
-                ppu.fineX = data & 0x07;
-                ppu.tramAddr.bits.coarseX = data >> 3;
-                ppu.addressLatch = 1;
-            }
-            else {
-                ppu.tramAddr.bits.fineY = data & 0x07;
-                ppu.tramAddr.bits.coarseY = data >> 3;
-                ppu.addressLatch = 0;
-            }
-            break;
-        case 0x0006: // PPU Address
+void cpuBus_writePPU(uint16_t addr, uint8_t data)
+{
+	switch (addr)
+	{
+	case 0x0000: // Control
+		ppu.registers.ctrl.reg = data;
+		ppu.tramAddr.bits.nametableX = ppu.registers.ctrl.bits.nametableX;
+		ppu.tramAddr.bits.nametableY = ppu.registers.ctrl.bits.nametableY;
+		break;
+	case 0x0001: // Mask
+		ppu.registers.mask.reg = data;
+		break;
+	case 0x0002: // Status
+		break;
+	case 0x0003: // OAM Address
+		break;
+	case 0x0004: // OAM Data
+		break;
+	case 0x0005: // Scroll
+		if (ppu.addressLatch == 0) {
+			ppu.fineX = data & 0x07;
+			ppu.tramAddr.bits.coarseX = data >> 3;
+			ppu.addressLatch = 1;
+		}
+		else {
+			ppu.tramAddr.bits.fineY = data & 0x07;
+			ppu.tramAddr.bits.coarseY = data >> 3;
+			ppu.addressLatch = 0;
+		}
+		break;
+	case 0x0006: // PPU Address
             if (ppu.addressLatch == 0) {
                 ppu.tramAddr.reg = (uint16_t)((data & 0x3F) << 8) | (ppu.tramAddr.reg & 0x00FF);
                 ppu.addressLatch = 1;
@@ -236,11 +241,11 @@ void cpuBus_writePPU(uint16_t addr, uint8_t data) { //known good
                 ppu.addressLatch = 0;
             }
             break;
-        case 0x0007: // PPU Data
+	case 0x0007: // PPU Data
             ppuBus_write(ppu.vramAddr.reg, data);
             ppu.vramAddr.reg += ppu.registers.ctrl.bits.incrementMode ? 32 : 1;
-            break;
-    }
+		break;
+	}
 }
 
 uint8_t ppuBus_read(uint16_t addr) {
@@ -432,7 +437,7 @@ void UpdateShifters() {
     }
 }
 
-void ppu_clock() {
+bool ppu_clock() {
     if (ppu.scanline >= -1 && ppu.scanline < 240) {
         if (ppu.scanline == 0 && ppu.cycle == 0) {
             ppu.cycle = 1;
@@ -532,6 +537,7 @@ void ppu_clock() {
             ppu.frameCompleted = true;
         }
     }
+    return ppu.nmi;
 }
 
 Sprite* ppu_get_screen_ptr() {

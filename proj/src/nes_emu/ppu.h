@@ -11,6 +11,9 @@
 
 typedef size_t usize;
 
+
+void ppu_disable_nmi();
+
 typedef struct Color {
     uint8_t red;        // Color red value
     uint8_t green;        // Color green value
@@ -124,7 +127,7 @@ void cpuBus_writePPU(uint16_t addr, uint8_t data);
 uint8_t ppuBus_read(uint16_t addr);
 void ppuBus_write(uint16_t addr, uint8_t data);
 
-void ppu_clock();
+bool ppu_clock();
 
 Color* ppu_get_screen();
 
