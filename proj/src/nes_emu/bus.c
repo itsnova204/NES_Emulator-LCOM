@@ -17,8 +17,9 @@ static uint32_t mainClockCounter = 0;
 static uint8_t sys_ram[2 * 1024];
 
 bool ppu_nmi;
-
+FILE* fp2;
 int bus_init(char* cart_filePath){
+  memset(&sys_ram, 0, 2048); //nes has 2kb of ram (0x0000 - 0x07FF)
   printf("[BUS] Starting rom: %s\n", cart_filePath);
   //start sys_ram with 0;
   memset(&sys_ram, 0, 2048); //nes has 2kb of ram (0x0000 - 0x07FF)
@@ -27,8 +28,13 @@ int bus_init(char* cart_filePath){
 
   if (cart_insert(cart_filePath))return 1;
   
+  //fp2 = fopen("/games/output.txt", "wb"); //TODO change this to "r" in minix
   cpu_reset();
-  ppu_init(&ppu_nmi);
+  ppu_init();
+  //fprintf(fp2, "sanity check\n");
+  
+
+  
 
   return 0;
 }
@@ -41,45 +47,78 @@ int bus_exit(){
 
 
 void bus_clock(){
-  ppu_clock();
+  ppu_nmi=ppu_clock();
 
   if (mainClockCounter % 3 == 0){
 		cpu_clock();
 	}
 
   if (ppu_nmi){
-		ppu_nmi = false;
+    //printf("nmi triggered\n");
+        ppu_disable_nmi();
 		cpu_nmi();
-	}
+  }   
 
 	mainClockCounter++;
 }
 
+int readCounter = 0;
+
+
 uint8_t sysBus_read(uint16_t addr) {
     uint8_t data = 0x00;
     bool hijack = false;
+    //uint16_t oldaddr = addr;
 
     data = sys_readFromCard(addr, &hijack);
-    if(hijack) return data;
+    if(hijack){
+        addr = 0xffff;
+    }
     else if (addr >= 0x0000 && addr <= 0x1FFF) {
-        return sys_ram[addr & 0x07FF];
+        data = sys_ram[addr & 0x07FF];
     }
     else if (addr >= 0x2000 && addr <= 0x3FFF) {
-        return cpuBus_readPPU(addr & 0x0007);
+        data = cpuBus_readPPU(addr & 0x0007);
     }
     else if (addr >= 0x4016 && addr <= 0x4017) {
         data = (controller_state[addr & 0x0001] & 0x80) > 0;
         controller_state[addr & 0x0001] <<= 1;
     }
+    
+    //probelm at 89882
+        /* code 
+    if (readCounter == 89882)
+    {
+    }
+        */
+    
+    if(readCounter < 200000){
+       // char buffer[100];
+        //sprintf(buffer,"read %02x, from %04x n%6d\n", data, addr, readCounter);
+       // fwrite(buffer, 1, 27, fp2);
+        //fprintf(fp2, "read %02x, from %04x n%6d\n", data, oldaddr, readCounter);
+    }
+    readCounter++;
+
     return data;
 }
 
-void sysBus_write(uint16_t addr, uint8_t data) {
-      bool hijack = false;
+int writeCounter = 0;
 
+void sysBus_write(uint16_t addr, uint8_t data) {
+    bool hijack = false;
+  /*
+    if(writeCounter < 200000){
+
+    char buffer[100];
+    sprintf(buffer,"write %02x, to %04x n%6d\n", data, addr, writeCounter++);
+    fwrite(buffer, 1, 28, fp2);
+    sys_writeToCard(addr, data, &hijack);
+    }
+  */
     sys_writeToCard(addr, data, &hijack);
     if(hijack) return;
-    else if (addr >= 0x0000 && addr <= 0x1FFF) {
+    else if (addr <= 0x1FFF) {
         sys_ram[addr & 0x07FF] = data;
     }
     else if (addr >= 0x2000 && addr <= 0x3FFF) {
