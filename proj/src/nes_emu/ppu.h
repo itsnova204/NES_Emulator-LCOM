@@ -19,7 +19,8 @@ typedef struct Color {
 } Color;
 
 Color ColorBuild(uint8_t red, uint8_t green, uint8_t blue);
-
+bool ppu_isFrameComplete();
+void ppu_setFrameCompleted(bool value);
 
 typedef struct {
     Color *pixels;

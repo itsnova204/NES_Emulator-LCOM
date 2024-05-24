@@ -12,6 +12,7 @@
 
 #include "nes_emu/ppu.h"
 #include "nes_emu/bus.h"
+#include "nes_emu/controler.h"
 
 int get_counter();
 uint8_t scan_code = 0;
@@ -44,13 +45,21 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-void populate_nes_screen(Sprite* nes_screen) {
-  for (int i = 0; i < 256; i++) {
-    for (int j = 0; j < 240; j++) {
-      SpriteSetPixel(nes_screen, i, j, ColorBuild(100, 0, 0));
-    }
-  }
-}
+#define MAKE_UP   0x4B
+#define BREAK_UP  0xCB
+#define MAKE_LEFT 0x4D
+#define BREAK_LEFT 0xCD
+#define MAKE_RIGHT 0x4D
+#define BREAK_RIGHT 0xCD
+#define MAKE_DOWN 0x50
+#define BREAK_DOWN 0xD0
+
+#define MAKE_A 0x1E
+#define BREAK_A 0x9E
+#define MAKE_S 0x1F
+#define BREAK_S 0x9F
+
+extern uint8_t controller[2];
 
 int (proj_main_loop)() {
   Sprite* nes_screen = SpriteCreate(256, 240);
@@ -74,24 +83,71 @@ int (proj_main_loop)() {
   if (set_frame_buffer(mode) != 0) return 1;
   if (set_graphic_mode(mode) != 0) return 1;
 
+  // SETUP e ciclo de interrupcoes do timer e do teclado
+  int ipc_status, r;
+  message msg;
+  uint8_t irq_set_timer, irq_set_kbd;
 
+  if(timer_subscribe_int(&irq_set_timer) != 0) return 1;
+  if(kbd_subscribe_int(&irq_set_kbd) != 0) return 1;
 
+  if (timer_set_frequency(0, 60) != 0) return 1;   
 
-  draw_sprite(MENU, 0, 0);
-  swap_buffers();
-  
-  int counter = 60000;
-  while (counter > 0) {
-      bus_clock();
-      nes_screen = ppu_get_screen_ptr();
-      vg_draw_color_sprite(nes_screen, 0, 0);
-      counter--;
-      //printf("counter: %d\n", counter);
+  bool is_second_scan_code = false;
+  while( scan_code != KBD_ESC_BREAK_CODE ) {
+        while (ppu_isFrameComplete() == false) bus_clock();
+        ppu_setFrameCompleted(false);
+      /* Get a request message. */
+      if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
+          printf("driver_receive failed with: %d", r);
+          continue;
+      }
+
+      if (is_ipc_notify(ipc_status)) { /* received notification */
+          switch (_ENDPOINT_P(msg.m_source)) {
+              case HARDWARE: /* hardware interrupt notification */		
+                  if (msg.m_notify.interrupts & irq_set_kbd) {
+                    kbc_ih();
+                    if (!is_valid()) continue;
+                    scan_code = get_scan_code();
+                    if (is_two_byte_scan_code(scan_code) && !is_second_scan_code) {
+                      is_second_scan_code = true;
+                      continue;
+                    } else if (is_second_scan_code) {
+                      is_second_scan_code = false;
+                    }
+
+                    if (scan_code == KBD_ESC_BREAK_CODE) break;
+                    
+                  }
+
+                  if (msg.m_notify.interrupts & irq_set_timer) {
+                    timer_int_handler();
+                    int counter = get_counter();
+
+                    // DRAW NEW FRAME
+                    if (counter % FRAME_INTERVAL == 0) {
+                      if (draw_sprite(MENU, 0, 0) != 0) return 1;
+                      nes_screen = ppu_get_screen_ptr();
+                      vg_draw_color_sprite(nes_screen, 150, 100, 2);
+                      // blink colon every 2 seconds
+                      bool draw_colon = (counter / (FRAME_INTERVAL * 32)) % 2 == 0;
+                      if (draw_hours(12, 34, 10, 95, draw_colon) != 0) return 1;
+
+                      swap_buffers();
+                    }
+
+                  }
+                  break;
+              default:
+                  break;
+          }
+      } else {}
   }
-  
+  if (kbd_unsubscribe_int() != 0) return 1;
 
   if (vg_exit() != 0) return 1;
-
+  if (timer_unsubscribe_int() != 0) return 1;
 
   return 0;
 }

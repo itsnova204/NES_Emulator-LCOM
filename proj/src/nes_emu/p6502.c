@@ -51,30 +51,42 @@ instructionSet lookup[] =
 		{ "BEQ", &INST_BEQ, &ADR_REL, 2 },{ "SBC", &INST_SBC, &ADR_IZY, 5 },{ "???", &INST_XXX, &ADR_IMP, 2 },{ "???", &INST_XXX, &ADR_IMP, 8 },{ "???", &INST_NOP, &ADR_IMP, 4 },{ "SBC", &INST_SBC, &ADR_ZPX, 4 },{ "INC", &INST_INC, &ADR_ZPX, 6 },{ "???", &INST_XXX, &ADR_IMP, 6 },{ "SED", &INST_SED, &ADR_IMP, 2 },{ "SBC", &INST_SBC, &ADR_ABY, 4 },{ "NOP", &INST_NOP, &ADR_IMP, 2 },{ "???", &INST_XXX, &ADR_IMP, 7 },{ "???", &INST_NOP, &ADR_IMP, 4 },{ "SBC", &INST_SBC, &ADR_ABX, 4 },{ "INC", &INST_INC, &ADR_ABX, 7 },{ "???", &INST_XXX, &ADR_IMP, 7 },
 	};
 
-
+bool isCPU_complete(){
+	return cycles_left == 0;
+}
+int instcounter = 0;
 void cpu_clock(){
 	if (cycles_left == 0){
+		instcounter++;
 		opcode = sysBus_read(program_counter);
 		program_counter++;
 
 		cycles_left = lookup[opcode].cycles;
 
-		printf("pc: %04x op name: %s\n",program_counter, lookup[opcode].name);
+		if (instcounter>16340)
+		{
+			//printf("arrived\n");
+		}
+		
+
+		//printf("pc: %04x op name: %s\n",program_counter, lookup[opcode].name);
+		//printf("stack_ptr: %04x\n", stack_ptr);
 		uint8_t additional_cycles1 = lookup[opcode].ADR_MODE();
 		uint8_t additional_cycles2 = lookup[opcode].INST_CODE();
 
 		cycles_left += (additional_cycles1 & additional_cycles2); //if we pass page boundary we need to use an aditional clock cycle in certain instrctions
-		usleep(10000);
+
 	}
 
 	cycles_left--;
 }
 
 void cpu_init(){
-	program_counter = 0xC000;
+	program_counter = 0x0000;
 }
 
 void cpu_reset(){
+	printf("CPU RESET\n");
 	//reset registers
 	accumulator = 0;
 	x_reg = 0;
@@ -92,7 +104,7 @@ void cpu_reset(){
 	address_rel = 0;
 	fetched = 0;
 
-	cycles_left = 0;
+	cycles_left = 8;
 }
 
 void cpu_irq(){ //interrupt request (IRQ) - can be ignored
@@ -178,57 +190,51 @@ uint8_t ADR_IMM(){
 }
 
 uint8_t ADR_ZP0(){
-	address_abs = sysBus_read(program_counter);
-	program_counter++;
+	address_abs = sysBus_read(program_counter++);
 	address_abs = address_abs & 0x00FF; // we are reading from page 0 so we dont need MSB
 	return 0;
 }
 
 uint8_t ADR_ZPX(){
-	address_abs = sysBus_read(program_counter + x_reg);
-	program_counter++;
+	address_abs = sysBus_read(program_counter++) + x_reg;
 	address_abs = address_abs & 0x00FF; // we are reading from page 0 so we dont need MSB
 	return 0;
 }
 
 uint8_t ADR_ZPY(){
-	address_abs = sysBus_read(program_counter + y_reg);
+	address_abs = sysBus_read(program_counter) + y_reg;
 	program_counter++;
 	address_abs = address_abs & 0x00FF; // we are reading from page 0 so we dont need MSB
 	return 0;
 }
 
 uint8_t ADR_ABS(){
-	uint8_t lsb = sysBus_read(program_counter);
-	program_counter++;
-	uint8_t msb = sysBus_read(program_counter);
-	program_counter++;
+	uint8_t lsb = sysBus_read(program_counter++);
+	uint8_t msb = sysBus_read(program_counter++);
 
 	address_abs = (msb << 8) | lsb;
 	return 0;
 }
 
 uint8_t ADR_ABX(){
-	uint8_t lsb = sysBus_read(program_counter);
-	program_counter++;
-	uint8_t msb = sysBus_read(program_counter);
-	program_counter++;
+	uint8_t lsb = sysBus_read(program_counter++);
+	uint8_t msb = sysBus_read(program_counter++);
 
 	address_abs = (msb << 8) | lsb;
 	address_abs += x_reg;
 
-	if ((address_abs & 0xFF00) != (msb << 8)) return 1; //if this makes us read an address on a different page we may need another clock cycle
-	return 0;
+	if ((address_abs & 0xFF00) != (msb << 8)) {
+        return 1;
+    }
+
+    return 0;
 }
 
 uint8_t ADR_ABY(){
-	uint8_t lsb = sysBus_read(program_counter);
-	program_counter++;
-	uint8_t msb = sysBus_read(program_counter);
-	program_counter++;
+	uint8_t lsb = sysBus_read(program_counter++);
+	uint8_t msb = sysBus_read(program_counter++);
 
-	address_abs = (msb << 8) | lsb;
-	address_abs += y_reg;
+	address_abs = ((msb << 8) | lsb) + y_reg;
 
 	if ((address_abs & 0xFF00) != (msb << 8)) return 1; //if this makes us read an address on a different page we may need another clock cycle
 	return 0;
@@ -236,46 +242,43 @@ uint8_t ADR_ABY(){
 
 
 uint8_t ADR_IND(){
-	uint8_t lsb = sysBus_read(program_counter);
-	program_counter++;
-	uint8_t msb = sysBus_read(program_counter);
-	program_counter++;
+	uint8_t lsb = sysBus_read(program_counter++);
+	uint8_t msb = sysBus_read(program_counter++);
 
 	uint16_t ptr = (msb << 8) | lsb;
 
 	address_abs = (sysBus_read(program_counter + 1) << 8) | sysBus_read(program_counter);
 	
-	if(lsb == 0x00FF){ //if reading the msb from the bus would make it overflow and switch page the 6502 would actually bug and start reading from the start of the current page, this behavior is emulated here. for further reading consult: https://www.nesdev.org/6502bugs.txt
-		address_abs = (sysBus_read(ptr & 0xFF00) << 8) | sysBus_read(ptr);
-	}else{//if no overflow then it behaves normaly
-		address_abs = (sysBus_read(ptr + 1) << 8) | sysBus_read(ptr);
-	}
+    if (ptr == 0x00FF) {
+        address_abs = (sysBus_read(ptr & 0xFF00) << 8) | sysBus_read(ptr + 0);
+    }
+    // Normal behaivour
+    else {
+        address_abs = (sysBus_read(ptr + 1) << 8) | sysBus_read(ptr + 0);
+    }
 	
 	return 0;
 }
 
 uint8_t ADR_IZX(){
-	uint8_t ptr = sysBus_read(program_counter);
-	program_counter++;
-
-	uint8_t lsb = sysBus_read(ptr + x_reg);
-	uint8_t msb = sysBus_read(ptr + x_reg + 1);
+	uint8_t ptr = sysBus_read(program_counter++);
+	uint8_t lsb = sysBus_read((uint16_t)(ptr + (uint16_t)x_reg) & 0x00FF);
+	uint8_t msb = sysBus_read((uint16_t)(ptr + (uint16_t)x_reg + 1) & 0x00FF);
 	
 	address_abs = (msb << 8) | lsb;
 	return 0;
 }
 
 uint8_t ADR_IZY(){
-	uint8_t ptr = sysBus_read(program_counter);
-	program_counter++;
+	uint8_t ptr = sysBus_read(program_counter++);
+	uint8_t lsb = sysBus_read((uint16_t)(ptr + (uint16_t)y_reg) & 0x00FF);
+	uint8_t msb = sysBus_read((uint16_t)(ptr + (uint16_t)y_reg + 1) & 0x00FF);
+	address_abs = ((msb << 8) | lsb) + y_reg;
 
-	uint8_t lsb = sysBus_read(ptr);
-	uint8_t msb = sysBus_read(ptr + 1);
-	
-	address_abs = (msb << 8) | lsb;
-	address_abs += y_reg;
-
-	if ((address_abs & 0xFF00) != (msb << 8)) return 1;	
+    // If the addr is in a new page, then we may need another clock cycle
+    if ((address_abs & 0xFF00) != (msb << 8)) {
+        return 1;
+    }
 	return 0;
 }
 

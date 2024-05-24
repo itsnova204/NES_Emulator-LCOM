@@ -15,6 +15,8 @@ typedef enum{
 
 #define  stack_ofset 0x0100
 
+bool isCPU_complete();
+
 void cpu_clock();
 void cpu_init();
 void cpu_reset();

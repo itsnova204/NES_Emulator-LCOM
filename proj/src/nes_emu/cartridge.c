@@ -42,7 +42,7 @@ int cart_insert(char* cart_filePath){
   //read header
   printf("[CART] Loading rom: %s\n", cart_filePath);
 
-  FILE *fp = fopen(cart_filePath, "r");
+  FILE *fp = fopen(cart_filePath, "rb"); //TODO change this to "r" in minix
   if (fp == NULL){
     printf("Error: Could not open rom\n");
     return 1;
@@ -142,7 +142,9 @@ void print_header(){
   printf("unused: %c%c%c%c%c\n", header.unused[0], header.unused[1], header.unused[2], header.unused[3], header.unused[4]);
 }
 
+
 uint8_t sys_readFromCard(uint16_t addr, bool* hijack){
+  
   return PRGmem[mapper_map(addr, type_sysBus_read, hijack)];
 }
 
