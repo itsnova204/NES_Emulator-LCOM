@@ -19,15 +19,15 @@ static uint8_t sys_ram[2 * 1024];
 bool ppu_nmi;
 
 int bus_init(char* cart_filePath){
-   printf("[BUS] Starting rom: %s\n", cart_filePath);
+  printf("[BUS] Starting rom: %s\n", cart_filePath);
   //start sys_ram with 0;
   memset(&sys_ram, 0, 2048); //nes has 2kb of ram (0x0000 - 0x07FF)
 
-  controler_init(controller);
+  //controler_init(controller);
 
   if (cart_insert(cart_filePath))return 1;
   
-  cpu_init();
+  cpu_reset();
   ppu_init(&ppu_nmi);
 
   return 0;
@@ -38,6 +38,7 @@ int bus_exit(){
 
   return 0;
 }
+
 
 void bus_clock(){
   ppu_clock();
@@ -54,46 +55,37 @@ void bus_clock(){
 	mainClockCounter++;
 }
 
-uint8_t sysBus_read(uint16_t addr){
-  //random nunmber between 0 and 2000
-  /*
-  int num = rand() % 2000;
-  printf("random ram value: %d\n", sys_ram[num]);
-  */
-  
-  uint16_t data;
-  bool hijack = false;
+uint8_t sysBus_read(uint16_t addr) {
+    uint8_t data = 0x00;
+    bool hijack = false;
 
-  data = sys_readFromCard(addr, &hijack);
-  if(hijack) return data;
-
-  if (addr <= 0x1FFF){ //access sys_ram
-    return sys_ram[addr & 0x07FF];
-  }
-  if (addr >= 0x2000 && addr <= 0x3FFF){ //access ppu registers
-    return cpuBus_readPPU(addr & 0x0007);
-  }else if (addr == 0x4016 || addr == 0x4017){ //controllers
-    data = (controller_state[addr & 0x0001] & 0x80) > 0;
-    controller_state[addr & 0x0001] <<= 1;
-  }
-
-  return data;
+    data = sys_readFromCard(addr, &hijack);
+    if(hijack) return data;
+    else if (addr >= 0x0000 && addr <= 0x1FFF) {
+        return sys_ram[addr & 0x07FF];
+    }
+    else if (addr >= 0x2000 && addr <= 0x3FFF) {
+        return cpuBus_readPPU(addr & 0x0007);
+    }
+    else if (addr >= 0x4016 && addr <= 0x4017) {
+        data = (controller_state[addr & 0x0001] & 0x80) > 0;
+        controller_state[addr & 0x0001] <<= 1;
+    }
+    return data;
 }
 
-void sysBus_write(uint16_t addr, uint8_t data){
-  //printf("writing to ram adr: %02x data %01x \n", addr, data);
-  bool hijack = false;
+void sysBus_write(uint16_t addr, uint8_t data) {
+      bool hijack = false;
 
-  sys_writeToCard(addr, data, &hijack);
-  if(hijack) return;
-  
-  if (addr <= 0x1FFF){ //access sys_ram
-    sys_ram[addr & 0x07FF] = data;
-    //printf("written:%02x\n", sys_ram[addr & 0x07FF]);
-
-  }else if (addr >= 0x2000 && addr <= 0x3FFF){ //access ppu registers
-    cpuBus_writePPU(addr, data);
-  }else if (addr == 0x4016 || addr == 0x4017){ //controller 1
-    controller_state[addr & 0x0001] = controller[addr & 0x0001]; //update controller state
-  }
+    sys_writeToCard(addr, data, &hijack);
+    if(hijack) return;
+    else if (addr >= 0x0000 && addr <= 0x1FFF) {
+        sys_ram[addr & 0x07FF] = data;
+    }
+    else if (addr >= 0x2000 && addr <= 0x3FFF) {
+        cpuBus_writePPU(addr & 0x0007, data);
+    }
+    else if (addr >= 0x4016 && addr <= 0x4017) {
+        controller_state[addr & 0x0001] = controller[addr & 0x0001];
+    }
 }
