@@ -270,10 +270,10 @@ uint8_t ADR_IZX(){
 }
 
 uint8_t ADR_IZY(){
-	uint8_t ptr = sysBus_read(program_counter++);
-	uint8_t lsb = sysBus_read((uint16_t)(ptr + (uint16_t)y_reg) & 0x00FF);
-	uint8_t msb = sysBus_read((uint16_t)(ptr + (uint16_t)y_reg + 1) & 0x00FF);
-	address_abs = ((msb << 8) | lsb) + y_reg;
+    uint16_t ptr = sysBus_read(program_counter++);
+    uint16_t lsb = sysBus_read(ptr & 0x00FF);
+    uint16_t msb = sysBus_read((ptr + 1) & 0x00FF);
+    address_abs = ((msb << 8) | lsb) + y_reg;
 
     // If the addr is in a new page, then we may need another clock cycle
     if ((address_abs & 0xFF00) != (msb << 8)) {
