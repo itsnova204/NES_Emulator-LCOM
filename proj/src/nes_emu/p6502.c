@@ -254,20 +254,21 @@ uint8_t ADR_ABY(){
 
 
 uint8_t ADR_IND(){
-	uint8_t lsb = sysBus_read(program_counter++);
-	uint8_t msb = sysBus_read(program_counter++);
+	uint16_t lsb = sysBus_read(program_counter);
+	program_counter++;
+	uint16_t msb = sysBus_read(program_counter);
+	program_counter++;
 
 	uint16_t ptr = (msb << 8) | lsb;
 
-	address_abs = (sysBus_read(program_counter + 1) << 8) | sysBus_read(program_counter);
-	
-    if (ptr == 0x00FF) {
-        address_abs = (sysBus_read(ptr & 0xFF00) << 8) | sysBus_read(ptr + 0);
-    }
-    // Normal behaivour
-    else {
-        address_abs = (sysBus_read(ptr + 1) << 8) | sysBus_read(ptr + 0);
-    }
+	if (lsb == 0x00FF) // Simulate page boundary hardware bug
+	{
+		address_abs = (sysBus_read(ptr & 0xFF00) << 8) | sysBus_read(ptr + 0);
+	}
+	else // Behave normally
+	{
+		address_abs = (sysBus_read(ptr + 1) << 8) | sysBus_read(ptr + 0);
+	}
 	
 	return 0;
 }
@@ -328,11 +329,10 @@ uint8_t INST_RTI(){ //return from interrupt
 
 uint8_t INST_AND(){
 	fetch();
-	accumulator &= fetched;
+	accumulator = accumulator & fetched;
 	set_flag(zero_bit, accumulator == 0x00);
-	set_flag(negative_bit, (accumulator & BIT(7)) != 0);
-
-	return 1; 
+	set_flag(negative_bit, accumulator & 0x80);
+	return 1;
 }
 
 uint8_t INST_BCC(){
@@ -393,11 +393,13 @@ uint8_t INST_BMI(){
 }
 
 uint8_t INST_BNE(){
-	if(get_flag(zero_bit) == 0){
+	if (get_flag(zero_bit) == 0)
+	{
 		cycles_left++;
 		address_abs = program_counter + address_rel;
 
-		if((address_abs & 0xFF00) != (program_counter & 0xFF00)) cycles_left++;
+		if ((address_abs & 0xFF00) != (program_counter & 0xFF00))
+			cycles_left++;
 
 		program_counter = address_abs;
 	}
@@ -498,8 +500,8 @@ uint8_t INST_CMP(){
 	fetch();
 	uint16_t val = (uint16_t)accumulator - (uint16_t)fetched;
 	set_flag(carry_bit, accumulator >= fetched);
-	set_flag(zero_bit, (val & 0x00FF) == 0);
-	set_flag(negative_bit, val & BIT(7));
+	set_flag(zero_bit, (val & 0x00FF) == 0x0000);
+	set_flag(negative_bit, val & 0x0080);
 	return 1;
 }
 
@@ -547,9 +549,9 @@ uint8_t INST_DEY(){
 
 uint8_t INST_EOR(){
 	fetch();
-	accumulator ^= fetched;
+	accumulator = accumulator ^ fetched;	
 	set_flag(zero_bit, accumulator == 0x00);
-	set_flag(negative_bit, (accumulator & BIT(7)) != 0);
+	set_flag(negative_bit, accumulator & 0x80);
 	return 1;
 }
 
@@ -647,24 +649,28 @@ uint8_t INST_NOP(){ //todo add more illegal opcodes
 
 uint8_t INST_ORA(){
 	fetch();
-	accumulator |= fetched;
+	accumulator = accumulator | fetched;
 	set_flag(zero_bit, accumulator == 0x00);
-	set_flag(negative_bit, (accumulator & BIT(7)) != 0);
+	set_flag(negative_bit, accumulator & 0x80);
 	return 1;
 }
 
 
 
 uint8_t INST_ADC(){
+
 	fetch();
+	
 	uint16_t sum = (uint16_t)accumulator + (uint16_t)fetched + (uint16_t)get_flag(carry_bit);
+	
 	set_flag(carry_bit, sum > 255);
 	set_flag(zero_bit, (sum & 0x00FF) == 0);
-	set_flag(negative_bit, sum & BIT(7));
-
 	set_flag(overflow_bit, (~((uint16_t)accumulator ^ (uint16_t)fetched) & ((uint16_t)accumulator ^ (uint16_t)sum)) & 0x0080);
-
+	
+	set_flag(negative_bit, sum & 0x80);
+	
 	accumulator = sum & 0x00FF;
+	
 	return 1;
 }
 

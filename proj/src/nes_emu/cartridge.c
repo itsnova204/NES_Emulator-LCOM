@@ -69,6 +69,9 @@ int cart_insert(char* cart_filePath){
     break;
   }
 
+
+  set_mapper(mapper_id, nPRG_membanks, nCHR_membanks);
+  
   return fclose(fp);
 }
 
