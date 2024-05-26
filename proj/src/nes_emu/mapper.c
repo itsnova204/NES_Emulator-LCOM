@@ -7,6 +7,7 @@ static uint8_t mapper_nPRGbanks;
 static uint8_t mapper_nCHRbanks;
 
 uint8_t set_mapper(uint8_t id, uint8_t nPRGbanks, uint8_t nCHRbanks){
+  printf("[mapper] loading mapper %d with: %d nPRGbanks, %d nCHRbanks\n",id, nPRGbanks,nCHRbanks);
   if (id >= sizeof(mapper_table) / sizeof(mapper_table[0])) return 1;
   mapper_id = id;
   mapper_nPRGbanks = nPRGbanks;

@@ -69,9 +69,8 @@ int cart_insert(char* cart_filePath){
     break;
   }
 
-
   set_mapper(mapper_id, nPRG_membanks, nCHR_membanks);
-  
+
   return fclose(fp);
 }
 
@@ -91,7 +90,7 @@ void header_parse(FILE *fp){
     fseek(fp, 512, SEEK_SET);
   }
 
-  mapper_id = (header.mapperMsb_andFlags & 0xF0) | (header.mapperLsb_andFlags >> 4);
+  mapper_id = (header.mapperMsb_andFlags >> 4) << 4 | (header.mapperLsb_andFlags >> 4);
   mirror_type = (header.mapperLsb_andFlags & 0x01) ? VERTICAL : HORIZONTAL;
 
   print_header();
@@ -126,10 +125,7 @@ uint8_t ines_parse(FILE *fp){
 
   PRGmem_read = fread(PRGmem, 16384, nPRG_membanks, fp);
   CHRmem_read = fread(CHRmem, 8192, nCHR_membanks, fp);
-
-  printf("Loaded PRGmem: %d bytes\n", PRGmem_read*16384);
-  printf("Loaded CHRmem: %d bytes\n", CHRmem_read*8192);
-
+  
   return 0;
 }
 
@@ -147,6 +143,8 @@ void print_header(){
 
 
 uint8_t sys_readFromCard(uint16_t addr, bool* hijack){
+
+  
   
   return PRGmem[mapper_map(addr, type_sysBus_read, hijack)];
 }
