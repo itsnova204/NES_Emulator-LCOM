@@ -16,7 +16,17 @@ uint8_t controller_state[2] = {0, 0};
 static uint32_t mainClockCounter = 0;
 static uint8_t sys_ram[2 * 1024];
 
+uint8_t dma_page = 0x00;
+uint8_t dma_addr = 0x00;
+uint8_t dma_data = 0x00;
+
+bool dma_dummy = true;
+bool dma_transfer = false;
+
 bool ppu_nmi;
+
+uint8_t* OAM_ptr;
+
 FILE* fp2;
 int bus_init(char* cart_filePath){
   memset(&sys_ram, 0, 2048); //nes has 2kb of ram (0x0000 - 0x07FF)
@@ -28,13 +38,9 @@ int bus_init(char* cart_filePath){
 
   if (cart_insert(cart_filePath))return 1;
   
-  //fp2 = fopen("/games/output.txt", "wb"); //TODO change this to "r" in minix
   cpu_reset();
   ppu_init();
-  //fprintf(fp2, "sanity check\n");
-  
-
-  
+  OAM_ptr = getOAM_ptr();
 
   return 0;
 }
@@ -49,27 +55,48 @@ int bus_exit(){
 void bus_clock(){
   ppu_nmi=ppu_clock();
 
-  if (mainClockCounter % 3 == 0){
-		cpu_clock();
-	}
 
+if (mainClockCounter % 3 == 0){
+	if (dma_transfer){
+		if (dma_dummy){
+			if (mainClockCounter % 2 == 1){
+				dma_dummy = false;
+			}
+		}else{
+			if (mainClockCounter % 2 == 0)
+			{
+				dma_data = sysBus_read(dma_page << 8 | dma_addr);
+			}
+			else
+			{
+				OAM_ptr[dma_addr] = dma_data;
+				dma_addr++;
+				if (dma_addr == 0x00)
+				{
+					dma_transfer = false;
+					dma_dummy = true;
+				}
+			}
+		}
+	}else{
+     	//no DMA, proceed as normal
+		cpu_clock();
+	}		
+}
   if (ppu_nmi){
     //printf("nmi triggered\n");
-        ppu_disable_nmi();
+    ppu_disable_nmi();
 		cpu_nmi();
   }   
 
 	mainClockCounter++;
 }
 
-int readCounter = 0;
-
-
 uint8_t sysBus_read(uint16_t addr) {
+    printf("Reading from address: %x\n", addr);
     uint8_t data = 0x00;
     bool hijack = false;
-    //uint16_t oldaddr = addr;
-
+    
     data = sys_readFromCard(addr, &hijack);
     if(hijack){
         addr = 0xffff;
@@ -79,26 +106,11 @@ uint8_t sysBus_read(uint16_t addr) {
     }
     else if (addr >= 0x2000 && addr <= 0x3FFF) {
         data = cpuBus_readPPU(addr & 0x0007);
-    }
-    else if (addr >= 0x4016 && addr <= 0x4017) {
+    }else if (addr >= 0x4016 && addr <= 0x4017) {
         data = (controller_state[addr & 0x0001] & 0x80) > 0;
         controller_state[addr & 0x0001] <<= 1;
     }
-    
-    //probelm at 89882
-        /* code 
-    if (readCounter == 89882)
-    {
-    }
-        */
-    
-    if(readCounter < 200000){
-       // char buffer[100];
-        //sprintf(buffer,"read %02x, from %04x n%6d\n", data, addr, readCounter);
-       // fwrite(buffer, 1, 27, fp2);
-        //fprintf(fp2, "read %02x, from %04x n%6d\n", data, oldaddr, readCounter);
-    }
-    readCounter++;
+
 
     return data;
 }
@@ -107,15 +119,7 @@ int writeCounter = 0;
 
 void sysBus_write(uint16_t addr, uint8_t data) {
     bool hijack = false;
-  /*
-    if(writeCounter < 200000){
 
-    char buffer[100];
-    sprintf(buffer,"write %02x, to %04x n%6d\n", data, addr, writeCounter++);
-    fwrite(buffer, 1, 28, fp2);
-    sys_writeToCard(addr, data, &hijack);
-    }
-  */
     sys_writeToCard(addr, data, &hijack);
     if(hijack) return;
     else if (addr <= 0x1FFF) {
@@ -123,7 +127,12 @@ void sysBus_write(uint16_t addr, uint8_t data) {
     }
     else if (addr >= 0x2000 && addr <= 0x3FFF) {
         cpuBus_writePPU(addr & 0x0007, data);
-    }
+    }	else if (addr == 0x4014){
+		// DMA transfer https://www.nesdev.org/wiki/DMA
+      dma_page = data;
+      dma_addr = 0x00;
+      dma_transfer = true;						
+	  }
     else if (addr >= 0x4016 && addr <= 0x4017) {
         controller_state[addr & 0x0001] = controller[addr & 0x0001];
     }

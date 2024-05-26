@@ -8,22 +8,20 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
-
 typedef size_t usize;
 
-
-void ppu_disable_nmi();
-
 typedef struct Color {
-    uint8_t red;        // Color red value
-    uint8_t green;        // Color green value
-    uint8_t blue;        // Color blue value
-    uint8_t alpha;        // Color alpha value
+    unsigned char red;   
+    unsigned char green;      
+    unsigned char blue;        
+    unsigned char alpha;        
 } Color;
 
 Color ColorBuild(uint8_t red, uint8_t green, uint8_t blue);
 bool ppu_isFrameComplete();
 void ppu_setFrameCompleted(bool value);
+
+void ppu_disable_nmi();
 
 typedef struct {
     Color *pixels;
@@ -34,6 +32,8 @@ typedef struct {
 Sprite *SpriteCreate(uint16_t width, uint16_t height);
 Color SpriteGetPixel(Sprite *sprite, uint16_t x, uint16_t y);
 bool SpriteSetPixel(Sprite *sprite, uint16_t x, uint16_t y, Color color);
+
+uint8_t* getOAM_ptr();
 
 typedef union {
     struct {
@@ -118,6 +118,13 @@ typedef struct {
     uint16_t bgShifterAttribHi;
     bool nmi;
 } Ppu2C02;
+
+struct sObjectAttributeEntry{//https://www.nesdev.org/wiki/PPU_OAM
+    uint8_t y;			// Y position of sprite
+    uint8_t id;			// ID of tile from pattern memory
+    uint8_t attribute;	// Flags define how sprite should be rendered
+    uint8_t x;			// X position of sprite
+};
 
 void ppu_init();
 
