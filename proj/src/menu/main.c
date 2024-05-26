@@ -7,6 +7,7 @@
 #include "i8042.h"
 #include "i8254.h"
 #include "keyboard.h"
+#include "rtc.h"
 
 #include "sprite.h"
 
@@ -56,9 +57,10 @@ int (proj_main_loop)() {
   if(timer_subscribe_int(&irq_set_timer) != 0) return 1;
   if(kbd_subscribe_int(&irq_set_kbd) != 0) return 1;
 
-  if (timer_set_frequency(0, 60) != 0) return 1;   
+  if (timer_set_frequency(0,60) != 0) return 1;   
 
   bool is_second_scan_code = false;
+  rtc_read_date();
   while( scan_code != KBD_ESC_BREAK_CODE ) {
       /* Get a request message. */
       if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ) { 
@@ -87,13 +89,20 @@ int (proj_main_loop)() {
                     timer_int_handler();
                     int counter = get_counter();
 
+                    if (counter % 60 == 0) {
+                      rtc_read_date();
+                    }
+
                     // DRAW NEW FRAME
                     if (counter % FRAME_INTERVAL == 0) {
                       if (draw_sprite(MENU, 0, 0) != 0) return 1;
 
                       // blink colon every 2 seconds
                       bool draw_colon = (counter / (FRAME_INTERVAL * 32)) % 2 == 0;
-                      if (draw_hours(12, 34, 10, 95, draw_colon) != 0) return 1;
+                      rtc_date_t date = rtc_get_date();
+                      int minutes = date.minutes;
+                      int hours = date.hours;
+                      if (draw_hours(hours, minutes, 10, 95, draw_colon) != 0) return 1;
 
                       swap_buffers();
                     }
