@@ -29,7 +29,32 @@ void ppu_disable_nmi(){
     ppu.nmi = false;
 }
 
+
+struct sObjectAttributeEntry OAM[64];
+uint8_t* pOAM = (uint8_t*)OAM;
+
+uint8_t* getOAM_ptr(){
+    return pOAM;
+}
+
+uint8_t oam_addr = 0x00;
+
+
+struct sObjectAttributeEntry spriteScanline[8];
+
+uint8_t sprite_count = 0;
+uint8_t sprite_shifter_pattern_lo[8];
+uint8_t sprite_shifter_pattern_hi[8];
+
+bool bSpriteZeroHitPossible = false;
+bool bSpriteZeroBeingRendered = false;
+
 int debugcount = 0;
+
+Sprite* ppu_get_screen_ptr() {
+		return ppu.spriteScreen;
+}
+
 void ppu_init() {
     printf("[PPU] Initializing PPU\n");
 
@@ -178,9 +203,9 @@ uint8_t cpuBus_readPPU(uint16_t addr) { //known good
 
             // OAM Address
             case 0x0003: break;
-
             // OAM Data
             case 0x0004: break;
+                data = pOAM[oam_addr];
 
             // Scroll - Not Readable
             case 0x0005: break;
@@ -215,8 +240,10 @@ void cpuBus_writePPU(uint16_t addr, uint8_t data)
 	case 0x0002: // Status
 		break;
 	case 0x0003: // OAM Address
+        oam_addr = data;
 		break;
 	case 0x0004: // OAM Data
+        pOAM[oam_addr] = data;
 		break;
 	case 0x0005: // Scroll
 		if (ppu.addressLatch == 0) {
@@ -345,6 +372,7 @@ void ppuBus_write(uint16_t addr, uint8_t data) {
     }
 }
 
+
 Color get_colorFromPaletteRam(uint8_t palette, uint8_t pixel) {//KNOWN GOOD!
     Color color = ppu.paletteScreen[ppuBus_read(0x3F00 + (palette << 2) + pixel) & 0x3F];    
     return color;
@@ -435,111 +463,368 @@ void UpdateShifters() {
         ppu.bgShifterAttribLo <<= 1;
         ppu.bgShifterAttribHi <<= 1;
     }
+
+    if (ppu.registers.mask.bits.renderSprites && ppu.cycle >= 1 && ppu.cycle < 258)
+	{
+		for (int i = 0; i < sprite_count; i++)
+		{
+			if (spriteScanline[i].x > 0)
+			{
+				spriteScanline[i].x--;
+			}
+			else
+			{
+				sprite_shifter_pattern_lo[i] <<= 1;
+				sprite_shifter_pattern_hi[i] <<= 1;
+			}
+		}
+	}
 }
 
-bool ppu_clock() {
-    if (ppu.scanline >= -1 && ppu.scanline < 240) {
-        if (ppu.scanline == 0 && ppu.cycle == 0) {
-            ppu.cycle = 1;
-        }
-        if (ppu.scanline == -1 && ppu.cycle == 1) {
-            ppu.registers.status.bits.verticalBlank = 0;
-        }
-        if ((ppu.cycle >= 2 && ppu.cycle < 258) || (ppu.cycle >= 321 && ppu.cycle < 338)) {
-            UpdateShifters();
+uint8_t flipbyte(uint8_t b){
+    // https://stackoverflow.com/a/2602885
+    b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
+    b = (b & 0xCC) >> 2 | (b & 0x33) << 2;
+    b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
+    return b;
+}
 
-            switch ((ppu.cycle - 1) % 8) {
-                case 0:
-                    LoadBackgroundShifters();
 
-                    ppu.bgNextTileId = ppuBus_read(0x2000 | (ppu.vramAddr.reg & 0x0FFF));
-                    break;
-                case 2:
-                    ppu.bgNextTileAttr = ppuBus_read(0x23C0 | (ppu.vramAddr.bits.nametableY << 11)
-                        | (ppu.vramAddr.bits.nametableX << 10)
-                        | ((ppu.vramAddr.bits.coarseY >> 2) << 3)
-                        | (ppu.vramAddr.bits.coarseX >> 2)); 
-                    if (ppu.vramAddr.bits.coarseY & 0x02) ppu.bgNextTileAttr >>= 4;
-                    if (ppu.vramAddr.bits.coarseX & 0x02) ppu.bgNextTileAttr >>= 2;
-                    ppu.bgNextTileAttr &= 0x03;
-                    break;
-                case 4:
-                    ppu.bgNextTileLsb = ppuBus_read((ppu.registers.ctrl.bits.patternBackground << 12)
-                        + ((uint16_t)ppu.bgNextTileId << 4)
-                        + (ppu.vramAddr.bits.fineY) + 0);
-                    break;
-                case 6:
-                    ppu.bgNextTileMsb = ppuBus_read((ppu.registers.ctrl.bits.patternBackground << 12)
-                        + ((uint16_t)ppu.bgNextTileId << 4)
-                        + (ppu.vramAddr.bits.fineY) + 8);
-                    break;
-                case 7:
-                    IncrementScrollX();
-                    break;
-                default:
-                    break;
-            }
-        }
-        if (ppu.cycle == 256) {
-            IncrementScrollY();
-        }
-        if (ppu.cycle == 257) {
-            LoadBackgroundShifters();
-            TransferAddressX();
-        }
-        if (ppu.cycle == 338 || ppu.cycle == 340) {
-            ppu.bgNextTileId = ppuBus_read(0x2000 | (ppu.vramAddr.reg & 0x0FFF));
-        }
-        if (ppu.scanline == -1 && ppu.cycle >= 280 && ppu.cycle < 305) {
-            TransferAddressY();
-        }
-    }
 
-    if (ppu.scanline == 240) {
-        // Nothing happen here
-    }
+bool ppu_clock()
+{
+	if (ppu.scanline >= -1 && ppu.scanline < 240)
+	{		
+		// Background Rendering ======================================================
 
-    if (ppu.scanline >= 241 && ppu.scanline < 261) {
-        if (ppu.scanline == 241 && ppu.cycle == 1) {
-            ppu.registers.status.bits.verticalBlank = 1;
-            if (ppu.registers.ctrl.bits.enableNmi) {
-                ppu.nmi = true;
-            }
-        }
-    }
+		if (ppu.scanline == 0 && ppu.cycle == 0)
+		{
+			ppu.cycle = 1;
+		}
 
-    uint8_t bgPixel = 0x00;
-    uint8_t bgPalette = 0x00;
+		if (ppu.scanline == -1 && ppu.cycle == 1)
+		{
+			ppu.registers.status.bits.verticalBlank = 0;
+			ppu.registers.status.bits.spriteOverflow = 0;
+			ppu.registers.status.bits.spriteZeroHit = 0;
 
-    if (ppu.registers.mask.bits.renderBackground) {
-        uint16_t bitMux = 0x8000 >> ppu.fineX;
-        uint8_t p0Pixel = (ppu.bgShifterPatternLo & bitMux) > 0;
-        uint8_t p1Pixel = (ppu.bgShifterPatternHi & bitMux) > 0;
-        bgPixel = (p1Pixel << 1) | p0Pixel;
+			for (int i = 0; i < 8; i++)
+			{
+				sprite_shifter_pattern_lo[i] = 0;
+				sprite_shifter_pattern_hi[i] = 0;
+			}
+		}
 
-        uint8_t bgPalette0 = (ppu.bgShifterAttribLo & bitMux) > 0;
-        uint8_t bgPalette1 = (ppu.bgShifterAttribHi & bitMux) > 0;
-        bgPalette = (bgPalette1 << 1) | bgPalette0;
-    }
 
-    // Update the Sprite screen with the appropiate pixels and palettes
-    SpriteSetPixel(ppu.spriteScreen, ppu.cycle - 1, ppu.scanline, get_colorFromPaletteRam(bgPalette, bgPixel));
-    // Advance renderer - it never stops, it's relentless
-    ppu.cycle++;
+		if ((ppu.cycle >= 2 && ppu.cycle < 258) || (ppu.cycle >= 321 && ppu.cycle < 338))
+		{
+			UpdateShifters();
+			switch ((ppu.cycle - 1) % 8)
+			{
+			case 0:
+				LoadBackgroundShifters();
+				ppu.bgNextTileId = ppuBus_read(0x2000 | (ppu.vramAddr.reg & 0x0FFF));
+                
 
-    
-    if (ppu.cycle >= 341) {
-        ppu.cycle = 0;
-        ppu.scanline++;
-        //printf("Creating frame %d%%\n", (100*ppu.scanline)/261);
-        if (ppu.scanline >= 261) {
-            ppu.scanline = -1;
-            ppu.frameCompleted = true;
-        }
-    }
+				break;
+			case 2:	
+				ppu.bgNextTileAttr = ppuBus_read(0x23C0 | (ppu.vramAddr.bits.nametableY << 11) 
+					                                 | (ppu.vramAddr.bits.nametableX << 10) 
+					                                 | ((ppu.vramAddr.bits.coarseY >> 2) << 3) 
+					                                 | (ppu.vramAddr.bits.coarseX >> 2));
+						
+				if (ppu.vramAddr.bits.coarseY & 0x02) ppu.bgNextTileAttr >>= 4;
+				if (ppu.vramAddr.bits.coarseX & 0x02) ppu.bgNextTileAttr >>= 2;
+				ppu.bgNextTileAttr &= 0x03;
+				break;
+
+			case 4: 
+				ppu.bgNextTileLsb = ppuBus_read((ppu.registers.ctrl.bits.patternBackground << 12) 
+					                       + ((uint16_t)ppu.bgNextTileId << 4) 
+					                       + (ppu.vramAddr.bits.fineY) + 0);
+                
+				break;
+			case 6:
+				ppu.bgNextTileMsb = ppuBus_read((ppu.registers.ctrl.bits.patternBackground << 12)
+					                       + ((uint16_t)ppu.bgNextTileId << 4)
+					                       + (ppu.vramAddr.bits.fineY) + 8);
+				break;
+			case 7:
+				IncrementScrollX();
+				break;
+			}
+		}
+		if (ppu.cycle == 256)
+		{
+			IncrementScrollY();
+		}
+
+		if (ppu.cycle == 257)
+		{
+			LoadBackgroundShifters();
+			TransferAddressX();
+		}
+
+		if (ppu.cycle == 338 || ppu.cycle == 340)
+		{
+			ppu.bgNextTileId = ppuBus_read(0x2000 | (ppu.vramAddr.reg & 0x0FFF));
+		}
+
+		if (ppu.scanline == -1 && ppu.cycle >= 280 && ppu.cycle < 305)
+		{
+			TransferAddressY();
+		}
+
+
+		if (ppu.cycle == 257 && ppu.scanline >= 0)
+		{
+			memset(spriteScanline, 0xFF, 8 * sizeof(struct sObjectAttributeEntry));
+
+			sprite_count = 0;
+
+			for (uint8_t i = 0; i < 8; i++)
+			{
+				sprite_shifter_pattern_lo[i] = 0;
+				sprite_shifter_pattern_hi[i] = 0;
+			}
+			uint8_t nOAMEntry = 0;
+
+			bSpriteZeroHitPossible = false;
+
+			while (nOAMEntry < 64 && sprite_count < 9)
+			{
+				int16_t diff = ((int16_t)ppu.scanline - (int16_t)OAM[nOAMEntry].y);
+
+				
+				if (diff >= 0 && diff < (ppu.registers.ctrl.bits.spriteSize ? 16 : 8))
+				{
+
+					if (sprite_count < 8)
+					{
+						if (nOAMEntry == 0)
+						{
+							bSpriteZeroHitPossible = true;
+						}
+
+						memcpy(&spriteScanline[sprite_count], &OAM[nOAMEntry], sizeof(struct sObjectAttributeEntry));
+						sprite_count++;
+					}				
+				}
+
+				nOAMEntry++;
+			} 
+
+			ppu.registers.status.bits.spriteOverflow = (sprite_count > 8);
+
+		}
+
+		if (ppu.cycle == 340)
+		{
+
+			for (uint8_t i = 0; i < sprite_count; i++)
+			{
+
+				uint8_t sprite_pattern_bits_lo, sprite_pattern_bits_hi;
+				uint16_t sprite_pattern_addr_lo, sprite_pattern_addr_hi;
+
+				if (!ppu.registers.ctrl.bits.spriteSize)
+				{
+					if (!(spriteScanline[i].attribute & 0x80))
+					{
+						sprite_pattern_addr_lo = 
+						  (ppu.registers.ctrl.bits.patternSprite << 12  )  
+						| (spriteScanline[i].id   << 4   )  
+						| (ppu.scanline - spriteScanline[i].y); 
+												
+					}
+					else
+					{
+						sprite_pattern_addr_lo = 
+						  (ppu.registers.ctrl.bits.patternSprite << 12  )  
+						| (spriteScanline[i].id   << 4   )  
+						| (7 - (ppu.scanline - spriteScanline[i].y)); 
+					}
+
+				}
+				else
+				{
+					if (!(spriteScanline[i].attribute & 0x80))
+					{
+						if (ppu.scanline - spriteScanline[i].y < 8)
+						{
+							sprite_pattern_addr_lo = 
+							  ((spriteScanline[i].id & 0x01)      << 12) 
+							| ((spriteScanline[i].id & 0xFE)      << 4 )  
+							| ((ppu.scanline - spriteScanline[i].y) & 0x07 ); 
+						}
+						else
+						{
+							sprite_pattern_addr_lo = 
+							  ( (spriteScanline[i].id & 0x01)      << 12)  
+							| (((spriteScanline[i].id & 0xFE) + 1) << 4 ) 
+							| ((ppu.scanline - spriteScanline[i].y) & 0x07  ); 
+						}
+					}
+					else
+					{
+						if (ppu.scanline - spriteScanline[i].y < 8)
+						{
+							sprite_pattern_addr_lo = 
+							  ( (spriteScanline[i].id & 0x01)      << 12)    
+							| (((spriteScanline[i].id & 0xFE) + 1) << 4 )    
+							| (7 - (ppu.scanline - spriteScanline[i].y) & 0x07); 
+						}
+						else
+						{
+							sprite_pattern_addr_lo = 
+							  ((spriteScanline[i].id & 0x01)       << 12)    
+							| ((spriteScanline[i].id & 0xFE)       << 4 )    
+							| (7 - (ppu.scanline - spriteScanline[i].y) & 0x07);
+						}
+					}
+				}
+				sprite_pattern_addr_hi = sprite_pattern_addr_lo + 8;
+
+				sprite_pattern_bits_lo = ppuBus_read(sprite_pattern_addr_lo);
+				sprite_pattern_bits_hi = ppuBus_read(sprite_pattern_addr_hi);
+				if (spriteScanline[i].attribute & 0x40)
+				{
+					sprite_pattern_bits_lo = flipbyte(sprite_pattern_bits_lo);
+					sprite_pattern_bits_hi = flipbyte(sprite_pattern_bits_hi);
+				}
+				sprite_shifter_pattern_lo[i] = sprite_pattern_bits_lo;
+				sprite_shifter_pattern_hi[i] = sprite_pattern_bits_hi;
+			}
+		}
+	}
+
+
+	if (ppu.scanline >= 241 && ppu.scanline < 261)
+	{
+		if (ppu.scanline == 241 && ppu.cycle == 1)
+		{
+			ppu.registers.status.bits.verticalBlank = 1;
+
+			if (ppu.registers.ctrl.bits.enableNmi) 
+				ppu.nmi = true;
+		}
+	}
+
+
+	// Background =============================================================
+	uint8_t bgPixel = 0x00;  
+	uint8_t bgPalette = 0x00; 
+
+	if (ppu.registers.mask.bits.renderBackground)
+	{
+		uint16_t bit_mux = 0x8000 >> ppu.fineX;
+
+		uint8_t p0_pixel = (ppu.bgShifterPatternLo & bit_mux) > 0;
+		uint8_t p1_pixel = (ppu.bgShifterPatternHi & bit_mux) > 0;
+
+		bgPixel = (p1_pixel << 1) | p0_pixel;
+
+		uint8_t bg_pal0 = (ppu.bgShifterAttribLo & bit_mux) > 0;
+		uint8_t bg_pal1 = (ppu.bgShifterAttribHi & bit_mux) > 0;
+		bgPalette = (bg_pal1 << 1) | bg_pal0;
+	}
+
+	uint8_t fg_pixel = 0x00;  
+	uint8_t fg_palette = 0x00;
+	uint8_t fg_priority = 0x00;
+	
+	if (ppu.registers.mask.bits.renderSprites)
+	{
+		bSpriteZeroBeingRendered = false;
+
+		for (uint8_t i = 0; i < sprite_count; i++)
+		{
+			if (spriteScanline[i].x == 0) 
+			{
+				uint8_t fg_pixel_lo = (sprite_shifter_pattern_lo[i] & 0x80) > 0;
+				uint8_t fg_pixel_hi = (sprite_shifter_pattern_hi[i] & 0x80) > 0;
+				fg_pixel = (fg_pixel_hi << 1) | fg_pixel_lo;
+				fg_palette = (spriteScanline[i].attribute & 0x03) + 0x04;
+				fg_priority = (spriteScanline[i].attribute & 0x20) == 0;
+				if (fg_pixel != 0)
+				{
+					if (i == 0)
+					{
+						bSpriteZeroBeingRendered = true;
+					}
+
+					break;
+				}				
+			}
+		}		
+	}
+
+	uint8_t pixel = 0x00;   
+	uint8_t palette = 0x00; 
+	if (bgPixel == 0 && fg_pixel == 0)//both transparent
+	{
+		pixel = 0x00;
+		palette = 0x00;
+	}
+	else if (bgPixel == 0 && fg_pixel > 0)//background transparent, foreground not
+	{
+		pixel = fg_pixel;
+		palette = fg_palette;
+	}
+	else if (bgPixel > 0 && fg_pixel == 0)//foreground transparent, background not
+	{
+		pixel = bgPixel;
+		palette = bgPalette;
+	}
+	else if (bgPixel > 0 && fg_pixel > 0)//both not transparent
+	{
+		if (fg_priority && false)
+		{
+			pixel = fg_pixel;
+			palette = fg_palette;
+		}
+		else
+		{
+			pixel = bgPixel;
+			palette = bgPalette;
+		}
+
+		if (bSpriteZeroHitPossible && bSpriteZeroBeingRendered && false)
+		{
+			
+			if (ppu.registers.mask.bits.renderBackground & ppu.registers.mask.bits.renderSprites)
+			{
+				if (~(ppu.registers.mask.bits.renderBackgroundLeft | ppu.registers.mask.bits.renderSpritesLeft))
+				{
+					if (ppu.cycle >= 9 && ppu.cycle < 258)
+					{
+						ppu.registers.status.bits.spriteZeroHit = 1;
+					}
+				}
+				else
+				{
+					if (ppu.cycle >= 1 && ppu.cycle < 258)
+					{
+						ppu.registers.status.bits.spriteZeroHit = 1;
+					}
+				}
+			}
+		}
+	}
+		
+    SpriteSetPixel(ppu.spriteScreen, ppu.cycle - 1, ppu.scanline, get_colorFromPaletteRam(palette, pixel));
+
+	ppu.cycle++;
+	if (ppu.cycle >= 341)
+	{
+		ppu.cycle = 0;
+		ppu.scanline++;
+		if (ppu.scanline >= 261)
+		{
+			ppu.scanline = -1;
+			ppu.frameCompleted = true;
+		}
+	}
     return ppu.nmi;
 }
 
-Sprite* ppu_get_screen_ptr() {
-		return ppu.spriteScreen;
-}
