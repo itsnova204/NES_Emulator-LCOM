@@ -16,7 +16,7 @@
  * @brief Enumerates the different images that can be drawn
 */
 typedef enum {
-    MENU, ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, COLON
+    ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, MENU, COLON
 } ImageName;
 
 /**

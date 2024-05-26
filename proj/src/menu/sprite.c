@@ -6,7 +6,7 @@ uint16_t mode;
 void (preloadSprites)(uint16_t vg_mode) {
     mode = vg_mode;
 
-    images[0].name = MENU;
+    images[0].name = ZERO;
     images[1].name = ONE;
     images[2].name = TWO;
     images[3].name = THREE;
@@ -16,10 +16,10 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[7].name = SEVEN;
     images[8].name = EIGHT;
     images[9].name = NINE;
-    images[10].name = ZERO;
+    images[10].name = MENU;
     images[11].name = COLON;
 
-    images[0].map = xpm_load(menu, XPM_TYPE_MENU, &images[0].image);
+    images[0].map = xpm_load(zero, XPM_TYPE_MENU, &images[0].image);
     images[1].map = xpm_load(one, XPM_TYPE_MENU, &images[1].image);
     images[2].map = xpm_load(two, XPM_TYPE_MENU, &images[2].image);
     images[3].map = xpm_load(three, XPM_TYPE_MENU, &images[3].image);
@@ -29,7 +29,7 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[7].map = xpm_load(seven, XPM_TYPE_MENU, &images[7].image);
     images[8].map = xpm_load(eight, XPM_TYPE_MENU, &images[8].image);
     images[9].map = xpm_load(nine, XPM_TYPE_MENU, &images[9].image);
-    images[10].map = xpm_load(zero, XPM_TYPE_MENU, &images[10].image);
+    images[10].map = xpm_load(menu, XPM_TYPE_MENU, &images[10].image);
     images[11].map = xpm_load(colon, XPM_TYPE_MENU, &images[11].image);
 }
 
@@ -69,13 +69,13 @@ int (draw_hours)(int hour, int minutes, uint16_t x, uint16_t y, bool with_colon)
     int minute_tens = minutes / 10;
     int minute_units = minutes % 10;
 
-    if (draw_sprite(images[hour_tens + 1].name, x, y) != 0) return 1;
-    if (draw_sprite(images[hour_units + 1].name, x + 20, y) != 0) return 1;
+    if (draw_sprite(images[hour_tens].name, x, y) != 0) return 1;
+    if (draw_sprite(images[hour_units].name, x + 20, y) != 0) return 1;
 
     if (with_colon) if (draw_sprite(COLON, x + 35, y) != 0) return 1;
 
-    if (draw_sprite(images[minute_tens + 1].name, x + 50, y) != 0) return 1;
-    if (draw_sprite(images[minute_units + 1].name, x + 70, y) != 0) return 1;
+    if (draw_sprite(images[minute_tens].name, x + 50, y) != 0) return 1;
+    if (draw_sprite(images[minute_units].name, x + 70, y) != 0) return 1;
 
     return 0;
 }
