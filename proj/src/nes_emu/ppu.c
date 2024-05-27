@@ -29,6 +29,9 @@ void ppu_disable_nmi(){
     ppu.nmi = false;
 }
 
+//============================================
+//PPU FORGROUND
+
 
 struct sObjectAttributeEntry OAM[64];
 uint8_t* pOAM = (uint8_t*)OAM;
@@ -38,16 +41,16 @@ uint8_t* getOAM_ptr(){
 }
 
 uint8_t oam_addr = 0x00;
-
-
 struct sObjectAttributeEntry spriteScanline[8];
 
 uint8_t sprite_count = 0;
 uint8_t sprite_shifter_pattern_lo[8];
 uint8_t sprite_shifter_pattern_hi[8];
 
+// Sprite Zero Collision Flags
 bool bSpriteZeroHitPossible = false;
 bool bSpriteZeroBeingRendered = false;
+//============================================
 
 int debugcount = 0;
 
@@ -156,10 +159,21 @@ void ppu_init() {
     ppu.bgShifterAttribHi = 0x0000;
 
     ppu.nmi = false;
+	printf("[PPU] PPU finished initializing\n");
+}
+
+void ppu_exit() {
+		printf("[PPU] Exiting PPU\n");
+		free(ppu.spriteScreen);
+		free(ppu.spriteNameTable[0]);
+		free(ppu.spriteNameTable[1]);
+		free(ppu.spritePatternTable[0]);
+		free(ppu.spritePatternTable[1]);
+		printf("[PPU] PPU exited\n");
 }
 
 Sprite *SpriteCreate(uint16_t width, uint16_t height) {
-    Sprite *sprite = (Sprite*)malloc(sizeof(sprite));
+    Sprite *sprite = (Sprite*)malloc(32+width*height*sizeof(Color));
     sprite->width = width;
     sprite->height = height;
     sprite->pixels = (Color*)malloc(width*height*sizeof(Color));
@@ -284,7 +298,7 @@ uint8_t ppuBus_read(uint16_t addr) {
     data = ppu_readFromCard(addr, &hijack);
     if (hijack) return data;
     // Pattern table
-    else if (addr >= 0x0000 && addr <= 0x1FFF) {
+    else if (addr <= 0x1FFF) {
         // Get the most significant bit of the address and offsets by the rest of the bits of the address
         data = ppu.patternTable[(addr & 0x1000) >> 12][addr & 0x0FFF];
         
@@ -295,13 +309,13 @@ uint8_t ppuBus_read(uint16_t addr) {
         enum MIRROR mirror = cart_get_mirror_type();
         
         if (mirror == VERTICAL) {
-            if (addr >= 0x0000 && addr <= 0x03FF) data = ppu.nameTable[0][addr & 0x03FF];
+            if (addr <= 0x03FF) data = ppu.nameTable[0][addr & 0x03FF];
             if (addr >= 0x0400 && addr <= 0x07FF) data = ppu.nameTable[1][addr & 0x03FF];
             if (addr >= 0x0800 && addr <= 0x0BFF) data = ppu.nameTable[0][addr & 0x03FF];
             if (addr >= 0x0C00 && addr <= 0x0FFF) data = ppu.nameTable[1][addr & 0x03FF];
         }
         else if (mirror == HORIZONTAL) {
-            if (addr >= 0x0000 && addr <= 0x03FF) data = ppu.nameTable[0][addr & 0x03FF];
+            if (addr <= 0x03FF) data = ppu.nameTable[0][addr & 0x03FF];
             if (addr >= 0x0400 && addr <= 0x07FF) data = ppu.nameTable[0][addr & 0x03FF];
             if (addr >= 0x0800 && addr <= 0x0BFF) data = ppu.nameTable[1][addr & 0x03FF];
             if (addr >= 0x0C00 && addr <= 0x0FFF) data = ppu.nameTable[1][addr & 0x03FF];
@@ -332,7 +346,7 @@ void ppuBus_write(uint16_t addr, uint8_t data) {
     ppu_writeToCard(addr, data, &hijack);
     if (hijack) return;
     // Pattern table
-    else if (addr >= 0x0000 && addr <= 0x1FFF) {
+    else if (addr <= 0x1FFF) {
         // This memory acts as a ROM for the PPU,
         // but for som NES ROMs, this memory is a RAM.
         ppu.patternTable[(addr & 0x1000) >> 12][addr & 0x0FFF] = data;
@@ -342,13 +356,13 @@ void ppuBus_write(uint16_t addr, uint8_t data) {
         addr &= 0x0FFF;
         enum MIRROR mirror = cart_get_mirror_type();
         if (mirror == VERTICAL) {
-            if (addr >= 0x0000 && addr <= 0x03FF) ppu.nameTable[0][addr & 0x03FF] = data;
+            if (addr <= 0x03FF) ppu.nameTable[0][addr & 0x03FF] = data;
             if (addr >= 0x0400 && addr <= 0x07FF) ppu.nameTable[1][addr & 0x03FF] = data;
             if (addr >= 0x0800 && addr <= 0x0BFF) ppu.nameTable[0][addr & 0x03FF] = data;
             if (addr >= 0x0C00 && addr <= 0x0FFF) ppu.nameTable[1][addr & 0x03FF] = data;
         }
         else if (mirror == HORIZONTAL) {
-            if (addr >= 0x0000 && addr <= 0x03FF) ppu.nameTable[0][addr & 0x03FF] = data;
+            if (addr <= 0x03FF) ppu.nameTable[0][addr & 0x03FF] = data;
             if (addr >= 0x0400 && addr <= 0x07FF) ppu.nameTable[0][addr & 0x03FF] = data;
             if (addr >= 0x0800 && addr <= 0x0BFF) ppu.nameTable[1][addr & 0x03FF] = data;
             if (addr >= 0x0C00 && addr <= 0x0FFF) ppu.nameTable[1][addr & 0x03FF] = data;
@@ -362,6 +376,7 @@ void ppuBus_write(uint16_t addr, uint8_t data) {
     // Palette
     else if (addr >= 0x3F00 && addr <= 0x3FFF) {
         //printf("Writing to palette, addr=%04x, data=%02x\n", addr, data);
+		printf("Writing to PPU addr %04x data %02x\n", addr, data);
         addr &= 0x001F; // Mask less significant 5 bits
         if (addr == 0x0010) addr = 0x0000;
         if (addr == 0x0014) addr = 0x0004;
@@ -371,7 +386,6 @@ void ppuBus_write(uint16_t addr, uint8_t data) {
         
     }
 }
-
 
 Color get_colorFromPaletteRam(uint8_t palette, uint8_t pixel) {//KNOWN GOOD!
     Color color = ppu.paletteScreen[ppuBus_read(0x3F00 + (palette << 2) + pixel) & 0x3F];    
@@ -488,8 +502,6 @@ uint8_t flipbyte(uint8_t b){
     b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
     return b;
 }
-
-
 
 bool ppu_clock()
 {
@@ -778,7 +790,7 @@ bool ppu_clock()
 	}
 	else if (bgPixel > 0 && fg_pixel > 0)//both not transparent
 	{
-		if (fg_priority && false)
+		if (fg_priority)
 		{
 			pixel = fg_pixel;
 			palette = fg_palette;
@@ -789,7 +801,7 @@ bool ppu_clock()
 			palette = bgPalette;
 		}
 
-		if (bSpriteZeroHitPossible && bSpriteZeroBeingRendered && false)
+		if (bSpriteZeroHitPossible && bSpriteZeroBeingRendered)
 		{
 			
 			if (ppu.registers.mask.bits.renderBackground & ppu.registers.mask.bits.renderSprites)
