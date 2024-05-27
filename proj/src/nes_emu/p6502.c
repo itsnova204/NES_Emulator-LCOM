@@ -56,11 +56,16 @@ bool isCPU_complete(){
 }
 int instcounter = 0;
 
-inline void cpu_clock(){
+void cpu_clock(){
 	if (cycles_left == 0){
 		instcounter++;
 		opcode = sysBus_read(program_counter);
 		program_counter++;
+
+		if (36542 == program_counter){
+			printf("opname: %s\n", lookup[opcode].name);
+		}
+		
 
 		cycles_left = lookup[opcode].cycles;
 

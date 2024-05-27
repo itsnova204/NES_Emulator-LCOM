@@ -47,7 +47,7 @@ int bus_init(char* cart_filePath){
 
 int bus_exit(){
   cart_remove();
-
+  ppu_exit();
   return 0;
 }
 

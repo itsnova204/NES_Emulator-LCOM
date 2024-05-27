@@ -22,6 +22,7 @@ bool ppu_isFrameComplete();
 void ppu_setFrameCompleted(bool value);
 
 void ppu_disable_nmi();
+void ppu_exit();
 
 typedef struct {
     Color *pixels;

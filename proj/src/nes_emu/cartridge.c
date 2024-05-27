@@ -117,13 +117,18 @@ uint8_t ines_parse(FILE *fp){
     printf("CHRmem: failed loading!\n");
     return 1;
   }
+  
+
 
   printf("Memory allocation complete!\n");
 
   uint8_t PRGmem_read = 0;
   uint8_t CHRmem_read = 0;
 
+  access(PRGmem,nPRG_membanks,16384);
   PRGmem_read = fread(PRGmem, 16384, nPRG_membanks, fp);
+  
+  access(CHRmem,nCHR_membanks,8192);
   CHRmem_read = fread(CHRmem, 8192, nCHR_membanks, fp);
   
   return 0;
