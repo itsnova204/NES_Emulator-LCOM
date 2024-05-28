@@ -3,7 +3,7 @@
 int hook_id_mouse = 3; // entre 0 e 7 (IRQs)
 uint8_t current_byte;
 struct packet pp;
-uint8_t i = 0; // byte index
+static uint8_t i = 0;
 uint8_t mouse_bytes[3];
 
 int mouse_subscribe_int(uint8_t *bit_no)
@@ -38,10 +38,10 @@ void(mouse_int_handler)()
     }
 }
 
-void(mouse_sync)()
+bool(mouse_sync)()
 { // sincroniza o mouse
     if (i == 0 && (current_byte & MOUSE_FIRST) != 0)
-    { // se o bit 3 do byte atual estiver ativado (igual a 1)
+    { // se o bit 3 do byte atual estiver ativado (igual a 1) -> 1º byte do pacote novo
         mouse_bytes[i] = current_byte;
     }
     else if (i > 0)
@@ -49,6 +49,14 @@ void(mouse_sync)()
         mouse_bytes[i] = current_byte;
     }
     i++;
+
+    // se receber um pacote completo
+    if (i == 3) {
+        i = 0; // reinicia o contador para o próximo pacote
+        mouse_parse_packet();
+        return true; // pacote completo recebido
+    }
+    return false; // pacote incompleto
 }
 
 void(mouse_parse_packet)()
@@ -126,4 +134,8 @@ int mouse_write(uint8_t cmd)
     }
 
     return 1;
+}
+
+struct packet get_mouse_packet() {
+    return pp;
 }

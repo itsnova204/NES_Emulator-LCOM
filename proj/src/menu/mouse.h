@@ -12,12 +12,14 @@ int (mouse_unsubscribe_int)();
 
 void (mouse_int_handler)();
 
-void (mouse_sync)();
+bool (mouse_sync)();
 
 void (mouse_parse_packet)();
 
 int (mouse_bytes_to_packet)();
 
 int (mouse_write)(uint8_t cmd);
+
+struct packet (get_mouse_packet)();
 
 # endif
