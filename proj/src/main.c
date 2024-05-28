@@ -150,7 +150,6 @@ int (proj_main_loop)() {
   sleep(3);
   if (kbd_unsubscribe_int() != 0) return 1;
   
-  free(nes_screen);
   if (bus_exit() != 0) return 1;
   
   return 0;

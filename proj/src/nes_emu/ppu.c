@@ -165,15 +165,19 @@ void ppu_init() {
 void ppu_exit() {
 		printf("[PPU] Exiting PPU\n");
 		free(ppu.spriteScreen);
+		free(ppu.spriteNameTable[0]->pixels);
 		free(ppu.spriteNameTable[0]);
+		free(ppu.spriteNameTable[1]->pixels);
 		free(ppu.spriteNameTable[1]);
+		free(ppu.spritePatternTable[0]->pixels);
 		free(ppu.spritePatternTable[0]);
+		free(ppu.spritePatternTable[1]->pixels);
 		free(ppu.spritePatternTable[1]);
 		printf("[PPU] PPU exited\n");
 }
 
 Sprite *SpriteCreate(uint16_t width, uint16_t height) {
-    Sprite *sprite = (Sprite*)malloc(32+width*height*sizeof(Color));
+    Sprite *sprite = (Sprite*)malloc(sizeof(uint16_t)*2 + sizeof(Color*));
     sprite->width = width;
     sprite->height = height;
     sprite->pixels = (Color*)malloc(width*height*sizeof(Color));
