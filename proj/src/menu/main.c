@@ -97,12 +97,16 @@ int (proj_main_loop)() {
                     if (counter % FRAME_INTERVAL == 0) {
                       if (draw_sprite(MENU, 0, 0) != 0) return 1;
 
-                      // blink colon every 2 seconds
-                      bool draw_colon = (counter / (FRAME_INTERVAL * 32)) % 2 == 0;
                       rtc_date_t date = rtc_get_date();
+                      int day = date.day;
+                      int month = date.month;
+                      int year = date.year + 2000;
                       int minutes = date.minutes;
                       int hours = date.hours;
-                      if (draw_hours(hours, minutes, 10, 95, draw_colon) != 0) return 1;
+
+                      // blink colon every 2 seconds
+                      bool draw_colon = (counter / (FRAME_INTERVAL * 32)) % 2 == 0;
+                      if (draw_date(day, month, year, hours, minutes, 10, 95, draw_colon) != 0) return 1;
 
                       swap_buffers();
                     }
