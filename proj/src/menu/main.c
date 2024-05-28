@@ -142,6 +142,8 @@ int (proj_main_loop)() {
 
                         if (mouse_x < 0) mouse_x = 0;
                         if (mouse_y < 0) mouse_y = 0;
+                        if (mouse_x > 1152) mouse_x = 1152;
+                        if (mouse_y > 864) mouse_y = 864;
 
                         if (pp.lb) {
                         int option = get_selected_option(mouse_x, mouse_y);
