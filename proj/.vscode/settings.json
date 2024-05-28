@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "keyboard.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "sysutil.h": "c"
     }
 }
