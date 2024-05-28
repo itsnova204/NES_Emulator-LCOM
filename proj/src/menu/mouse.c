@@ -32,9 +32,9 @@ int mouse_unsubscribe_int()
 
 void(mouse_int_handler)()
 {
-    if (read_kbc_output(KBC_WRITE_CMD, &current_byte, 1))
+    if (kbc_read_output(KBC_WRITE_CMD, &current_byte, 1))
     {
-        printf("Error: read_kbc_output failed!\n");
+        printf("Error: kbc_read_output failed!\n");
     }
 }
 
@@ -105,15 +105,15 @@ int mouse_write(uint8_t cmd)
 
     while (c < MAX_ATTEMPS)
     {
-        if ((write_kbc_command(KBD_IN_BUF, MOUSE_WRITE_BYTE) != 0))
+        if ((kbc_write_command(KBD_IN_BUF, MOUSE_WRITE_BYTE) != 0))
         {
-            printf("Error: write_kbc_command failed!\n");
+            printf("Error: kbc_write_command failed!\n");
             return 1;
         }
 
-        if ((write_kbc_command(KBD_OUT_BUF, cmd) != 0))
+        if ((kbc_write_command(KBD_OUT_BUF, cmd) != 0))
         {
-            printf("Error: write_kbc_command failed!\n");
+            printf("Error: kbc_write_command failed!\n");
             return 1;
         }
 
@@ -121,7 +121,7 @@ int mouse_write(uint8_t cmd)
 
         if (util_sys_inb(KBD_OUT_BUF, &ack) != 0)
         {
-            printf("Error: read_kbc_output failed!\n");
+            printf("Error: kbc_read_output failed!\n");
             return 1;
         }
 

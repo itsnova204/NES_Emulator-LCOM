@@ -73,6 +73,8 @@ int (proj_main_loop)() {
   bool is_second_scan_code = false;
   rtc_read_date();
 
+  int mouse_x = 0, mouse_y = 0;
+
   while(scan_code != KBD_ESC_BREAK_CODE) {
       /* Get a request message. */
       if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) { 
@@ -122,8 +124,7 @@ int (proj_main_loop)() {
                       if (draw_date(day, month, year, hours, minutes, 10, 95, draw_colon) != 0) return 1;
 
                       // DRAW MOUSE CURSOR
-                      // !! the second and third arguments are the x and y coordinates of the cursor
-                      if (draw_sprite(CURSOR, 200, 200) != 0) return 1;
+                      if (draw_sprite(CURSOR, mouse_x, mouse_y) != 0) return 1;
 
                       swap_buffers();
                     }
@@ -133,10 +134,17 @@ int (proj_main_loop)() {
                     mouse_int_handler();
 
                     if (mouse_sync()) {
-                      struct packet pp = get_mouse_packet();
+                        struct packet pp = get_mouse_packet();
+
+                        // update mouse position
+                        mouse_x += pp.delta_x;
+                        mouse_y -= pp.delta_y; // moves the cursor up
+
+                        if (mouse_x < 0) mouse_x = 0;
+                        if (mouse_y < 0) mouse_y = 0;
 
                         if (pp.lb) {
-                        int option = get_selected_option(pp.delta_x, pp.delta_y);
+                        int option = get_selected_option(mouse_x, mouse_y);
                         if (option) {
                           printf("Selected option: %d\n", option);
                           // jogo
