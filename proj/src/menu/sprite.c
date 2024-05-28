@@ -19,6 +19,7 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[10].name = MENU;
     images[11].name = COLON;
     images[12].name = SLASH;
+    images[13].name = CURSOR;
 
     images[0].map = xpm_load(zero, XPM_TYPE_MENU, &images[0].image);
     images[1].map = xpm_load(one, XPM_TYPE_MENU, &images[1].image);
@@ -33,6 +34,7 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[10].map = xpm_load(menu, XPM_TYPE_MENU, &images[10].image);
     images[11].map = xpm_load(colon, XPM_TYPE_MENU, &images[11].image);
     images[12].map = xpm_load(slash, XPM_TYPE_MENU, &images[12].image);
+    images[13].map = xpm_load(cursor, XPM_TYPE_MENU, &images[13].image);
 }
 
 XpmData* (get_xpm_data)(ImageName name) {

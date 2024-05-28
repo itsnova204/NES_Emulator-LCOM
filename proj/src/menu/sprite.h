@@ -9,14 +9,14 @@
 #ifndef _LCOM_SPRITE_H_
 #define _LCOM_SPRITE_H_
 
-#define NUM_IMAGES 13
+#define NUM_IMAGES 14
 #define XPM_TYPE_MENU XPM_8_8_8_8
 
 /**
  * @brief Enumerates the different images that can be drawn
 */
 typedef enum {
-    ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, MENU, COLON, SLASH
+    ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, MENU, COLON, SLASH, CURSOR
 } ImageName;
 
 /**
@@ -48,6 +48,17 @@ int (draw_sprite)(ImageName name, uint16_t x, uint16_t y);
 */
 int (draw_sprint_from_bottom_left)(ImageName name, uint16_t x, uint16_t y);
 
+/**
+ * @brief Draws the date and time on the screen at the given coordinates with the format "dd/mm/yyyy hh:mm"
+ * @param day Day of the month
+ * @param month Month of the year
+ * @param year Year
+ * @param hour Hour of the day
+ * @param minutes Minutes of the hour
+ * @param x X coordinate of the date
+ * @param y Y coordinate of the date
+ * @param with_colon If true, the colon between the hours and minutes will be drawn. This parameter is to be able to have the blinking effect of the colon
+*/
 int (draw_date)(int day, int month, int year, int hour, int minutes, uint16_t x, uint16_t y, bool with_colon);
 
 #endif
