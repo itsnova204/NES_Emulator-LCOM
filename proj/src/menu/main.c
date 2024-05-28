@@ -108,6 +108,10 @@ int (proj_main_loop)() {
                       bool draw_colon = (counter / (FRAME_INTERVAL * 32)) % 2 == 0;
                       if (draw_date(day, month, year, hours, minutes, 10, 95, draw_colon) != 0) return 1;
 
+                      // DRAW MOUSE CURSOR
+                      // !! the second and third arguments are the x and y coordinates of the cursor
+                      if (draw_sprite(CURSOR, 200, 200) != 0) return 1;
+
                       swap_buffers();
                     }
 
