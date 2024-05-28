@@ -19,5 +19,7 @@ extern xpm_row_t eight[];
 extern xpm_row_t nine[];
 extern xpm_row_t zero[];
 extern xpm_row_t colon[];
+extern xpm_row_t slash[];
+extern xpm_row_t cursor[];
 
 #endif
