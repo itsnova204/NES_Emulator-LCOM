@@ -30,7 +30,7 @@ int(kbd_unsubscribe_int)()
 
 void(kbc_ih)()
 { // handler do teclado (ler o output do kbc)
-  if (kbc_read_output(KBD_OUT_BUF, &scancode, true) != 0)
+  if (kbc_read_output(KBD_OUT_BUF, &scancode, 0) != 0)
   {
     valid = false;
     return;
@@ -46,7 +46,7 @@ int(kbd_restore)()
   if (kbc_write_command(KBD_IN_BUF, KBC_READ_CMD) != 0)
     return 1;
 
-  if (kbc_read_output(KBD_OUT_BUF, &cmd_byte, true) != 0)
+  if (kbc_read_output(KBD_OUT_BUF, &cmd_byte, 0) != 0)
     return 1;
 
   cmd_byte = cmd_byte | ENABLE_INT; // BIT(0); ativar as interrupções
