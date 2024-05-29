@@ -1,6 +1,6 @@
 #include "KBC.h"
 
-static uint8_t scan_code_array[2];
+static uint8_t scancode_array[2];
 static bool flag_two_byte = false;
 static int index_ = 0;
 
@@ -80,23 +80,23 @@ int(kbc_write_command)(uint8_t port, uint8_t command)
   return 1;
 }
 
-int(getScanCodeSize)(uint8_t scan_code)
+int(getScanCodeSize)(uint8_t scancode)
 {
-  if (scan_code == KBD_TWO_BYTE)
+  if (scancode == KBD_TWO_BYTE)
     return 2;
   return 1;
 }
 
-bool is_two_byte_scan_code(uint8_t scan_code)
+bool is_two_byte_scancode(uint8_t scancode)
 {
-  return (getScanCodeSize(scan_code) == 2);
+  return (getScanCodeSize(scancode) == 2);
 }
 
-int print_scancode(uint8_t scan_code)
+int print_scancode(uint8_t scancode)
 {
-  if (is_two_byte_scan_code(scan_code) && !flag_two_byte)
+  if (is_two_byte_scancode(scancode) && !flag_two_byte)
   {
-    scan_code_array[index_++] = scan_code;
+    scancode_array[index_++] = scancode;
     flag_two_byte = true;
     return 0;
   }
@@ -104,18 +104,18 @@ int print_scancode(uint8_t scan_code)
   if (flag_two_byte)
   {
     flag_two_byte = false;
-    scan_code_array[index_] = scan_code;
+    scancode_array[index_] = scancode;
     index_ = 0;
 
-    if (kbd_print_scancode(!(KBD_MAKE_CODE & scan_code_array[1]), 2, scan_code_array))
+    if (kbd_print_scancode(!(KBD_MAKE_CODE & scancode_array[1]), 2, scancode_array))
       return 1;
 
-    memset(scan_code_array, 0, 2);
+    memset(scancode_array, 0, 2);
     
     return 0;
   }
 
-  if (kbd_print_scancode(!(KBD_MAKE_CODE & scan_code), 1, &scan_code))
+  if (kbd_print_scancode(!(KBD_MAKE_CODE & scancode), 1, &scancode))
     return 1;
 
   return 0;

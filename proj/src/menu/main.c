@@ -13,7 +13,7 @@
 #include "sprite.h"
 
 int get_counter();
-uint8_t scan_code = 0;
+uint8_t scancode = 0;
 
 // DEFINE FPS
 #define FPS 60
@@ -70,12 +70,12 @@ int (proj_main_loop)() {
 
   if (timer_set_frequency(0, 60) != 0) return 1;   
 
-  bool is_second_scan_code = false;
+  bool is_second_scancode = false;
   rtc_read_date();
 
   int mouse_x = 0, mouse_y = 0;
 
-  while(scan_code != KBD_ESC_BREAK_CODE) {
+  while(scancode != KBD_ESC_BREAK_CODE) {
       /* Get a request message. */
       if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) { 
           printf("driver_receive failed with: %d", r);
@@ -88,16 +88,16 @@ int (proj_main_loop)() {
                   if (msg.m_notify.interrupts & irq_set_kbd) {
                     kbc_ih();
                     if (!is_valid()) continue;
-                    scan_code = get_scancode();
+                    scancode = get_scancode();
 
-                    if (is_two_byte_scan_code(scan_code) && !is_second_scan_code) {
-                      is_second_scan_code = true;
+                    if (is_two_byte_scancode(scancode) && !is_second_scancode) {
+                      is_second_scancode = true;
                       continue;
-                    } else if (is_second_scan_code) {
-                      is_second_scan_code = false;
+                    } else if (is_second_scancode) {
+                      is_second_scancode = false;
                     }
 
-                    if (scan_code == KBD_ESC_BREAK_CODE) break;
+                    if (scancode == KBD_ESC_BREAK_CODE) break;
                   }
 
                   if (msg.m_notify.interrupts & irq_set_timer) {
