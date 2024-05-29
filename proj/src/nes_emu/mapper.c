@@ -24,21 +24,21 @@ uint16_t mapper_000(uint16_t addr, enum Type type, bool* takeOver){ //bounds are
 
   switch (type){
   case type_sysBus_read:
-      if (addr >= 0x8000 && addr <= 0xFFFF){
+      if (addr >= 0x8000){
         *takeOver = true;
         return addr & (mapper_nPRGbanks > 1 ? 0x7FFF : 0x3FFF);
       }
       return addr;
     break;
   case type_sysBus_write: //seems ok
-    if (addr >= 0x8000 && addr <= 0xFFFF){
+    if (addr >= 0x8000){
       *takeOver = true;
     }
     
     return addr & (mapper_nPRGbanks > 1 ? 0x7FFF : 0x3FFF);
     break;
   case type_ppuBus_read_bus://seems ok
-      if (addr >= 0x0000 && addr <= 0x1FFF)
+      if (addr <= 0x1FFF)
         {
           *takeOver = true;
           return addr;
