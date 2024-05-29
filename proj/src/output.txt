@@ -1,0 +1,6 @@
+Error: Not a mouse scancode!
+Error: Not a mouse scancode!
+Error: Not a mouse scancode!
+Error: Not a mouse scancode!
+Error: Not a mouse scancode!
+Error: Not a mouse scancode!

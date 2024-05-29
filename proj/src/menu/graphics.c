@@ -129,39 +129,6 @@ int (vg_draw_rectangle)(uint16_t x, uint16_t y, uint16_t width, uint16_t height,
   return 0;
 }
 
-
-int (vg_draw_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step) {
-
-  uint16_t width = vbe_mode_info.XResolution / no_rectangles;
-
-  uint16_t height = vbe_mode_info.YResolution / no_rectangles;
-
-  uint32_t color;
-
-  for (int i = 0; i < no_rectangles; i++) {
-    for (int j = 0; j < no_rectangles; j++) {
-
-      if (vbe_mode_info.MemoryModel == 6) {
-        color = Red(j, step, first) << vbe_mode_info.RedFieldPosition | 
-                Green(i, step, first) << vbe_mode_info.GreenFieldPosition | 
-                Blue(j, i, step, first) << vbe_mode_info.BlueFieldPosition;
-      } else {
-        color = (first + (i * no_rectangles + j) * step) % (1 << vbe_mode_info.BitsPerPixel);
-      }
-      
-      if (vg_draw_rectangle(j * width, i * height, width, height, color) != 0) {
-        printf("vg_draw_pattern(): vg_draw_rectangle() failed \n");
-        vg_exit();
-
-        return 1;
-      }
-    }
-  }
-
-  return 0;
-}
-
-
 int (vg_draw_xpm)(xpm_image_t xpm_image, uint8_t *colorMap, uint16_t x, uint16_t y, uint16_t mode) {
 
   if (colorMap == NULL) {
@@ -175,7 +142,7 @@ int (vg_draw_xpm)(xpm_image_t xpm_image, uint8_t *colorMap, uint16_t x, uint16_t
 
       int colorIndex = (height * xpm_image.width) + width;
 
-      uint32_t color = normalizeColor(*(uint32_t*) &colorMap[colorIndex * 4], mode);
+      uint32_t color = *(uint32_t*) &colorMap[colorIndex * 4];
 
       uint16_t xf = x + width; 
 
@@ -218,7 +185,7 @@ int vg_draw_xpm_from_bottom_left_corner(xpm_image_t xpm_image, uint8_t *colorMap
 
       int colorIndex = (height * xpm_image.width) + width;
 
-      uint32_t color = normalizeColor(*(uint32_t*) &colorMap[colorIndex * 4], mode);
+      uint32_t color = *(uint32_t*) &colorMap[colorIndex * 4];
 
       if (vg_draw_pixel(x + width, y - xpm_image.height + 1 + height, color) != 0) {
         printf("vg_draw_xpm(): vg_draw_pixel() failed \n");
@@ -261,7 +228,7 @@ int vg_draw_xpm_partial(xpm_image_t xpm_image, uint8_t *colorMap, uint16_t x, ui
 
       int colorIndex = (height * xpm_image.width) + width;
 
-      uint32_t color = normalizeColor(*(uint32_t*) &colorMap[colorIndex * 4], mode);
+      uint32_t color = *(uint32_t*) &colorMap[colorIndex * 4];
 
       uint16_t xf = x + width - image_start_x; 
 
@@ -279,75 +246,5 @@ int vg_draw_xpm_partial(xpm_image_t xpm_image, uint8_t *colorMap, uint16_t x, ui
   }
   
   return 0;
-}
-
-/*** COLORS RELATED FUNCTIONS ***/
-
-
-uint32_t (normalizeColor)(uint32_t color, uint16_t mode) {
-  if (mode == VBE_MODE_INDEXED) {
-    return color;
-  } 
-  
-  else if (mode == VBE_MODE_DC_15) {
-    // 15-bit color mode: ((1:)5:5:5)
-    uint32_t r = (color >> 19) & 0x1F; 
-    uint32_t g = (color >> 11) & 0x1F;  
-    uint32_t b = (color >> 3)  & 0x1F;
-    return (r << 10) | (g << 5) | b;
-  } 
-  
-  else if (mode == VBE_MODE_DC_16) {
-    // 16-bit color mode: (5:6:5)
-    uint32_t r = (color >> 19) & 0x1F; 
-    uint32_t g = (color >> 10) & 0x3F;
-    uint32_t b = (color >> 3)  & 0x1F;
-    return (r << 11) | (g << 5) | b;
-  } 
-  
-  else if (mode == VBE_MODE_DC_24) {
-    return color & 0xFFFFFF;
-  } 
-  
-  else if (mode == VBE_MODE_DC_32) {
-    // 32-bit color mode: ((8:)8:8:8)
-    return color;
-  } 
-  
-  else {
-    printf("normalizeColor(): invalid mode \n");
-
-    return 0;
-  }
-}
-
-uint32_t (Red)(unsigned j, uint8_t step, uint32_t first) {
-
-  return (R(first) + j * step) % (1 << vbe_mode_info.RedMaskSize);
-}
-
-uint32_t (Green)(unsigned i, uint8_t step, uint32_t first) {
-
-  return (G(first) + i * step) % (1 << vbe_mode_info.GreenMaskSize);
-}
-
-uint32_t (Blue)(unsigned j, unsigned i, uint8_t step, uint32_t first) {
-
-  return (B(first) + (i + j) * step) % (1 << vbe_mode_info.BlueMaskSize);
-}
-
-uint32_t (R)(uint32_t first){
-
-  return ((1 << vbe_mode_info.RedMaskSize) - 1) & (first >> vbe_mode_info.RedFieldPosition);
-}
-
-uint32_t (G)(uint32_t first){
-
-  return ((1 << vbe_mode_info.GreenMaskSize) - 1) & (first >>vbe_mode_info.GreenFieldPosition);
-}
-
-uint32_t (B)(uint32_t first){
-  
-  return ((1 << vbe_mode_info.BlueMaskSize) - 1) & (first >> vbe_mode_info.BlueFieldPosition);
 }
 
