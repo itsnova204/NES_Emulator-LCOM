@@ -19,15 +19,6 @@ uint8_t scancode = 0;
 #define FPS 60
 #define FRAME_INTERVAL (60 / FPS)
 
-int get_selected_option(int mouse_x, int mouse_y) {
-    if (mouse_x >= 100 && mouse_x <= 300) {
-        if (mouse_y >= 100 && mouse_y < 200) return 1;
-        if (mouse_y >= 200 && mouse_y < 300) return 2;
-        if (mouse_y >= 300 && mouse_y < 400) return 3;
-    }
-    return 0;
-}
-
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
   lcf_set_language("EN-US");
@@ -75,6 +66,8 @@ int (proj_main_loop)() {
 
   int mouse_x = 0, mouse_y = 0;
 
+  int selected_option;	
+
   while(scancode != KBD_ESC_BREAK_CODE) {
       /* Get a request message. */
       if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) { 
@@ -84,7 +77,7 @@ int (proj_main_loop)() {
 
       if (is_ipc_notify(ipc_status)) { /* received notification */
           switch (_ENDPOINT_P(msg.m_source)) {
-              case HARDWARE: /* hardware interrupt notification */		
+              case HARDWARE: /* hardware interrupt notification */	
                   if (msg.m_notify.interrupts & irq_set_kbd) {
                     kbc_ih();
                     if (!is_valid()) continue;
@@ -112,6 +105,7 @@ int (proj_main_loop)() {
                     if (counter % FRAME_INTERVAL == 0) {
                       if (draw_sprite(MENU, 0, 0) != 0) return 1;
 
+                      //DRAW DATE AND TIME
                       rtc_date_t date = rtc_get_date();
                       int day = date.day;
                       int month = date.month;
@@ -122,6 +116,11 @@ int (proj_main_loop)() {
                       // blink colon every 2 seconds
                       bool draw_colon = (counter / (FRAME_INTERVAL * 32)) % 2 == 0;
                       if (draw_date(day, month, year, hours, minutes, 10, 95, draw_colon) != 0) return 1;
+
+
+                      // DRAW GAME OPTIONS
+                      if (draw_options(250, mouse_x, mouse_y, &selected_option) != 0) return 1;
+
 
                       // DRAW MOUSE CURSOR
                       if (draw_sprite(CURSOR, mouse_x, mouse_y) != 0) return 1;
@@ -134,23 +133,21 @@ int (proj_main_loop)() {
                     mouse_int_handler();
 
                     if (mouse_sync()) {
-                        struct packet pp = get_mouse_packet();
+                      struct packet pp = get_mouse_packet();
 
-                        // update mouse position
-                        mouse_x += pp.delta_x;
-                        mouse_y -= pp.delta_y; // moves the cursor up
+                      // update mouse position
+                      mouse_x += pp.delta_x;
+                      mouse_y -= pp.delta_y; // moves the cursor up
 
-                        if (mouse_x < 0) mouse_x = 0;
-                        if (mouse_y < 0) mouse_y = 0;
-                        if (mouse_x > 1152) mouse_x = 1152;
-                        if (mouse_y > 864) mouse_y = 864;
+                      if (mouse_x < 0) mouse_x = 0;
+                      if (mouse_y < 0) mouse_y = 0;
+                      if (mouse_x > 1152) mouse_x = 1152;
+                      if (mouse_y > 864) mouse_y = 864;
 
-                        if (pp.lb) {
-                        int option = get_selected_option(mouse_x, mouse_y);
-                        if (option) {
-                          printf("Selected option: %d\n", option);
-                          // jogo
-                        }
+                      if (pp.lb && selected_option >= 0) {
+                        printf("Selected option: %d\n", selected_option);
+                        // handler for selected option
+                        // todo
                       }
                     }
                   }

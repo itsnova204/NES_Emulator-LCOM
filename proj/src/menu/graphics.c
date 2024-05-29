@@ -6,7 +6,7 @@ static uint8_t* back_buffer;
 size_t frame_buffer_size;
 
 
-size_t numberOfBytesForBits(size_t bits) {
+size_t (numberOfBytesForBits)(size_t bits) {
   return (bits + 7) / 8;
 }
 
@@ -17,7 +17,7 @@ vbe_mode_info_t (get_vbe_mode_info)() {
 
 /**** FUNCTIONS RELATED TO MODE SETUP AND BUFFERS ****/
 
-int set_graphic_mode(uint16_t mode) {
+int (set_graphic_mode)(uint16_t mode) {
   reg86_t reg86;
   memset(&reg86, 0, sizeof(reg86));   
   reg86.intno = 0x10;
@@ -171,7 +171,7 @@ int (vg_clear_screen)() {
 }
 
 
-int vg_draw_xpm_from_bottom_left_corner(xpm_image_t xpm_image, uint8_t *colorMap, uint16_t x, uint16_t y, uint16_t mode) {
+int (vg_draw_xpm_from_bottom_left_corner)(xpm_image_t xpm_image, uint8_t *colorMap, uint16_t x, uint16_t y, uint16_t mode) {
 
   if (colorMap == NULL) {
     printf("vg_draw_xpm(): xpm_load() failed \n");
@@ -200,7 +200,7 @@ int vg_draw_xpm_from_bottom_left_corner(xpm_image_t xpm_image, uint8_t *colorMap
 }
 
 
-int vg_draw_rectangle_from_bottom_left_corner(int16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
+int (vg_draw_rectangle_from_bottom_left_corner)(int16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color) {
 
   for (int i = 0; i < height; i++) {
     if (vg_draw_hline(x, y - height + 1 + i, width, color) != 0) {
@@ -214,8 +214,55 @@ int vg_draw_rectangle_from_bottom_left_corner(int16_t x, uint16_t y, uint16_t wi
   return 0;
 }
 
+int (vg_draw_rectangle_border)(int16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t border_width, uint32_t color) {
 
-int vg_draw_xpm_partial(xpm_image_t xpm_image, uint8_t *colorMap, uint16_t x, uint16_t y, uint16_t image_start_x, uint16_t mode) {
+    int16_t start_x = x - border_width;
+    int16_t start_y = y - border_width;
+    uint16_t total_width = width + 2 * border_width;
+    uint16_t total_height = height + 2 * border_width;
+
+    for (int i = 0; i < border_width; i++) {
+
+        // Top border
+        if (vg_draw_hline(start_x, start_y + i, total_width, color) != 0) {
+            printf("vg_draw_rectangle_border(): vg_draw_hline() failed\n");
+            vg_exit();
+            return 1;
+        }
+
+        // Bottom border
+        if (vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color) != 0) {
+            printf("vg_draw_rectangle_border(): vg_draw_hline() failed\n");
+            vg_exit();
+            return 1;
+        }
+    }
+
+    for (int i = 0; i < total_height; i++) {
+
+        // Left border
+        for (int j = 0; j < border_width; j++) {
+            if (vg_draw_pixel(start_x + j, start_y + i, color) != 0) {
+                printf("vg_draw_rectangle_border(): vg_draw_pixel() failed\n");
+                vg_exit();
+                return 1;
+            }
+        }
+        
+        // Right border
+        for (int j = total_width - border_width; j < total_width; j++) {
+            if (vg_draw_pixel(start_x + j, start_y + i, color) != 0) {
+                printf("vg_draw_rectangle_border(): vg_draw_pixel() failed\n");
+                vg_exit();
+                return 1;
+            }
+        }
+    }
+
+    return 0;
+}
+
+int (vg_draw_xpm_partial)(xpm_image_t xpm_image, uint8_t *colorMap, uint16_t x, uint16_t y, uint16_t image_start_x, uint16_t mode) {
 
   if (colorMap == NULL) {
     printf("vg_draw_xpm(): xpm_load() failed \n");
