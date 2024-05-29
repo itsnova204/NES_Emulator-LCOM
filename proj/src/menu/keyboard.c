@@ -1,8 +1,8 @@
 #include "keyboard.h"
 
 int kbd_hook_id = 1;
-uint8_t scancode = 0;
-bool valid = false;
+static uint8_t scancode;
+static bool valid = false;
 
 uint8_t(get_scancode)()
 {

@@ -3,8 +3,10 @@
 int hook_id_mouse = 3; // entre 0 e 7 (IRQs)
 uint8_t current_byte;
 struct packet pp;
-static uint8_t i = 0;
+uint8_t i = 0;
 uint8_t mouse_bytes[3];
+
+static bool valid = false;
 
 int mouse_subscribe_int(uint8_t *bit_no)
 {
@@ -35,7 +37,10 @@ void(mouse_int_handler)()
     if (kbc_read_output(KBC_WRITE_CMD, &current_byte, 1))
     {
         printf("Error: kbc_read_output failed!\n");
+        valid = false;
+        return;
     }
+    valid = true;
 }
 
 bool(mouse_sync)()
