@@ -43,8 +43,6 @@ void (swap_buffers)();
 */
 int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color);
 
-int (vg_draw_pattern)(uint16_t mode, uint8_t no_rectangles, uint32_t first, uint8_t step);
-
 /**
  * @brief Draws a xpm image on the screen
  * @param xpm_image xpm image to draw
@@ -94,21 +92,5 @@ int (vg_draw_rectangle_from_bottom_left_corner)(int16_t x, uint16_t y, uint16_t 
  * @brief clears the screen
 */
 int vg_clear_screen();
-
-/**
- * @brief Normalize the color depending on given mode
- * @param color color to normalize
- * @param mode mode to normalize
- * @return normalized color or 0 if failed
-*/
-uint32_t (normalizeColor)(uint32_t color, uint16_t mode);
-
-uint32_t (Red)(unsigned j, uint8_t step, uint32_t first);
-uint32_t (Green)(unsigned i, uint8_t step, uint32_t first);
-uint32_t (Blue)(unsigned j, unsigned i, uint8_t step, uint32_t first);
-uint32_t (R)(uint32_t first);
-uint32_t (G)(uint32_t first);
-uint32_t (B)(uint32_t first);
-
 
 #endif
