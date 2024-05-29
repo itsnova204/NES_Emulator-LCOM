@@ -33,14 +33,18 @@ int(kbc_read_output)(uint8_t port, uint8_t *output, uint8_t mouse)
           printf("Error: Not a keyboard scancode!\n");
           return 1;
         }
+
+        return 0;
+
       } else {
         if ((status & BIT(5)) == 0) { // rato
           printf("Error: Not a mouse scancode!\n");
           return 1;
         }
-      }
 
-      return 0;
+        return 0;
+        
+      }
     }
     
     tickdelay(micros_to_ticks(DELAY));
