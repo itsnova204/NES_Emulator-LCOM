@@ -104,8 +104,8 @@
       @utils.c:29, util_sys_inb
         sys_inb(port, &temp)
       > sys_inb(0x40, addr: 0xeffff510)
-      < sys_inb(0x40, addr: 0xeffff510 [0x36 = 0b00110110])
-    < timer_get_conf(0, addr: 0xeffff62b [0x36 = 0b00110110]) -> (ret: 0)
+      < sys_inb(0x40, addr: 0xeffff510 [0xb6 = 0b10110110])
+    < timer_get_conf(0, addr: 0xeffff62b [0xb6 = 0b10110110]) -> (ret: 0)
     @timer.c:40, timer_set_frequency
       sys_outb(TIMER_CTRL, control)
     > sys_outb(0x43, 0x36 = 0b00110110)
@@ -178,14 +178,14 @@
   @utils.c:29, util_sys_inb
     sys_inb(port, &temp)
   > sys_inb(0x71, addr: 0xeffff6b0)
-  < sys_inb(0x71, addr: 0xeffff6b0 [0x40 = 0b01000000])
+  < sys_inb(0x71, addr: 0xeffff6b0 [0x45 = 0b01000101])
   @rtc.c:111, rtc_read_reg
     sys_outb(RTC_ADDR_REG, reg)
   > sys_outb(0x70, 0x00 = 0b00000000)
   @utils.c:29, util_sys_inb
     sys_inb(port, &temp)
   > sys_inb(0x71, addr: 0xeffff6b0)
-  < sys_inb(0x71, addr: 0xeffff6b0 [0x39 = 0b00111001])
+  < sys_inb(0x71, addr: 0xeffff6b0 [0x47 = 0b01000111])
   @rtc.c:111, rtc_read_reg
     sys_outb(RTC_ADDR_REG, reg)
   > sys_outb(0x70, 0x0b = 0b00001011)
@@ -207,42 +207,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -253,6 +217,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -267,42 +267,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -313,6 +277,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -327,42 +327,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -373,6 +337,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -387,42 +387,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -433,6 +397,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -447,42 +447,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -493,6 +457,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -507,42 +507,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -555,484 +519,40 @@
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @main.c:73, proj_main_loop
-    driver_receive(ANY, &msg, &ipc_status)
-  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:97, proj_main_loop
-    timer_int_handler()
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @main.c:73, proj_main_loop
-    driver_receive(ANY, &msg, &ipc_status)
-  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:97, proj_main_loop
-    timer_int_handler()
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @main.c:73, proj_main_loop
-    driver_receive(ANY, &msg, &ipc_status)
-  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:97, proj_main_loop
-    timer_int_handler()
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @main.c:73, proj_main_loop
-    driver_receive(ANY, &msg, &ipc_status)
-  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:97, proj_main_loop
-    timer_int_handler()
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @main.c:73, proj_main_loop
-    driver_receive(ANY, &msg, &ipc_status)
-  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:97, proj_main_loop
-    timer_int_handler()
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @main.c:73, proj_main_loop
-    driver_receive(ANY, &msg, &ipc_status)
-  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:97, proj_main_loop
-    timer_int_handler()
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @main.c:73, proj_main_loop
-    driver_receive(ANY, &msg, &ipc_status)
-  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:97, proj_main_loop
-    timer_int_handler()
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @main.c:73, proj_main_loop
-    driver_receive(ANY, &msg, &ipc_status)
-  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:97, proj_main_loop
-    timer_int_handler()
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -1057,42 +577,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -1103,6 +587,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -1127,42 +647,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -1173,6 +657,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -1197,42 +717,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -1243,6 +727,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -1267,42 +787,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -1313,6 +797,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -1337,42 +857,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -1383,6 +867,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -1397,42 +917,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -1443,6 +927,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -1457,42 +977,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -1503,6 +987,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -1527,42 +1047,6 @@
     timer_int_handler()
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
-  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:234, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
-  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
-  @graphics.c:227, vg_draw_rectangle_border
-    vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
@@ -1573,6 +1057,42 @@
   @graphics.c:234, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
   < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(783, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(783, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
   @graphics.c:227, vg_draw_rectangle_border
     vg_draw_hline(start_x, start_y + i, total_width, color)
   < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
@@ -1593,10 +1113,10 @@
       sys_inb(port, &temp)
     > sys_inb(0x60, addr: 0xeffff604)
     < sys_inb(0x60, addr: 0xeffff604 [0x81 = 0b10000001])
-  @main.c:162, proj_main_loop
+  @main.c:161, proj_main_loop
     vg_exit()
   < vg_exit() -> (ret: 0)
-  @main.c:163, proj_main_loop
+  @main.c:162, proj_main_loop
     timer_unsubscribe_int()
     @timer.c:76, timer_unsubscribe_int
       sys_irqrmpolicy(&hook_id)
