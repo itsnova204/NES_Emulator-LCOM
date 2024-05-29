@@ -64,7 +64,7 @@ extern uint8_t controller[2];
 int (proj_main_loop)() {
   Sprite* nes_screen = SpriteCreate(256, 240);
 
-  char* cart_filePath = "/home/lcom/labs/proj/roms/nestest.nes";
+  char* cart_filePath = "/home/lcom/labs/proj/roms/Super_mario_brothers.nes";
    
   if (access(cart_filePath, F_OK) == 0) {
     printf("Rom found!\n");
@@ -144,10 +144,13 @@ int (proj_main_loop)() {
           }
       } else {}
   }
-  if (kbd_unsubscribe_int() != 0) return 1;
 
   if (vg_exit() != 0) return 1;
   if (timer_unsubscribe_int() != 0) return 1;
-
+  sleep(3);
+  if (kbd_unsubscribe_int() != 0) return 1;
+  
+  if (bus_exit() != 0) return 1;
+  
   return 0;
 }

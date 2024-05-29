@@ -15,7 +15,9 @@ CFLAGS += -pedantic -D_LCOM_OPTIMIZED_
 
 # list of library dependencies
 DPADD += ${LIBLCF}
-LDADD += -llcf -lxpm -llm
+LDADD += -llcf -lxpm -llm -O3 -Wall -Wextra -pedantic
+
+LLDADD += -Warray-bounds -Wformat-overflow -Wstringop-overflow -Wstringop-overread
 
 # include LCOM's makefile that does all the "heavy lifting"
 .include <minix.lcom.mk>

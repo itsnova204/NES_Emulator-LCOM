@@ -47,6 +47,7 @@ int bus_init(char* cart_filePath){
 
 int bus_exit(){
   cart_remove();
+  ppu_exit();
 
   return 0;
 }
@@ -91,17 +92,18 @@ if (mainClockCounter % 3 == 0){
 
 	mainClockCounter++;
 }
-
+int readcounter = 0;
 uint8_t sysBus_read(uint16_t addr) {
-    printf("Reading from address: %x\n", addr);
+
     uint8_t data = 0x00;
     bool hijack = false;
-    
+    //uint16_t oldaddr = addr;
+
     data = sys_readFromCard(addr, &hijack);
     if(hijack){
         addr = 0xffff;
     }
-    else if (addr >= 0x0000 && addr <= 0x1FFF) {
+    else if (addr <= 0x1FFF) {
         data = sys_ram[addr & 0x07FF];
     }
     else if (addr >= 0x2000 && addr <= 0x3FFF) {
@@ -112,6 +114,7 @@ uint8_t sysBus_read(uint16_t addr) {
     }
 
 
+    //printf("read %02x, from %04x n%6d\n",data,oldaddr,readcounter++ );
     return data;
 }
 
@@ -119,6 +122,7 @@ int writeCounter = 0;
 
 void sysBus_write(uint16_t addr, uint8_t data) {
     bool hijack = false;
+   //printf("write %02x, to %04x n%6d\n",data,addr,writeCounter++ );
 
     sys_writeToCard(addr, data, &hijack);
     if(hijack) return;

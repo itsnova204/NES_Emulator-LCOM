@@ -42,7 +42,12 @@ int cart_insert(char* cart_filePath){
   //read header
   printf("[CART] Loading rom: %s\n", cart_filePath);
 
-  FILE *fp = fopen(cart_filePath, "rb"); //TODO change this to "r" in minix
+  if(access(cart_filePath, F_OK)){
+    printf("Error: File does not exist\n");
+    exit(1);
+    return 1;
+  }
+  FILE *fp = fopen(cart_filePath, "r"); //TODO change this to "r" in minix
   if (fp == NULL){
     printf("Error: Could not open rom\n");
     return 1;
@@ -120,12 +125,9 @@ uint8_t ines_parse(FILE *fp){
 
   printf("Memory allocation complete!\n");
 
-  uint8_t PRGmem_read = 0;
-  uint8_t CHRmem_read = 0;
+  fread(PRGmem, 16384, nPRG_membanks, fp);
+  fread(CHRmem, 8192, nCHR_membanks, fp);
 
-  PRGmem_read = fread(PRGmem, 16384, nPRG_membanks, fp);
-  CHRmem_read = fread(CHRmem, 8192, nCHR_membanks, fp);
-  
   return 0;
 }
 
@@ -143,9 +145,6 @@ void print_header(){
 
 
 uint8_t sys_readFromCard(uint16_t addr, bool* hijack){
-
-  
-  
   return PRGmem[mapper_map(addr, type_sysBus_read, hijack)];
 }
 
@@ -164,7 +163,14 @@ uint8_t ppu_readFromCard(uint16_t addr, bool* hijack){
 
 void ppu_writeToCard(uint16_t addr, uint8_t data, bool* hijack){
   if (addr <= 0x1FFF){
-    CHRmem[mapper_map(addr, type_ppuBus_write, hijack)] = data;
+    uint16_t mapped_addr = mapper_map(addr, type_ppuBus_write, hijack);
+    if (mapped_addr > (nCHR_membanks*8192/8))
+    {
+      exit(1);
+    }
+    //CHRmem[mapped_addr] = data;
+  
   }
+
 }
 

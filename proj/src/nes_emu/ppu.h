@@ -11,11 +11,13 @@
 typedef size_t usize;
 
 typedef struct Color {
-    unsigned char red;   
-    unsigned char green;      
-    unsigned char blue;        
-    unsigned char alpha;        
+    unsigned char red;        // Color red value
+    unsigned char green;        // Color green value
+    unsigned char blue;        // Color blue value
+    unsigned char alpha;        // Color alpha value
 } Color;
+
+void ppu_exit();
 
 Color ColorBuild(uint8_t red, uint8_t green, uint8_t blue);
 bool ppu_isFrameComplete();
@@ -23,11 +25,13 @@ void ppu_setFrameCompleted(bool value);
 
 void ppu_disable_nmi();
 
-typedef struct {
+typedef struct __attribute__((packed)){
     Color *pixels;
     uint16_t width;
     uint16_t height;
 } Sprite;
+
+
 
 Sprite *SpriteCreate(uint16_t width, uint16_t height);
 Color SpriteGetPixel(Sprite *sprite, uint16_t x, uint16_t y);
