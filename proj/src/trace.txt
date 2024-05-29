@@ -1,66 +1,70 @@
 @lcflib.a:2019, lcf_start
   proj_main_loop(argc, argv)
 > proj_main_loop(0, [NULL])
-  @sprite.c:24, preloadSprites
-    xpm_load(zero, XPM_TYPE_MENU, &images[0].image)
-  > xpm_load(addr: 0x81ea490, XPM_8_8_8_8, addr: 0x827e66c)
-  < xpm_load(addr: 0x81ea490, XPM_8_8_8_8, addr: 0x827e66c [16x16 : 1024 bytes]) -> (ret: 0x8284000)
-  @sprite.c:25, preloadSprites
-    xpm_load(one, XPM_TYPE_MENU, &images[1].image)
-  > xpm_load(addr: 0x81ea4dc, XPM_8_8_8_8, addr: 0x827e684)
-  < xpm_load(addr: 0x81ea4dc, XPM_8_8_8_8, addr: 0x827e684 [16x16 : 1024 bytes]) -> (ret: 0x8284400)
   @sprite.c:26, preloadSprites
-    xpm_load(two, XPM_TYPE_MENU, &images[2].image)
-  > xpm_load(addr: 0x81ea528, XPM_8_8_8_8, addr: 0x827e69c)
-  < xpm_load(addr: 0x81ea528, XPM_8_8_8_8, addr: 0x827e69c [16x16 : 1024 bytes]) -> (ret: 0x8284800)
+    xpm_load(zero, XPM_TYPE_MENU, &images[0].image)
+  > xpm_load(addr: 0x8227020, XPM_8_8_8_8, addr: 0x82bad1c)
+  < xpm_load(addr: 0x8227020, XPM_8_8_8_8, addr: 0x82bad1c [16x16 : 1024 bytes]) -> (ret: 0x82c1000)
   @sprite.c:27, preloadSprites
-    xpm_load(three, XPM_TYPE_MENU, &images[3].image)
-  > xpm_load(addr: 0x81ea574, XPM_8_8_8_8, addr: 0x827e6b4)
-  < xpm_load(addr: 0x81ea574, XPM_8_8_8_8, addr: 0x827e6b4 [16x16 : 1024 bytes]) -> (ret: 0x8284c00)
+    xpm_load(one, XPM_TYPE_MENU, &images[1].image)
+  > xpm_load(addr: 0x822706c, XPM_8_8_8_8, addr: 0x82bad34)
+  < xpm_load(addr: 0x822706c, XPM_8_8_8_8, addr: 0x82bad34 [16x16 : 1024 bytes]) -> (ret: 0x82c1400)
   @sprite.c:28, preloadSprites
-    xpm_load(four, XPM_TYPE_MENU, &images[4].image)
-  > xpm_load(addr: 0x81ea5c0, XPM_8_8_8_8, addr: 0x827e6cc)
-  < xpm_load(addr: 0x81ea5c0, XPM_8_8_8_8, addr: 0x827e6cc [16x16 : 1024 bytes]) -> (ret: 0x8285000)
+    xpm_load(two, XPM_TYPE_MENU, &images[2].image)
+  > xpm_load(addr: 0x82270b8, XPM_8_8_8_8, addr: 0x82bad4c)
+  < xpm_load(addr: 0x82270b8, XPM_8_8_8_8, addr: 0x82bad4c [16x16 : 1024 bytes]) -> (ret: 0x82c1800)
   @sprite.c:29, preloadSprites
-    xpm_load(five, XPM_TYPE_MENU, &images[5].image)
-  > xpm_load(addr: 0x81ea60c, XPM_8_8_8_8, addr: 0x827e6e4)
-  < xpm_load(addr: 0x81ea60c, XPM_8_8_8_8, addr: 0x827e6e4 [16x16 : 1024 bytes]) -> (ret: 0x8285400)
+    xpm_load(three, XPM_TYPE_MENU, &images[3].image)
+  > xpm_load(addr: 0x8227104, XPM_8_8_8_8, addr: 0x82bad64)
+  < xpm_load(addr: 0x8227104, XPM_8_8_8_8, addr: 0x82bad64 [16x16 : 1024 bytes]) -> (ret: 0x82c1c00)
   @sprite.c:30, preloadSprites
-    xpm_load(six, XPM_TYPE_MENU, &images[6].image)
-  > xpm_load(addr: 0x81ea658, XPM_8_8_8_8, addr: 0x827e6fc)
-  < xpm_load(addr: 0x81ea658, XPM_8_8_8_8, addr: 0x827e6fc [16x16 : 1024 bytes]) -> (ret: 0x8285800)
+    xpm_load(four, XPM_TYPE_MENU, &images[4].image)
+  > xpm_load(addr: 0x8227150, XPM_8_8_8_8, addr: 0x82bad7c)
+  < xpm_load(addr: 0x8227150, XPM_8_8_8_8, addr: 0x82bad7c [16x16 : 1024 bytes]) -> (ret: 0x82c2000)
   @sprite.c:31, preloadSprites
-    xpm_load(seven, XPM_TYPE_MENU, &images[7].image)
-  > xpm_load(addr: 0x81ea6a4, XPM_8_8_8_8, addr: 0x827e714)
-  < xpm_load(addr: 0x81ea6a4, XPM_8_8_8_8, addr: 0x827e714 [16x16 : 1024 bytes]) -> (ret: 0x8285c00)
+    xpm_load(five, XPM_TYPE_MENU, &images[5].image)
+  > xpm_load(addr: 0x822719c, XPM_8_8_8_8, addr: 0x82bad94)
+  < xpm_load(addr: 0x822719c, XPM_8_8_8_8, addr: 0x82bad94 [16x16 : 1024 bytes]) -> (ret: 0x82c2400)
   @sprite.c:32, preloadSprites
-    xpm_load(eight, XPM_TYPE_MENU, &images[8].image)
-  > xpm_load(addr: 0x81ea6f0, XPM_8_8_8_8, addr: 0x827e72c)
-  < xpm_load(addr: 0x81ea6f0, XPM_8_8_8_8, addr: 0x827e72c [16x16 : 1024 bytes]) -> (ret: 0x8286000)
+    xpm_load(six, XPM_TYPE_MENU, &images[6].image)
+  > xpm_load(addr: 0x82271e8, XPM_8_8_8_8, addr: 0x82badac)
+  < xpm_load(addr: 0x82271e8, XPM_8_8_8_8, addr: 0x82badac [16x16 : 1024 bytes]) -> (ret: 0x82c2800)
   @sprite.c:33, preloadSprites
-    xpm_load(nine, XPM_TYPE_MENU, &images[9].image)
-  > xpm_load(addr: 0x81ea73c, XPM_8_8_8_8, addr: 0x827e744)
-  < xpm_load(addr: 0x81ea73c, XPM_8_8_8_8, addr: 0x827e744 [16x16 : 1024 bytes]) -> (ret: 0x8286400)
+    xpm_load(seven, XPM_TYPE_MENU, &images[7].image)
+  > xpm_load(addr: 0x8227234, XPM_8_8_8_8, addr: 0x82badc4)
+  < xpm_load(addr: 0x8227234, XPM_8_8_8_8, addr: 0x82badc4 [16x16 : 1024 bytes]) -> (ret: 0x82c2c00)
   @sprite.c:34, preloadSprites
-    xpm_load(menu, XPM_TYPE_MENU, &images[10].image)
-  > xpm_load(addr: 0x81e96d0, XPM_8_8_8_8, addr: 0x827e75c)
-  < xpm_load(addr: 0x81e96d0, XPM_8_8_8_8, addr: 0x827e75c [1152x864 : 3981312 bytes]) -> (ret: 0x8288000)
+    xpm_load(eight, XPM_TYPE_MENU, &images[8].image)
+  > xpm_load(addr: 0x8227280, XPM_8_8_8_8, addr: 0x82baddc)
+  < xpm_load(addr: 0x8227280, XPM_8_8_8_8, addr: 0x82baddc [16x16 : 1024 bytes]) -> (ret: 0x82c3000)
   @sprite.c:35, preloadSprites
-    xpm_load(colon, XPM_TYPE_MENU, &images[11].image)
-  > xpm_load(addr: 0x81ea788, XPM_8_8_8_8, addr: 0x827e774)
-  < xpm_load(addr: 0x81ea788, XPM_8_8_8_8, addr: 0x827e774 [16x16 : 1024 bytes]) -> (ret: 0x8286800)
+    xpm_load(nine, XPM_TYPE_MENU, &images[9].image)
+  > xpm_load(addr: 0x82272cc, XPM_8_8_8_8, addr: 0x82badf4)
+  < xpm_load(addr: 0x82272cc, XPM_8_8_8_8, addr: 0x82badf4 [16x16 : 1024 bytes]) -> (ret: 0x82c3400)
   @sprite.c:36, preloadSprites
-    xpm_load(slash, XPM_TYPE_MENU, &images[12].image)
-  > xpm_load(addr: 0x81ea7d4, XPM_8_8_8_8, addr: 0x827e78c)
-  < xpm_load(addr: 0x81ea7d4, XPM_8_8_8_8, addr: 0x827e78c [16x16 : 1024 bytes]) -> (ret: 0x8286c00)
+    xpm_load(menu, XPM_TYPE_MENU, &images[10].image)
+  > xpm_load(addr: 0x8226260, XPM_8_8_8_8, addr: 0x82bae0c)
+  < xpm_load(addr: 0x8226260, XPM_8_8_8_8, addr: 0x82bae0c [1152x864 : 3981312 bytes]) -> (ret: 0x82c5000)
   @sprite.c:37, preloadSprites
+    xpm_load(colon, XPM_TYPE_MENU, &images[11].image)
+  > xpm_load(addr: 0x8227318, XPM_8_8_8_8, addr: 0x82bae24)
+  < xpm_load(addr: 0x8227318, XPM_8_8_8_8, addr: 0x82bae24 [16x16 : 1024 bytes]) -> (ret: 0x82c3800)
+  @sprite.c:38, preloadSprites
+    xpm_load(slash, XPM_TYPE_MENU, &images[12].image)
+  > xpm_load(addr: 0x8227364, XPM_8_8_8_8, addr: 0x82bae3c)
+  < xpm_load(addr: 0x8227364, XPM_8_8_8_8, addr: 0x82bae3c [16x16 : 1024 bytes]) -> (ret: 0x82c3c00)
+  @sprite.c:39, preloadSprites
     xpm_load(cursor, XPM_TYPE_MENU, &images[13].image)
-  > xpm_load(addr: 0x81ea820, XPM_8_8_8_8, addr: 0x827e7a4)
-  < xpm_load(addr: 0x81ea820, XPM_8_8_8_8, addr: 0x827e7a4 [32x32 : 4096 bytes]) -> (ret: 0x8287000)
+  > xpm_load(addr: 0x82273b0, XPM_8_8_8_8, addr: 0x82bae54)
+  < xpm_load(addr: 0x82273b0, XPM_8_8_8_8, addr: 0x82bae54 [32x32 : 4096 bytes]) -> (ret: 0x82c4000)
+  @sprite.c:40, preloadSprites
+    xpm_load(super_mario, XPM_TYPE_MENU, &images[14].image)
+  > xpm_load(addr: 0x8227440, XPM_8_8_8_8, addr: 0x82bae6c)
+  < xpm_load(addr: 0x8227440, XPM_8_8_8_8, addr: 0x82bae6c [300x419 : 502800 bytes]) -> (ret: 0x8693000)
   @graphics.c:38, set_frame_buffer
     vbe_get_mode_info(mode, &vbe_mode_info)
-  > vbe_get_mode_info(0x14c, addr: 0x82627b4)
-  < vbe_get_mode_info(0x14c, addr: 0x82627b4 [0xe0000000, 1152x864, 8:8:8 (32) <3.79688 MiB>]) -> (ret: 0)
+  > vbe_get_mode_info(0x14c, addr: 0x829ee64)
+  < vbe_get_mode_info(0x14c, addr: 0x829ee64 [0xe0000000, 1152x864, 8:8:8 (32) <3.79688 MiB>]) -> (ret: 0)
   @graphics.c:53, set_frame_buffer
     sys_privctl(SELF, SYS_PRIV_ADD_MEM, &memory_range)
   > sys_privctl(SELF, SYS_PRIV_ADD_MEM, addr: 0xeffff6d0 [0xe0000000 - 0xe03cc000 <3.79688 MiB>])
@@ -72,23 +76,23 @@
     sys_int86(&reg86)
   > sys_int86(addr: 0xeffff6b0 [AX: 4f02, BX: 414c, CX: 0000, DX: 0000, ES: 0000, DI: 0000])
   < sys_int86(addr: 0xeffff6b0 [AX: 004f, BX: 414c, CX: 0000, DX: 0000, ES: 0000, DI: 0000]) -> (ret: 0)
-  @main.c:67, proj_main_loop
+  @main.c:58, proj_main_loop
     timer_subscribe_int(&irq_set_timer)
   > timer_subscribe_int(addr: 0xeffff74f [8])
     @timer.c:68, timer_subscribe_int
       sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id)
-    > sys_irqsetpolicy(0, 1, addr: 0x826279c [0])
-    < sys_irqsetpolicy(0, 1, addr: 0x826279c [9]) -> (ret: 0)
+    > sys_irqsetpolicy(0, 1, addr: 0x829ee4c [0])
+    < sys_irqsetpolicy(0, 1, addr: 0x829ee4c [9]) -> (ret: 0)
   < timer_subscribe_int(addr: 0xeffff74f [1]) -> (ret: 0)
   @keyboard.c:23, kbd_subscribe_int
     sys_irqsetpolicy(KBD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &kbd_hook_id)
-  > sys_irqsetpolicy(1, 3, addr: 0x8261b18 [1])
-  < sys_irqsetpolicy(1, 3, addr: 0x8261b18 [10]) -> (ret: 0)
+  > sys_irqsetpolicy(1, 3, addr: 0x829e1cc [1])
+  < sys_irqsetpolicy(1, 3, addr: 0x829e1cc [10]) -> (ret: 0)
   @mouse.c:17, mouse_subscribe_int
     sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_mouse)
-  > sys_irqsetpolicy(12, 3, addr: 0x8261b20 [3])
-  < sys_irqsetpolicy(12, 3, addr: 0x8261b20 [11]) -> (ret: 0)
-  @main.c:71, proj_main_loop
+  > sys_irqsetpolicy(12, 3, addr: 0x829e1d4 [3])
+  < sys_irqsetpolicy(12, 3, addr: 0x829e1d4 [11]) -> (ret: 0)
+  @main.c:62, proj_main_loop
     timer_set_frequency(0, 60)
   > timer_set_frequency(0, 60)
     @timer.c:20, timer_set_frequency
@@ -100,8 +104,8 @@
       @utils.c:29, util_sys_inb
         sys_inb(port, &temp)
       > sys_inb(0x40, addr: 0xeffff510)
-      < sys_inb(0x40, addr: 0xeffff510 [0xb6 = 0b10110110])
-    < timer_get_conf(0, addr: 0xeffff62b [0xb6 = 0b10110110]) -> (ret: 0)
+      < sys_inb(0x40, addr: 0xeffff510 [0x36 = 0b00110110])
+    < timer_get_conf(0, addr: 0xeffff62b [0x36 = 0b00110110]) -> (ret: 0)
     @timer.c:40, timer_set_frequency
       sys_outb(TIMER_CTRL, control)
     > sys_outb(0x43, 0x36 = 0b00110110)
@@ -167,21 +171,21 @@
   @utils.c:29, util_sys_inb
     sys_inb(port, &temp)
   > sys_inb(0x71, addr: 0xeffff6b0)
-  < sys_inb(0x71, addr: 0xeffff6b0 [0x15 = 0b00010101])
+  < sys_inb(0x71, addr: 0xeffff6b0 [0x23 = 0b00100011])
   @rtc.c:111, rtc_read_reg
     sys_outb(RTC_ADDR_REG, reg)
   > sys_outb(0x70, 0x02 = 0b00000010)
   @utils.c:29, util_sys_inb
     sys_inb(port, &temp)
   > sys_inb(0x71, addr: 0xeffff6b0)
-  < sys_inb(0x71, addr: 0xeffff6b0 [0x48 = 0b01001000])
+  < sys_inb(0x71, addr: 0xeffff6b0 [0x40 = 0b01000000])
   @rtc.c:111, rtc_read_reg
     sys_outb(RTC_ADDR_REG, reg)
   > sys_outb(0x70, 0x00 = 0b00000000)
   @utils.c:29, util_sys_inb
     sys_inb(port, &temp)
   > sys_inb(0x71, addr: 0xeffff6b0)
-  < sys_inb(0x71, addr: 0xeffff6b0 [0x41 = 0b01000001])
+  < sys_inb(0x71, addr: 0xeffff6b0 [0x39 = 0b00111001])
   @rtc.c:111, rtc_read_reg
     sys_outb(RTC_ADDR_REG, reg)
   > sys_outb(0x70, 0x0b = 0b00001011)
@@ -195,165 +199,1321 @@
   @rtc.c:133, rtc_write_reg
     sys_outb(RTC_DATA_REG, data)
   > sys_outb(0x71, 0x02 = 0b00000010)
-  @main.c:80, proj_main_loop
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
   < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:104, proj_main_loop
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
   < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:104, proj_main_loop
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
   < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:104, proj_main_loop
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
   < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:104, proj_main_loop
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
   < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:104, proj_main_loop
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
   < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:104, proj_main_loop
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
   < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
-  @main.c:104, proj_main_loop
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000001001]>)
-  @main.c:104, proj_main_loop
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x64, addr: 0xeffff694)
-  < sys_inb(0x64, addr: 0xeffff694 [0x3d = 0b00111101])
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x60, addr: 0xeffff694)
-  < sys_inb(0x60, addr: 0xeffff694 [0x18 = 0b00011000])
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000001001]>)
-  @main.c:104, proj_main_loop
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x64, addr: 0xeffff694)
-  < sys_inb(0x64, addr: 0xeffff694 [0x3d = 0b00111101])
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x60, addr: 0xeffff694)
-  < sys_inb(0x60, addr: 0xeffff694 [0xff = 0b11111111])
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000001001]>)
-  @main.c:104, proj_main_loop
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x64, addr: 0xeffff694)
-  < sys_inb(0x64, addr: 0xeffff694 [0x3d = 0b00111101])
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x60, addr: 0xeffff694)
-  < sys_inb(0x60, addr: 0xeffff694 [0x02 = 0b00000010])
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000001001]>)
-  @main.c:104, proj_main_loop
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x64, addr: 0xeffff694)
-  < sys_inb(0x64, addr: 0xeffff694 [0x3d = 0b00111101])
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x60, addr: 0xeffff694)
-  < sys_inb(0x60, addr: 0xeffff694 [0x18 = 0b00011000])
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000001001]>)
-  @main.c:104, proj_main_loop
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x64, addr: 0xeffff694)
-  < sys_inb(0x64, addr: 0xeffff694 [0x3d = 0b00111101])
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x60, addr: 0xeffff694)
-  < sys_inb(0x60, addr: 0xeffff694 [0xfd = 0b11111101])
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000001001]>)
-  @main.c:104, proj_main_loop
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x64, addr: 0xeffff694)
-  < sys_inb(0x64, addr: 0xeffff694 [0x3d = 0b00111101])
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x60, addr: 0xeffff694)
-  < sys_inb(0x60, addr: 0xeffff694 [0x05 = 0b00000101])
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000001001]>)
-  @main.c:104, proj_main_loop
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x64, addr: 0xeffff694)
-  < sys_inb(0x64, addr: 0xeffff694 [0x3d = 0b00111101])
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x60, addr: 0xeffff694)
-  < sys_inb(0x60, addr: 0xeffff694 [0x18 = 0b00011000])
-  @main.c:80, proj_main_loop
-    driver_receive(ANY, &msg, &ipc_status)
-  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000001001]>)
-  @main.c:104, proj_main_loop
-    timer_int_handler()
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x64, addr: 0xeffff694)
-  < sys_inb(0x64, addr: 0xeffff694 [0x3d = 0b00111101])
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x60, addr: 0xeffff694)
-  < sys_inb(0x60, addr: 0xeffff694 [0xf4 = 0b11110100])
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
   < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
-  @main.c:89, proj_main_loop
+  @main.c:82, proj_main_loop
+    kbc_ih()
+    @utils.c:29, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff604)
+    < sys_inb(0x64, addr: 0xeffff604 [0x1d = 0b00011101])
+    @utils.c:29, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff604)
+    < sys_inb(0x60, addr: 0xeffff604 [0x2a = 0b00101010])
+  @main.c:97, proj_main_loop
+    timer_int_handler()
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @main.c:82, proj_main_loop
+    kbc_ih()
+    @utils.c:29, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff604)
+    < sys_inb(0x64, addr: 0xeffff604 [0x1d = 0b00011101])
+    @utils.c:29, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff604)
+    < sys_inb(0x60, addr: 0xeffff604 [0x2a = 0b00101010])
+  @main.c:97, proj_main_loop
+    timer_int_handler()
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @main.c:82, proj_main_loop
+    kbc_ih()
+    @utils.c:29, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff604)
+    < sys_inb(0x64, addr: 0xeffff604 [0x1d = 0b00011101])
+    @utils.c:29, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff604)
+    < sys_inb(0x60, addr: 0xeffff604 [0x2a = 0b00101010])
+  @main.c:97, proj_main_loop
+    timer_int_handler()
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @main.c:82, proj_main_loop
+    kbc_ih()
+    @utils.c:29, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff604)
+    < sys_inb(0x64, addr: 0xeffff604 [0x1d = 0b00011101])
+    @utils.c:29, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff604)
+    < sys_inb(0x60, addr: 0xeffff604 [0x2a = 0b00101010])
+  @main.c:97, proj_main_loop
+    timer_int_handler()
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @main.c:82, proj_main_loop
+    kbc_ih()
+    @utils.c:29, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x64, addr: 0xeffff604)
+    < sys_inb(0x64, addr: 0xeffff604 [0x1d = 0b00011101])
+    @utils.c:29, util_sys_inb
+      sys_inb(port, &temp)
+    > sys_inb(0x60, addr: 0xeffff604)
+    < sys_inb(0x60, addr: 0xeffff604 [0xaa = 0b10101010])
+  @main.c:97, proj_main_loop
+    timer_int_handler()
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:97, proj_main_loop
+    timer_int_handler()
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000001]>)
+  @main.c:97, proj_main_loop
+    timer_int_handler()
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
+    driver_receive(ANY, &msg, &ipc_status)
+  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
+  @main.c:82, proj_main_loop
     kbc_ih()
     @utils.c:29, util_sys_inb
       sys_inb(port, &temp)
@@ -363,27 +1523,67 @@
       sys_inb(port, &temp)
     > sys_inb(0x60, addr: 0xeffff604)
     < sys_inb(0x60, addr: 0xeffff604 [0x01 = 0b00000001])
-  @main.c:104, proj_main_loop
+  @main.c:97, proj_main_loop
     timer_int_handler()
-  @main.c:80, proj_main_loop
-    driver_receive(ANY, &msg, &ipc_status)
-  > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
-  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000001001]>)
-  @main.c:104, proj_main_loop
-    timer_int_handler()
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x64, addr: 0xeffff694)
-  < sys_inb(0x64, addr: 0xeffff694 [0x3d = 0b00111101])
-  @utils.c:29, util_sys_inb
-    sys_inb(port, &temp)
-  > sys_inb(0x60, addr: 0xeffff694)
-  < sys_inb(0x60, addr: 0xeffff694 [0x0f = 0b00001111])
-  @main.c:80, proj_main_loop
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 244, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 669, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 245, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 670, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 246, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 671, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 247, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 672, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 248, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 673, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(57, 249, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(57, 674, 312, 0x0004fae4 [326372]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(62, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(62, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(425, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(425, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:227, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + i, total_width, color)
+  < vg_draw_hline(788, 249, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @graphics.c:234, vg_draw_rectangle_border
+    vg_draw_hline(start_x, start_y + total_height - border_width + i, total_width, color)
+  < vg_draw_hline(788, 669, 302, 0x00ffffff [16777215]) -> (ret: 0)
+  @main.c:73, proj_main_loop
     driver_receive(ANY, &msg, &ipc_status)
   > driver_receive(ANY, addr: 0xeffff750, addr: 0xeffff798)
   < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000011]>)
-  @main.c:89, proj_main_loop
+  @main.c:82, proj_main_loop
     kbc_ih()
     @utils.c:29, util_sys_inb
       sys_inb(port, &temp)
@@ -393,21 +1593,21 @@
       sys_inb(port, &temp)
     > sys_inb(0x60, addr: 0xeffff604)
     < sys_inb(0x60, addr: 0xeffff604 [0x81 = 0b10000001])
-  @main.c:164, proj_main_loop
+  @main.c:162, proj_main_loop
     vg_exit()
   < vg_exit() -> (ret: 0)
-  @main.c:165, proj_main_loop
+  @main.c:163, proj_main_loop
     timer_unsubscribe_int()
     @timer.c:76, timer_unsubscribe_int
       sys_irqrmpolicy(&hook_id)
-    > sys_irqrmpolicy(addr: 0x826279c [9])
-    < sys_irqrmpolicy(addr: 0x826279c [9]) -> (ret: 0)
+    > sys_irqrmpolicy(addr: 0x829ee4c [9])
+    < sys_irqrmpolicy(addr: 0x829ee4c [9]) -> (ret: 0)
   @keyboard.c:28, kbd_unsubscribe_int
     sys_irqrmpolicy(&kbd_hook_id)
-  > sys_irqrmpolicy(addr: 0x8261b18 [10])
-  < sys_irqrmpolicy(addr: 0x8261b18 [10]) -> (ret: 0)
+  > sys_irqrmpolicy(addr: 0x829e1cc [10])
+  < sys_irqrmpolicy(addr: 0x829e1cc [10]) -> (ret: 0)
   @mouse.c:27, mouse_unsubscribe_int
     sys_irqrmpolicy(&hook_id_mouse)
-  > sys_irqrmpolicy(addr: 0x8261b20 [11])
-  < sys_irqrmpolicy(addr: 0x8261b20 [11]) -> (ret: 0)
+  > sys_irqrmpolicy(addr: 0x829e1d4 [11])
+  < sys_irqrmpolicy(addr: 0x829e1d4 [11]) -> (ret: 0)
 < proj_main_loop(0, [NULL]) -> (ret: 0)

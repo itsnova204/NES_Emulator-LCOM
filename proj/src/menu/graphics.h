@@ -89,6 +89,18 @@ int (vg_draw_xpm_from_bottom_left_corner)(xpm_image_t xpm_image, uint8_t *xpm_ma
 int (vg_draw_rectangle_from_bottom_left_corner)(int16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color);
 
 /**
+ * @brief Draws a rectangle border on the screen
+ * @param x x coordinate of inner rectangle
+ * @param y y coordinate of inner rectangle
+ * @param width rectangle width
+ * @param height rectangle height
+ * @param border_width border width
+ * @param color color to draw
+ * @return 0 if successful, non 0 otherwise
+*/
+int (vg_draw_rectangle_border)(int16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t border_width, uint32_t color);
+
+/**
  * @brief clears the screen
 */
 int vg_clear_screen();

@@ -6,6 +6,7 @@ uint16_t mode;
 void (preloadSprites)(uint16_t vg_mode) {
     mode = vg_mode;
 
+    // Load images of interface
     images[0].name = ZERO;
     images[1].name = ONE;
     images[2].name = TWO;
@@ -20,6 +21,7 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[11].name = COLON;
     images[12].name = SLASH;
     images[13].name = CURSOR;
+    images[14].name = SUPER_MARIO;
 
     images[0].map = xpm_load(zero, XPM_TYPE_MENU, &images[0].image);
     images[1].map = xpm_load(one, XPM_TYPE_MENU, &images[1].image);
@@ -35,6 +37,8 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[11].map = xpm_load(colon, XPM_TYPE_MENU, &images[11].image);
     images[12].map = xpm_load(slash, XPM_TYPE_MENU, &images[12].image);
     images[13].map = xpm_load(cursor, XPM_TYPE_MENU, &images[13].image);
+    images[14].map = xpm_load(super_mario, XPM_TYPE_MENU, &images[14].image);
+
 }
 
 XpmData* (get_xpm_data)(ImageName name) {
@@ -95,7 +99,9 @@ int (draw_date)(int day, int month, int year, int hour, int minutes, uint16_t x,
     if (draw_sprite(images[year_tens].name, x + 8 * space, y) != 0) return 1;
     if (draw_sprite(images[year_units].name, x + 9 * space, y) != 0) return 1;
 
+
     // draw hours (hh:mm)
+
     int hour_tens = hour / 10;
     int hour_units = hour % 10;
     int minute_tens = minutes / 10;
@@ -109,5 +115,51 @@ int (draw_date)(int day, int month, int year, int hour, int minutes, uint16_t x,
     if (draw_sprite(images[minute_tens].name, x + 14 * space, y) != 0) return 1;
     if (draw_sprite(images[minute_units].name, x + 15 * space, y) != 0) return 1;
 
+    return 0;
+}
+
+int (draw_options)(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int* selected_option) {
+
+    *selected_option = -1;
+
+    const uint16_t gap = 63;
+    const uint16_t border_width = 6;
+    const uint32_t border_color = 0x04FAE4;
+
+    uint16_t option_x_positions[3] = {
+        gap,
+        2 * gap + OPTION_WIDTH,
+        3 * gap + 2 * OPTION_WIDTH
+    };
+
+    for (int i = 0; i < 3; i++) {
+
+        switch (i) {
+            case 0:
+                if (draw_sprite(SUPER_MARIO, option_x_positions[i], y) != 0) return 1;
+                break;
+            case 1:
+                if (draw_sprite(SUPER_MARIO, option_x_positions[i], y) != 0) return 1;
+                break;
+            case 2:
+                if (draw_sprite(SUPER_MARIO, option_x_positions[i], y) != 0) return 1;
+                break;
+        }
+
+        if (x_mouse >= option_x_positions[i] && x_mouse <= option_x_positions[i] + OPTION_WIDTH &&
+            y_mouse >= y && y_mouse <= y + OPTION_HEIGHT) {
+
+            if (vg_draw_rectangle_border(option_x_positions[i], y, OPTION_WIDTH, OPTION_HEIGHT, border_width, border_color) != 0) {
+                return 1;
+            }
+
+            *selected_option = i;
+
+        }
+        
+        // moldura para a opcao
+        if (vg_draw_rectangle_border(option_x_positions[i], y, OPTION_WIDTH, OPTION_HEIGHT, 1, 0xffffff) != 0) return 1;
+    }
+    
     return 0;
 }
