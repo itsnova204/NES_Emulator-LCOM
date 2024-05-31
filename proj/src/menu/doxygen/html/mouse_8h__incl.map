@@ -1,0 +1,16 @@
+<map id="mouse.h" name="mouse.h">
+<area shape="rect" id="Node000001" title="This file contains the implementation of the mouse functions." alt="" coords="148,5,219,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,111,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,34,94,73,91,69,161,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="179,226,257,252"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,32,170,96,169,137,177,178,186,196,198,213,193,216,181,199,171,179,164,137,165,95,177,31"/>
+<area shape="rect" id="Node000004" href="$i8042_8h_source.html" title=" " alt="" coords="186,153,250,178"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="189,31,214,137,209,138,184,32"/>
+<area shape="rect" id="Node000005" href="$_k_b_c_8h.html" title="This file contains the implementation of the KBC functions allowing handling of the keyboard and mous..." alt="" coords="249,79,302,105"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="201,29,250,67,246,72,197,34"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="221,179,221,211,215,211,215,179"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="278,105,275,139,264,179,242,215,237,213,260,177,270,138,273,105"/>
+<area shape="poly" id="edge8_Node000005_Node000004" title=" " alt="" coords="268,107,239,142,235,139,264,103"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="325,153,389,178"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="291,103,333,140,330,144,287,107"/>
+</map>

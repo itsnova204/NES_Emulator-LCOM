@@ -1,3 +1,9 @@
+/**
+ * @file sprite.h
+ * @brief This file contains the implementation of the sprite drawing and the xpm preloading function
+ * 
+*/
+
 #include <lcom/lcf.h>
 #include <stdint.h>
 
@@ -22,6 +28,7 @@ typedef enum {
 } ImageName;
 
 /**
+ * @struct XpmData
  * @brief Struct that contains the xpm image and its map (color)
 */
 typedef struct {

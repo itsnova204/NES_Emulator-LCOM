@@ -1,3 +1,9 @@
+/**
+ * @file KBC.h
+ * @brief This file contains the implementation of the KBC functions allowing handling of the keyboard and mouse interrupts
+ * 
+*/
+
 #ifndef _LCOM_KBC_H_
 #define _LCOM_KBC_H_
 

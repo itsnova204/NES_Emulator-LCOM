@@ -1,0 +1,46 @@
+\doxysection{sprite.\+h}
+\hypertarget{sprite_8h_source}{}\label{sprite_8h_source}\mbox{\hyperlink{sprite_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}VBE.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{graphics_8h}{graphics.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{xpm__image_8h}{xpm\_image.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_SPRITE\_H\_}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ \_LCOM\_SPRITE\_H\_}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ NUM\_IMAGES\ 15}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ XPM\_TYPE\_MENU\ XPM\_8\_8\_8\_8}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ OPTION\_WIDTH\ 300}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ OPTION\_HEIGHT\ 419}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ ZERO,\ ONE,\ TWO,\ THREE,\ FOUR,\ FIVE,\ SIX,\ SEVEN,\ EIGHT,\ NINE,\ MENU,\ COLON,\ SLASH,\ CURSOR,\ SUPER\_MARIO}
+\DoxyCodeLine{00028\ \}\ \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{ImageName}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{ImageName}}\ name;}
+\DoxyCodeLine{00036\ \ \ \ \ xpm\_image\_t\ image;}
+\DoxyCodeLine{00037\ \ \ \ \ uint8\_t\ *map;}
+\DoxyCodeLine{00038\ \}\ \mbox{\hyperlink{struct_xpm_data}{XpmData}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00043\ void\ (\mbox{\hyperlink{sprite_8h_ae520a424499f5ba6c335eaa9768db0bd}{preloadSprites}})(uint16\_t\ vg\_mode);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \mbox{\hyperlink{struct_xpm_data}{XpmData}}*\ (\mbox{\hyperlink{sprite_8h_a1c93a3f23db18fca4a42fb1177992fc0}{get\_xpm\_data}})(\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{ImageName}}\ name);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00053\ int\ (\mbox{\hyperlink{sprite_8h_afb64020b53c3c4dc80e836c6c08559d7}{draw\_sprite}})(\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{ImageName}}\ name,\ uint16\_t\ x,\ uint16\_t\ y);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00058\ int\ (\mbox{\hyperlink{sprite_8h_a1257b9fa59e90e8e1bb7fe8265065d33}{draw\_sprint\_from\_bottom\_left}})(\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{ImageName}}\ name,\ uint16\_t\ x,\ uint16\_t\ y);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00071\ int\ (\mbox{\hyperlink{sprite_8h_aca54722504caebf04ec7870c31e90cbd}{draw\_date}})(\textcolor{keywordtype}{int}\ day,\ \textcolor{keywordtype}{int}\ month,\ \textcolor{keywordtype}{int}\ year,\ \textcolor{keywordtype}{int}\ hour,\ \textcolor{keywordtype}{int}\ minutes,\ uint16\_t\ x,\ uint16\_t\ y,\ \textcolor{keywordtype}{bool}\ with\_colon);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00080\ int\ (\mbox{\hyperlink{sprite_8h_a5f834bf01f73768137f8d86ebd0159b1}{draw\_options}})(uint16\_t\ y,\ uint16\_t\ x\_mouse,\ uint16\_t\ y\_mouse,\ \textcolor{keywordtype}{int}*\ selected\_option);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

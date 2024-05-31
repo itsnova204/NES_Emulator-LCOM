@@ -3,6 +3,12 @@
 
 #include <lcom/lcf.h>
 
+/**
+ * @defgroup i8042 i8042
+ * @brief Constants for programming the i8042 controller.
+ *
+*/
+
 #define KBD_IRQ             1       // interrupt request
 
 #define KBD_STAT_REG        0x64

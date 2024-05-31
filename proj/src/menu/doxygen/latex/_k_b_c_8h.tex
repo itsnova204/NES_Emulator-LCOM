@@ -1,0 +1,47 @@
+\doxysection{KBC.\+h File Reference}
+\hypertarget{_k_b_c_8h}{}\label{_k_b_c_8h}\index{KBC.h@{KBC.h}}
+
+
+This file contains the implementation of the KBC functions allowing handling of the keyboard and mouse interrupts.  
+
+
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}i8042.\+h"{}}\newline
+Include dependency graph for KBC.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{_k_b_c_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{_k_b_c_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_k_b_c_8h_aad850a34bdc0827006b47baa7f592928}\label{_k_b_c_8h_aad850a34bdc0827006b47baa7f592928} 
+int {\bfseries get\+Scan\+Code\+Size} (uint8\+\_\+t scancode)
+\item 
+\Hypertarget{_k_b_c_8h_a57ec1f3719aaaa7bf43e20e0dbf788e5}\label{_k_b_c_8h_a57ec1f3719aaaa7bf43e20e0dbf788e5} 
+bool {\bfseries is\+\_\+two\+\_\+byte\+\_\+scancode} (uint8\+\_\+t scancode)
+\item 
+\Hypertarget{_k_b_c_8h_a963d228c66a5cc12d6f31267fd449f77}\label{_k_b_c_8h_a963d228c66a5cc12d6f31267fd449f77} 
+int {\bfseries print\+\_\+scancode} (uint8\+\_\+t scancode)
+\item 
+\Hypertarget{_k_b_c_8h_a835562b7f25fdb381fffae9a37613a02}\label{_k_b_c_8h_a835562b7f25fdb381fffae9a37613a02} 
+int {\bfseries kbc\+\_\+read\+\_\+output} (uint8\+\_\+t port, uint8\+\_\+t \texorpdfstring{$\ast$}{*}output, uint8\+\_\+t mouse)
+\item 
+\Hypertarget{_k_b_c_8h_ae9810a160b9a865b0ba8fef3909a319a}\label{_k_b_c_8h_ae9810a160b9a865b0ba8fef3909a319a} 
+int {\bfseries kbc\+\_\+write\+\_\+command} (uint8\+\_\+t port, uint8\+\_\+t command)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the KBC functions allowing handling of the keyboard and mouse interrupts. 
+

@@ -1,3 +1,9 @@
+/**
+ * @file utils.c
+ * @brief This file contains the implementation of utility functions for getting the LSB and MSB of a 16-bit value and for reading from a port
+ * 
+*/
+
 #include <lcom/lcf.h>
 
 #include <stdint.h>

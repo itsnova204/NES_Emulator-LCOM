@@ -1,0 +1,50 @@
+\doxysection{mouse.\+h File Reference}
+\hypertarget{mouse_8h}{}\label{mouse_8h}\index{mouse.h@{mouse.h}}
+
+
+This file contains the implementation of the mouse functions.  
+
+
+{\ttfamily \#include $<$minix/sysutil.\+h$>$}\newline
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+{\ttfamily \#include "{}i8042.\+h"{}}\newline
+{\ttfamily \#include "{}kbc.\+h"{}}\newline
+Include dependency graph for mouse.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mouse_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{mouse_8h_a9da18257ff113b686bb826d154bfaa87}\label{mouse_8h_a9da18257ff113b686bb826d154bfaa87} 
+int {\bfseries mouse\+\_\+subscribe\+\_\+int} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}bit\+\_\+no)
+\item 
+\Hypertarget{mouse_8h_a685ad2706aca36d9869a30a19b9f446a}\label{mouse_8h_a685ad2706aca36d9869a30a19b9f446a} 
+int {\bfseries mouse\+\_\+unsubscribe\+\_\+int} ()
+\item 
+\Hypertarget{mouse_8h_a1481fa8ac12fdda34ee672fbbf99f328}\label{mouse_8h_a1481fa8ac12fdda34ee672fbbf99f328} 
+void {\bfseries mouse\+\_\+int\+\_\+handler} ()
+\item 
+\Hypertarget{mouse_8h_a3b70a0d990a35de7a96e5e3a623f974c}\label{mouse_8h_a3b70a0d990a35de7a96e5e3a623f974c} 
+bool {\bfseries mouse\+\_\+sync} ()
+\item 
+\Hypertarget{mouse_8h_ac8a9692f3a8b84619808e80cf4fa34d5}\label{mouse_8h_ac8a9692f3a8b84619808e80cf4fa34d5} 
+void {\bfseries mouse\+\_\+parse\+\_\+packet} ()
+\item 
+\Hypertarget{mouse_8h_a78ae0ec37d573081ed4e460306e44b07}\label{mouse_8h_a78ae0ec37d573081ed4e460306e44b07} 
+int {\bfseries mouse\+\_\+bytes\+\_\+to\+\_\+packet} ()
+\item 
+\Hypertarget{mouse_8h_adf787e0f096788681cfdae953d637408}\label{mouse_8h_adf787e0f096788681cfdae953d637408} 
+int {\bfseries mouse\+\_\+write} (uint8\+\_\+t cmd)
+\item 
+\Hypertarget{mouse_8h_ae730a36c89b3eb399a67aa22797a1c26}\label{mouse_8h_ae730a36c89b3eb399a67aa22797a1c26} 
+struct packet {\bfseries get\+\_\+mouse\+\_\+packet} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the mouse functions. 
+
