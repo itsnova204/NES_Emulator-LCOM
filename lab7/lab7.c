@@ -31,11 +31,13 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-int (proj_main_loop)() {
+
+int (proj_main_loop)()
+{
+    uint8_t ctrl;
 
 
-
-  uint8_t byte;
+      uint8_t byte;
 
 
 
@@ -53,22 +55,57 @@ int (proj_main_loop)() {
   sys_outb(COM1_UART_BASE + LCR, byte);
 
   //printf("Setting byte: %x\n",byte);
-  sp_get_ctrl(&byte);
-  printf("updated ctrl byte: %02x\n",byte);
 
-  // SETUP e ciclo de interrupcoes do timer e do teclado
-  byte = 0;
-  printf("Starting loop\n");
-  uint8_t times = 0;
-  while( times < 10 ) {
 
-      
-      uint8_t status = read_byte(&byte);
-      printf("Received byte: %02x stat%d\n",byte,status);
-      usleep(10000);
-      times++;
-  }
+   // init_uart_queues();
+   // uart_init_fifo();
 
-  
-  return 0;
+  //  uart_get_int_id(&ctrl);
+   // int err = uart_set_interrupt_reg(ENABLE_LINE_STATUS | ENABLE_RECEIVE | ENABLE_TRANSMIT);
+
+
+    uint8_t bit_no;
+
+    if(sp_subscribe_int(&bit_no)) return 1;
+
+
+    int uart_irq = BIT(bit_no);
+
+    int ipc_status, r;
+    message msg;
+
+
+    uint8_t tries = 100;
+    while (tries > 0)
+    {
+        if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0)
+        {
+            printf("Driver failed: %d\n", r);
+            return r;
+        }
+
+        if (is_ipc_notify(ipc_status))
+        {
+            switch (_ENDPOINT_P(msg.m_source))
+            {
+            case HARDWARE:
+                if (msg.m_notify.interrupts & uart_irq)
+                {
+                    uart_ih();
+                }
+
+                break;
+
+            default:
+                break;
+            }
+        }
+        usleep(1000);
+    }
+
+    uart_set_interrupt_reg(0);
+    err = sp_unsubscribe_int();
+    if (err)
+        return err;
+
 }
