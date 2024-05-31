@@ -58,7 +58,7 @@ bool(mouse_sync)()
     // se receber um pacote completo
     if (i == 3) {
         i = 0; // reinicia o contador para o próximo pacote
-        mouse_parse_packet();
+        mouse_bytes_to_packet();
         return true; // pacote completo recebido
     }
     return false; // pacote incompleto
@@ -84,7 +84,7 @@ int(mouse_bytes_to_packet)()
 
     if ((pp.bytes[0] & BIT(4)) != 0)
     {                                   // mouse x sign
-        pp.delta_x = pp.bytes[1] - 256; // complemento para 2
+        pp.delta_x = pp.bytes[1] | 0xFF00; // complemento para 2
     }
     else
     {
@@ -93,7 +93,7 @@ int(mouse_bytes_to_packet)()
 
     if ((pp.bytes[0] & BIT(5)) != 0)
     {                                   // mouse y sign
-        pp.delta_y = pp.bytes[2] - 256; // complemento para 2
+        pp.delta_y = pp.bytes[2] | 0xFF00; // complemento para 2
     }
     else
     {

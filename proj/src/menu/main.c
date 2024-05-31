@@ -23,13 +23,10 @@ int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
   lcf_set_language("EN-US");
 
-  // enables to log function invocations that are being "wrapped" by LCF
-  // [comment this out if you don't want/need it]
-  lcf_trace_calls("/home/lcom/labs/g5/proj/src/trace.txt");
 
-  // enables to save the output of printf function calls on a file
-  // [comment this out if you don't want/need it]
-  lcf_log_output("/home/lcom/labs/g5/proj/src/output.txt");
+  //Sem comentario fica lento
+  //lcf_trace_calls("/home/lcom/labs/g5/proj/src/trace.txt");
+  //lcf_log_output("/home/lcom/labs/g5/proj/src/output.txt");
 
   // handles control over to LCF
   // [LCF handles command line arguments and invokes the right function]
@@ -57,6 +54,8 @@ int (proj_main_loop)() {
 
   if(timer_subscribe_int(&irq_set_timer) != 0) return 1;
   if(kbd_subscribe_int(&irq_set_kbd) != 0) return 1;
+  int r1 = mouse_write(ENABLE_DATA_REPORT);
+  if(r1 != 0) return 1;
   if(mouse_subscribe_int(&irq_set_mouse) != 0) return 1;
 
   if (timer_set_frequency(0, 60) != 0) return 1;   
@@ -102,6 +101,7 @@ int (proj_main_loop)() {
                     }
 
                     // DRAW NEW FRAME
+                    // 20 FPS
                     if (counter % FRAME_INTERVAL == 0) {
                       if (draw_sprite(MENU, 0, 0) != 0) return 1;
 
@@ -162,6 +162,7 @@ int (proj_main_loop)() {
   if (timer_unsubscribe_int() != 0) return 1;
   if (kbd_unsubscribe_int() != 0) return 1;
   if (mouse_unsubscribe_int() != 0) return 1;
+  if (mouse_write(DISABLE_DATA_REPORT) != 0) return 1;
 
   return 0;
 }
