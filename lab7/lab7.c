@@ -5,6 +5,7 @@
 #include <stdint.h>
 
 #include "uart.h"
+#include "utils.h"
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -31,37 +32,43 @@ int main(int argc, char *argv[]) {
 }
 
 int (proj_main_loop)() {
-sp_init();
 
-  uint8_t irq_set_sp;
+
 
   uint8_t byte;
 
-  if (sp_subscribe_int(&irq_set_sp) != 0){
-    printf("Error subscribing serial port\n");
-    return 1;
-  }
+
+
   sp_get_ctrl(&byte);
-  printf("getting byte: %x\n",byte);
-  byte |= BIT(0) | BIT(1); 
-  printf("Setting byte: %x\n",byte);
+  printf("getting byte: %02x\n",byte);
+  byte = BIT(0) | BIT(1) | BIT(7);//SELECT DL
   sys_outb(COM1_UART_BASE + LCR, byte);
 
+  //The Divisor Latch (DL) register is a 16-bit register that contains the divisor for setting the bit-rate. I.e., in the PC, the bit-rate is obtained by dividing 115 200 by the contents of the DL register.
+
+  sys_outb(COM1_UART_BASE + DLL, 0x01);//write dl
+  sys_outb(COM1_UART_BASE + DLM, 0x00);
+
+  byte = BIT(0) | BIT(1);
+  sys_outb(COM1_UART_BASE + LCR, byte);
+
+  //printf("Setting byte: %x\n",byte);
+  sp_get_ctrl(&byte);
+  printf("updated ctrl byte: %02x\n",byte);
 
   // SETUP e ciclo de interrupcoes do timer e do teclado
-
+  byte = 0;
   printf("Starting loop\n");
   uint8_t times = 0;
   while( times < 10 ) {
 
       
-      read_byte(&byte);
-      printf("Received byte: %x\n",byte);
+      uint8_t status = read_byte(&byte);
+      printf("Received byte: %02x stat%d\n",byte,status);
       usleep(10000);
       times++;
   }
 
-  sp_unsubscribe_int();
   
   return 0;
 }

@@ -43,13 +43,14 @@ int send_byte(uint8_t byte){
 int read_byte(uint8_t* byte){
     uint8_t status;
     if(sp_get_status(&status)) return 1;
+    printf("Received status: %02x\n",status);
     if(status & LSR_DATA_READY){
-      if(util_sys_inb(COM1_UART_BASE + RBR, byte)) return 1;
+      if(util_sys_inb(COM1_UART_BASE + RBR, byte)) return 2;
       if(!(status & (LSR_OE| LSR_PE| LSR_FE))){
           return 0;
       }
     }
-    return 1;
+    return 3; //data not ready
 }
 
 int SP_clearInterrupts(){
