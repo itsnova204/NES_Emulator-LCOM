@@ -1,3 +1,9 @@
+/**
+ * @file mouse.h
+ * @brief This file contains the implementation of the mouse functions
+ * 
+*/
+
 #ifndef _LCOM_MOUSE_H_
 #define _LCOM_MOUSE_H_
 

@@ -1,3 +1,9 @@
+/**
+ * @file graphics.h
+ * @brief This file contains the implementation of the graphics functions allowing drawing on the screen of MINIX
+ * 
+*/
+
 #include <lcom/lcf.h>
 
 #include <stdint.h>

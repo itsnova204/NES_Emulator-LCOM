@@ -1,0 +1,21 @@
+\doxysection{KBC.\+h}
+\hypertarget{_k_b_c_8h_source}{}\label{_k_b_c_8h_source}\mbox{\hyperlink{_k_b_c_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_KBC\_H\_}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ \_LCOM\_KBC\_H\_}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}i8042.h"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ int(getScanCodeSize)(uint8\_t\ scancode);}
+\DoxyCodeLine{00015\ bool(is\_two\_byte\_scancode)(uint8\_t\ scancode);}
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{int}\ print\_scancode(uint8\_t\ scancode);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ int(kbc\_read\_output)(uint8\_t\ port,\ uint8\_t\ *output,\ uint8\_t\ mouse);}
+\DoxyCodeLine{00019\ int(kbc\_write\_command)(uint8\_t\ port,\ uint8\_t\ command);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

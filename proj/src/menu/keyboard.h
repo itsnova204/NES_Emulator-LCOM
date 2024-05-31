@@ -1,3 +1,9 @@
+/**
+ * @file keyboard.h
+ * @brief This file contains the implementation of the keyboard functions
+ * 
+*/
+
 #ifndef __KEYBOARD_H
 #define __KEYBOARD_H
 

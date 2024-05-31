@@ -1,0 +1,145 @@
+\doxysection{rtc.\+h File Reference}
+\hypertarget{rtc_8h}{}\label{rtc_8h}\index{rtc.h@{rtc.h}}
+
+
+This file contains the implementation of the RTC functions ~\newline
+  
+
+
+{\ttfamily \#include $<$minix/sysutil.\+h$>$}\newline
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+Include dependency graph for rtc.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{rtc_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtc__date__t}{rtc\+\_\+date\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{rtc_8h_a4e22feb6ffbc1cda32fadff5c740dc51}\label{rtc_8h_a4e22feb6ffbc1cda32fadff5c740dc51} 
+\#define {\bfseries RTC\+\_\+\+IRQ}~8
+\item 
+\Hypertarget{rtc_8h_a710b98232df2c563009e6f8a6cd18220}\label{rtc_8h_a710b98232df2c563009e6f8a6cd18220} 
+\#define {\bfseries RTC\+\_\+\+ADDR\+\_\+\+REG}~0x70
+\item 
+\Hypertarget{rtc_8h_a2f258a00c59c3f347c8d2d4a75471ce0}\label{rtc_8h_a2f258a00c59c3f347c8d2d4a75471ce0} 
+\#define {\bfseries RTC\+\_\+\+DATA\+\_\+\+REG}~0x71
+\item 
+\Hypertarget{rtc_8h_ae5f10956ba62ce1011fbd823e7eb8deb}\label{rtc_8h_ae5f10956ba62ce1011fbd823e7eb8deb} 
+\#define {\bfseries RTC\+\_\+\+SECONDS\+\_\+\+LOC}~0
+\item 
+\Hypertarget{rtc_8h_aec8506f583797c2ecb89cb4bc301ef7d}\label{rtc_8h_aec8506f583797c2ecb89cb4bc301ef7d} 
+\#define {\bfseries RTC\+\_\+\+MINUTES\+\_\+\+LOC}~2
+\item 
+\Hypertarget{rtc_8h_ad30f7fbf8420c58e84d7691d6b2a7bb3}\label{rtc_8h_ad30f7fbf8420c58e84d7691d6b2a7bb3} 
+\#define {\bfseries RTC\+\_\+\+HOURS\+\_\+\+LOC}~4
+\item 
+\Hypertarget{rtc_8h_ae60ae96290aa62bf7467600250c93df7}\label{rtc_8h_ae60ae96290aa62bf7467600250c93df7} 
+\#define {\bfseries RTC\+\_\+\+DAY\+\_\+\+LOC}~7
+\item 
+\Hypertarget{rtc_8h_a7118c7b5779ad77d2be6e4d65fb23854}\label{rtc_8h_a7118c7b5779ad77d2be6e4d65fb23854} 
+\#define {\bfseries RTC\+\_\+\+MONTH\+\_\+\+LOC}~8
+\item 
+\Hypertarget{rtc_8h_a6ab99ad9253293801c52c2c8409ea3f3}\label{rtc_8h_a6ab99ad9253293801c52c2c8409ea3f3} 
+\#define {\bfseries RTC\+\_\+\+YEAR\+\_\+\+LOC}~9
+\item 
+\Hypertarget{rtc_8h_a4c339a60fd52400db75adc69e6a9d38d}\label{rtc_8h_a4c339a60fd52400db75adc69e6a9d38d} 
+\#define {\bfseries RTC\+\_\+\+SECONDS\+\_\+\+ALARM\+\_\+\+LOC}~1
+\item 
+\Hypertarget{rtc_8h_a3e7e531b1a564a83944560bdb1560701}\label{rtc_8h_a3e7e531b1a564a83944560bdb1560701} 
+\#define {\bfseries RTC\+\_\+\+MINUTES\+\_\+\+ALARM\+\_\+\+LOC}~3
+\item 
+\Hypertarget{rtc_8h_aa213eda10b7d1be2c3280a0e47d786b7}\label{rtc_8h_aa213eda10b7d1be2c3280a0e47d786b7} 
+\#define {\bfseries RTC\+\_\+\+HOURS\+\_\+\+ALARM\+\_\+\+LOC}~5
+\item 
+\Hypertarget{rtc_8h_ae5ffad506b363f28bed1bb5e5926bd2d}\label{rtc_8h_ae5ffad506b363f28bed1bb5e5926bd2d} 
+\#define {\bfseries RTC\+\_\+\+REG\+\_\+A}~10
+\item 
+\Hypertarget{rtc_8h_a03954a63ead3f02b7790ce79e9877eea}\label{rtc_8h_a03954a63ead3f02b7790ce79e9877eea} 
+\#define {\bfseries RTC\+\_\+\+REG\+\_\+B}~11
+\item 
+\Hypertarget{rtc_8h_a1bd6f771dc313129723812fe7ac52d9e}\label{rtc_8h_a1bd6f771dc313129723812fe7ac52d9e} 
+\#define {\bfseries RTC\+\_\+\+REG\+\_\+C}~12
+\item 
+\Hypertarget{rtc_8h_a34c8604ade07f4f7ff7e919f2d4c56b4}\label{rtc_8h_a34c8604ade07f4f7ff7e919f2d4c56b4} 
+\#define {\bfseries RTC\+\_\+\+REG\+\_\+D}~13
+\item 
+\Hypertarget{rtc_8h_a2361c99a62690b19aacfdb05e19bee2b}\label{rtc_8h_a2361c99a62690b19aacfdb05e19bee2b} 
+\#define {\bfseries UIP\+\_\+\+REG\+\_\+A}~BIT(7)
+\item 
+\Hypertarget{rtc_8h_a8ca4547b66ba6771ca72fa132bb4cec0}\label{rtc_8h_a8ca4547b66ba6771ca72fa132bb4cec0} 
+\#define {\bfseries RTC\+\_\+\+DONT\+\_\+\+CARE}~(BIT(7) \texorpdfstring{$\vert$}{|} BIT(6))
+\item 
+\Hypertarget{rtc_8h_aad2752d3d9d5b6b21071bdc0e988499d}\label{rtc_8h_aad2752d3d9d5b6b21071bdc0e988499d} 
+\#define {\bfseries SET\+\_\+\+REG\+\_\+B}~BIT(7)
+\item 
+\Hypertarget{rtc_8h_a83b4faa3a1064e2442be22ffa42a5889}\label{rtc_8h_a83b4faa3a1064e2442be22ffa42a5889} 
+\#define {\bfseries PIE\+\_\+\+REG\+\_\+B}~BIT(6)
+\item 
+\Hypertarget{rtc_8h_aa415b19f24e80965b458b674ad347ceb}\label{rtc_8h_aa415b19f24e80965b458b674ad347ceb} 
+\#define {\bfseries AIE\+\_\+\+REG\+\_\+B}~BIT(5)
+\item 
+\Hypertarget{rtc_8h_a47e744ccc1f845e8cbb08df3c02165ea}\label{rtc_8h_a47e744ccc1f845e8cbb08df3c02165ea} 
+\#define {\bfseries UIE\+\_\+\+REG\+\_\+B}~BIT(4)
+\item 
+\Hypertarget{rtc_8h_a8bdc96aa1b98d3647f58ecee8cba43c2}\label{rtc_8h_a8bdc96aa1b98d3647f58ecee8cba43c2} 
+\#define {\bfseries AF\+\_\+\+REG\+\_\+C}~BIT(5)
+\item 
+\Hypertarget{rtc_8h_a91796f6a9ee66da0fcdddea85c43ad76}\label{rtc_8h_a91796f6a9ee66da0fcdddea85c43ad76} 
+\#define {\bfseries UF\+\_\+\+REG\+\_\+C}~BIT(4)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{rtc_8h_ab24e6f39ef99db1cdf9a2c6e26233bb3}\label{rtc_8h_ab24e6f39ef99db1cdf9a2c6e26233bb3} 
+int {\bfseries rtc\+\_\+subscribe\+\_\+int} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}bit\+\_\+no)
+\item 
+\Hypertarget{rtc_8h_ab8f17bf5280c908c8b199a90fefcc758}\label{rtc_8h_ab8f17bf5280c908c8b199a90fefcc758} 
+int {\bfseries rtc\+\_\+unsubscribe\+\_\+int} ()
+\item 
+\Hypertarget{rtc_8h_a4c1a7a6487a05aec45012e5298134758}\label{rtc_8h_a4c1a7a6487a05aec45012e5298134758} 
+int {\bfseries rtc\+\_\+read\+\_\+date} ()
+\item 
+\Hypertarget{rtc_8h_a76827856de45c0728d613f90c5f6e009}\label{rtc_8h_a76827856de45c0728d613f90c5f6e009} 
+int {\bfseries rtc\+\_\+read\+\_\+reg} (uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+\Hypertarget{rtc_8h_aa1fd64645937078b75ec6046b11b432e}\label{rtc_8h_aa1fd64645937078b75ec6046b11b432e} 
+int {\bfseries rtc\+\_\+write\+\_\+reg} (uint8\+\_\+t reg, uint8\+\_\+t data)
+\item 
+\Hypertarget{rtc_8h_ad01b060b01d5a6021392d1453f86a733}\label{rtc_8h_ad01b060b01d5a6021392d1453f86a733} 
+uint8\+\_\+t {\bfseries rtc\+\_\+bcd\+\_\+to\+\_\+binary} (uint8\+\_\+t bcd)
+\item 
+\Hypertarget{rtc_8h_a75dad42881d64cf07cf1bdc2979a7056}\label{rtc_8h_a75dad42881d64cf07cf1bdc2979a7056} 
+void {\bfseries rtc\+\_\+ih} ()
+\item 
+\Hypertarget{rtc_8h_aae8111e1cb8e86c24e0becc84ee4ce29}\label{rtc_8h_aae8111e1cb8e86c24e0becc84ee4ce29} 
+int {\bfseries rtc\+\_\+enable\+\_\+alarm\+\_\+int} ()
+\item 
+\Hypertarget{rtc_8h_ae17e9c9642400e83542d8170676ff50f}\label{rtc_8h_ae17e9c9642400e83542d8170676ff50f} 
+int {\bfseries rtc\+\_\+disable\+\_\+int} ()
+\item 
+\Hypertarget{rtc_8h_a8a934d31134c70ff080aa663e25fe436}\label{rtc_8h_a8a934d31134c70ff080aa663e25fe436} 
+\mbox{\hyperlink{structrtc__date__t}{rtc\+\_\+date\+\_\+t}} {\bfseries rtc\+\_\+get\+\_\+date} ()
+\item 
+\Hypertarget{rtc_8h_a11e438d0669b30b2c97af0665ec96ed1}\label{rtc_8h_a11e438d0669b30b2c97af0665ec96ed1} 
+int {\bfseries rtc\+\_\+set\+\_\+reg\+B\+\_\+bit} ()
+\item 
+\Hypertarget{rtc_8h_af9899143b10300540808effb01aa292b}\label{rtc_8h_af9899143b10300540808effb01aa292b} 
+int {\bfseries rtc\+\_\+clear\+\_\+reg\+B\+\_\+bit} ()
+\item 
+\Hypertarget{rtc_8h_a0a6fd09353e9e32173333e7a32997c88}\label{rtc_8h_a0a6fd09353e9e32173333e7a32997c88} 
+int {\bfseries rtc\+\_\+set\+\_\+alarm} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the RTC functions ~\newline
+ 
+

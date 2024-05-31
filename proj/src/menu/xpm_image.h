@@ -1,3 +1,9 @@
+/**
+ * @file xpm_image.h
+ * @brief This file contains the xpm images of all the sprites
+ * 
+*/
+
 #ifndef XPM_IMAGE_H
 #define XPM_IMAGE_H
 

@@ -1,0 +1,71 @@
+\doxysection{rtc.\+h}
+\hypertarget{rtc_8h_source}{}\label{rtc_8h_source}\mbox{\hyperlink{rtc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_RTC\_H\_}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ \_LCOM\_RTC\_H\_}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <minix/sysutil.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ RTC\_IRQ\ 8}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ RTC\_ADDR\_REG\ 0x70}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ RTC\_DATA\_REG\ 0x71}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ RTC\_SECONDS\_LOC\ 0}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ RTC\_MINUTES\_LOC\ 2}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ RTC\_HOURS\_LOC\ 4}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ RTC\_DAY\_LOC\ 7}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ RTC\_MONTH\_LOC\ 8}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ RTC\_YEAR\_LOC\ 9}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ RTC\_SECONDS\_ALARM\_LOC\ 1}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ RTC\_MINUTES\_ALARM\_LOC\ 3}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ RTC\_HOURS\_ALARM\_LOC\ 5}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ RTC\_REG\_A\ 10}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ RTC\_REG\_B\ 11}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ RTC\_REG\_C\ 12}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ RTC\_REG\_D\ 13}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ UIP\_REG\_A\ BIT(7)}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ RTC\_DONT\_CARE\ (BIT(7)\ |\ BIT(6))}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ SET\_REG\_B\ BIT(7)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ PIE\_REG\_B\ BIT(6)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ AIE\_REG\_B\ BIT(5)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ UIE\_REG\_B\ BIT(4)}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ AF\_REG\_C\ BIT(5)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ UF\_REG\_C\ BIT(4)}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00048\ \ \ uint8\_t\ seconds;}
+\DoxyCodeLine{00049\ \ \ uint8\_t\ minutes;}
+\DoxyCodeLine{00050\ \ \ uint8\_t\ hours;}
+\DoxyCodeLine{00051\ \ \ uint8\_t\ day;}
+\DoxyCodeLine{00052\ \ \ uint8\_t\ month;}
+\DoxyCodeLine{00053\ \ \ uint8\_t\ year;}
+\DoxyCodeLine{00054\ \}\ \mbox{\hyperlink{structrtc__date__t}{rtc\_date\_t}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ int\ (rtc\_subscribe\_int)(uint16\_t\ *bit\_no);}
+\DoxyCodeLine{00058\ int\ (rtc\_unsubscribe\_int)();}
+\DoxyCodeLine{00059\ int\ (rtc\_read\_date)();}
+\DoxyCodeLine{00060\ int\ (rtc\_read\_reg)(uint8\_t\ reg,\ uint8\_t\ *data);}
+\DoxyCodeLine{00061\ int\ (rtc\_write\_reg)(uint8\_t\ reg,\ uint8\_t\ data);}
+\DoxyCodeLine{00062\ uint8\_t\ (rtc\_bcd\_to\_binary)(uint8\_t\ bcd);}
+\DoxyCodeLine{00063\ void\ (rtc\_ih)();}
+\DoxyCodeLine{00064\ int\ (rtc\_enable\_alarm\_int)();}
+\DoxyCodeLine{00065\ int\ (rtc\_disable\_int)();}
+\DoxyCodeLine{00066\ \mbox{\hyperlink{structrtc__date__t}{rtc\_date\_t}}\ (rtc\_get\_date)();}
+\DoxyCodeLine{00067\ int\ (rtc\_set\_regB\_bit)();}
+\DoxyCodeLine{00068\ int\ (rtc\_clear\_regB\_bit)();}
+\DoxyCodeLine{00069\ int\ (rtc\_set\_alarm)();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

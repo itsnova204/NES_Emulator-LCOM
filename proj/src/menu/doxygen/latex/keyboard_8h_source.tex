@@ -1,0 +1,23 @@
+\doxysection{keyboard.\+h}
+\hypertarget{keyboard_8h_source}{}\label{keyboard_8h_source}\mbox{\hyperlink{keyboard_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ \_\_KEYBOARD\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ \_\_KEYBOARD\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}i8042.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_k_b_c_8h}{KBC.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ uint8\_t(get\_scancode)();}
+\DoxyCodeLine{00016\ bool(is\_valid)();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ int(kbd\_subscribe\_int)(uint8\_t\ *bit\_no);}
+\DoxyCodeLine{00019\ int(kbd\_unsubscribe\_int)();}
+\DoxyCodeLine{00020\ void(kbc\_ih)();}
+\DoxyCodeLine{00021\ int(kbd\_restore)();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

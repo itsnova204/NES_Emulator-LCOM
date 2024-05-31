@@ -1,6 +1,12 @@
 #ifndef _LCOM_VBE_H_
 #define _LCOM_VBE_H_
 
+/**
+ * @defgroup VBE VBE
+ * @brief Constants for programming the VBE
+ * 
+*/
+
 #define VBE_FUNCTION_INVOKE             0x4F
 #define VBE_FUNCTION_SUPPORTED          0x4F
 #define VBE_FUNCTION_SUCCESSFULLY       0x00

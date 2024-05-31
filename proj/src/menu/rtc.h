@@ -1,3 +1,9 @@
+/**
+ * @file rtc.h
+ * @brief This file contains the implementation of the RTC functions  
+ * 
+*/
+
 #ifndef _LCOM_RTC_H_
 #define _LCOM_RTC_H_
 

@@ -1,0 +1,44 @@
+\doxysection{keyboard.\+h File Reference}
+\hypertarget{keyboard_8h}{}\label{keyboard_8h}\index{keyboard.h@{keyboard.h}}
+
+
+This file contains the implementation of the keyboard functions.  
+
+
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}i8042.\+h"{}}\newline
+{\ttfamily \#include "{}KBC.\+h"{}}\newline
+Include dependency graph for keyboard.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{keyboard_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{keyboard_8h_abc8ff8ed43aabe9661e0e21f3d7e6000}\label{keyboard_8h_abc8ff8ed43aabe9661e0e21f3d7e6000} 
+uint8\+\_\+t {\bfseries get\+\_\+scancode} ()
+\item 
+\Hypertarget{keyboard_8h_af4d2f059b86d0249fcab31063634aa57}\label{keyboard_8h_af4d2f059b86d0249fcab31063634aa57} 
+bool {\bfseries is\+\_\+valid} ()
+\item 
+\Hypertarget{keyboard_8h_aa7a491d4d95eab5ca5326c4000ad67f8}\label{keyboard_8h_aa7a491d4d95eab5ca5326c4000ad67f8} 
+int {\bfseries kbd\+\_\+subscribe\+\_\+int} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}bit\+\_\+no)
+\item 
+\Hypertarget{keyboard_8h_a5bdf6cfb570c375192b0d87913b65c57}\label{keyboard_8h_a5bdf6cfb570c375192b0d87913b65c57} 
+int {\bfseries kbd\+\_\+unsubscribe\+\_\+int} ()
+\item 
+\Hypertarget{keyboard_8h_ab9e6ed7960d60aa4834f2038247d4536}\label{keyboard_8h_ab9e6ed7960d60aa4834f2038247d4536} 
+void {\bfseries kbc\+\_\+ih} ()
+\item 
+\Hypertarget{keyboard_8h_acad0d71de8290e5b51614689d81f8842}\label{keyboard_8h_acad0d71de8290e5b51614689d81f8842} 
+int {\bfseries kbd\+\_\+restore} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the keyboard functions. 
+

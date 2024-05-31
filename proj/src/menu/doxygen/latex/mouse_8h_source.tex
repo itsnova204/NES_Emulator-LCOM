@@ -1,0 +1,31 @@
+\doxysection{mouse.\+h}
+\hypertarget{mouse_8h_source}{}\label{mouse_8h_source}\mbox{\hyperlink{mouse_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_MOUSE\_H\_}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ \_LCOM\_MOUSE\_H\_}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <minix/sysutil.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}i8042.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_k_b_c_8h}{kbc.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ int\ (mouse\_subscribe\_int)(uint8\_t\ *bit\_no);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ int\ (mouse\_unsubscribe\_int)();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ void\ (mouse\_int\_handler)();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ bool\ (mouse\_sync)();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ void\ (mouse\_parse\_packet)();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ int\ (mouse\_bytes\_to\_packet)();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ int\ (mouse\_write)(uint8\_t\ cmd);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{struct\ }packet\ (get\_mouse\_packet)();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#\ endif}}
+
+\end{DoxyCode}
