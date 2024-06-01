@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "dgikmprsuvx",
   1: "rx",
   2: "gkmrsux",
-  3: "dgpsv",
+  3: "dgikmprsv",
   4: "m",
   5: "i",
   6: "iv"

@@ -25,23 +25,102 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{_k_b_c_8h_aad850a34bdc0827006b47baa7f592928}\label{_k_b_c_8h_aad850a34bdc0827006b47baa7f592928} 
-int {\bfseries get\+Scan\+Code\+Size} (uint8\+\_\+t scancode)
-\item 
-\Hypertarget{_k_b_c_8h_a57ec1f3719aaaa7bf43e20e0dbf788e5}\label{_k_b_c_8h_a57ec1f3719aaaa7bf43e20e0dbf788e5} 
-bool {\bfseries is\+\_\+two\+\_\+byte\+\_\+scancode} (uint8\+\_\+t scancode)
-\item 
-\Hypertarget{_k_b_c_8h_a963d228c66a5cc12d6f31267fd449f77}\label{_k_b_c_8h_a963d228c66a5cc12d6f31267fd449f77} 
-int {\bfseries print\+\_\+scancode} (uint8\+\_\+t scancode)
-\item 
-\Hypertarget{_k_b_c_8h_a835562b7f25fdb381fffae9a37613a02}\label{_k_b_c_8h_a835562b7f25fdb381fffae9a37613a02} 
-int {\bfseries kbc\+\_\+read\+\_\+output} (uint8\+\_\+t port, uint8\+\_\+t \texorpdfstring{$\ast$}{*}output, uint8\+\_\+t mouse)
-\item 
-\Hypertarget{_k_b_c_8h_ae9810a160b9a865b0ba8fef3909a319a}\label{_k_b_c_8h_ae9810a160b9a865b0ba8fef3909a319a} 
-int {\bfseries kbc\+\_\+write\+\_\+command} (uint8\+\_\+t port, uint8\+\_\+t command)
-\end{DoxyCompactItemize}
+int \mbox{\hyperlink{_k_b_c_8h_aad850a34bdc0827006b47baa7f592928}{get\+Scan\+Code\+Size}} (uint8\+\_\+t scancode)
+\begin{DoxyCompactList}\small\item\em Returns the size of the scancode. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_k_b_c_8h_a57ec1f3719aaaa7bf43e20e0dbf788e5}{is\+\_\+two\+\_\+byte\+\_\+scancode}} (uint8\+\_\+t scancode)
+\begin{DoxyCompactList}\small\item\em Checks if the scancode is a two byte scancode. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_k_b_c_8h_a963d228c66a5cc12d6f31267fd449f77}{print\+\_\+scancode}} (uint8\+\_\+t scancode)
+\begin{DoxyCompactList}\small\item\em Prints the scancode. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_k_b_c_8h_ab90a9774eaabd0949d73b61e9f3fba88}{kbc\+\_\+read\+\_\+output}} (uint8\+\_\+t port, uint8\+\_\+t \texorpdfstring{$\ast$}{*}output, bool mouse)
+\begin{DoxyCompactList}\small\item\em Reads a specific port. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_k_b_c_8h_ae9810a160b9a865b0ba8fef3909a319a}{kbc\+\_\+write\+\_\+command}} (uint8\+\_\+t port, uint8\+\_\+t command)
+\begin{DoxyCompactList}\small\item\em Writes a command to a specific port. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 This file contains the implementation of the KBC functions allowing handling of the keyboard and mouse interrupts. 
 
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_k_b_c_8h_aad850a34bdc0827006b47baa7f592928}\label{_k_b_c_8h_aad850a34bdc0827006b47baa7f592928} 
+\index{KBC.h@{KBC.h}!getScanCodeSize@{getScanCodeSize}}
+\index{getScanCodeSize@{getScanCodeSize}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{getScanCodeSize()}{getScanCodeSize()}}
+{\footnotesize\ttfamily int get\+Scan\+Code\+Size (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{scancode }\end{DoxyParamCaption})}
+
+
+
+Returns the size of the scancode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scancode} & The scancode to check the size \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_k_b_c_8h_a57ec1f3719aaaa7bf43e20e0dbf788e5}\label{_k_b_c_8h_a57ec1f3719aaaa7bf43e20e0dbf788e5} 
+\index{KBC.h@{KBC.h}!is\_two\_byte\_scancode@{is\_two\_byte\_scancode}}
+\index{is\_two\_byte\_scancode@{is\_two\_byte\_scancode}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{is\_two\_byte\_scancode()}{is\_two\_byte\_scancode()}}
+{\footnotesize\ttfamily bool is\+\_\+two\+\_\+byte\+\_\+scancode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{scancode }\end{DoxyParamCaption})}
+
+
+
+Checks if the scancode is a two byte scancode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scancode} & The scancode to check \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_k_b_c_8h_ab90a9774eaabd0949d73b61e9f3fba88}\label{_k_b_c_8h_ab90a9774eaabd0949d73b61e9f3fba88} 
+\index{KBC.h@{KBC.h}!kbc\_read\_output@{kbc\_read\_output}}
+\index{kbc\_read\_output@{kbc\_read\_output}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_read\_output()}{kbc\_read\_output()}}
+{\footnotesize\ttfamily int kbc\+\_\+read\+\_\+output (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{output,  }\item[{bool}]{mouse }\end{DoxyParamCaption})}
+
+
+
+Reads a specific port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The port to read from \\
+\hline
+{\em output} & The data read from the port \\
+\hline
+{\em mouse} & Boolean to check if it is a mouse scancode or a keyboard scancode \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_k_b_c_8h_ae9810a160b9a865b0ba8fef3909a319a}\label{_k_b_c_8h_ae9810a160b9a865b0ba8fef3909a319a} 
+\index{KBC.h@{KBC.h}!kbc\_write\_command@{kbc\_write\_command}}
+\index{kbc\_write\_command@{kbc\_write\_command}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{kbc\_write\_command()}{kbc\_write\_command()}}
+{\footnotesize\ttfamily int kbc\+\_\+write\+\_\+command (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port,  }\item[{uint8\+\_\+t}]{command }\end{DoxyParamCaption})}
+
+
+
+Writes a command to a specific port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The port to write to \\
+\hline
+{\em command} & The command to write \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_k_b_c_8h_a963d228c66a5cc12d6f31267fd449f77}\label{_k_b_c_8h_a963d228c66a5cc12d6f31267fd449f77} 
+\index{KBC.h@{KBC.h}!print\_scancode@{print\_scancode}}
+\index{print\_scancode@{print\_scancode}!KBC.h@{KBC.h}}
+\doxysubsubsection{\texorpdfstring{print\_scancode()}{print\_scancode()}}
+{\footnotesize\ttfamily int print\+\_\+scancode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{scancode }\end{DoxyParamCaption})}
+
+
+
+Prints the scancode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scancode} & The scancode to print \\
+\hline
+\end{DoxyParams}

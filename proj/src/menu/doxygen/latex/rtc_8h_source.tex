@@ -41,31 +41,41 @@
 \DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ AF\_REG\_C\ BIT(5)}}
 \DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ UF\_REG\_C\ BIT(4)}}
 \DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{00048\ \ \ uint8\_t\ seconds;}
-\DoxyCodeLine{00049\ \ \ uint8\_t\ minutes;}
-\DoxyCodeLine{00050\ \ \ uint8\_t\ hours;}
-\DoxyCodeLine{00051\ \ \ uint8\_t\ day;}
-\DoxyCodeLine{00052\ \ \ uint8\_t\ month;}
-\DoxyCodeLine{00053\ \ \ uint8\_t\ year;}
-\DoxyCodeLine{00054\ \}\ \mbox{\hyperlink{structrtc__date__t}{rtc\_date\_t}};}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ int\ (rtc\_subscribe\_int)(uint16\_t\ *bit\_no);}
-\DoxyCodeLine{00058\ int\ (rtc\_unsubscribe\_int)();}
-\DoxyCodeLine{00059\ int\ (rtc\_read\_date)();}
-\DoxyCodeLine{00060\ int\ (rtc\_read\_reg)(uint8\_t\ reg,\ uint8\_t\ *data);}
-\DoxyCodeLine{00061\ int\ (rtc\_write\_reg)(uint8\_t\ reg,\ uint8\_t\ data);}
-\DoxyCodeLine{00062\ uint8\_t\ (rtc\_bcd\_to\_binary)(uint8\_t\ bcd);}
-\DoxyCodeLine{00063\ void\ (rtc\_ih)();}
-\DoxyCodeLine{00064\ int\ (rtc\_enable\_alarm\_int)();}
-\DoxyCodeLine{00065\ int\ (rtc\_disable\_int)();}
-\DoxyCodeLine{00066\ \mbox{\hyperlink{structrtc__date__t}{rtc\_date\_t}}\ (rtc\_get\_date)();}
-\DoxyCodeLine{00067\ int\ (rtc\_set\_regB\_bit)();}
-\DoxyCodeLine{00068\ int\ (rtc\_clear\_regB\_bit)();}
-\DoxyCodeLine{00069\ int\ (rtc\_set\_alarm)();}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00051\ \ \ uint8\_t\ seconds;}
+\DoxyCodeLine{00052\ \ \ uint8\_t\ minutes;}
+\DoxyCodeLine{00053\ \ \ uint8\_t\ hours;}
+\DoxyCodeLine{00054\ \ \ uint8\_t\ day;}
+\DoxyCodeLine{00055\ \ \ uint8\_t\ month;}
+\DoxyCodeLine{00056\ \ \ uint8\_t\ year;}
+\DoxyCodeLine{00057\ \}\ \mbox{\hyperlink{structrtc__date__t}{rtc\_date\_t}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ int\ (\mbox{\hyperlink{rtc_8h_ab24e6f39ef99db1cdf9a2c6e26233bb3}{rtc\_subscribe\_int}})(uint16\_t\ *bit\_no);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ int\ (\mbox{\hyperlink{rtc_8h_ab8f17bf5280c908c8b199a90fefcc758}{rtc\_unsubscribe\_int}})();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ int\ (\mbox{\hyperlink{rtc_8h_a4c1a7a6487a05aec45012e5298134758}{rtc\_read\_date}})();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ int\ (\mbox{\hyperlink{rtc_8h_a76827856de45c0728d613f90c5f6e009}{rtc\_read\_reg}})(uint8\_t\ reg,\ uint8\_t\ *data);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00086\ int\ (\mbox{\hyperlink{rtc_8h_aa1fd64645937078b75ec6046b11b432e}{rtc\_write\_reg}})(uint8\_t\ reg,\ uint8\_t\ data);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00093\ uint8\_t\ (\mbox{\hyperlink{rtc_8h_ad01b060b01d5a6021392d1453f86a733}{rtc\_bcd\_to\_binary}})(uint8\_t\ bcd);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00098\ void\ (\mbox{\hyperlink{rtc_8h_a75dad42881d64cf07cf1bdc2979a7056}{rtc\_ih}})();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00103\ int\ (\mbox{\hyperlink{rtc_8h_aae8111e1cb8e86c24e0becc84ee4ce29}{rtc\_enable\_alarm\_int}})();}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00108\ int\ (\mbox{\hyperlink{rtc_8h_ae17e9c9642400e83542d8170676ff50f}{rtc\_disable\_int}})();}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00114\ \mbox{\hyperlink{structrtc__date__t}{rtc\_date\_t}}\ (\mbox{\hyperlink{rtc_8h_a8a934d31134c70ff080aa663e25fe436}{rtc\_get\_date}})();}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00119\ int\ (\mbox{\hyperlink{rtc_8h_a11e438d0669b30b2c97af0665ec96ed1}{rtc\_set\_regB\_bit}})();}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00124\ int\ (\mbox{\hyperlink{rtc_8h_af9899143b10300540808effb01aa292b}{rtc\_clear\_regB\_bit}})();}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00129\ int\ (\mbox{\hyperlink{rtc_8h_a0a6fd09353e9e32173333e7a32997c88}{rtc\_set\_alarm}})();}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}
