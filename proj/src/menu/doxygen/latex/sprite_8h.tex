@@ -1,0 +1,207 @@
+\doxysection{sprite.\+h File Reference}
+\hypertarget{sprite_8h}{}\label{sprite_8h}\index{sprite.h@{sprite.h}}
+
+
+This file contains the implementation of the sprite drawing and the xpm preloading function.  
+
+
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}VBE.\+h"{}}\newline
+{\ttfamily \#include "{}graphics.\+h"{}}\newline
+{\ttfamily \#include "{}xpm\+\_\+image.\+h"{}}\newline
+Include dependency graph for sprite.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_xpm_data}{Xpm\+Data}}
+\begin{DoxyCompactList}\small\item\em Struct that contains the xpm image and its map (color) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sprite_8h_a9cb64526659b4bebea0d36565debb187}\label{sprite_8h_a9cb64526659b4bebea0d36565debb187} 
+\#define {\bfseries NUM\+\_\+\+IMAGES}~15
+\item 
+\Hypertarget{sprite_8h_a6e48a2a2d9dad4ac3e910d7bf6136709}\label{sprite_8h_a6e48a2a2d9dad4ac3e910d7bf6136709} 
+\#define {\bfseries XPM\+\_\+\+TYPE\+\_\+\+MENU}~XPM\+\_\+8\+\_\+8\+\_\+8\+\_\+8
+\item 
+\Hypertarget{sprite_8h_a1a2135d400df405ccdcea1c7343ae93f}\label{sprite_8h_a1a2135d400df405ccdcea1c7343ae93f} 
+\#define {\bfseries OPTION\+\_\+\+WIDTH}~300
+\item 
+\Hypertarget{sprite_8h_aa641a67947c002df9a178dcb626d4371}\label{sprite_8h_aa641a67947c002df9a178dcb626d4371} 
+\#define {\bfseries OPTION\+\_\+\+HEIGHT}~419
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080} 
+enum \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}} \{ \newline
+{\bfseries ZERO}
+, {\bfseries ONE}
+, {\bfseries TWO}
+, {\bfseries THREE}
+, \newline
+{\bfseries FOUR}
+, {\bfseries FIVE}
+, {\bfseries SIX}
+, {\bfseries SEVEN}
+, \newline
+{\bfseries EIGHT}
+, {\bfseries NINE}
+, {\bfseries MENU}
+, {\bfseries COLON}
+, \newline
+{\bfseries SLASH}
+, {\bfseries CURSOR}
+, {\bfseries SUPER\+\_\+\+MARIO}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerates the different images that can be drawn. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sprite_8h_ae520a424499f5ba6c335eaa9768db0bd}\label{sprite_8h_ae520a424499f5ba6c335eaa9768db0bd} 
+void {\bfseries preload\+Sprites} (uint16\+\_\+t vg\+\_\+mode)
+\begin{DoxyCompactList}\small\item\em Preloads all the sprites (xpm images) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_xpm_data}{Xpm\+Data}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{sprite_8h_a1c93a3f23db18fca4a42fb1177992fc0}{get\+\_\+xpm\+\_\+data}} (\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}} name)
+\begin{DoxyCompactList}\small\item\em Returns the xpm data of a given image name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8h_afb64020b53c3c4dc80e836c6c08559d7}{draw\+\_\+sprite}} (\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}} name, uint16\+\_\+t x, uint16\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Draws a sprite on the screen. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8h_a1257b9fa59e90e8e1bb7fe8265065d33}{draw\+\_\+sprint\+\_\+from\+\_\+bottom\+\_\+left}} (\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}} name, uint16\+\_\+t x, uint16\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Draws a sprite on the screen from the bottom left corner. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8h_aca54722504caebf04ec7870c31e90cbd}{draw\+\_\+date}} (int day, int month, int year, int hour, int minutes, uint16\+\_\+t x, uint16\+\_\+t y, bool with\+\_\+colon)
+\begin{DoxyCompactList}\small\item\em Draws the date and time on the screen at the given coordinates with the format "{}dd/mm/yyyy hh\+:mm"{}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8h_a5f834bf01f73768137f8d86ebd0159b1}{draw\+\_\+options}} (uint16\+\_\+t y, uint16\+\_\+t x\+\_\+mouse, uint16\+\_\+t y\+\_\+mouse, int \texorpdfstring{$\ast$}{*}selected\+\_\+option)
+\begin{DoxyCompactList}\small\item\em Draws the game options thumbnails on the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the sprite drawing and the xpm preloading function. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{sprite_8h_aca54722504caebf04ec7870c31e90cbd}\label{sprite_8h_aca54722504caebf04ec7870c31e90cbd} 
+\index{sprite.h@{sprite.h}!draw\_date@{draw\_date}}
+\index{draw\_date@{draw\_date}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{draw\_date()}{draw\_date()}}
+{\footnotesize\ttfamily int draw\+\_\+date (\begin{DoxyParamCaption}\item[{int}]{day,  }\item[{int}]{month,  }\item[{int}]{year,  }\item[{int}]{hour,  }\item[{int}]{minutes,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{bool}]{with\+\_\+colon }\end{DoxyParamCaption})}
+
+
+
+Draws the date and time on the screen at the given coordinates with the format "{}dd/mm/yyyy hh\+:mm"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em day} & Day of the month \\
+\hline
+{\em month} & Month of the year \\
+\hline
+{\em year} & Year \\
+\hline
+{\em hour} & Hour of the day \\
+\hline
+{\em minutes} & Minutes of the hour \\
+\hline
+{\em x} & X coordinate of the date \\
+\hline
+{\em y} & Y coordinate of the date \\
+\hline
+{\em with\+\_\+colon} & If true, the colon between the hours and minutes will be drawn. This parameter is to be able to have the blinking effect of the colon \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+\Hypertarget{sprite_8h_a5f834bf01f73768137f8d86ebd0159b1}\label{sprite_8h_a5f834bf01f73768137f8d86ebd0159b1} 
+\index{sprite.h@{sprite.h}!draw\_options@{draw\_options}}
+\index{draw\_options@{draw\_options}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{draw\_options()}{draw\_options()}}
+{\footnotesize\ttfamily int draw\+\_\+options (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{x\+\_\+mouse,  }\item[{uint16\+\_\+t}]{y\+\_\+mouse,  }\item[{int \texorpdfstring{$\ast$}{*}}]{selected\+\_\+option }\end{DoxyParamCaption})}
+
+
+
+Draws the game options thumbnails on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y} & Y coordinate of the options \\
+\hline
+{\em x\+\_\+mouse} & X coordinate of the mouse \\
+\hline
+{\em y\+\_\+mouse} & Y coordinate of the mouse \\
+\hline
+{\em selected\+\_\+option} & Pointer to the variable that will store the selected option, value will be -\/1 if no option is selected \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+\Hypertarget{sprite_8h_a1257b9fa59e90e8e1bb7fe8265065d33}\label{sprite_8h_a1257b9fa59e90e8e1bb7fe8265065d33} 
+\index{sprite.h@{sprite.h}!draw\_sprint\_from\_bottom\_left@{draw\_sprint\_from\_bottom\_left}}
+\index{draw\_sprint\_from\_bottom\_left@{draw\_sprint\_from\_bottom\_left}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{draw\_sprint\_from\_bottom\_left()}{draw\_sprint\_from\_bottom\_left()}}
+{\footnotesize\ttfamily int draw\+\_\+sprint\+\_\+from\+\_\+bottom\+\_\+left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}}}]{name,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+Draws a sprite on the screen from the bottom left corner. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the image to draw \\
+\hline
+{\em x} & X coordinate of the image \\
+\hline
+{\em y} & Y coordinate of the image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+\Hypertarget{sprite_8h_afb64020b53c3c4dc80e836c6c08559d7}\label{sprite_8h_afb64020b53c3c4dc80e836c6c08559d7} 
+\index{sprite.h@{sprite.h}!draw\_sprite@{draw\_sprite}}
+\index{draw\_sprite@{draw\_sprite}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{draw\_sprite()}{draw\_sprite()}}
+{\footnotesize\ttfamily int draw\+\_\+sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}}}]{name,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+Draws a sprite on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the image to draw \\
+\hline
+{\em x} & X coordinate of the image \\
+\hline
+{\em y} & Y coordinate of the image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+\Hypertarget{sprite_8h_a1c93a3f23db18fca4a42fb1177992fc0}\label{sprite_8h_a1c93a3f23db18fca4a42fb1177992fc0} 
+\index{sprite.h@{sprite.h}!get\_xpm\_data@{get\_xpm\_data}}
+\index{get\_xpm\_data@{get\_xpm\_data}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{get\_xpm\_data()}{get\_xpm\_data()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_xpm_data}{Xpm\+Data}} \texorpdfstring{$\ast$}{*} get\+\_\+xpm\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}}}]{name }\end{DoxyParamCaption})}
+
+
+
+Returns the xpm data of a given image name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the xpm data of the image, NULL if the image is not found 
+\end{DoxyReturn}
