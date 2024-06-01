@@ -12,12 +12,40 @@
 #include "i8042.h"
 #include "KBC.h"
 
+/**
+ * @brief Function to get the scan code
+ * @return scan code
+*/
 uint8_t(get_scancode)();
+
+/**
+ * @brief Check is the scan code is valid
+ * @return true if the scan code is valid, false otherwise
+*/
 bool(is_valid)();
 
+/**
+ * @brief Function to subscribe the keyboard interrupts
+ * @param bit_no pointer to the variable to store the bit number
+ * @return 0 if successful, non 0 otherwise
+*/
 int(kbd_subscribe_int)(uint8_t *bit_no);
+
+/**
+ * @brief Function to unsubscribe the keyboard interrupts
+ * @return 0 if successful, non 0 otherwise
+*/
 int(kbd_unsubscribe_int)();
+
+/**
+ * @brief Function to handle the keyboard interrupts
+*/
 void(kbc_ih)();
+
+/**
+ * @brief Function to restore the keyboard state
+ * @return 0 if successful, non 0 otherwise
+*/
 int(kbd_restore)();
 
 #endif
