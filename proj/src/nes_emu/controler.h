@@ -13,6 +13,8 @@ enum ctrler_buttons_t{
   button_b
 };
 
+uint8_t* get_ctrler_ptr();
+
 void controler_init(uint8_t controller[2]);
 void controler_press(uint8_t controller, enum ctrler_buttons_t button);
 void controler_unpress(uint8_t controller, enum ctrler_buttons_t button);
