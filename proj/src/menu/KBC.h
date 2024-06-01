@@ -15,7 +15,7 @@ int(getScanCodeSize)(uint8_t scancode);
 bool(is_two_byte_scancode)(uint8_t scancode);
 int print_scancode(uint8_t scancode);
 
-int(kbc_read_output)(uint8_t port, uint8_t *output, uint8_t mouse);
+int(kbc_read_output)(uint8_t port, uint8_t *output, bool mouse);
 int(kbc_write_command)(uint8_t port, uint8_t command);
 
 #endif

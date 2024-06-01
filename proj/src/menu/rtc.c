@@ -154,12 +154,10 @@ void(rtc_ih)()
 
     if (wordRegC & AF_REG_C)
     {
-        printf("Alarm interrupt\n");
     }
 
     if (wordRegC & UF_REG_C)
     {
-        printf("Update interrupt\n");
         if (rtc_read_date() != 0)
         {
             printf("Error! Couldn't read date\n");
@@ -170,17 +168,14 @@ void(rtc_ih)()
 
 int(rtc_enable_alarm_int)()
 {
-    // Enable AI interrupt
     uint8_t wordRegB;
     if (rtc_read_reg(RTC_REG_B, &wordRegB) != 0)
     {
         printf("Error! Couldn't read 'wordRegB' from RTC_REG_B\n");
         return 1;
     }
-    printf("%x", wordRegB);
+
     wordRegB |= AIE_REG_B;
-    wordRegB |= PIE_REG_B;
-    wordRegB |= UIE_REG_B;
 
     if (rtc_write_reg(RTC_REG_B, wordRegB) != 0)
     {
@@ -193,7 +188,6 @@ int(rtc_enable_alarm_int)()
 
 int(rtc_disable_int)()
 {
-    // Disable all interrupts
     uint8_t wordRegB;
     if (rtc_read_reg(RTC_REG_B, &wordRegB) != 0)
     {

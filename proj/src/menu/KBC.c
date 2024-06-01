@@ -4,21 +4,21 @@ static uint8_t scancode_array[2];
 static bool flag_two_byte = false;
 static int index_ = 0;
 
-int(kbc_read_output)(uint8_t port, uint8_t *output, uint8_t mouse)
+int(kbc_read_output)(uint8_t port, uint8_t *output, bool mouse)
 {
   uint8_t status;
   uint8_t i = 0;
 
-   while(i < MAX_ATTEMPS) {
+   while(i < ATTEMPS) {
 
     if (util_sys_inb(KBD_STAT_REG, &status) != 0) {
       printf("Error: Could not read status!\n");
       return 1;
     }
 
-    if ((status & KBD_FULL_OUT_BUF) != 0) { // BIT(0)
+    if ((status & KBD_FULL_OUT_BUF) != 0) { 
 
-      if (status & (KBD_PARITY_ERR | KBD_TIMEOUT_ERR)) { // BIT(7) | BIT(6)
+      if (status & (KBD_PARITY_ERR | KBD_TIMEOUT_ERR)) { 
         printf("Error: Parity or Timeout error!\n");
         return 1;
       }
@@ -28,8 +28,8 @@ int(kbc_read_output)(uint8_t port, uint8_t *output, uint8_t mouse)
         return 1;
       }
 
-      if (mouse == 0) { // teclado = 0; rato = 1
-        if ((status & BIT(5)) != 0) { // teclado
+      if (!mouse) { 
+        if ((status & BIT(5)) != 0) {
           printf("Error: Not a keyboard scancode!\n");
           return 1;
         }
@@ -37,7 +37,7 @@ int(kbc_read_output)(uint8_t port, uint8_t *output, uint8_t mouse)
         return 0;
 
       } else {
-        if ((status & BIT(5)) == 0) { // rato
+        if ((status & BIT(5)) == 0) { 
           printf("Error: Not a mouse scancode!\n");
           return 1;
         }
@@ -59,7 +59,7 @@ int(kbc_write_command)(uint8_t port, uint8_t command)
   uint8_t status;
   uint8_t i = 0;
 
-  while (i < MAX_ATTEMPS)
+  while (i < ATTEMPS)
   {
     if (util_sys_inb(KBD_STAT_REG, &status) != 0)
     {

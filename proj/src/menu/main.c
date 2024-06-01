@@ -9,14 +9,12 @@
 #include "keyboard.h"
 #include "rtc.h"
 #include "mouse.h"
-
 #include "sprite.h"
 
 int get_counter();
 uint8_t scancode = 0;
 
-// DEFINE FPS
-#define FPS 60
+#define FPS 30
 #define FRAME_INTERVAL (60 / FPS)
 
 int main(int argc, char *argv[]) {
@@ -47,15 +45,13 @@ int (proj_main_loop)() {
   if (set_frame_buffer(mode) != 0) return 1;
   if (set_graphic_mode(mode) != 0) return 1;
 
-  // SETUP e ciclo de interrupcoes do timer e do teclado
   int ipc_status, r;
   message msg;
   uint8_t irq_set_timer, irq_set_kbd, irq_set_mouse;
 
   if(timer_subscribe_int(&irq_set_timer) != 0) return 1;
   if(kbd_subscribe_int(&irq_set_kbd) != 0) return 1;
-  int r1 = mouse_write(ENABLE_DATA_REPORT);
-  if(r1 != 0) return 1;
+  if(mouse_write_command(ENABLE_DATA_REPORT) != 0) return 1;
   if(mouse_subscribe_int(&irq_set_mouse) != 0) return 1;
 
   if (timer_set_frequency(0, 60) != 0) return 1;   
@@ -68,15 +64,14 @@ int (proj_main_loop)() {
   int selected_option;	
 
   while(scancode != KBD_ESC_BREAK_CODE) {
-      /* Get a request message. */
       if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) { 
           printf("driver_receive failed with: %d", r);
           continue;
       }
 
-      if (is_ipc_notify(ipc_status)) { /* received notification */
+      if (is_ipc_notify(ipc_status)) {
           switch (_ENDPOINT_P(msg.m_source)) {
-              case HARDWARE: /* hardware interrupt notification */	
+              case HARDWARE: 
                   if (msg.m_notify.interrupts & irq_set_kbd) {
                     kbc_ih();
                     if (!is_valid()) continue;
@@ -101,7 +96,6 @@ int (proj_main_loop)() {
                     }
 
                     // DRAW NEW FRAME
-                    // 20 FPS
                     if (counter % FRAME_INTERVAL == 0) {
                       if (draw_sprite(MENU, 0, 0) != 0) return 1;
 
@@ -162,7 +156,7 @@ int (proj_main_loop)() {
   if (timer_unsubscribe_int() != 0) return 1;
   if (kbd_unsubscribe_int() != 0) return 1;
   if (mouse_unsubscribe_int() != 0) return 1;
-  if (mouse_write(DISABLE_DATA_REPORT) != 0) return 1;
+  if (mouse_write_command(DISABLE_DATA_REPORT) != 0) return 1;
 
   return 0;
 }
