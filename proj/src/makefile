@@ -1,32 +1,23 @@
-# Compiler and flags
-CC = gcc
-CFLAGS = -Wall -Wextra -g
+# name of the program (Minix service)
+PROG=proj 
 
-# Source files
-SRCS = main.c ./nes_emu/mapper.c ./nes_emu/cartridge.c ./nes_emu/bus.c ./nes_emu/p6502.c ./nes_emu/controler.c ./nes_emu/ppu.c
+# source code files to be compiled
+.PATH: ${.CURDIR}/nes_emu
+.PATH: ${.CURDIR}/drivers
 
-# Object files
-OBJS = $(SRCS:.c=.o)
 
-# Executable name
-TARGET = main
+SRCS = ./main.c ./mapper.c ./cartridge.c ./bus.c ./p6502.c ./controler.c ./ppu.c utils.c timer.c keyboard.c graphics.c sprite.c xpm_image.c
 
-# Default target
-all: $(TARGET)
 
-# Compile source files into object files
-%.o: %.c
-	$(CC) $(CFLAGS) -c -g $< -o $@
+# additional compilation flags
+# "-Wall -Wextra -Werror -I . -std=c11 -Wno-unused-parameter" are already set
+CFLAGS += -pedantic -D_LCOM_OPTIMIZED_
 
-# Link object files into the executable
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+# list of library dependencies
+DPADD += ${LIBLCF}
+LDADD += -llcf -lxpm -llm -O3 -Wall -Wextra -pedantic
 
-# Debug target
-test: CFLAGS += -DTEST
-test: clean all
+LLDADD += -Warray-bounds -Wformat-overflow -Wstringop-overflow -Wstringop-overread
 
-# Clean up object files and the executable
-clean:
-	rm -f $(OBJS) $(TARGET)
-TARGET = main
+# include LCOM's makefile that does all the "heavy lifting"
+.include <minix.lcom.mk>
