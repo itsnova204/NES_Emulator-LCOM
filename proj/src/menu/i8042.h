@@ -29,7 +29,7 @@
 #define KBD_MAKE_CODE       BIT(7)  // 1 if make
 #define KBD_TWO_BYTE        0xE0
 
-#define MAX_ATTEMPS         10
+#define ATTEMPS             10
 #define DELAY               10000   // 10 ms
 
 #define MOUSE_IRQ           12

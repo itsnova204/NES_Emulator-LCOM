@@ -9,8 +9,8 @@
 
 #include <minix/sysutil.h>
 #include <lcom/lcf.h>
-#include "i8042.h"
 #include "kbc.h"
+#include "i8042.h"
 
 int (mouse_subscribe_int)(uint8_t *bit_no);
 
@@ -22,9 +22,9 @@ bool (mouse_sync)();
 
 void (mouse_parse_packet)();
 
-int (mouse_bytes_to_packet)();
+int (mouse_parse_struct)();
 
-int (mouse_write)(uint8_t cmd);
+int (mouse_write_command)(uint8_t cmd);
 
 struct packet (get_mouse_packet)();
 

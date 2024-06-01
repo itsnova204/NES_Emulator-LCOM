@@ -1,7 +1,7 @@
 #include "mouse.h"
 
-int hook_id_mouse = 3; // entre 0 e 7 (IRQs)
-uint8_t current_byte;
+int hook_id_mouse = 3;
+uint8_t currByte;
 struct packet pp;
 uint8_t i = 0;
 uint8_t mouse_bytes[3];
@@ -34,7 +34,7 @@ int mouse_unsubscribe_int()
 
 void(mouse_int_handler)()
 {
-    if (kbc_read_output(KBC_WRITE_CMD, &current_byte, 1))
+    if (kbc_read_output(KBC_WRITE_CMD, &currByte, true))
     {
         printf("Error: kbc_read_output failed!\n");
         valid = false;
@@ -44,71 +44,69 @@ void(mouse_int_handler)()
 }
 
 bool(mouse_sync)()
-{ // sincroniza o mouse
-    if (i == 0 && (current_byte & MOUSE_FIRST) != 0)
-    { // se o bit 3 do byte atual estiver ativado (igual a 1) -> 1º byte do pacote novo
-        mouse_bytes[i] = current_byte;
+{ 
+    if (i == 0 && (currByte & MOUSE_FIRST) != 0)
+    { 
+        mouse_bytes[i] = currByte;
     }
     else if (i > 0)
     {
-        mouse_bytes[i] = current_byte;
+        mouse_bytes[i] = currByte;
     }
     i++;
 
-    // se receber um pacote completo
     if (i == 3) {
-        i = 0; // reinicia o contador para o próximo pacote
-        mouse_bytes_to_packet();
-        return true; // pacote completo recebido
+        i = 0;
+        mouse_parse_struct();
+        return true;
     }
-    return false; // pacote incompleto
+    return false;
 }
 
 void(mouse_parse_packet)()
-{ // lê os 3 bytes do pacote do mouse
+{
     pp.bytes[0] = mouse_bytes[0];
     pp.bytes[1] = mouse_bytes[1];
     pp.bytes[2] = mouse_bytes[2];
 }
 
-int(mouse_bytes_to_packet)()
-{ // converte os 3 bytes do pacote do mouse
-
+int(mouse_parse_struct)()
+{
     mouse_parse_packet();
 
-    pp.lb = pp.bytes[0] & BIT(0);   // left
-    pp.rb = pp.bytes[0] & BIT(1);   // right
-    pp.mb = pp.bytes[0] & BIT(2);   // middle
-    pp.x_ov = pp.bytes[0] & BIT(6); // x overflow
-    pp.y_ov = pp.bytes[0] & BIT(7); // y overflow
+    pp.lb = pp.bytes[0] & BIT(0); 
+    pp.rb = pp.bytes[0] & BIT(1);  
+    pp.mb = pp.bytes[0] & BIT(2); 
+    pp.x_ov = pp.bytes[0] & BIT(6);
+    pp.y_ov = pp.bytes[0] & BIT(7); 
 
     if ((pp.bytes[0] & BIT(4)) != 0)
-    {                                   // mouse x sign
-        pp.delta_x = pp.bytes[1] | 0xFF00; // complemento para 2
+    {                                  
+        pp.delta_x = pp.bytes[1] | 0xFF00;
     }
     else
     {
-        pp.delta_x = pp.bytes[1]; // valor normal
+        pp.delta_x = pp.bytes[1]; 
     }
 
     if ((pp.bytes[0] & BIT(5)) != 0)
-    {                                   // mouse y sign
-        pp.delta_y = pp.bytes[2] | 0xFF00; // complemento para 2
+    {                                  
+        pp.delta_y = pp.bytes[2] | 0xFF00; 
     }
     else
     {
-        pp.delta_y = pp.bytes[2]; // valor normal
+        pp.delta_y = pp.bytes[2]; 
     }
 
     return 0;
 }
 
-int mouse_write(uint8_t cmd)
+int mouse_write_command(uint8_t cmd)
 {
-    uint8_t ack; // acknowledge (resposta) do rato
+    uint8_t ack;
     uint8_t c = 0;
 
-    while (c < MAX_ATTEMPS)
+    while (c < ATTEMPS)
     {
         if ((kbc_write_command(KBD_IN_BUF, MOUSE_WRITE_BYTE) != 0))
         {
@@ -131,7 +129,7 @@ int mouse_write(uint8_t cmd)
         }
 
         if (ack == MOUSE_ACK)
-        { // se o rato respondeu
+        { 
             return 0;
         }
 
