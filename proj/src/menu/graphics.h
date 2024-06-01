@@ -15,6 +15,11 @@
 #define _LCOM_GRAPHICS_H_
 
 /**
+ * @brief Macro to get the number of bytes for a given number of bits
+*/
+#define numberOfBytesForBits(bits) ((bits + 7) / 8)
+
+/**
  * @brief VBE mode info getter
 */
 vbe_mode_info_t (get_vbe_mode_info)();

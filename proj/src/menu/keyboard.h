@@ -13,8 +13,8 @@
 #include "KBC.h"
 
 /**
- * @brief Gets the scancode
- * @return The scancode
+ * @brief Function to get the scan code
+ * @return scan code
 */
 uint8_t(get_scancode)();
 
@@ -25,23 +25,26 @@ uint8_t(get_scancode)();
 bool(is_valid)();
 
 /**
- * @brief Subscribes the keyboard interrupts
- * @param bit_no The bit number to set in the mask
+ * @brief Function to subscribe the keyboard interrupts
+ * @param bit_no pointer to the variable to store the bit number
+ * @return 0 if successful, non 0 otherwise
 */
 int(kbd_subscribe_int)(uint8_t *bit_no);
 
 /**
- * @brief Unsubscribes the keyboard interrupts
+ * @brief Function to unsubscribe the keyboard interrupts
+ * @return 0 if successful, non 0 otherwise
 */
 int(kbd_unsubscribe_int)();
 
 /**
- * @brief The interrupt handler for the keyboard
+ * @brief Function to handle the keyboard interrupts
 */
 void(kbc_ih)();
 
 /**
- * @brief Enables the interrupts for the keyboard
+ * @brief Function to restore the keyboard state
+ * @return 0 if successful, non 0 otherwise
 */
 int(kbd_interrupt_enabler)();
 

@@ -14,11 +14,15 @@
 
 /**
  * @brief Subscribes the mouse interrupts
+ * @param bit_no pointer to the variable to store the bit number
+ * @return 0 if successful, non 0 otherwise
+ * 
 */
 int (mouse_subscribe_int)(uint8_t *bit_no);
 
 /**
  * @brief Unsubscribes the mouse interrupts
+ * @return 0 if successful, non 0 otherwise
 */
 int (mouse_unsubscribe_int)();
 
@@ -29,6 +33,7 @@ void (mouse_int_handler)();
 
 /**
  * @brief Syncs the mouse
+ * @return True if the mouse is synced, false otherwise
 */
 bool (mouse_sync)();
 
@@ -39,12 +44,14 @@ void (mouse_parse_packet)();
 
 /**
  * @brief Parses the mouse packet struct
+ * @return 0 if successful, non 0 otherwise
 */
 int (mouse_parse_struct)();
 
 /**
  * @brief Writes a command to the mouse
  * @param cmd The command to write
+ * @return 0 if successful, non 0 otherwise
 */
 int (mouse_write_command)(uint8_t cmd);
 

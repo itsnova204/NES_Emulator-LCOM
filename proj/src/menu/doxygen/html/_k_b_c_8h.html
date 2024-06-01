@@ -116,19 +116,19 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aad850a34bdc0827006b47baa7f592928" id="r_aad850a34bdc0827006b47baa7f592928"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad850a34bdc0827006b47baa7f592928">getScanCodeSize</a> (uint8_t scancode)</td></tr>
-<tr class="memdesc:aad850a34bdc0827006b47baa7f592928"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the scancode.  <br /></td></tr>
+<tr class="memdesc:aad850a34bdc0827006b47baa7f592928"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to get the size of a scancode, can be 1 or 2.  <br /></td></tr>
 <tr class="separator:aad850a34bdc0827006b47baa7f592928"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57ec1f3719aaaa7bf43e20e0dbf788e5" id="r_a57ec1f3719aaaa7bf43e20e0dbf788e5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57ec1f3719aaaa7bf43e20e0dbf788e5">is_two_byte_scancode</a> (uint8_t scancode)</td></tr>
-<tr class="memdesc:a57ec1f3719aaaa7bf43e20e0dbf788e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the scancode is a two byte scancode.  <br /></td></tr>
+<tr class="memdesc:a57ec1f3719aaaa7bf43e20e0dbf788e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to check if the scan code is single byte or double byte.  <br /></td></tr>
 <tr class="separator:a57ec1f3719aaaa7bf43e20e0dbf788e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a963d228c66a5cc12d6f31267fd449f77" id="r_a963d228c66a5cc12d6f31267fd449f77"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a963d228c66a5cc12d6f31267fd449f77">print_scancode</a> (uint8_t scancode)</td></tr>
-<tr class="memdesc:a963d228c66a5cc12d6f31267fd449f77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the scancode.  <br /></td></tr>
+<tr class="memdesc:a963d228c66a5cc12d6f31267fd449f77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to print the scan code, mainly used for debugging.  <br /></td></tr>
 <tr class="separator:a963d228c66a5cc12d6f31267fd449f77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab90a9774eaabd0949d73b61e9f3fba88" id="r_ab90a9774eaabd0949d73b61e9f3fba88"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab90a9774eaabd0949d73b61e9f3fba88">kbc_read_output</a> (uint8_t port, uint8_t *output, bool mouse)</td></tr>
-<tr class="memdesc:ab90a9774eaabd0949d73b61e9f3fba88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a specific port.  <br /></td></tr>
+<tr class="memdesc:ab90a9774eaabd0949d73b61e9f3fba88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to read the output buffer of the KBC.  <br /></td></tr>
 <tr class="separator:ab90a9774eaabd0949d73b61e9f3fba88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9810a160b9a865b0ba8fef3909a319a" id="r_ae9810a160b9a865b0ba8fef3909a319a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9810a160b9a865b0ba8fef3909a319a">kbc_write_command</a> (uint8_t port, uint8_t command)</td></tr>
-<tr class="memdesc:ae9810a160b9a865b0ba8fef3909a319a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a command to a specific port.  <br /></td></tr>
+<tr class="memdesc:ae9810a160b9a865b0ba8fef3909a319a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to write a command to the KBC.  <br /></td></tr>
 <tr class="separator:ae9810a160b9a865b0ba8fef3909a319a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -149,13 +149,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the size of the scancode. </p>
+<p>Function to get the size of a scancode, can be 1 or 2. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scancode</td><td>The scancode to check the size </td></tr>
+    <tr><td class="paramname">scancode</td><td>scancode to get the size of </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>size of the scancode </dd></dl>
 
 </div>
 </div>
@@ -174,13 +175,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if the scancode is a two byte scancode. </p>
+<p>Function to check if the scan code is single byte or double byte. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scancode</td><td>The scancode to check </td></tr>
+    <tr><td class="paramname">scancode</td><td>scancode to check </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the scancode is double byte, false otherwise </dd></dl>
 
 </div>
 </div>
@@ -208,15 +210,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Reads a specific port. </p>
+<p>Function to read the output buffer of the KBC. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">port</td><td>The port to read from </td></tr>
-    <tr><td class="paramname">output</td><td>The data read from the port </td></tr>
-    <tr><td class="paramname">mouse</td><td>Boolean to check if it is a mouse scancode or a keyboard scancode </td></tr>
+    <tr><td class="paramname">port</td><td>port to read from </td></tr>
+    <tr><td class="paramname">output</td><td>pointer to the variable to store the output </td></tr>
+    <tr><td class="paramname">mouse</td><td>flag to indicate if the output is from the mouse or not (keyboard) </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, non 0 otherwise </dd></dl>
 
 </div>
 </div>
@@ -239,14 +242,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Writes a command to a specific port. </p>
+<p>Function to write a command to the KBC. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">port</td><td>The port to write to </td></tr>
-    <tr><td class="paramname">command</td><td>The command to write </td></tr>
+    <tr><td class="paramname">port</td><td>port to write to </td></tr>
+    <tr><td class="paramname">command</td><td>command to write </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, non 0 otherwise </dd></dl>
 
 </div>
 </div>
@@ -265,13 +269,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Prints the scancode. </p>
+<p>Function to print the scan code, mainly used for debugging. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">scancode</td><td>The scancode to print </td></tr>
+    <tr><td class="paramname">scancode</td><td>scancode to print </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, non 0 otherwise </dd></dl>
 
 </div>
 </div>
