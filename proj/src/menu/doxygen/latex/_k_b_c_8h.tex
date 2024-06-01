@@ -26,15 +26,15 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{_k_b_c_8h_aad850a34bdc0827006b47baa7f592928}{get\+Scan\+Code\+Size}} (uint8\+\_\+t scancode)
-\begin{DoxyCompactList}\small\item\em Returns the size of the scancode. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Function to get the size of a scancode, can be 1 or 2. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{_k_b_c_8h_a57ec1f3719aaaa7bf43e20e0dbf788e5}{is\+\_\+two\+\_\+byte\+\_\+scancode}} (uint8\+\_\+t scancode)
-\begin{DoxyCompactList}\small\item\em Checks if the scancode is a two byte scancode. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Function to check if the scan code is single byte or double byte. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{_k_b_c_8h_a963d228c66a5cc12d6f31267fd449f77}{print\+\_\+scancode}} (uint8\+\_\+t scancode)
-\begin{DoxyCompactList}\small\item\em Prints the scancode. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Function to print the scan code, mainly used for debugging. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{_k_b_c_8h_ab90a9774eaabd0949d73b61e9f3fba88}{kbc\+\_\+read\+\_\+output}} (uint8\+\_\+t port, uint8\+\_\+t \texorpdfstring{$\ast$}{*}output, bool mouse)
-\begin{DoxyCompactList}\small\item\em Reads a specific port. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Function to read the output buffer of the KBC. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{_k_b_c_8h_ae9810a160b9a865b0ba8fef3909a319a}{kbc\+\_\+write\+\_\+command}} (uint8\+\_\+t port, uint8\+\_\+t command)
-\begin{DoxyCompactList}\small\item\em Writes a command to a specific port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Function to write a command to the KBC. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -51,13 +51,16 @@ This file contains the implementation of the KBC functions allowing handling of 
 
 
 
-Returns the size of the scancode. 
+Function to get the size of a scancode, can be 1 or 2. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em scancode} & The scancode to check the size \\
+{\em scancode} & scancode to get the size of \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of the scancode 
+\end{DoxyReturn}
 \Hypertarget{_k_b_c_8h_a57ec1f3719aaaa7bf43e20e0dbf788e5}\label{_k_b_c_8h_a57ec1f3719aaaa7bf43e20e0dbf788e5} 
 \index{KBC.h@{KBC.h}!is\_two\_byte\_scancode@{is\_two\_byte\_scancode}}
 \index{is\_two\_byte\_scancode@{is\_two\_byte\_scancode}!KBC.h@{KBC.h}}
@@ -66,13 +69,16 @@ Returns the size of the scancode.
 
 
 
-Checks if the scancode is a two byte scancode. 
+Function to check if the scan code is single byte or double byte. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em scancode} & The scancode to check \\
+{\em scancode} & scancode to check \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the scancode is double byte, false otherwise 
+\end{DoxyReturn}
 \Hypertarget{_k_b_c_8h_ab90a9774eaabd0949d73b61e9f3fba88}\label{_k_b_c_8h_ab90a9774eaabd0949d73b61e9f3fba88} 
 \index{KBC.h@{KBC.h}!kbc\_read\_output@{kbc\_read\_output}}
 \index{kbc\_read\_output@{kbc\_read\_output}!KBC.h@{KBC.h}}
@@ -81,17 +87,20 @@ Checks if the scancode is a two byte scancode.
 
 
 
-Reads a specific port. 
+Function to read the output buffer of the KBC. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em port} & The port to read from \\
+{\em port} & port to read from \\
 \hline
-{\em output} & The data read from the port \\
+{\em output} & pointer to the variable to store the output \\
 \hline
-{\em mouse} & Boolean to check if it is a mouse scancode or a keyboard scancode \\
+{\em mouse} & flag to indicate if the output is from the mouse or not (keyboard) \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
 \Hypertarget{_k_b_c_8h_ae9810a160b9a865b0ba8fef3909a319a}\label{_k_b_c_8h_ae9810a160b9a865b0ba8fef3909a319a} 
 \index{KBC.h@{KBC.h}!kbc\_write\_command@{kbc\_write\_command}}
 \index{kbc\_write\_command@{kbc\_write\_command}!KBC.h@{KBC.h}}
@@ -100,15 +109,18 @@ Reads a specific port.
 
 
 
-Writes a command to a specific port. 
+Function to write a command to the KBC. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em port} & The port to write to \\
+{\em port} & port to write to \\
 \hline
-{\em command} & The command to write \\
+{\em command} & command to write \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
 \Hypertarget{_k_b_c_8h_a963d228c66a5cc12d6f31267fd449f77}\label{_k_b_c_8h_a963d228c66a5cc12d6f31267fd449f77} 
 \index{KBC.h@{KBC.h}!print\_scancode@{print\_scancode}}
 \index{print\_scancode@{print\_scancode}!KBC.h@{KBC.h}}
@@ -117,10 +129,13 @@ Writes a command to a specific port.
 
 
 
-Prints the scancode. 
+Function to print the scan code, mainly used for debugging. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em scancode} & The scancode to print \\
+{\em scancode} & scancode to print \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}

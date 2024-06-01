@@ -12,35 +12,40 @@
 #include "i8042.h"
 
 /**
- * @brief Returns the size of the scancode
- * @param scancode The scancode to check the size
+ * @brief Function to get the size of a scancode, can be 1 or 2
+ * @param scancode scancode to get the size of
+ * @return size of the scancode
 */
 int(getScanCodeSize)(uint8_t scancode);
 
 /**
- * @brief Checks if the scancode is a two byte scancode
- * @param scancode The scancode to check
+ * @brief Function to check if the scan code is single byte or double byte
+ * @param scancode scancode to check
+ * @return true if the scancode is double byte, false otherwise
 */
 bool(is_two_byte_scancode)(uint8_t scancode);
 
 /**
- * @brief Prints the scancode
- * @param scancode The scancode to print
+ * @brief Function to print the scan code, mainly used for debugging
+ * @param scancode scancode to print
+ * @return 0 if successful, non 0 otherwise
 */
 int print_scancode(uint8_t scancode);
 
 /**
- * @brief Reads a specific port
- * @param port The port to read from
- * @param output The data read from the port
- * @param mouse Boolean to check if it is a mouse scancode or a keyboard scancode
+ * @brief Function to read the output buffer of the KBC
+ * @param port port to read from
+ * @param output pointer to the variable to store the output
+ * @param mouse flag to indicate if the output is from the mouse or not (keyboard)
+ * @return 0 if successful, non 0 otherwise
 */
 int(kbc_read_output)(uint8_t port, uint8_t *output, bool mouse);
 
 /**
- * @brief Writes a command to a specific port
- * @param port The port to write to
- * @param command The command to write
+ * @brief Function to write a command to the KBC
+ * @param port port to write to
+ * @param command command to write
+ * @return 0 if successful, non 0 otherwise
 */
 int(kbc_write_command)(uint8_t port, uint8_t command);
 

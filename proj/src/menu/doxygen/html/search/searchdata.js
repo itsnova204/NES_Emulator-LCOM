@@ -1,12 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "dgikmprsuvx",
+  0: "dgikmnprsuvx",
   1: "rx",
   2: "gkmrsux",
   3: "dgikmprsv",
   4: "m",
   5: "i",
-  6: "iv"
+  6: "n",
+  7: "iv"
 };
 
 var indexSectionNames =
@@ -17,7 +18,8 @@ var indexSectionNames =
   3: "functions",
   4: "variables",
   5: "enums",
-  6: "groups"
+  6: "defines",
+  7: "groups"
 };
 
 var indexSectionLabels =
@@ -28,6 +30,7 @@ var indexSectionLabels =
   3: "Functions",
   4: "Variables",
   5: "Enumerations",
-  6: "Modules"
+  6: "Macros",
+  7: "Modules"
 };
 

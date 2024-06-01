@@ -58,16 +58,20 @@ typedef struct {
 
 /**
  * @brief Subscribes and enables RTC interrupts
+ * @param bit_no pointer to the variable to store the bit number
+ * @return 0 if successful, non 0 otherwise
 */
 int (rtc_subscribe_int)(uint16_t *bit_no);
 
 /**
  * @brief Unsubscribes RTC interrupts
+ * @return 0 if successful, non 0 otherwise
 */
 int (rtc_unsubscribe_int)();
 
 /**
  * @brief Reads the date from the RTC
+ * @return 0 if successful, non 0 otherwise
 */
 int (rtc_read_date)();
 
@@ -75,6 +79,7 @@ int (rtc_read_date)();
  * @brief Reads a register from the RTC
  * @param reg Register to read
  * @param data Pointer to the variable that will store the data read
+ * @return 0 if successful, non 0 otherwise
 */
 int (rtc_read_reg)(uint8_t reg, uint8_t *data);
 
@@ -82,6 +87,7 @@ int (rtc_read_reg)(uint8_t reg, uint8_t *data);
  * @brief Writes a register from the RTC
  * @param reg Register to write
  * @param data Data to write
+ * @return 0 if successful, non 0 otherwise
 */
 int (rtc_write_reg)(uint8_t reg, uint8_t data);
 
@@ -99,11 +105,13 @@ void (rtc_ih)();
 
 /**
  * @brief Enables RTC alarm interrupt
+ * @return 0 if successful, non 0 otherwise
 */
 int (rtc_enable_alarm_int)();
 
 /**
  * @brief Disables RTC alarm interrupt
+ * @return 0 if successful, non 0 otherwise
 */
 int (rtc_disable_int)();
 
@@ -114,17 +122,20 @@ int (rtc_disable_int)();
 rtc_date_t (rtc_get_date)();
 
 /**
- * @brieg Sets bit 7 of register B to 1
+ * @brief Sets bit 7 of register B to 1
+ * @return 0 if successful, non 0 otherwise
 */
 int (rtc_set_regB_bit)();
 
 /**
  * @brief Clears bit 7 of register B
+ * @return 0 if successful, non 0 otherwise
 */
 int (rtc_clear_regB_bit)();
 
 /**
  * @brief Sets the alarm of the RTC
+ * @return 0 if successful, non 0 otherwise
 */
 int (rtc_set_alarm)();
 
