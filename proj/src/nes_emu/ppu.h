@@ -8,26 +8,36 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
-
 typedef size_t usize;
 
 typedef struct Color {
-    uint8_t red;        // Color red value
-    uint8_t green;        // Color green value
-    uint8_t blue;        // Color blue value
-    uint8_t alpha;        // Color alpha value
+    unsigned char red;        // Color red value
+    unsigned char green;        // Color green value
+    unsigned char blue;        // Color blue value
+    unsigned char alpha;        // Color alpha value
 } Color;
 
+void ppu_exit();
 
-typedef struct {
+Color ColorBuild(uint8_t red, uint8_t green, uint8_t blue);
+bool ppu_isFrameComplete();
+void ppu_setFrameCompleted(bool value);
+
+void ppu_disable_nmi();
+
+typedef struct __attribute__((packed)){
     Color *pixels;
     uint16_t width;
     uint16_t height;
 } Sprite;
 
+
+
 Sprite *SpriteCreate(uint16_t width, uint16_t height);
 Color SpriteGetPixel(Sprite *sprite, uint16_t x, uint16_t y);
 bool SpriteSetPixel(Sprite *sprite, uint16_t x, uint16_t y, Color color);
+
+uint8_t* getOAM_ptr();
 
 typedef union {
     struct {
@@ -113,6 +123,13 @@ typedef struct {
     bool nmi;
 } Ppu2C02;
 
+struct sObjectAttributeEntry{//https://www.nesdev.org/wiki/PPU_OAM
+    uint8_t y;			// Y position of sprite
+    uint8_t id;			// ID of tile from pattern memory
+    uint8_t attribute;	// Flags define how sprite should be rendered
+    uint8_t x;			// X position of sprite
+};
+
 void ppu_init();
 
 uint8_t cpuBus_readPPU(uint16_t addr);
@@ -121,13 +138,13 @@ void cpuBus_writePPU(uint16_t addr, uint8_t data);
 uint8_t ppuBus_read(uint16_t addr);
 void ppuBus_write(uint16_t addr, uint8_t data);
 
-Ppu2C02 *ppu_get();
-
-void ppu_clock();
+bool ppu_clock();
 
 Color* ppu_get_screen();
 
 Color get_colorFromPaletteRam(uint8_t palette, uint8_t pixel);
 Sprite *get_patternTable(uint8_t i, uint8_t palette);
+
+Sprite *ppu_get_screen_ptr();
 
 #endif  // PPU_H

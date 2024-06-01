@@ -41,8 +41,13 @@ enum MIRROR cart_get_mirror_type(){
 int cart_insert(char* cart_filePath){
   //read header
   printf("[CART] Loading rom: %s\n", cart_filePath);
-  
-  FILE *fp = fopen(cart_filePath, "rb");
+
+  if(access(cart_filePath, F_OK)){
+    printf("Error: File does not exist\n");
+    exit(1);
+    return 1;
+  }
+  FILE *fp = fopen(cart_filePath, "r"); //TODO change this to "r" in minix
   if (fp == NULL){
     printf("Error: Could not open rom\n");
     return 1;
@@ -69,6 +74,8 @@ int cart_insert(char* cart_filePath){
     break;
   }
 
+  set_mapper(mapper_id, nPRG_membanks, nCHR_membanks);
+
   return fclose(fp);
 }
 
@@ -88,7 +95,7 @@ void header_parse(FILE *fp){
     fseek(fp, 512, SEEK_SET);
   }
 
-  mapper_id = (header.mapperMsb_andFlags & 0xF0) | (header.mapperLsb_andFlags >> 4);
+  mapper_id = (header.mapperMsb_andFlags >> 4) << 4 | (header.mapperLsb_andFlags >> 4);
   mirror_type = (header.mapperLsb_andFlags & 0x01) ? VERTICAL : HORIZONTAL;
 
   print_header();
@@ -118,14 +125,8 @@ uint8_t ines_parse(FILE *fp){
 
   printf("Memory allocation complete!\n");
 
-  uint8_t PRGmem_read = 0;
-  uint8_t CHRmem_read = 0;
-
-  PRGmem_read = fread(PRGmem, 16384, nPRG_membanks, fp);
-  CHRmem_read = fread(CHRmem, 8192, nCHR_membanks, fp);
-
-  printf("Loaded PRGmem: %d bytes\n", PRGmem_read*16384);
-  printf("Loaded CHRmem: %d bytes\n", CHRmem_read*8192);
+  fread(PRGmem, 16384, nPRG_membanks, fp);
+  fread(CHRmem, 8192, nCHR_membanks, fp);
 
   return 0;
 }
@@ -141,6 +142,7 @@ void print_header(){
   printf("tv_system2: %d\n", header.tv_system2);
   printf("unused: %c%c%c%c%c\n", header.unused[0], header.unused[1], header.unused[2], header.unused[3], header.unused[4]);
 }
+
 
 uint8_t sys_readFromCard(uint16_t addr, bool* hijack){
   return PRGmem[mapper_map(addr, type_sysBus_read, hijack)];
@@ -161,7 +163,14 @@ uint8_t ppu_readFromCard(uint16_t addr, bool* hijack){
 
 void ppu_writeToCard(uint16_t addr, uint8_t data, bool* hijack){
   if (addr <= 0x1FFF){
-    CHRmem[mapper_map(addr, type_ppuBus_write, hijack)] = data;
+    uint16_t mapped_addr = mapper_map(addr, type_ppuBus_write, hijack);
+    if (mapped_addr > (nCHR_membanks*8192/8))
+    {
+      exit(1);
+    }
+    //CHRmem[mapped_addr] = data;
+  
   }
+
 }
 
