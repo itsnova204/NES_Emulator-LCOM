@@ -19,7 +19,7 @@ Include dependency graph for rtc.\+h\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structrtc__date__t}{rtc\+\_\+date\+\_\+t}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Struct that contains the date and time. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -100,46 +100,115 @@ struct \mbox{\hyperlink{structrtc__date__t}{rtc\+\_\+date\+\_\+t}}
 \item 
 \Hypertarget{rtc_8h_ab24e6f39ef99db1cdf9a2c6e26233bb3}\label{rtc_8h_ab24e6f39ef99db1cdf9a2c6e26233bb3} 
 int {\bfseries rtc\+\_\+subscribe\+\_\+int} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}bit\+\_\+no)
-\item 
+\begin{DoxyCompactList}\small\item\em Subscribes and enables RTC interrupts. \end{DoxyCompactList}\item 
 \Hypertarget{rtc_8h_ab8f17bf5280c908c8b199a90fefcc758}\label{rtc_8h_ab8f17bf5280c908c8b199a90fefcc758} 
 int {\bfseries rtc\+\_\+unsubscribe\+\_\+int} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Unsubscribes RTC interrupts. \end{DoxyCompactList}\item 
 \Hypertarget{rtc_8h_a4c1a7a6487a05aec45012e5298134758}\label{rtc_8h_a4c1a7a6487a05aec45012e5298134758} 
 int {\bfseries rtc\+\_\+read\+\_\+date} ()
-\item 
-\Hypertarget{rtc_8h_a76827856de45c0728d613f90c5f6e009}\label{rtc_8h_a76827856de45c0728d613f90c5f6e009} 
-int {\bfseries rtc\+\_\+read\+\_\+reg} (uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data)
-\item 
-\Hypertarget{rtc_8h_aa1fd64645937078b75ec6046b11b432e}\label{rtc_8h_aa1fd64645937078b75ec6046b11b432e} 
-int {\bfseries rtc\+\_\+write\+\_\+reg} (uint8\+\_\+t reg, uint8\+\_\+t data)
-\item 
-\Hypertarget{rtc_8h_ad01b060b01d5a6021392d1453f86a733}\label{rtc_8h_ad01b060b01d5a6021392d1453f86a733} 
-uint8\+\_\+t {\bfseries rtc\+\_\+bcd\+\_\+to\+\_\+binary} (uint8\+\_\+t bcd)
-\item 
+\begin{DoxyCompactList}\small\item\em Reads the date from the RTC. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rtc_8h_a76827856de45c0728d613f90c5f6e009}{rtc\+\_\+read\+\_\+reg}} (uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Reads a register from the RTC. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rtc_8h_aa1fd64645937078b75ec6046b11b432e}{rtc\+\_\+write\+\_\+reg}} (uint8\+\_\+t reg, uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Writes a register from the RTC. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{rtc_8h_ad01b060b01d5a6021392d1453f86a733}{rtc\+\_\+bcd\+\_\+to\+\_\+binary}} (uint8\+\_\+t bcd)
+\begin{DoxyCompactList}\small\item\em Converts a binary number to BCD. \end{DoxyCompactList}\item 
 \Hypertarget{rtc_8h_a75dad42881d64cf07cf1bdc2979a7056}\label{rtc_8h_a75dad42881d64cf07cf1bdc2979a7056} 
 void {\bfseries rtc\+\_\+ih} ()
-\item 
+\begin{DoxyCompactList}\small\item\em RTC interrupt handler. \end{DoxyCompactList}\item 
 \Hypertarget{rtc_8h_aae8111e1cb8e86c24e0becc84ee4ce29}\label{rtc_8h_aae8111e1cb8e86c24e0becc84ee4ce29} 
 int {\bfseries rtc\+\_\+enable\+\_\+alarm\+\_\+int} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Enables RTC alarm interrupt. \end{DoxyCompactList}\item 
 \Hypertarget{rtc_8h_ae17e9c9642400e83542d8170676ff50f}\label{rtc_8h_ae17e9c9642400e83542d8170676ff50f} 
 int {\bfseries rtc\+\_\+disable\+\_\+int} ()
-\item 
-\Hypertarget{rtc_8h_a8a934d31134c70ff080aa663e25fe436}\label{rtc_8h_a8a934d31134c70ff080aa663e25fe436} 
-\mbox{\hyperlink{structrtc__date__t}{rtc\+\_\+date\+\_\+t}} {\bfseries rtc\+\_\+get\+\_\+date} ()
-\item 
-\Hypertarget{rtc_8h_a11e438d0669b30b2c97af0665ec96ed1}\label{rtc_8h_a11e438d0669b30b2c97af0665ec96ed1} 
-int {\bfseries rtc\+\_\+set\+\_\+reg\+B\+\_\+bit} ()
+\begin{DoxyCompactList}\small\item\em Disables RTC alarm interrupt. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structrtc__date__t}{rtc\+\_\+date\+\_\+t}} \mbox{\hyperlink{rtc_8h_a8a934d31134c70ff080aa663e25fe436}{rtc\+\_\+get\+\_\+date}} ()
+\begin{DoxyCompactList}\small\item\em Gets the date from the RTC. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rtc_8h_a11e438d0669b30b2c97af0665ec96ed1}{rtc\+\_\+set\+\_\+reg\+B\+\_\+bit}} ()
 \item 
 \Hypertarget{rtc_8h_af9899143b10300540808effb01aa292b}\label{rtc_8h_af9899143b10300540808effb01aa292b} 
 int {\bfseries rtc\+\_\+clear\+\_\+reg\+B\+\_\+bit} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Clears bit 7 of register B. \end{DoxyCompactList}\item 
 \Hypertarget{rtc_8h_a0a6fd09353e9e32173333e7a32997c88}\label{rtc_8h_a0a6fd09353e9e32173333e7a32997c88} 
 int {\bfseries rtc\+\_\+set\+\_\+alarm} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the alarm of the RTC. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 This file contains the implementation of the RTC functions ~\newline
  
 
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{rtc_8h_ad01b060b01d5a6021392d1453f86a733}\label{rtc_8h_ad01b060b01d5a6021392d1453f86a733} 
+\index{rtc.h@{rtc.h}!rtc\_bcd\_to\_binary@{rtc\_bcd\_to\_binary}}
+\index{rtc\_bcd\_to\_binary@{rtc\_bcd\_to\_binary}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{rtc\_bcd\_to\_binary()}{rtc\_bcd\_to\_binary()}}
+{\footnotesize\ttfamily uint8\+\_\+t rtc\+\_\+bcd\+\_\+to\+\_\+binary (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{bcd }\end{DoxyParamCaption})}
+
+
+
+Converts a binary number to BCD. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em binary} & Binary number to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Converted BCD number 
+\end{DoxyReturn}
+\Hypertarget{rtc_8h_a8a934d31134c70ff080aa663e25fe436}\label{rtc_8h_a8a934d31134c70ff080aa663e25fe436} 
+\index{rtc.h@{rtc.h}!rtc\_get\_date@{rtc\_get\_date}}
+\index{rtc\_get\_date@{rtc\_get\_date}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{rtc\_get\_date()}{rtc\_get\_date()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtc__date__t}{rtc\+\_\+date\+\_\+t}} rtc\+\_\+get\+\_\+date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the date from the RTC. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{structrtc__date__t}{rtc\+\_\+date\+\_\+t} struct with the date 
+\end{DoxyReturn}
+\Hypertarget{rtc_8h_a76827856de45c0728d613f90c5f6e009}\label{rtc_8h_a76827856de45c0728d613f90c5f6e009} 
+\index{rtc.h@{rtc.h}!rtc\_read\_reg@{rtc\_read\_reg}}
+\index{rtc\_read\_reg@{rtc\_read\_reg}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{rtc\_read\_reg()}{rtc\_read\_reg()}}
+{\footnotesize\ttfamily int rtc\+\_\+read\+\_\+reg (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})}
+
+
+
+Reads a register from the RTC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Register to read \\
+\hline
+{\em data} & Pointer to the variable that will store the data read \\
+\hline
+\end{DoxyParams}
+\Hypertarget{rtc_8h_a11e438d0669b30b2c97af0665ec96ed1}\label{rtc_8h_a11e438d0669b30b2c97af0665ec96ed1} 
+\index{rtc.h@{rtc.h}!rtc\_set\_regB\_bit@{rtc\_set\_regB\_bit}}
+\index{rtc\_set\_regB\_bit@{rtc\_set\_regB\_bit}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{rtc\_set\_regB\_bit()}{rtc\_set\_regB\_bit()}}
+{\footnotesize\ttfamily int rtc\+\_\+set\+\_\+reg\+B\+\_\+bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+@brieg Sets bit 7 of register B to 1 \Hypertarget{rtc_8h_aa1fd64645937078b75ec6046b11b432e}\label{rtc_8h_aa1fd64645937078b75ec6046b11b432e} 
+\index{rtc.h@{rtc.h}!rtc\_write\_reg@{rtc\_write\_reg}}
+\index{rtc\_write\_reg@{rtc\_write\_reg}!rtc.h@{rtc.h}}
+\doxysubsubsection{\texorpdfstring{rtc\_write\_reg()}{rtc\_write\_reg()}}
+{\footnotesize\ttfamily int rtc\+\_\+write\+\_\+reg (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{reg,  }\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Writes a register from the RTC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & Register to write \\
+\hline
+{\em data} & Data to write \\
+\hline
+\end{DoxyParams}
