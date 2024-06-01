@@ -1,13 +1,7 @@
 {
-  "git.ignoreLimitWarning": true,
-  "C_Cpp.clang_format_fallbackStyle": "LLVM",
-  "diffEditor.ignoreTrimWhitespace": true,
-  "editor.formatOnSave": false,
-  "editor.tabSize": 2,
-  "editor.wordWrap": "off",
-  "editor.wordWrapColumn": 200,
-  "files.associations": {
-    "lcf.h": "c",
-    "bus.h": "c"
-  },
+    "files.associations": {
+        "keyboard.h": "c",
+        "stdint.h": "c",
+        "sysutil.h": "c"
+    }
 }

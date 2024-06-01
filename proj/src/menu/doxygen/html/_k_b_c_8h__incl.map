@@ -1,0 +1,10 @@
+<map id="KBC.h" name="KBC.h">
+<area shape="rect" id="Node000001" title="This file contains the implementation of the KBC functions allowing handling of the keyboard and mous..." alt="" coords="22,5,83,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="23,153,101,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="41,33,16,65,9,84,11,104,22,123,37,140,33,144,18,126,6,105,4,84,11,62,37,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="20,79,85,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="55,31,55,63,50,63,50,31"/>
+<area shape="rect" id="Node000004" href="$i8042_8h_source.html" title=" " alt="" coords="109,79,172,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="69,29,116,67,112,71,66,34"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="129,107,88,144,84,140,125,103"/>
+</map>
