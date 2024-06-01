@@ -21,7 +21,8 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[11].name = COLON;
     images[12].name = SLASH;
     images[13].name = CURSOR;
-    images[14].name = SUPER_MARIO;
+    images[14].name = CURSOR_SELECTED;
+    images[15].name = SUPER_MARIO;
 
     images[0].map = xpm_load(zero, XPM_TYPE_MENU, &images[0].image);
     images[1].map = xpm_load(one, XPM_TYPE_MENU, &images[1].image);
@@ -37,7 +38,8 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[11].map = xpm_load(colon, XPM_TYPE_MENU, &images[11].image);
     images[12].map = xpm_load(slash, XPM_TYPE_MENU, &images[12].image);
     images[13].map = xpm_load(cursor, XPM_TYPE_MENU, &images[13].image);
-    images[14].map = xpm_load(super_mario, XPM_TYPE_MENU, &images[14].image);
+    images[14].map = xpm_load(cursor_selected, XPM_TYPE_MENU, &images[14].image);
+    images[15].map = xpm_load(super_mario, XPM_TYPE_MENU, &images[15].image);
 
 }
 
@@ -65,7 +67,7 @@ int (draw_sprite)(ImageName name, uint16_t x, uint16_t y) {
 
 int (draw_sprint_from_bottom_left)(ImageName name, uint16_t x, uint16_t y) {
     XpmData* xpm_data = get_xpm_data(name);
-    
+
     if (xpm_data == NULL) return 1;
 
     return vg_draw_xpm_from_bottom_left_corner(xpm_data->image, xpm_data->map, x, y, mode);
