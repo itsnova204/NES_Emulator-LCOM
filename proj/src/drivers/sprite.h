@@ -87,9 +87,10 @@ int (draw_date)(int day, int month, int year, int hour, int minutes, uint16_t x,
  * @param x_mouse X coordinate of the mouse
  * @param y_mouse Y coordinate of the mouse
  * @param selected_option Pointer to the variable that will store the selected option, value will be -1 if no option is selected
+ * @param page Menu page of the options to draw
  * @return 0 if successful, non 0 otherwise
 */
-int (draw_options)(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int* selected_option);
+int (draw_options)(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int* selected_option, int page);
 
 
 #endif

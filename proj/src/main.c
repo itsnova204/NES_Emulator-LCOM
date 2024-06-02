@@ -46,6 +46,10 @@ uint8_t scancode = 0;
 #define MAKE_X 0x2D
 #define BREAK_X 0xAD
 
+
+#define NUM_GAMES 4
+
+
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
   lcf_set_language("EN-US");
@@ -71,7 +75,9 @@ int main(int argc, char *argv[]) {
 uint8_t irq_set_timer, irq_set_kbd, irq_set_mouse, irq_set_uart;
 bool is_second_scancode = false;
 
-bool uart_enabled = true;
+bool uart_enabled = false;
+
+int current_menu_page = 0;
 
 int (proj_main_loop)() {
   uint16_t mode = VBE_MODE_DC_32;
@@ -185,7 +191,17 @@ int (proj_main_loop)() {
                           break;
                         }
                     }else{
-                      if(scancode == KBD_ESC_BREAK_CODE) break;
+
+                      if (scancode == 0x4d) { // right arrow
+                          if (current_menu_page < (NUM_GAMES - 1) / 3) current_menu_page++;
+                      }
+
+                      else if (scancode == 0x4b) { // left arrow
+                          if (current_menu_page > 0) current_menu_page--;
+                      }
+
+                      else if(scancode == KBD_ESC_BREAK_CODE) break;
+
                     }
                     
                       
@@ -220,7 +236,7 @@ int (proj_main_loop)() {
 
 
                         // DRAW GAME OPTIONS
-                        if (draw_options(250, mouse_x, mouse_y, &selected_option) != 0) return 1;
+                        if (draw_options(250, mouse_x, mouse_y, &selected_option, current_menu_page) != 0) return 1;
 
 
                         // DRAW MOUSE CURSOR
