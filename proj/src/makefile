@@ -6,7 +6,8 @@ PROG=proj
 .PATH: ${.CURDIR}/drivers
 
 
-SRCS = ./main.c ./mapper.c ./cartridge.c ./bus.c ./p6502.c ./controler.c ./ppu.c utils.c timer.c keyboard.c graphics.c sprite.c xpm_image.c
+SRCS = ./main.c byteQueue.c uart.c graphics.c KBC.c keyboard.c mouse.c timer.c rtc.c sprite.c utils.c xpm_image.c
+SRCS += bus.c p6502.c ppu.c cartridge.c controller.c mapper.c
 
 
 # additional compilation flags
