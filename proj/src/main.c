@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
 
   //Sem comentario fica lento
   //lcf_trace_calls("/home/lcom/labs/proj/trace.txt");
-  lcf_log_output("/home/lcom/labs/proj/output.txt");
+  //lcf_log_output("/home/lcom/labs/proj/output.txt");
 
   // handles control over to LCF
   // [LCF handles command line arguments and invokes the right function]

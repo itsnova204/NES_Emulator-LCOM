@@ -117,7 +117,11 @@ int (proj_main_loop)() {
 
 
                       // DRAW MOUSE CURSOR
-                      if (draw_sprite(CURSOR, mouse_x, mouse_y) != 0) return 1;
+                      if (selected_option == -1) {
+                        if (draw_sprite(CURSOR, mouse_x, mouse_y) != 0) return 1;
+                      } else {
+                        if (draw_sprite(CURSOR_SELECTED, mouse_x, mouse_y) != 0) return 1;
+                      }
 
                       swap_buffers();
                     }
