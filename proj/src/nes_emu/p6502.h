@@ -1,5 +1,9 @@
 #include "lcf_mock.h"
-
+/**
+ * @file p6502.h
+ * @brief This file contains the implementation of the 6502 CPU.
+ * 
+*/
 #pragma once
 
 typedef enum{
