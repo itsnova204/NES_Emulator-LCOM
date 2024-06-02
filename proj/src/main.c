@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
 
   //Sem comentario fica lento
   //lcf_trace_calls("/home/lcom/labs/proj/trace.txt");
-  //lcf_log_output("/home/lcom/labs/proj/output.txt");
+  lcf_log_output("/home/lcom/labs/proj/output.txt");
 
   // handles control over to LCF
   // [LCF handles command line arguments and invokes the right function]
@@ -303,7 +303,8 @@ int (proj_main_loop)() {
 }
 
 void parse_controller(uint8_t byte){
-  if (byte & BIT(0)) controller_press(SERIAL_CTRLER, button_a);
+  controller_set(SERIAL_CTRLER, byte);
+  /*if (byte & BIT(0)) controller_press(SERIAL_CTRLER, button_a);
   if (byte & BIT(1)) controller_press(SERIAL_CTRLER, button_b);
   if (byte & BIT(2)) controller_press(SERIAL_CTRLER, button_select);
   if (byte & BIT(3)) controller_press(SERIAL_CTRLER, button_start);
@@ -320,4 +321,5 @@ void parse_controller(uint8_t byte){
   if (!(byte & BIT(5))) controller_unpress(SERIAL_CTRLER, button_down);
   if (!(byte & BIT(6))) controller_unpress(SERIAL_CTRLER, button_left);
   if (!(byte & BIT(7))) controller_unpress(SERIAL_CTRLER, button_right);
+  */
 }

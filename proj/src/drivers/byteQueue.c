@@ -37,7 +37,7 @@ uint8_t pop_byte(Queue* queue) {
     return pop;
 }
 
-uint8_t queue_front(Queue* queue) {
+uint8_t queue_head(Queue* queue) {
     if(queue->head == NULL) return 0;
     return queue->head->byte;
 }
