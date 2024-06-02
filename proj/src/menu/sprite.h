@@ -15,7 +15,7 @@
 #ifndef _LCOM_SPRITE_H_
 #define _LCOM_SPRITE_H_
 
-#define NUM_IMAGES 15
+#define NUM_IMAGES 17
 #define XPM_TYPE_MENU XPM_8_8_8_8
 #define OPTION_WIDTH 300
 #define OPTION_HEIGHT 419
@@ -24,7 +24,7 @@
  * @brief Enumerates the different images that can be drawn
 */
 typedef enum {
-    ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, MENU, COLON, SLASH, CURSOR, SUPER_MARIO
+    ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, MENU, COLON, SLASH, CURSOR, CURSOR_SELECTED, DEFAULT_GAME, SUPER_MARIO
 } ImageName;
 
 /**
