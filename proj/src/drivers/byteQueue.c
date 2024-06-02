@@ -10,7 +10,7 @@ Queue * newQueue() {
     return newQueue;
 }
 
-void push_byte(Queue* queue, uint8_t byte) {
+inline void push_byte(Queue* queue, uint8_t byte) {
     byte_node* newNode = (byte_node*) malloc(sizeof(byte_node));
 
     newNode->byte = byte;
@@ -26,7 +26,7 @@ void push_byte(Queue* queue, uint8_t byte) {
 }
 
 
-uint8_t pop_byte(Queue* queue) {
+inline uint8_t pop_byte(Queue* queue) {
     if(queue->head == NULL) return 0; //0 and NULL are the same thing in this case
     
     uint8_t pop = queue->head->byte;
@@ -37,12 +37,12 @@ uint8_t pop_byte(Queue* queue) {
     return pop;
 }
 
-uint8_t queue_head(Queue* queue) {
+inline uint8_t queue_head(Queue* queue) {
     if(queue->head == NULL) return 0;
     return queue->head->byte;
 }
 
-void queue_pop(Queue* queue) {
+inline void queue_pop(Queue* queue) {
     if(queue->head == NULL) return;
 
     byte_node * item = queue->head;
@@ -51,11 +51,11 @@ void queue_pop(Queue* queue) {
 }
 
 
-bool isQueue_empty(Queue* queue) {
+inline bool isQueue_empty(Queue* queue) {
     return queue->head == NULL;
 }
 
-void queue_delete(Queue* queue) {
+inline void queue_delete(Queue* queue) {
     while(!isQueue_empty(queue)) {
         pop_byte(queue);
     }
@@ -63,7 +63,7 @@ void queue_delete(Queue* queue) {
     free(queue);
 }
 
-void queue_clean(Queue* queue) {
+inline void queue_clean(Queue* queue) {
     while(!isQueue_empty(queue)) {
         pop_byte(queue);
     }
