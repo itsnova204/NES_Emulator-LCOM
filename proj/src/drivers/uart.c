@@ -228,11 +228,13 @@ bool uart_recv_front(uint8_t port, uint8_t *byte){
 }
 
 int uart_receive_byte(uint8_t port,uint8_t *byte){
-    uint8_t status, tries = 0;
+    uint8_t status;
+    int tries = 0;
     int err;
-    
+
     while (tries < MAX_TRIES)
     {
+    
         err = uart_get_line_status(port, &status);
         if (err) {
             tries++; micro_delay(DELAY); continue;
@@ -251,8 +253,9 @@ int uart_receive_byte(uint8_t port,uint8_t *byte){
         }
         
         if(err == OK) return OK;
+    
         tries++;
-        usleep(DELAY);
+        micro_delay(DELAY);
     }
 
     return 1;
