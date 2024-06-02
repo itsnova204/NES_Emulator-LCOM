@@ -1,9 +1,14 @@
+/**
+ * @file bus.h
+ * @brief This file contains the implementation of the NES bus.
+ * 
+*/
 #include "lcf_mock.h"
-
 #pragma once
 
+
 void bus_clock();
-void bus_init(char* cart_filePath);
+int bus_init(char* cart_filePath);
 int bus_exit();
 
 void sysBus_write(uint16_t addr, uint8_t data);
