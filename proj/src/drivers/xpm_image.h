@@ -32,6 +32,8 @@ extern xpm_row_t game_default[];
 extern xpm_row_t super_mario[];
 extern xpm_row_t soccer[];
 extern xpm_row_t donkey_kong[];
+extern xpm_row_t mspacman[];
+extern xpm_row_t battle_city[];
 
 
 #endif

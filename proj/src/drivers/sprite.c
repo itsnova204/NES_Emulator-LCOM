@@ -26,6 +26,8 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[16].name = SUPER_MARIO;
     images[17].name = SOCCER;
     images[18].name = DONKEY_KONG;
+    images[19].name = MSPACMAN;
+    images[20].name = BATTLECITY;
 
     images[0].map = xpm_load(zero, XPM_TYPE_MENU, &images[0].image);
     images[1].map = xpm_load(one, XPM_TYPE_MENU, &images[1].image);
@@ -46,6 +48,8 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[16].map = xpm_load(super_mario, XPM_TYPE_MENU, &images[16].image);
     images[17].map = xpm_load(soccer, XPM_TYPE_MENU, &images[17].image);
     images[18].map = xpm_load(donkey_kong, XPM_TYPE_MENU, &images[18].image);
+    images[19].map = xpm_load(mspacman, XPM_TYPE_MENU, &images[19].image);
+    images[20].map = xpm_load(battle_city, XPM_TYPE_MENU, &images[20].image);
 
 }
 
@@ -161,7 +165,17 @@ int (draw_options)(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int* selected
                     break;
             }
         } else if (page == 1) {
-            sprite = DEFAULT_GAME;
+            switch (i) {
+                case 0:
+                    sprite = MSPACMAN;
+                    break;
+                case 1:
+                    sprite = BATTLECITY;
+                    break;
+                case 2:
+                    sprite = DEFAULT_GAME;
+                    break;
+            }
         } else {
             sprite = DEFAULT_GAME;
         }
