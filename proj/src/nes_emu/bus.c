@@ -139,6 +139,7 @@ void sysBus_write(uint16_t addr, uint8_t data) {
       dma_transfer = true;						
 	  }
     else if (addr >= 0x4016 && addr <= 0x4017) {
-        controller_state[addr & 0x0001] = controller[addr & 0x0001];
+        controller_state[0] = controller[0];
+        controller_state[1] = controller[1];
     }
 }
