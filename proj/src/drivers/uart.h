@@ -1,12 +1,13 @@
-#pragma once
-#include <lcom/lcf.h>
-#include "byteQueue.h"
-
 /**
  * @file uart.h
  * @brief This file contains the implementation of the uart driver.
  * 
 */
+
+#pragma once
+#include <lcom/lcf.h>
+#include "byteQueue.h"
+
 
 #define BAUD_115200 1
 #define BAUD_57600  2
