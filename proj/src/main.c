@@ -19,8 +19,8 @@ void parse_controller(uint8_t byte);
 int get_counter();
 uint8_t scancode = 0;
 
-#define KEYBOARD_CTRLER 0
-#define SERIAL_CTRLER   1
+uint8_t KEYBOARD_CTRLER = 0;
+uint8_t SERIAL_CTRLER   = 1;
 #define PORT 1
 
 #define FPS 30
@@ -49,6 +49,7 @@ uint8_t scancode = 0;
 
 #define NUM_GAMES 4
 
+uint8_t scale = 3;  
 
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
@@ -78,9 +79,35 @@ bool is_second_scancode = false;
 bool uart_enabled = true;
 
 int current_menu_page = 0;
+uint16_t mode = VBE_MODE_DC_32;
+uint16_t mode_emulator = VBE_MODE_DC_32;
+int (proj_main_loop)(int argc, char *argv[]) {
+  if(argc > 0){
+    for (int i = 0; i < argc; i++){
+      if(strstr(argv[i], "--no-uart") != NULL){
+        uart_enabled = false;
+      }
+      if (strstr(argv[i], "--player-1-serial") != NULL){ //set player 1 to serial controller
+          KEYBOARD_CTRLER = 1;
+          SERIAL_CTRLER = 0;
+      }
+      if (strstr(argv[i], "--vmode") != NULL){
+        if (argc>i && strstr(argv[i+1], "0x115") != NULL){
+          printf("VBE_MODE_DC_24\n");
+          mode_emulator = VBE_MODE_DC_24;
+          scale = 2;
+        }
+        
+        
+      }
+    }
+  }
 
-int (proj_main_loop)() {
-  uint16_t mode = VBE_MODE_DC_32;
+  printf("KEYBOARD_CTRLER: %d\n", KEYBOARD_CTRLER);
+  printf("SERIAL_CTRLER: %d\n", SERIAL_CTRLER);
+  printf("uart_enabled: %d\n", uart_enabled);
+
+  
   preloadSprites(mode);
   uint8_t ctrl;
 
@@ -101,7 +128,6 @@ int (proj_main_loop)() {
   int ipc_status, r;
   message msg;
   
-  vbe_mode_info_t vbe_info = get_vbe_mode_info();
 /*
   
   for (size_t i = 0; i < 10; i++){
@@ -112,8 +138,7 @@ int (proj_main_loop)() {
     }
   }
 */
-  printf("XResolution: %d\n", vbe_info.XResolution);
-  uint8_t scale = 3;
+  vbe_mode_info_t vbe_info = get_vbe_mode_info();
   int x_offset = vbe_info.XResolution / 2 - 128*scale;
   int y_offset = vbe_info.YResolution / 2 - 120*scale;
 
@@ -185,6 +210,11 @@ int (proj_main_loop)() {
                           emulator_running = false;
                           bus_exit();
                           scancode = 0;
+                          if (set_frame_buffer(mode) != 0) return 1;
+                          if (set_graphic_mode(mode) != 0) return 1;
+
+                          x_offset = vbe_info.XResolution / 2 - 128*scale;
+                          y_offset = vbe_info.YResolution / 2 - 120*scale;
                           break;
                         }
                     }else{
@@ -298,6 +328,17 @@ int (proj_main_loop)() {
                             printf("Starting NES emulator\n");
                             if(bus_init(cart_filePath)) return 1;
                             emulator_running = true;
+
+                            if(mode != mode_emulator){
+                              printf("Changing video mode\n");
+                              
+                              if (set_frame_buffer(mode_emulator) != 0) return 1;
+                              if (set_graphic_mode(mode_emulator) != 0) return 1;
+
+                              vbe_mode_info_t vbe_info_game = get_vbe_mode_info();
+                              x_offset = vbe_info_game.XResolution / 2 - 128*scale;
+                              y_offset = vbe_info_game.YResolution / 2 - 120*scale;
+                            }
                           }
                         }
                         if(selected_option == 1){
@@ -312,7 +353,18 @@ int (proj_main_loop)() {
 
                             printf("Starting NES emulator\n");
                             if(bus_init(cart_filePath)) return 1;
-                            emulator_running = true;
+                            emulator_running = true;  
+                            
+                            if(mode != mode_emulator){
+                              printf("Changing video mode\n");
+                              
+                              if (set_frame_buffer(mode_emulator) != 0) return 1;
+                              if (set_graphic_mode(mode_emulator) != 0) return 1;
+
+                              vbe_mode_info_t vbe_info_game = get_vbe_mode_info();
+                              x_offset = vbe_info_game.XResolution / 2 - 128*scale;
+                              y_offset = vbe_info_game.YResolution / 2 - 120*scale;
+                            }
                           }
                         }
                         if(selected_option == 2){
@@ -328,6 +380,16 @@ int (proj_main_loop)() {
                             printf("Starting NES emulator\n");
                             if(bus_init(cart_filePath)) return 1;
                             emulator_running = true;
+                            if(mode != mode_emulator){
+                              printf("Changing video mode\n");
+                              
+                              if (set_frame_buffer(mode_emulator) != 0) return 1;
+                              if (set_graphic_mode(mode_emulator) != 0) return 1;
+
+                              vbe_mode_info_t vbe_info_game = get_vbe_mode_info();
+                              x_offset = vbe_info_game.XResolution / 2 - 128*scale;
+                              y_offset = vbe_info_game.YResolution / 2 - 120*scale;
+                            }
                           }
                         }
                         if (selected_option == 3){
@@ -343,6 +405,16 @@ int (proj_main_loop)() {
                             printf("Starting NES emulator\n");
                             if(bus_init(cart_filePath)) return 1;
                             emulator_running = true;
+                            if(mode != mode_emulator){
+                              printf("Changing video mode\n");
+                              
+                              if (set_frame_buffer(mode_emulator) != 0) return 1;
+                              if (set_graphic_mode(mode_emulator) != 0) return 1;
+
+                              vbe_mode_info_t vbe_info_game = get_vbe_mode_info();
+                              x_offset = vbe_info_game.XResolution / 2 - 128*scale;
+                              y_offset = vbe_info_game.YResolution / 2 - 120*scale;
+                            }
                           }
                         }
                         if (selected_option == 4){
@@ -358,6 +430,16 @@ int (proj_main_loop)() {
                             printf("Starting NES emulator\n");
                             if(bus_init(cart_filePath)) return 1;
                             emulator_running = true;
+                            if(mode != mode_emulator){
+                              printf("Changing video mode\n");
+                              
+                              if (set_frame_buffer(mode_emulator) != 0) return 1;
+                              if (set_graphic_mode(mode_emulator) != 0) return 1;
+
+                              vbe_mode_info_t vbe_info_game = get_vbe_mode_info();
+                              x_offset = vbe_info_game.XResolution / 2 - 128*scale;
+                              y_offset = vbe_info_game.YResolution / 2 - 120*scale;
+                            }
                           }
                         }
                       }
