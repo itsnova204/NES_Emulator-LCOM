@@ -2,6 +2,12 @@
 #include <lcom/lcf.h>
 #include "byteQueue.h"
 
+/**
+ * @file uart.h
+ * @brief This file contains the implementation of the uart driver.
+ * 
+*/
+
 #define BAUD_115200 1
 #define BAUD_57600  2
 #define BAUD_38400  3
