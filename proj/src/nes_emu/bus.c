@@ -3,7 +3,7 @@
 #include "p6502.h"
 #include "ppu.h"
 #include "cartridge.h"
-#include "controler.h"
+#include "controller.h"
 
 //The bus is the main fabric connecting all the components of the NES together.
 //It is responsible for routing data between the CPU, PPU, and cartridge.
@@ -29,7 +29,7 @@ uint8_t* OAM_ptr;
 
 FILE* fp2;
 int bus_init(char* cart_filePath){
-  controler_init(controller);
+  controller_init(controller);
   memset(&sys_ram, 0, 2048); //nes has 2kb of ram (0x0000 - 0x07FF)
   printf("[BUS] Starting rom: %s\n", cart_filePath);
   //start sys_ram with 0;
