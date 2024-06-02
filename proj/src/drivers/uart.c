@@ -136,23 +136,18 @@ int uart_unsubscribe_int(uint8_t port){
 
 void uart_ih(uint8_t port){
     if (port != 1 && port != 2) return;
-    uint8_t err;
     uint8_t interrupt_id;
     uint8_t data;
 
     if (uart_get_int_id(port, &interrupt_id)) return;
 
     if (interrupt_id & IIR_RECV_DATA_AVAIL){
-        while ((err = uart_receive_byte(port, &data)) != 1)
-        {
-            if(err == OK){
-
+        while (!uart_receive_byte(port, &data)){
                 if (port == 1){
                     push_byte(in_fifo_port1, data);
                 }else if (port == 2){
                     push_byte(in_fifo_port2, data);
                 }
-            }
         }
     }
 
@@ -230,29 +225,16 @@ bool uart_recv_front(uint8_t port, uint8_t *byte){
 int uart_receive_byte(uint8_t port,uint8_t *byte){
     uint8_t status;
     int tries = 0;
-    int err;
 
     while (tries < MAX_TRIES)
     {
     
-        err = uart_get_line_status(port, &status);
-        if (err) {
-            tries++; micro_delay(DELAY); continue;
+        if(!uart_get_line_status(port, &status)){
+            if (status & DATA_READY){
+                if(status & (OVERRUN_ERROR | PARITY_ERROR | FRAMING_ERROR)) return 1; //no errors
+                if(!util_sys_inb(COM1_UART_ADDRESS + UART_RBR, byte)) return 0;
+            }
         }
-
-        err = 1;
-    
-        if (status & DATA_READY)
-        {
-            err = util_sys_inb(COM1_UART_ADDRESS + UART_RBR, byte);
-        }
-
-        if (status & (OVERRUN_ERROR | PARITY_ERROR | FRAMING_ERROR))
-        {
-            return 2;
-        }
-        
-        if(err == OK) return OK;
     
         tries++;
         micro_delay(DELAY);
