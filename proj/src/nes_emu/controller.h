@@ -1,5 +1,12 @@
 #include "lcf_mock.h"
 
+/**
+ * @file controller.h
+ * @brief This file contains an API to interact with the NES controller regs.
+ * 
+*/
+
+#pragma once
 enum ctrler_buttons_t{
   button_right,
   button_left,
