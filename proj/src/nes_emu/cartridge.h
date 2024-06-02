@@ -1,5 +1,11 @@
 #include "lcf_mock.h"
 
+/**
+ * @file cartridge.h
+ * @brief This file contains the implementation of the NES cartridge loading, reading and writing.
+ * 
+*/
+
 #pragma once
 
 enum MIRROR

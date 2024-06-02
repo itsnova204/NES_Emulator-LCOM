@@ -1,5 +1,9 @@
 #include "lcf_mock.h"
-
+/**
+ * @file p6502.h
+ * @brief This file contains the implementation of the 6502 CPU.
+ * 
+*/
 #pragma once
 
 typedef enum{
@@ -14,6 +18,8 @@ typedef enum{
 } p6502_flag;
 
 #define  stack_ofset 0x0100
+
+bool isCPU_complete();
 
 void cpu_clock();
 void cpu_init();
