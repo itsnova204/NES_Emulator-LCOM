@@ -25,6 +25,7 @@ uint8_t scancode = 0;
 
 #define FPS 30
 #define FRAME_INTERVAL (60 / FPS)
+#define FRAME_INTERVAL_EMULATOR (60 / 60)
 
 #define MAKE_UP   0x48
 #define BREAK_UP  0xC8
@@ -229,7 +230,7 @@ int (proj_main_loop)() {
                         }
 
 
-                      if (counter % FRAME_INTERVAL == 0) {
+                      if (counter % FRAME_INTERVAL_EMULATOR == 0) {
                         nes_screen = ppu_get_screen_ptr();
                         vg_draw_color_sprite(nes_screen, x_offset, y_offset,scale);
                         swap_buffers();
