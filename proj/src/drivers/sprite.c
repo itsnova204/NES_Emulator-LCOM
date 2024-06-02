@@ -159,8 +159,6 @@ int (draw_options)(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int* selected
                 case 2:
                     sprite = DONKEY_KONG;
                     break;
-                default:
-                    break;
             }
         } else if (page == 1) {
             sprite = DEFAULT_GAME;
