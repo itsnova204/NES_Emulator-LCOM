@@ -20,7 +20,7 @@ int get_counter();
 uint8_t scancode = 0;
 
 #define KEYBOARD_CTRLER 0
-#define SERIAL_CTRLER   0
+#define SERIAL_CTRLER   1
 #define PORT 1
 
 #define FPS 30
@@ -123,9 +123,6 @@ int (proj_main_loop)() {
   if(mouse_write_command(ENABLE_DATA_REPORT) != 0) return 1;
   if(mouse_subscribe_int(&irq_set_mouse) != 0) return 1;
   
-  
-
-
   if (timer_set_frequency(0, 60) != 0) return 1;   
 
   rtc_read_date();
@@ -191,6 +188,7 @@ int (proj_main_loop)() {
                           break;
                         }
                     }else{
+                      if(scancode == KBD_ESC_BREAK_CODE) break;
 
                       if (scancode == 0x4d) { // right arrow
                           if (current_menu_page < (NUM_GAMES - 1) / 3) current_menu_page++;
@@ -200,7 +198,6 @@ int (proj_main_loop)() {
                           if (current_menu_page > 0) current_menu_page--;
                       }
 
-                      else if(scancode == KBD_ESC_BREAK_CODE) break;
 
                     }
                     
@@ -374,19 +371,20 @@ int (proj_main_loop)() {
   }
 
 
-  if(uart_enabled){
-    uart_set_IER(PORT,0);
-  }
 
-  if (bus_exit() != 0){
-    printf("bus_exit() failed\n");
-  };
+
+  printf("Exiting...\n");
+
   if (vg_exit() != 0) return 1;
   if (kbd_unsubscribe_int() != 0) return 1;
   if (mouse_unsubscribe_int() != 0) return 1;
   if (mouse_write_command(DISABLE_DATA_REPORT) != 0) return 1;
   if (timer_unsubscribe_int() != 0) return 1;
-  if(uart_unsubscribe_int(PORT)) return 1;
+
+  if(uart_enabled){
+    uart_set_IER(PORT,0);
+    if(uart_unsubscribe_int(PORT))return 1;
+  }
 
   return 0;
 }
