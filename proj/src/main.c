@@ -178,10 +178,17 @@ int (proj_main_loop)() {
                         if (MAKE_DOWN == scancode)controller_press(KEYBOARD_CTRLER, button_down);
                         if (BREAK_DOWN == scancode)controller_unpress(KEYBOARD_CTRLER, button_down);
 
+                        if(scancode == KBD_ESC_BREAK_CODE){
+                          emulator_running = false;
+                          bus_exit();
+                          scancode = 0;
+                          break;
+                        }
                     }else{
+                      if(scancode == KBD_ESC_BREAK_CODE) break;
                     }
                     
-                      if(scancode == KBD_ESC_BREAK_CODE) break;
+                      
 
                   }
 
@@ -260,21 +267,51 @@ int (proj_main_loop)() {
                       if (mouse_y > vbe_info.YResolution) mouse_y = vbe_info.YResolution;
 
                       if (pp.lb && selected_option >= 0) {
+                        if(selected_option == 0){
+                          if(!emulator_running){
+                            char* cart_filePath = "/home/lcom/labs/proj/roms/supermariobros.nes";
+                            if (access(cart_filePath, F_OK) == 0) {
+                            printf("Rom found!\n");
+                            } else {
+                              printf("Rom not found!\n");
+                              break;
+                            }
 
-                        if(!emulator_running){
-                          char* cart_filePath = "/home/lcom/labs/proj/roms/supermariobros.nes";
-                          if (access(cart_filePath, F_OK) == 0) {
-                          printf("Rom found!\n");
-                          } else {
-                            printf("Rom not found!\n");
-                            return 1;
+                            printf("Starting NES emulator\n");
+                            if(bus_init(cart_filePath)) return 1;
+                            emulator_running = true;
                           }
-
-                          printf("Starting NES emulator\n");
-                          if(bus_init(cart_filePath)) return 1;
-                          emulator_running = true;
                         }
+                        if(selected_option == 1){
+                            if(!emulator_running){
+                            char* cart_filePath = "/home/lcom/labs/proj/roms/soccer.nes";
+                            if (access(cart_filePath, F_OK) == 0) {
+                            printf("Rom found!\n");
+                            } else {
+                              printf("Rom not found!\n");
+                              break;
+                            }
 
+                            printf("Starting NES emulator\n");
+                            if(bus_init(cart_filePath)) return 1;
+                            emulator_running = true;
+                          }
+                        }
+                        if(selected_option == 2){
+                            if(!emulator_running){
+                            char* cart_filePath = "/home/lcom/labs/proj/roms/DonkeyKong.nes";
+                            if (access(cart_filePath, F_OK) == 0) {
+                            printf("Rom found!\n");
+                            } else {
+                              printf("Rom not found!\n");
+                              break;
+                            }
+
+                            printf("Starting NES emulator\n");
+                            if(bus_init(cart_filePath)) return 1;
+                            emulator_running = true;
+                          }
+                        }
                       }
                     }
                   }
