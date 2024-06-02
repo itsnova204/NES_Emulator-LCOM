@@ -24,6 +24,8 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[14].name = CURSOR_SELECTED;
     images[15].name = DEFAULT_GAME;
     images[16].name = SUPER_MARIO;
+    images[17].name = SOCCER;
+    images[18].name = DONKEY_KONG;
 
     images[0].map = xpm_load(zero, XPM_TYPE_MENU, &images[0].image);
     images[1].map = xpm_load(one, XPM_TYPE_MENU, &images[1].image);
@@ -42,6 +44,8 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[14].map = xpm_load(cursor_selected, XPM_TYPE_MENU, &images[14].image);
     images[15].map = xpm_load(game_default, XPM_TYPE_MENU, &images[15].image);
     images[16].map = xpm_load(super_mario, XPM_TYPE_MENU, &images[16].image);
+    images[17].map = xpm_load(soccer, XPM_TYPE_MENU, &images[17].image);
+    images[18].map = xpm_load(donkey_kong, XPM_TYPE_MENU, &images[18].image);
 
 }
 
@@ -145,13 +149,19 @@ int (draw_options)(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int* selected
 
         switch (i) {
             case 0:
-                if (draw_sprite(SUPER_MARIO, option_x_positions[i], y) != 0) return 1;
+                if (draw_sprite(SUPER_MARIO, option_x_positions[i], y) != 0){
+                    printf("draw_sprite() failed\n");
+                };
                 break;
             case 1:
-                if (draw_sprite(DEFAULT_GAME, option_x_positions[i], y) != 0) return 1;
+                if (draw_sprite(SOCCER, option_x_positions[i], y) != 0){
+                    printf("draw_sprite() failed\n");
+                };
                 break;
             case 2:
-                if (draw_sprite(DEFAULT_GAME, option_x_positions[i], y) != 0) return 1;
+                if (draw_sprite(DONKEY_KONG, option_x_positions[i], y) != 0){
+                    printf("draw_sprite() failed\n");
+                };
                 break;
         }
 
