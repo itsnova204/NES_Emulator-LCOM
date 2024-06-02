@@ -1,4 +1,11 @@
 #include "lcf_mock.h"
+
+/**
+ * @file ppu.h
+ * @brief This file contains the implementation of NES PPU.
+ * 
+*/
+
 #pragma once
 #ifndef PPU_H
 #define PPU_H

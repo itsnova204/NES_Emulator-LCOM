@@ -159,12 +159,12 @@ void uart_ih(uint8_t port){
     if (interrupt_id & IIR_TRNSMT_EMPTY){
         if(port == 1){
             if (!isQueue_empty(out_fifo_port1)){
-                uart_send_byte(port, queue_front(out_fifo_port1));
+                uart_send_byte(port, queue_head(out_fifo_port1));
                 queue_pop(out_fifo_port1);
             }
         }else if(port == 2){
             if (!isQueue_empty(out_fifo_port2)){
-                uart_send_byte(port, queue_front(out_fifo_port2));
+                uart_send_byte(port, queue_head(out_fifo_port2));
                 queue_pop(out_fifo_port2);
             }
         }
@@ -210,19 +210,18 @@ int uart_send_byte(uint8_t port, uint8_t byte){
     return 1;
 }
 
-void (queue_pop)(Queue* queue);
 bool uart_recv_front(uint8_t port, uint8_t *byte){
     if(port == 1){
         if (isQueue_empty(in_fifo_port1)){
             return false;
         }
-        *byte = queue_front(in_fifo_port1);
+        *byte = queue_head(in_fifo_port1);
         queue_pop(in_fifo_port1);
     }else if(port == 2){
         if (isQueue_empty(in_fifo_port2)){
             return false;
         }
-        *byte = queue_front(in_fifo_port2);
+        *byte = queue_head(in_fifo_port2);
         queue_pop(in_fifo_port2);
     }
     return true;

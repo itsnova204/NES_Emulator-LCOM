@@ -1,6 +1,13 @@
+/**
+ * @file uart.h
+ * @brief This file contains the implementation of the uart driver.
+ * 
+*/
+
 #pragma once
 #include <lcom/lcf.h>
 #include "byteQueue.h"
+
 
 #define BAUD_115200 1
 #define BAUD_57600  2
@@ -72,30 +79,111 @@
 #define EMPTY_DLL BIT(6)
 #define FIFO_ERROR BIT(7)
 
+/**
+ * @brief Initializes the uart
+ * @param port 1 or 2
+ * @param rate baud rate
+ * @param word_length word length
+ * @param stop stop bits
+ * @param par parity
+ * @return 0 if successful, non 0 otherwise
+ */
 int uart_init(uint8_t port, uint16_t rate, uint8_t word_length, uint8_t stop, uint8_t par);
 
+/**
+ * @brief Sets the baud rate of the uart
+ * @param port 1 or 2
+ * @param rate diver to be set, use the BAUD_ macros to set the rate
+ * @return 0 if successful, non 0 otherwise
+ */
 int setBaud(uint8_t port, uint16_t rate);
+
+/**
+ * @brief Handles the uart interrupt
+ * @param port 1 or 2
+ */
 void uart_ih(uint8_t port);
 
+/**
+ * @brief Enables the FIFO of the uart
+ * @param port 1 or 2
+ * @return 0 if successful, non 0 otherwise
+ */
 int uart_enable_fifo(uint8_t port);
+
+/**
+ * @brief Sets the IER register of the uart
+ * @param port 1 or 2
+ * @param ctrl control byte to be set
+ * @return 0 if successful, non 0 otherwise
+ */
 int uart_set_IER(uint8_t port, uint8_t ctrl);
 
+/**
+ * @brief Write the LSR register to @param status
+ * @param port 1 or 2
+ * @param status status byte to be set
+ * @return 0 if successful, non 0 otherwise
+ */
 int uart_get_line_status(uint8_t port, uint8_t *status);
 
+/**
+ * @brief Subscribes the uart interrupts
+ * @param port 1 or 2
+ * @param bit_no variable to store the bit number
+ * @return 0 if successful, non 0 otherwise
+ */
 int uart_subscribe_int(uint8_t port, int *bit_no);
 
+/**
+ * @brief Unsubscribes the uart interrupts
+ * @param port 1 or 2
+ * @return 0 if successful, non 0 otherwise
+ */
 int uart_unsubscribe_int(uint8_t port);
 
-int uart_enable_int(uint8_t port);
-int uart_disable_int(uint8_t port);
-
+/**
+ * @brief Exits the uart freeing all resources
+ * @param port 1 or 2
+ * @return 0 if successful, non 0 otherwise
+ */
 int uart_exit(uint8_t port);
 
+/**
+ * @brief Gets the Interrupt Identification Register (IIR)
+ * @param port 1 or 2
+ * @param id variable to store the interrupt id
+ * @return 0 if successful, non 0 otherwise
+ */
 int uart_get_int_id(uint8_t port, uint8_t *id);
+
+/**
+ * @brief Sends a byte through the uart
+ * @param port 1 or 2
+ * @param byte byte to be sent
+ * @return 0 if successful, non 0 otherwise
+ */
 int uart_send_byte(uint8_t port, uint8_t byte);
 
+/**
+ * @brief Retrive a byte from the uart input fifo
+ * @param port 1 or 2
+ * @param byte variable to store the byte
+ * @return 0 if successful, non 0 otherwise
+ */
 bool uart_recv_front(uint8_t port, uint8_t *byte);
 
+/**
+ * @brief Receives a byte through the uart
+ * @param port 1 or 2
+ * @param byte variable to store the byte
+ * @return 0 if successful, non 0 otherwise
+ */
 int uart_receive_byte(uint8_t port,uint8_t *byte);
 
+/**
+ * @brief Pushes a byte to the uart output fifo
+ * @param port 1 or 2
+ * @param byte byte to be pushed
+ */
 void uart_push(uint8_t port, uint8_t byte);

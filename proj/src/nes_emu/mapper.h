@@ -1,4 +1,12 @@
 #include "lcf_mock.h"
+
+/**
+ * @file mapper.h
+ * @brief This file contains the implementation of NES mappers.
+ * @brief https://www.nesdev.org/wiki/Mapper
+*/
+
+
 #pragma once
 
 enum Type{
