@@ -1,0 +1,18 @@
+<map id="INST_PHA" name="INST_PHA">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,89,105"/>
+<area shape="rect" id="Node000002" href="$bus_8c.html#adb797361b85144ba196ad2672438f283" title=" " alt="" coords="137,80,237,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,90,122,90,122,95,90,95"/>
+<area shape="rect" id="Node000003" href="$ppu_8c.html#ac0def705a9b8a1f59d81966363e0907e" title=" " alt="" coords="285,55,412,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="237,82,269,77,270,82,238,87"/>
+<area shape="rect" id="Node000008" href="$cartridge_8c.html#a7466bac2d6b550452f3a62985028955b" title=" " alt="" coords="460,105,579,131"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="238,94,445,110,444,115,238,99"/>
+<area shape="rect" id="Node000004" href="$ppu_8c.html#aa2d551a2adfbec9f9838f3a913364d9d" title=" " alt="" coords="469,55,569,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="413,65,454,65,454,70,413,70"/>
+<area shape="rect" id="Node000005" href="$cartridge_8c.html#a7c1ed30dc9eb54d745678b62c1a148f5" title=" " alt="" coords="627,5,768,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="567,52,633,33,635,38,568,57"/>
+<area shape="rect" id="Node000006" href="$cartridge_8c.html#aa43fe82d032f800a19681bc4a3fed598" title=" " alt="" coords="638,55,757,80"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="570,65,622,65,622,70,570,70"/>
+<area shape="rect" id="Node000007" href="$mapper_8c.html#ae8c091b689d3adb550f8070c774f929b" title=" " alt="" coords="816,80,913,105"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="758,74,801,80,800,86,757,79"/>
+<area shape="poly" id="edge8_Node000008_Node000007" title=" " alt="" coords="579,111,800,95,800,100,579,116"/>
+</map>

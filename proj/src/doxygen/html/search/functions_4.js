@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['draw_5fdate_0',['draw_date',['../sprite_8c.html#aca54722504caebf04ec7870c31e90cbd',1,'draw_date(int day, int month, int year, int hour, int minutes, uint16_t x, uint16_t y, bool with_colon):&#160;sprite.c'],['../sprite_8h.html#aca54722504caebf04ec7870c31e90cbd',1,'draw_date(int day, int month, int year, int hour, int minutes, uint16_t x, uint16_t y, bool with_colon):&#160;sprite.c']]],
+  ['draw_5foptions_1',['draw_options',['../sprite_8c.html#a50051589f1bb707afbf8a65cb7a1f35c',1,'draw_options(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int *selected_option, int page):&#160;sprite.c'],['../sprite_8h.html#a50051589f1bb707afbf8a65cb7a1f35c',1,'draw_options(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int *selected_option, int page):&#160;sprite.c']]],
+  ['draw_5fsprint_5ffrom_5fbottom_5fleft_2',['draw_sprint_from_bottom_left',['../sprite_8c.html#a1257b9fa59e90e8e1bb7fe8265065d33',1,'draw_sprint_from_bottom_left(ImageName name, uint16_t x, uint16_t y):&#160;sprite.c'],['../sprite_8h.html#a1257b9fa59e90e8e1bb7fe8265065d33',1,'draw_sprint_from_bottom_left(ImageName name, uint16_t x, uint16_t y):&#160;sprite.c']]],
+  ['draw_5fsprite_3',['draw_sprite',['../sprite_8c.html#afb64020b53c3c4dc80e836c6c08559d7',1,'draw_sprite(ImageName name, uint16_t x, uint16_t y):&#160;sprite.c'],['../sprite_8h.html#afb64020b53c3c4dc80e836c6c08559d7',1,'draw_sprite(ImageName name, uint16_t x, uint16_t y):&#160;sprite.c']]]
+];

@@ -1,0 +1,1280 @@
+\doxysection{nes\+\_\+emu/p6502.h File Reference}
+\hypertarget{p6502_8h}{}\label{p6502_8h}\index{nes\_emu/p6502.h@{nes\_emu/p6502.h}}
+
+
+This file contains the implementation of the 6502 CPU.  
+
+
+{\ttfamily \#include "{}lcf\+\_\+mock.\+h"{}}\newline
+Include dependency graph for p6502.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{p6502_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{p6502_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structinstructionSet}{instruction\+Set}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{p6502_8h_a8be6ed777eb27d64d7bf2325b07a6d41}{stack\+\_\+ofset}}~0x0100
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6}{p6502\+\_\+flag}} \{ \newline
+\mbox{\hyperlink{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6af73093c0c86ebbd38449071e9a7811a3}{carry\+\_\+bit}} = BIT(0)
+, \mbox{\hyperlink{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6abac4f0933b0fd1ac4db365133fc05292}{zero\+\_\+bit}} = BIT(1)
+, \mbox{\hyperlink{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a2be6c6e00005daf0d759edc78c717181}{interrupt\+\_\+disable\+\_\+bit}} = BIT(2)
+, \mbox{\hyperlink{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6aa16c285295d9088438fd2e3c70de7d96}{decimal\+\_\+mode\+\_\+bit}} = BIT(3)
+, \newline
+\mbox{\hyperlink{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a925afa5964a44ff9595046e35c6f8ec9}{break\+\_\+bit}} = BIT(4)
+, \mbox{\hyperlink{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a7d0782cab6a6c65f534464b6b624f6f5}{unused\+\_\+bit}} = BIT(5)
+, \mbox{\hyperlink{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a7c6b3332389e5f1f4de5b5d23fc46cf3}{overflow\+\_\+bit}} = BIT(6)
+, \mbox{\hyperlink{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a4787ca4e92b9eab723c96f81faf048ef}{negative\+\_\+bit}} = BIT(7)
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{p6502_8h_a2f1ed59a634c382eb4e1bb1af9616130}{is\+CPU\+\_\+complete}} ()
+\item 
+void \mbox{\hyperlink{p6502_8h_a1a7a10608bccf8d3ce0b76a02289e5b8}{cpu\+\_\+clock}} ()
+\item 
+void \mbox{\hyperlink{p6502_8h_a9c0cf32265079b4a876b8a963437d2dd}{cpu\+\_\+init}} ()
+\item 
+void \mbox{\hyperlink{p6502_8h_a3ff71210adaa9e12abeb3530d3662d3c}{cpu\+\_\+reset}} ()
+\item 
+void \mbox{\hyperlink{p6502_8h_a2136e48b727aea629189c37860ed108d}{cpu\+\_\+irq}} ()
+\item 
+void \mbox{\hyperlink{p6502_8h_ab8c7434a0c0587a32b3db266ad5e76f0}{cpu\+\_\+nmi}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ade5515311df19a711de96f3c1a1209fb}{ADR\+\_\+\+IMP}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a805bb8c9ca877c631cd589d651c72606}{ADR\+\_\+\+IMM}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a367e26db84a743ba7fd0612cc5585307}{ADR\+\_\+\+ZP0}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a852eacc8832b54624f57603bee978c05}{ADR\+\_\+\+ZPX}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a42d9a0ea717e5df552fc5f6d06a2784f}{ADR\+\_\+\+ZPY}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a16af833ce13ab4791dd47f728d513563}{ADR\+\_\+\+REL}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a15795e663b8eb987727ff4a7fb4913fa}{ADR\+\_\+\+ABS}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a9eb2cd4c5a268d164c5d1abe28035517}{ADR\+\_\+\+ABX}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_af278668a4ab22fe4d2a27b786570b14d}{ADR\+\_\+\+ABY}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a489e2cd0795b720641846c6c2a6c9eed}{ADR\+\_\+\+IND}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_af364c045ce2b0ab4c60cbf142407c0b5}{ADR\+\_\+\+IZX}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_af5508c6c348277c01f910dbe7d3ee5b5}{ADR\+\_\+\+IZY}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a8ca5e0c5b06ad69b67fc6b33967fc1d7}{INST\+\_\+\+ADC}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a325b8309693a2406a362727aaa5d1054}{INST\+\_\+\+AND}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ab279bf191e7c49948286dc78506e9807}{INST\+\_\+\+ASL}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a32814063f62444b11f2c055b9efc7449}{INST\+\_\+\+BCC}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a4d912a0875053c8444c15da6f6a87edb}{INST\+\_\+\+BCS}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a73dfd2ba7e3426bace42a2cfa1b96b45}{INST\+\_\+\+BEQ}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_af7542459c8bc3fd9b804b0e27c6ddfe8}{INST\+\_\+\+BIT}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a3fe31d3f6cf1acdd228228b8013c2ac5}{INST\+\_\+\+BMI}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ad034c659512a80041004b260881779b3}{INST\+\_\+\+BNE}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ada014127a381d69a45ce029ac826ffbf}{INST\+\_\+\+BPL}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_acbdd00930422356bfaaf687c9ca78336}{INST\+\_\+\+BRK}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a540acf888dcbc7f0edae924eb688b126}{INST\+\_\+\+BVC}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a5021d44afd6cf5265c1d6650d53a6a4f}{INST\+\_\+\+BVS}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a3c90addbbd0ea5ccea29d0ab6d84ff2c}{INST\+\_\+\+CLC}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_af0ad21cdc5e07e8ec1a570d79a7bcf0b}{INST\+\_\+\+CLD}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a0fdac262a705f8d169c52dec96a7f0dc}{INST\+\_\+\+CLI}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ac48e0d542fb41c1fa92b8a735f95e671}{INST\+\_\+\+CLV}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a09d5f926aa7dc6a69928fc28f07bd86d}{INST\+\_\+\+CMP}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ad443786a34d4e0e8bb386a15a03f579f}{INST\+\_\+\+CPX}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_af045175333d6abca004acb63bdf2a83b}{INST\+\_\+\+CPY}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_af68275e25bc54592a811daf8ea09654e}{INST\+\_\+\+DEC}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ab1df2bef43a342c948cc66f04db4fe99}{INST\+\_\+\+DEX}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ad717cd268fbc22b6b61e6bab60634e75}{INST\+\_\+\+DEY}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_aa9f9cfac1d446ef4a4f9fc16b8fa7a63}{INST\+\_\+\+EOR}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a2b33b3beab749861c1673271aa1efc89}{INST\+\_\+\+INC}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_acab01969ec4a0ce9b743b3a5bd25f42b}{INST\+\_\+\+INX}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a9e1479e426aee7693f92b1f21a4760ee}{INST\+\_\+\+INY}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a960714d55d90ddb5650f094e682e910a}{INST\+\_\+\+JMP}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_abb27d21eab0d600a48db3d25d8bfc023}{INST\+\_\+\+JSR}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a1a9085dd2d5847f8397750c5881232e2}{INST\+\_\+\+LDA}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a9c56988dc973f7974130677960dcd9f9}{INST\+\_\+\+LDX}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a72f1cbcc419b9125a0cf6b04fc5166e4}{INST\+\_\+\+LDY}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a6936d1e7f13a24988d849c624b3cba90}{INST\+\_\+\+LSR}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_aabc5eeab93af6be58243e9ee7ebcbafc}{INST\+\_\+\+NOP}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_aefd09ff06c5c0a84529855a33b23dcfa}{INST\+\_\+\+ORA}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ae4e47a7dd0cf3351925c971eea886a44}{INST\+\_\+\+PHA}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a667ea76f6dbe553c43f395bc0b5011bd}{INST\+\_\+\+PHP}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ab5bcd5cd5d3696058ee385df6f406a26}{INST\+\_\+\+PLA}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ad1f092c4db2f5ea9f28d3ba8470c7b0f}{INST\+\_\+\+PLP}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a4483e1d1afc33f5f9dd2741d0908ac09}{INST\+\_\+\+ROL}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a38577cb51a3664298bb36f619666f2cd}{INST\+\_\+\+ROR}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_aca6bf2b3c44311d85389f642192656f8}{INST\+\_\+\+RTI}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ab87a3d055ef403329211a39a7a8f062f}{INST\+\_\+\+RTS}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_adb9cf9d1af58ba13e0d6e729d349a163}{INST\+\_\+\+SBC}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ae5fff4f2f4194990e321e3c930daa586}{INST\+\_\+\+SEC}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a205d9badf61ce5ae800bf68e256a17b9}{INST\+\_\+\+SED}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a427df762f77530b559c79d26cb41c820}{INST\+\_\+\+SEI}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a4eab3118f2b52cd3b401cb5255b03012}{INST\+\_\+\+STA}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a2bfcff90267a9971d23de92036fd95b1}{INST\+\_\+\+STX}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a9d3f6a3657497ffe3a323073a8c6047f}{INST\+\_\+\+STY}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_af0cba27ac87139ca3bfe2164d996c6c5}{INST\+\_\+\+TAX}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_ac4de6b8a2a350225772dc781b1256380}{INST\+\_\+\+TAY}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a45c7644dfb33ae3f3c921d8badf48de7}{INST\+\_\+\+TSX}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a0eb806af6a627554729ba386cdfcc0c1}{INST\+\_\+\+TXA}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a9b14fb5827eb4694fadf3f98c8686de5}{INST\+\_\+\+TXS}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a20b2fab62ea29aca2cf4ad624c939f65}{INST\+\_\+\+TYA}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{p6502_8h_a72aeb18003d6a11d5358f8db170bad74}{INST\+\_\+\+XXX}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the 6502 CPU. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{p6502_8h_a8be6ed777eb27d64d7bf2325b07a6d41}\label{p6502_8h_a8be6ed777eb27d64d7bf2325b07a6d41} 
+\index{p6502.h@{p6502.h}!stack\_ofset@{stack\_ofset}}
+\index{stack\_ofset@{stack\_ofset}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{stack\_ofset}{stack\_ofset}}
+{\footnotesize\ttfamily \#define stack\+\_\+ofset~0x0100}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6}\label{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6} 
+\index{p6502.h@{p6502.h}!p6502\_flag@{p6502\_flag}}
+\index{p6502\_flag@{p6502\_flag}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{p6502\_flag}{p6502\_flag}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6}{p6502\+\_\+flag}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{carry\_bit@{carry\_bit}!p6502.h@{p6502.h}}\index{p6502.h@{p6502.h}!carry\_bit@{carry\_bit}}}\Hypertarget{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6af73093c0c86ebbd38449071e9a7811a3}\label{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6af73093c0c86ebbd38449071e9a7811a3} 
+carry\+\_\+bit&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{zero\_bit@{zero\_bit}!p6502.h@{p6502.h}}\index{p6502.h@{p6502.h}!zero\_bit@{zero\_bit}}}\Hypertarget{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6abac4f0933b0fd1ac4db365133fc05292}\label{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6abac4f0933b0fd1ac4db365133fc05292} 
+zero\+\_\+bit&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{interrupt\_disable\_bit@{interrupt\_disable\_bit}!p6502.h@{p6502.h}}\index{p6502.h@{p6502.h}!interrupt\_disable\_bit@{interrupt\_disable\_bit}}}\Hypertarget{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a2be6c6e00005daf0d759edc78c717181}\label{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a2be6c6e00005daf0d759edc78c717181} 
+interrupt\+\_\+disable\+\_\+bit&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{decimal\_mode\_bit@{decimal\_mode\_bit}!p6502.h@{p6502.h}}\index{p6502.h@{p6502.h}!decimal\_mode\_bit@{decimal\_mode\_bit}}}\Hypertarget{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6aa16c285295d9088438fd2e3c70de7d96}\label{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6aa16c285295d9088438fd2e3c70de7d96} 
+decimal\+\_\+mode\+\_\+bit&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{break\_bit@{break\_bit}!p6502.h@{p6502.h}}\index{p6502.h@{p6502.h}!break\_bit@{break\_bit}}}\Hypertarget{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a925afa5964a44ff9595046e35c6f8ec9}\label{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a925afa5964a44ff9595046e35c6f8ec9} 
+break\+\_\+bit&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{unused\_bit@{unused\_bit}!p6502.h@{p6502.h}}\index{p6502.h@{p6502.h}!unused\_bit@{unused\_bit}}}\Hypertarget{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a7d0782cab6a6c65f534464b6b624f6f5}\label{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a7d0782cab6a6c65f534464b6b624f6f5} 
+unused\+\_\+bit&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{overflow\_bit@{overflow\_bit}!p6502.h@{p6502.h}}\index{p6502.h@{p6502.h}!overflow\_bit@{overflow\_bit}}}\Hypertarget{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a7c6b3332389e5f1f4de5b5d23fc46cf3}\label{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a7c6b3332389e5f1f4de5b5d23fc46cf3} 
+overflow\+\_\+bit&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{negative\_bit@{negative\_bit}!p6502.h@{p6502.h}}\index{p6502.h@{p6502.h}!negative\_bit@{negative\_bit}}}\Hypertarget{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a4787ca4e92b9eab723c96f81faf048ef}\label{p6502_8h_aa8197b2001b3c401bcfca5c6d0dcebb6a4787ca4e92b9eab723c96f81faf048ef} 
+negative\+\_\+bit&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{p6502_8h_a15795e663b8eb987727ff4a7fb4913fa}\label{p6502_8h_a15795e663b8eb987727ff4a7fb4913fa} 
+\index{p6502.h@{p6502.h}!ADR\_ABS@{ADR\_ABS}}
+\index{ADR\_ABS@{ADR\_ABS}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{ADR\_ABS()}{ADR\_ABS()}}
+{\footnotesize\ttfamily uint8\+\_\+t ADR\+\_\+\+ABS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a15795e663b8eb987727ff4a7fb4913fa_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a9eb2cd4c5a268d164c5d1abe28035517}\label{p6502_8h_a9eb2cd4c5a268d164c5d1abe28035517} 
+\index{p6502.h@{p6502.h}!ADR\_ABX@{ADR\_ABX}}
+\index{ADR\_ABX@{ADR\_ABX}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{ADR\_ABX()}{ADR\_ABX()}}
+{\footnotesize\ttfamily uint8\+\_\+t ADR\+\_\+\+ABX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a9eb2cd4c5a268d164c5d1abe28035517_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_af278668a4ab22fe4d2a27b786570b14d}\label{p6502_8h_af278668a4ab22fe4d2a27b786570b14d} 
+\index{p6502.h@{p6502.h}!ADR\_ABY@{ADR\_ABY}}
+\index{ADR\_ABY@{ADR\_ABY}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{ADR\_ABY()}{ADR\_ABY()}}
+{\footnotesize\ttfamily uint8\+\_\+t ADR\+\_\+\+ABY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_af278668a4ab22fe4d2a27b786570b14d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a805bb8c9ca877c631cd589d651c72606}\label{p6502_8h_a805bb8c9ca877c631cd589d651c72606} 
+\index{p6502.h@{p6502.h}!ADR\_IMM@{ADR\_IMM}}
+\index{ADR\_IMM@{ADR\_IMM}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{ADR\_IMM()}{ADR\_IMM()}}
+{\footnotesize\ttfamily uint8\+\_\+t ADR\+\_\+\+IMM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{p6502_8h_ade5515311df19a711de96f3c1a1209fb}\label{p6502_8h_ade5515311df19a711de96f3c1a1209fb} 
+\index{p6502.h@{p6502.h}!ADR\_IMP@{ADR\_IMP}}
+\index{ADR\_IMP@{ADR\_IMP}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{ADR\_IMP()}{ADR\_IMP()}}
+{\footnotesize\ttfamily uint8\+\_\+t ADR\+\_\+\+IMP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{p6502_8h_ade5515311df19a711de96f3c1a1209fb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a489e2cd0795b720641846c6c2a6c9eed}\label{p6502_8h_a489e2cd0795b720641846c6c2a6c9eed} 
+\index{p6502.h@{p6502.h}!ADR\_IND@{ADR\_IND}}
+\index{ADR\_IND@{ADR\_IND}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{ADR\_IND()}{ADR\_IND()}}
+{\footnotesize\ttfamily uint8\+\_\+t ADR\+\_\+\+IND (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a489e2cd0795b720641846c6c2a6c9eed_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_af364c045ce2b0ab4c60cbf142407c0b5}\label{p6502_8h_af364c045ce2b0ab4c60cbf142407c0b5} 
+\index{p6502.h@{p6502.h}!ADR\_IZX@{ADR\_IZX}}
+\index{ADR\_IZX@{ADR\_IZX}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{ADR\_IZX()}{ADR\_IZX()}}
+{\footnotesize\ttfamily uint8\+\_\+t ADR\+\_\+\+IZX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_af364c045ce2b0ab4c60cbf142407c0b5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_af5508c6c348277c01f910dbe7d3ee5b5}\label{p6502_8h_af5508c6c348277c01f910dbe7d3ee5b5} 
+\index{p6502.h@{p6502.h}!ADR\_IZY@{ADR\_IZY}}
+\index{ADR\_IZY@{ADR\_IZY}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{ADR\_IZY()}{ADR\_IZY()}}
+{\footnotesize\ttfamily uint8\+\_\+t ADR\+\_\+\+IZY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_af5508c6c348277c01f910dbe7d3ee5b5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a16af833ce13ab4791dd47f728d513563}\label{p6502_8h_a16af833ce13ab4791dd47f728d513563} 
+\index{p6502.h@{p6502.h}!ADR\_REL@{ADR\_REL}}
+\index{ADR\_REL@{ADR\_REL}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{ADR\_REL()}{ADR\_REL()}}
+{\footnotesize\ttfamily uint8\+\_\+t ADR\+\_\+\+REL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a16af833ce13ab4791dd47f728d513563_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a367e26db84a743ba7fd0612cc5585307}\label{p6502_8h_a367e26db84a743ba7fd0612cc5585307} 
+\index{p6502.h@{p6502.h}!ADR\_ZP0@{ADR\_ZP0}}
+\index{ADR\_ZP0@{ADR\_ZP0}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{ADR\_ZP0()}{ADR\_ZP0()}}
+{\footnotesize\ttfamily uint8\+\_\+t ADR\+\_\+\+ZP0 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a367e26db84a743ba7fd0612cc5585307_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a852eacc8832b54624f57603bee978c05}\label{p6502_8h_a852eacc8832b54624f57603bee978c05} 
+\index{p6502.h@{p6502.h}!ADR\_ZPX@{ADR\_ZPX}}
+\index{ADR\_ZPX@{ADR\_ZPX}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{ADR\_ZPX()}{ADR\_ZPX()}}
+{\footnotesize\ttfamily uint8\+\_\+t ADR\+\_\+\+ZPX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a852eacc8832b54624f57603bee978c05_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a42d9a0ea717e5df552fc5f6d06a2784f}\label{p6502_8h_a42d9a0ea717e5df552fc5f6d06a2784f} 
+\index{p6502.h@{p6502.h}!ADR\_ZPY@{ADR\_ZPY}}
+\index{ADR\_ZPY@{ADR\_ZPY}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{ADR\_ZPY()}{ADR\_ZPY()}}
+{\footnotesize\ttfamily uint8\+\_\+t ADR\+\_\+\+ZPY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a42d9a0ea717e5df552fc5f6d06a2784f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a1a7a10608bccf8d3ce0b76a02289e5b8}\label{p6502_8h_a1a7a10608bccf8d3ce0b76a02289e5b8} 
+\index{p6502.h@{p6502.h}!cpu\_clock@{cpu\_clock}}
+\index{cpu\_clock@{cpu\_clock}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{cpu\_clock()}{cpu\_clock()}}
+{\footnotesize\ttfamily void cpu\+\_\+clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a1a7a10608bccf8d3ce0b76a02289e5b8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a1a7a10608bccf8d3ce0b76a02289e5b8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a9c0cf32265079b4a876b8a963437d2dd}\label{p6502_8h_a9c0cf32265079b4a876b8a963437d2dd} 
+\index{p6502.h@{p6502.h}!cpu\_init@{cpu\_init}}
+\index{cpu\_init@{cpu\_init}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{cpu\_init()}{cpu\_init()}}
+{\footnotesize\ttfamily void cpu\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{p6502_8h_a2136e48b727aea629189c37860ed108d}\label{p6502_8h_a2136e48b727aea629189c37860ed108d} 
+\index{p6502.h@{p6502.h}!cpu\_irq@{cpu\_irq}}
+\index{cpu\_irq@{cpu\_irq}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{cpu\_irq()}{cpu\_irq()}}
+{\footnotesize\ttfamily void cpu\+\_\+irq (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a2136e48b727aea629189c37860ed108d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ab8c7434a0c0587a32b3db266ad5e76f0}\label{p6502_8h_ab8c7434a0c0587a32b3db266ad5e76f0} 
+\index{p6502.h@{p6502.h}!cpu\_nmi@{cpu\_nmi}}
+\index{cpu\_nmi@{cpu\_nmi}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{cpu\_nmi()}{cpu\_nmi()}}
+{\footnotesize\ttfamily void cpu\+\_\+nmi (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_ab8c7434a0c0587a32b3db266ad5e76f0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{p6502_8h_ab8c7434a0c0587a32b3db266ad5e76f0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a3ff71210adaa9e12abeb3530d3662d3c}\label{p6502_8h_a3ff71210adaa9e12abeb3530d3662d3c} 
+\index{p6502.h@{p6502.h}!cpu\_reset@{cpu\_reset}}
+\index{cpu\_reset@{cpu\_reset}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{cpu\_reset()}{cpu\_reset()}}
+{\footnotesize\ttfamily void cpu\+\_\+reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a3ff71210adaa9e12abeb3530d3662d3c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{p6502_8h_a3ff71210adaa9e12abeb3530d3662d3c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a8ca5e0c5b06ad69b67fc6b33967fc1d7}\label{p6502_8h_a8ca5e0c5b06ad69b67fc6b33967fc1d7} 
+\index{p6502.h@{p6502.h}!INST\_ADC@{INST\_ADC}}
+\index{INST\_ADC@{INST\_ADC}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_ADC()}{INST\_ADC()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+ADC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a8ca5e0c5b06ad69b67fc6b33967fc1d7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a325b8309693a2406a362727aaa5d1054}\label{p6502_8h_a325b8309693a2406a362727aaa5d1054} 
+\index{p6502.h@{p6502.h}!INST\_AND@{INST\_AND}}
+\index{INST\_AND@{INST\_AND}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_AND()}{INST\_AND()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+AND (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a325b8309693a2406a362727aaa5d1054_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ab279bf191e7c49948286dc78506e9807}\label{p6502_8h_ab279bf191e7c49948286dc78506e9807} 
+\index{p6502.h@{p6502.h}!INST\_ASL@{INST\_ASL}}
+\index{INST\_ASL@{INST\_ASL}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_ASL()}{INST\_ASL()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+ASL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_ab279bf191e7c49948286dc78506e9807_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a32814063f62444b11f2c055b9efc7449}\label{p6502_8h_a32814063f62444b11f2c055b9efc7449} 
+\index{p6502.h@{p6502.h}!INST\_BCC@{INST\_BCC}}
+\index{INST\_BCC@{INST\_BCC}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_BCC()}{INST\_BCC()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+BCC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{p6502_8h_a32814063f62444b11f2c055b9efc7449_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a4d912a0875053c8444c15da6f6a87edb}\label{p6502_8h_a4d912a0875053c8444c15da6f6a87edb} 
+\index{p6502.h@{p6502.h}!INST\_BCS@{INST\_BCS}}
+\index{INST\_BCS@{INST\_BCS}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_BCS()}{INST\_BCS()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+BCS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{p6502_8h_a4d912a0875053c8444c15da6f6a87edb_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a73dfd2ba7e3426bace42a2cfa1b96b45}\label{p6502_8h_a73dfd2ba7e3426bace42a2cfa1b96b45} 
+\index{p6502.h@{p6502.h}!INST\_BEQ@{INST\_BEQ}}
+\index{INST\_BEQ@{INST\_BEQ}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_BEQ()}{INST\_BEQ()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+BEQ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{p6502_8h_a73dfd2ba7e3426bace42a2cfa1b96b45_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_af7542459c8bc3fd9b804b0e27c6ddfe8}\label{p6502_8h_af7542459c8bc3fd9b804b0e27c6ddfe8} 
+\index{p6502.h@{p6502.h}!INST\_BIT@{INST\_BIT}}
+\index{INST\_BIT@{INST\_BIT}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_BIT()}{INST\_BIT()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+BIT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_af7542459c8bc3fd9b804b0e27c6ddfe8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a3fe31d3f6cf1acdd228228b8013c2ac5}\label{p6502_8h_a3fe31d3f6cf1acdd228228b8013c2ac5} 
+\index{p6502.h@{p6502.h}!INST\_BMI@{INST\_BMI}}
+\index{INST\_BMI@{INST\_BMI}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_BMI()}{INST\_BMI()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+BMI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{p6502_8h_a3fe31d3f6cf1acdd228228b8013c2ac5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ad034c659512a80041004b260881779b3}\label{p6502_8h_ad034c659512a80041004b260881779b3} 
+\index{p6502.h@{p6502.h}!INST\_BNE@{INST\_BNE}}
+\index{INST\_BNE@{INST\_BNE}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_BNE()}{INST\_BNE()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+BNE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{p6502_8h_ad034c659512a80041004b260881779b3_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ada014127a381d69a45ce029ac826ffbf}\label{p6502_8h_ada014127a381d69a45ce029ac826ffbf} 
+\index{p6502.h@{p6502.h}!INST\_BPL@{INST\_BPL}}
+\index{INST\_BPL@{INST\_BPL}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_BPL()}{INST\_BPL()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+BPL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{p6502_8h_ada014127a381d69a45ce029ac826ffbf_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_acbdd00930422356bfaaf687c9ca78336}\label{p6502_8h_acbdd00930422356bfaaf687c9ca78336} 
+\index{p6502.h@{p6502.h}!INST\_BRK@{INST\_BRK}}
+\index{INST\_BRK@{INST\_BRK}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_BRK()}{INST\_BRK()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+BRK (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_acbdd00930422356bfaaf687c9ca78336_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a540acf888dcbc7f0edae924eb688b126}\label{p6502_8h_a540acf888dcbc7f0edae924eb688b126} 
+\index{p6502.h@{p6502.h}!INST\_BVC@{INST\_BVC}}
+\index{INST\_BVC@{INST\_BVC}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_BVC()}{INST\_BVC()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+BVC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{p6502_8h_a540acf888dcbc7f0edae924eb688b126_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a5021d44afd6cf5265c1d6650d53a6a4f}\label{p6502_8h_a5021d44afd6cf5265c1d6650d53a6a4f} 
+\index{p6502.h@{p6502.h}!INST\_BVS@{INST\_BVS}}
+\index{INST\_BVS@{INST\_BVS}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_BVS()}{INST\_BVS()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+BVS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{p6502_8h_a5021d44afd6cf5265c1d6650d53a6a4f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a3c90addbbd0ea5ccea29d0ab6d84ff2c}\label{p6502_8h_a3c90addbbd0ea5ccea29d0ab6d84ff2c} 
+\index{p6502.h@{p6502.h}!INST\_CLC@{INST\_CLC}}
+\index{INST\_CLC@{INST\_CLC}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_CLC()}{INST\_CLC()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+CLC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{p6502_8h_a3c90addbbd0ea5ccea29d0ab6d84ff2c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_af0ad21cdc5e07e8ec1a570d79a7bcf0b}\label{p6502_8h_af0ad21cdc5e07e8ec1a570d79a7bcf0b} 
+\index{p6502.h@{p6502.h}!INST\_CLD@{INST\_CLD}}
+\index{INST\_CLD@{INST\_CLD}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_CLD()}{INST\_CLD()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+CLD (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{p6502_8h_af0ad21cdc5e07e8ec1a570d79a7bcf0b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a0fdac262a705f8d169c52dec96a7f0dc}\label{p6502_8h_a0fdac262a705f8d169c52dec96a7f0dc} 
+\index{p6502.h@{p6502.h}!INST\_CLI@{INST\_CLI}}
+\index{INST\_CLI@{INST\_CLI}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_CLI()}{INST\_CLI()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+CLI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{p6502_8h_a0fdac262a705f8d169c52dec96a7f0dc_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ac48e0d542fb41c1fa92b8a735f95e671}\label{p6502_8h_ac48e0d542fb41c1fa92b8a735f95e671} 
+\index{p6502.h@{p6502.h}!INST\_CLV@{INST\_CLV}}
+\index{INST\_CLV@{INST\_CLV}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_CLV()}{INST\_CLV()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+CLV (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{p6502_8h_ac48e0d542fb41c1fa92b8a735f95e671_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a09d5f926aa7dc6a69928fc28f07bd86d}\label{p6502_8h_a09d5f926aa7dc6a69928fc28f07bd86d} 
+\index{p6502.h@{p6502.h}!INST\_CMP@{INST\_CMP}}
+\index{INST\_CMP@{INST\_CMP}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_CMP()}{INST\_CMP()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+CMP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a09d5f926aa7dc6a69928fc28f07bd86d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ad443786a34d4e0e8bb386a15a03f579f}\label{p6502_8h_ad443786a34d4e0e8bb386a15a03f579f} 
+\index{p6502.h@{p6502.h}!INST\_CPX@{INST\_CPX}}
+\index{INST\_CPX@{INST\_CPX}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_CPX()}{INST\_CPX()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+CPX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_ad443786a34d4e0e8bb386a15a03f579f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_af045175333d6abca004acb63bdf2a83b}\label{p6502_8h_af045175333d6abca004acb63bdf2a83b} 
+\index{p6502.h@{p6502.h}!INST\_CPY@{INST\_CPY}}
+\index{INST\_CPY@{INST\_CPY}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_CPY()}{INST\_CPY()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+CPY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_af045175333d6abca004acb63bdf2a83b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_af68275e25bc54592a811daf8ea09654e}\label{p6502_8h_af68275e25bc54592a811daf8ea09654e} 
+\index{p6502.h@{p6502.h}!INST\_DEC@{INST\_DEC}}
+\index{INST\_DEC@{INST\_DEC}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_DEC()}{INST\_DEC()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+DEC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_af68275e25bc54592a811daf8ea09654e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ab1df2bef43a342c948cc66f04db4fe99}\label{p6502_8h_ab1df2bef43a342c948cc66f04db4fe99} 
+\index{p6502.h@{p6502.h}!INST\_DEX@{INST\_DEX}}
+\index{INST\_DEX@{INST\_DEX}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_DEX()}{INST\_DEX()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+DEX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{p6502_8h_ab1df2bef43a342c948cc66f04db4fe99_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ad717cd268fbc22b6b61e6bab60634e75}\label{p6502_8h_ad717cd268fbc22b6b61e6bab60634e75} 
+\index{p6502.h@{p6502.h}!INST\_DEY@{INST\_DEY}}
+\index{INST\_DEY@{INST\_DEY}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_DEY()}{INST\_DEY()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+DEY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{p6502_8h_ad717cd268fbc22b6b61e6bab60634e75_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_aa9f9cfac1d446ef4a4f9fc16b8fa7a63}\label{p6502_8h_aa9f9cfac1d446ef4a4f9fc16b8fa7a63} 
+\index{p6502.h@{p6502.h}!INST\_EOR@{INST\_EOR}}
+\index{INST\_EOR@{INST\_EOR}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_EOR()}{INST\_EOR()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+EOR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_aa9f9cfac1d446ef4a4f9fc16b8fa7a63_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a2b33b3beab749861c1673271aa1efc89}\label{p6502_8h_a2b33b3beab749861c1673271aa1efc89} 
+\index{p6502.h@{p6502.h}!INST\_INC@{INST\_INC}}
+\index{INST\_INC@{INST\_INC}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_INC()}{INST\_INC()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+INC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a2b33b3beab749861c1673271aa1efc89_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_acab01969ec4a0ce9b743b3a5bd25f42b}\label{p6502_8h_acab01969ec4a0ce9b743b3a5bd25f42b} 
+\index{p6502.h@{p6502.h}!INST\_INX@{INST\_INX}}
+\index{INST\_INX@{INST\_INX}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_INX()}{INST\_INX()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+INX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{p6502_8h_acab01969ec4a0ce9b743b3a5bd25f42b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a9e1479e426aee7693f92b1f21a4760ee}\label{p6502_8h_a9e1479e426aee7693f92b1f21a4760ee} 
+\index{p6502.h@{p6502.h}!INST\_INY@{INST\_INY}}
+\index{INST\_INY@{INST\_INY}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_INY()}{INST\_INY()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+INY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{p6502_8h_a9e1479e426aee7693f92b1f21a4760ee_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a960714d55d90ddb5650f094e682e910a}\label{p6502_8h_a960714d55d90ddb5650f094e682e910a} 
+\index{p6502.h@{p6502.h}!INST\_JMP@{INST\_JMP}}
+\index{INST\_JMP@{INST\_JMP}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_JMP()}{INST\_JMP()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+JMP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{p6502_8h_abb27d21eab0d600a48db3d25d8bfc023}\label{p6502_8h_abb27d21eab0d600a48db3d25d8bfc023} 
+\index{p6502.h@{p6502.h}!INST\_JSR@{INST\_JSR}}
+\index{INST\_JSR@{INST\_JSR}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_JSR()}{INST\_JSR()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+JSR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_abb27d21eab0d600a48db3d25d8bfc023_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a1a9085dd2d5847f8397750c5881232e2}\label{p6502_8h_a1a9085dd2d5847f8397750c5881232e2} 
+\index{p6502.h@{p6502.h}!INST\_LDA@{INST\_LDA}}
+\index{INST\_LDA@{INST\_LDA}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_LDA()}{INST\_LDA()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+LDA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a1a9085dd2d5847f8397750c5881232e2_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a9c56988dc973f7974130677960dcd9f9}\label{p6502_8h_a9c56988dc973f7974130677960dcd9f9} 
+\index{p6502.h@{p6502.h}!INST\_LDX@{INST\_LDX}}
+\index{INST\_LDX@{INST\_LDX}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_LDX()}{INST\_LDX()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+LDX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a9c56988dc973f7974130677960dcd9f9_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a72f1cbcc419b9125a0cf6b04fc5166e4}\label{p6502_8h_a72f1cbcc419b9125a0cf6b04fc5166e4} 
+\index{p6502.h@{p6502.h}!INST\_LDY@{INST\_LDY}}
+\index{INST\_LDY@{INST\_LDY}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_LDY()}{INST\_LDY()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+LDY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a72f1cbcc419b9125a0cf6b04fc5166e4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a6936d1e7f13a24988d849c624b3cba90}\label{p6502_8h_a6936d1e7f13a24988d849c624b3cba90} 
+\index{p6502.h@{p6502.h}!INST\_LSR@{INST\_LSR}}
+\index{INST\_LSR@{INST\_LSR}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_LSR()}{INST\_LSR()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+LSR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a6936d1e7f13a24988d849c624b3cba90_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_aabc5eeab93af6be58243e9ee7ebcbafc}\label{p6502_8h_aabc5eeab93af6be58243e9ee7ebcbafc} 
+\index{p6502.h@{p6502.h}!INST\_NOP@{INST\_NOP}}
+\index{INST\_NOP@{INST\_NOP}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_NOP()}{INST\_NOP()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+NOP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{p6502_8h_aefd09ff06c5c0a84529855a33b23dcfa}\label{p6502_8h_aefd09ff06c5c0a84529855a33b23dcfa} 
+\index{p6502.h@{p6502.h}!INST\_ORA@{INST\_ORA}}
+\index{INST\_ORA@{INST\_ORA}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_ORA()}{INST\_ORA()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+ORA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_aefd09ff06c5c0a84529855a33b23dcfa_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ae4e47a7dd0cf3351925c971eea886a44}\label{p6502_8h_ae4e47a7dd0cf3351925c971eea886a44} 
+\index{p6502.h@{p6502.h}!INST\_PHA@{INST\_PHA}}
+\index{INST\_PHA@{INST\_PHA}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_PHA()}{INST\_PHA()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+PHA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_ae4e47a7dd0cf3351925c971eea886a44_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a667ea76f6dbe553c43f395bc0b5011bd}\label{p6502_8h_a667ea76f6dbe553c43f395bc0b5011bd} 
+\index{p6502.h@{p6502.h}!INST\_PHP@{INST\_PHP}}
+\index{INST\_PHP@{INST\_PHP}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_PHP()}{INST\_PHP()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+PHP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a667ea76f6dbe553c43f395bc0b5011bd_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ab5bcd5cd5d3696058ee385df6f406a26}\label{p6502_8h_ab5bcd5cd5d3696058ee385df6f406a26} 
+\index{p6502.h@{p6502.h}!INST\_PLA@{INST\_PLA}}
+\index{INST\_PLA@{INST\_PLA}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_PLA()}{INST\_PLA()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+PLA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_ab5bcd5cd5d3696058ee385df6f406a26_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ad1f092c4db2f5ea9f28d3ba8470c7b0f}\label{p6502_8h_ad1f092c4db2f5ea9f28d3ba8470c7b0f} 
+\index{p6502.h@{p6502.h}!INST\_PLP@{INST\_PLP}}
+\index{INST\_PLP@{INST\_PLP}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_PLP()}{INST\_PLP()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+PLP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_ad1f092c4db2f5ea9f28d3ba8470c7b0f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a4483e1d1afc33f5f9dd2741d0908ac09}\label{p6502_8h_a4483e1d1afc33f5f9dd2741d0908ac09} 
+\index{p6502.h@{p6502.h}!INST\_ROL@{INST\_ROL}}
+\index{INST\_ROL@{INST\_ROL}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_ROL()}{INST\_ROL()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+ROL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a4483e1d1afc33f5f9dd2741d0908ac09_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a38577cb51a3664298bb36f619666f2cd}\label{p6502_8h_a38577cb51a3664298bb36f619666f2cd} 
+\index{p6502.h@{p6502.h}!INST\_ROR@{INST\_ROR}}
+\index{INST\_ROR@{INST\_ROR}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_ROR()}{INST\_ROR()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+ROR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a38577cb51a3664298bb36f619666f2cd_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_aca6bf2b3c44311d85389f642192656f8}\label{p6502_8h_aca6bf2b3c44311d85389f642192656f8} 
+\index{p6502.h@{p6502.h}!INST\_RTI@{INST\_RTI}}
+\index{INST\_RTI@{INST\_RTI}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_RTI()}{INST\_RTI()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+RTI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_aca6bf2b3c44311d85389f642192656f8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ab87a3d055ef403329211a39a7a8f062f}\label{p6502_8h_ab87a3d055ef403329211a39a7a8f062f} 
+\index{p6502.h@{p6502.h}!INST\_RTS@{INST\_RTS}}
+\index{INST\_RTS@{INST\_RTS}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_RTS()}{INST\_RTS()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+RTS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_ab87a3d055ef403329211a39a7a8f062f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_adb9cf9d1af58ba13e0d6e729d349a163}\label{p6502_8h_adb9cf9d1af58ba13e0d6e729d349a163} 
+\index{p6502.h@{p6502.h}!INST\_SBC@{INST\_SBC}}
+\index{INST\_SBC@{INST\_SBC}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_SBC()}{INST\_SBC()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+SBC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_adb9cf9d1af58ba13e0d6e729d349a163_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ae5fff4f2f4194990e321e3c930daa586}\label{p6502_8h_ae5fff4f2f4194990e321e3c930daa586} 
+\index{p6502.h@{p6502.h}!INST\_SEC@{INST\_SEC}}
+\index{INST\_SEC@{INST\_SEC}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_SEC()}{INST\_SEC()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+SEC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{p6502_8h_ae5fff4f2f4194990e321e3c930daa586_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a205d9badf61ce5ae800bf68e256a17b9}\label{p6502_8h_a205d9badf61ce5ae800bf68e256a17b9} 
+\index{p6502.h@{p6502.h}!INST\_SED@{INST\_SED}}
+\index{INST\_SED@{INST\_SED}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_SED()}{INST\_SED()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+SED (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{p6502_8h_a205d9badf61ce5ae800bf68e256a17b9_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a427df762f77530b559c79d26cb41c820}\label{p6502_8h_a427df762f77530b559c79d26cb41c820} 
+\index{p6502.h@{p6502.h}!INST\_SEI@{INST\_SEI}}
+\index{INST\_SEI@{INST\_SEI}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_SEI()}{INST\_SEI()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+SEI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{p6502_8h_a427df762f77530b559c79d26cb41c820_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a4eab3118f2b52cd3b401cb5255b03012}\label{p6502_8h_a4eab3118f2b52cd3b401cb5255b03012} 
+\index{p6502.h@{p6502.h}!INST\_STA@{INST\_STA}}
+\index{INST\_STA@{INST\_STA}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_STA()}{INST\_STA()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+STA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a4eab3118f2b52cd3b401cb5255b03012_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a2bfcff90267a9971d23de92036fd95b1}\label{p6502_8h_a2bfcff90267a9971d23de92036fd95b1} 
+\index{p6502.h@{p6502.h}!INST\_STX@{INST\_STX}}
+\index{INST\_STX@{INST\_STX}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_STX()}{INST\_STX()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+STX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a2bfcff90267a9971d23de92036fd95b1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a9d3f6a3657497ffe3a323073a8c6047f}\label{p6502_8h_a9d3f6a3657497ffe3a323073a8c6047f} 
+\index{p6502.h@{p6502.h}!INST\_STY@{INST\_STY}}
+\index{INST\_STY@{INST\_STY}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_STY()}{INST\_STY()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+STY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{p6502_8h_a9d3f6a3657497ffe3a323073a8c6047f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_af0cba27ac87139ca3bfe2164d996c6c5}\label{p6502_8h_af0cba27ac87139ca3bfe2164d996c6c5} 
+\index{p6502.h@{p6502.h}!INST\_TAX@{INST\_TAX}}
+\index{INST\_TAX@{INST\_TAX}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_TAX()}{INST\_TAX()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+TAX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{p6502_8h_af0cba27ac87139ca3bfe2164d996c6c5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_ac4de6b8a2a350225772dc781b1256380}\label{p6502_8h_ac4de6b8a2a350225772dc781b1256380} 
+\index{p6502.h@{p6502.h}!INST\_TAY@{INST\_TAY}}
+\index{INST\_TAY@{INST\_TAY}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_TAY()}{INST\_TAY()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+TAY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{p6502_8h_ac4de6b8a2a350225772dc781b1256380_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a45c7644dfb33ae3f3c921d8badf48de7}\label{p6502_8h_a45c7644dfb33ae3f3c921d8badf48de7} 
+\index{p6502.h@{p6502.h}!INST\_TSX@{INST\_TSX}}
+\index{INST\_TSX@{INST\_TSX}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_TSX()}{INST\_TSX()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+TSX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{p6502_8h_a45c7644dfb33ae3f3c921d8badf48de7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a0eb806af6a627554729ba386cdfcc0c1}\label{p6502_8h_a0eb806af6a627554729ba386cdfcc0c1} 
+\index{p6502.h@{p6502.h}!INST\_TXA@{INST\_TXA}}
+\index{INST\_TXA@{INST\_TXA}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_TXA()}{INST\_TXA()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+TXA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{p6502_8h_a0eb806af6a627554729ba386cdfcc0c1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a9b14fb5827eb4694fadf3f98c8686de5}\label{p6502_8h_a9b14fb5827eb4694fadf3f98c8686de5} 
+\index{p6502.h@{p6502.h}!INST\_TXS@{INST\_TXS}}
+\index{INST\_TXS@{INST\_TXS}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_TXS()}{INST\_TXS()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+TXS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{p6502_8h_a20b2fab62ea29aca2cf4ad624c939f65}\label{p6502_8h_a20b2fab62ea29aca2cf4ad624c939f65} 
+\index{p6502.h@{p6502.h}!INST\_TYA@{INST\_TYA}}
+\index{INST\_TYA@{INST\_TYA}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_TYA()}{INST\_TYA()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+TYA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{p6502_8h_a20b2fab62ea29aca2cf4ad624c939f65_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{p6502_8h_a72aeb18003d6a11d5358f8db170bad74}\label{p6502_8h_a72aeb18003d6a11d5358f8db170bad74} 
+\index{p6502.h@{p6502.h}!INST\_XXX@{INST\_XXX}}
+\index{INST\_XXX@{INST\_XXX}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{INST\_XXX()}{INST\_XXX()}}
+{\footnotesize\ttfamily uint8\+\_\+t INST\+\_\+\+XXX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{p6502_8h_a2f1ed59a634c382eb4e1bb1af9616130}\label{p6502_8h_a2f1ed59a634c382eb4e1bb1af9616130} 
+\index{p6502.h@{p6502.h}!isCPU\_complete@{isCPU\_complete}}
+\index{isCPU\_complete@{isCPU\_complete}!p6502.h@{p6502.h}}
+\doxysubsubsection{\texorpdfstring{isCPU\_complete()}{isCPU\_complete()}}
+{\footnotesize\ttfamily bool is\+CPU\+\_\+complete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

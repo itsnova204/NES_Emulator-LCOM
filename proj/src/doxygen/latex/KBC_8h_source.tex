@@ -1,0 +1,25 @@
+\doxysection{KBC.\+h}
+\hypertarget{KBC_8h_source}{}\label{KBC_8h_source}\index{drivers/KBC.h@{drivers/KBC.h}}
+\mbox{\hyperlink{KBC_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ \_LCOM\_KBC\_H\_}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ \_LCOM\_KBC\_H\_}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <lcom/lcf.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{i8042_8h}{i8042.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00019\ int(\mbox{\hyperlink{KBC_8h_aad850a34bdc0827006b47baa7f592928}{getScanCodeSize}})(uint8\_t\ \mbox{\hyperlink{main_8c_aa1de7a5557e9d96b83cf03f73c92163f}{scancode}});}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00026\ bool(\mbox{\hyperlink{KBC_8h_a57ec1f3719aaaa7bf43e20e0dbf788e5}{is\_two\_byte\_scancode}})(uint8\_t\ \mbox{\hyperlink{main_8c_aa1de7a5557e9d96b83cf03f73c92163f}{scancode}});}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{KBC_8h_a963d228c66a5cc12d6f31267fd449f77}{print\_scancode}}(uint8\_t\ \mbox{\hyperlink{main_8c_aa1de7a5557e9d96b83cf03f73c92163f}{scancode}});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00042\ int(\mbox{\hyperlink{KBC_8h_ab90a9774eaabd0949d73b61e9f3fba88}{kbc\_read\_output}})(uint8\_t\ port,\ uint8\_t\ *output,\ \textcolor{keywordtype}{bool}\ mouse);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00050\ int(\mbox{\hyperlink{KBC_8h_ae9810a160b9a865b0ba8fef3909a319a}{kbc\_write\_command}})(uint8\_t\ port,\ uint8\_t\ command);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

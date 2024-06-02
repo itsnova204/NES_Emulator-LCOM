@@ -1,0 +1,8 @@
+<map id="vg_draw_rectangle_border" name="vg_draw_rectangle_border">
+<area shape="rect" id="Node000001" title="Draws a rectangle border on the screen." alt="" coords="5,31,176,56"/>
+<area shape="rect" id="Node000002" href="$graphics_8c.html#adb08b276272848bc7f3bccc0f5e770c8" title=" " alt="" coords="224,5,327,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,29,209,24,209,30,177,34"/>
+<area shape="rect" id="Node000003" href="$graphics_8c.html#a6f895de9725f9f231f9a7f74b6087f60" title="Draws a pixel on the screen." alt="" coords="375,31,477,56"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="176,41,359,41,359,46,176,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="328,24,360,30,359,35,327,29"/>
+</map>

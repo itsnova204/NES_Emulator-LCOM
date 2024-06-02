@@ -1,0 +1,160 @@
+\doxysection{nes\+\_\+emu/bus.h File Reference}
+\hypertarget{bus_8h}{}\label{bus_8h}\index{nes\_emu/bus.h@{nes\_emu/bus.h}}
+
+
+This file contains the implementation of the NES bus.  
+
+
+{\ttfamily \#include "{}lcf\+\_\+mock.\+h"{}}\newline
+Include dependency graph for bus.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{bus_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bus_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unioncontroler__t}{controler\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{bus_8h_abc81b5b7a9a62f93afcdb14c418b378d}{bus\+\_\+clock}} ()
+\item 
+int \mbox{\hyperlink{bus_8h_a56ccfff30ac358f5b475144260659c2b}{bus\+\_\+init}} (char \texorpdfstring{$\ast$}{*}cart\+\_\+file\+Path)
+\item 
+int \mbox{\hyperlink{bus_8h_a1fb46f46cfc2d473665530fca6021dc9}{bus\+\_\+exit}} ()
+\item 
+void \mbox{\hyperlink{bus_8h_adb797361b85144ba196ad2672438f283}{sys\+Bus\+\_\+write}} (uint16\+\_\+t addr, uint8\+\_\+t data)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{bus_8h_a298cb58f28928024d96e0ddb33dd7b47}{sys\+Bus\+\_\+read}} (uint16\+\_\+t addr)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the NES bus. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{bus_8h_abc81b5b7a9a62f93afcdb14c418b378d}\label{bus_8h_abc81b5b7a9a62f93afcdb14c418b378d} 
+\index{bus.h@{bus.h}!bus\_clock@{bus\_clock}}
+\index{bus\_clock@{bus\_clock}!bus.h@{bus.h}}
+\doxysubsubsection{\texorpdfstring{bus\_clock()}{bus\_clock()}}
+{\footnotesize\ttfamily void bus\+\_\+clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bus_8h_abc81b5b7a9a62f93afcdb14c418b378d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{bus_8h_abc81b5b7a9a62f93afcdb14c418b378d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{bus_8h_a1fb46f46cfc2d473665530fca6021dc9}\label{bus_8h_a1fb46f46cfc2d473665530fca6021dc9} 
+\index{bus.h@{bus.h}!bus\_exit@{bus\_exit}}
+\index{bus\_exit@{bus\_exit}!bus.h@{bus.h}}
+\doxysubsubsection{\texorpdfstring{bus\_exit()}{bus\_exit()}}
+{\footnotesize\ttfamily int bus\+\_\+exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{bus_8h_a1fb46f46cfc2d473665530fca6021dc9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=251pt]{bus_8h_a1fb46f46cfc2d473665530fca6021dc9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{bus_8h_a56ccfff30ac358f5b475144260659c2b}\label{bus_8h_a56ccfff30ac358f5b475144260659c2b} 
+\index{bus.h@{bus.h}!bus\_init@{bus\_init}}
+\index{bus\_init@{bus\_init}!bus.h@{bus.h}}
+\doxysubsubsection{\texorpdfstring{bus\_init()}{bus\_init()}}
+{\footnotesize\ttfamily int bus\+\_\+init (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{cart\+\_\+file\+Path }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bus_8h_a56ccfff30ac358f5b475144260659c2b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{bus_8h_a56ccfff30ac358f5b475144260659c2b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{bus_8h_a298cb58f28928024d96e0ddb33dd7b47}\label{bus_8h_a298cb58f28928024d96e0ddb33dd7b47} 
+\index{bus.h@{bus.h}!sysBus\_read@{sysBus\_read}}
+\index{sysBus\_read@{sysBus\_read}!bus.h@{bus.h}}
+\doxysubsubsection{\texorpdfstring{sysBus\_read()}{sysBus\_read()}}
+{\footnotesize\ttfamily uint8\+\_\+t sys\+Bus\+\_\+read (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bus_8h_a298cb58f28928024d96e0ddb33dd7b47_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{bus_8h_a298cb58f28928024d96e0ddb33dd7b47_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{bus_8h_adb797361b85144ba196ad2672438f283}\label{bus_8h_adb797361b85144ba196ad2672438f283} 
+\index{bus.h@{bus.h}!sysBus\_write@{sysBus\_write}}
+\index{sysBus\_write@{sysBus\_write}!bus.h@{bus.h}}
+\doxysubsubsection{\texorpdfstring{sysBus\_write()}{sysBus\_write()}}
+{\footnotesize\ttfamily void sys\+Bus\+\_\+write (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr,  }\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bus_8h_adb797361b85144ba196ad2672438f283_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bus_8h_adb797361b85144ba196ad2672438f283_icgraph}
+\end{center}
+\end{figure}

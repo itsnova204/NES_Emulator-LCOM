@@ -1,0 +1,21 @@
+<map id="drivers/i8042.h" name="drivers/i8042.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="249,5,355,31"/>
+<area shape="rect" id="Node000002" href="$KBC_8h.html" title="This file contains the implementation of the KBC functions allowing handling of the keyboard and mous..." alt="" coords="182,79,283,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="282,43,246,80,242,76,278,40"/>
+<area shape="rect" id="Node000004" href="$keyboard_8h.html" title="This file contains the implementation of the keyboard functions." alt="" coords="5,152,132,177"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="256,39,214,58,171,81,120,119,82,154,79,150,117,115,169,76,212,53,254,34"/>
+<area shape="rect" id="Node000006" href="$main_8c.html" title=" " alt="" coords="290,225,351,251"/>
+<area shape="poly" id="edge11_Node000001_Node000006" title=" " alt="" coords="307,46,322,225,317,225,302,46"/>
+<area shape="rect" id="Node000007" href="$mouse_8h.html" title="This file contains the implementation of the mouse functions." alt="" coords="384,79,497,104"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="340,36,419,76,416,81,338,41"/>
+<area shape="rect" id="Node000003" href="$KBC_8c.html" title=" " alt="" coords="157,152,258,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="226,120,214,152,209,151,221,118"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="192,113,97,154,95,149,190,108"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="250,116,272,151,316,224,312,226,268,153,246,118"/>
+<area shape="rect" id="Node000005" href="$keyboard_8c.html" title=" " alt="" coords="5,225,132,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="71,193,71,225,66,225,66,193"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="126,179,290,225,289,231,125,185"/>
+<area shape="poly" id="edge10_Node000007_Node000006" title=" " alt="" coords="423,118,333,226,329,223,419,114"/>
+<area shape="rect" id="Node000008" href="$mouse_8c.html" title=" " alt="" coords="435,152,548,177"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="460,115,485,150,481,153,456,118"/>
+</map>

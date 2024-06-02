@@ -1,0 +1,243 @@
+\doxysection{nes\+\_\+emu/bus.c File Reference}
+\hypertarget{bus_8c}{}\label{bus_8c}\index{nes\_emu/bus.c@{nes\_emu/bus.c}}
+{\ttfamily \#include "{}bus.\+h"{}}\newline
+{\ttfamily \#include "{}p6502.\+h"{}}\newline
+{\ttfamily \#include "{}ppu.\+h"{}}\newline
+{\ttfamily \#include "{}cartridge.\+h"{}}\newline
+{\ttfamily \#include "{}controller.\+h"{}}\newline
+Include dependency graph for bus.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bus_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{bus_8c_a56ccfff30ac358f5b475144260659c2b}{bus\+\_\+init}} (char \texorpdfstring{$\ast$}{*}cart\+\_\+file\+Path)
+\item 
+int \mbox{\hyperlink{bus_8c_a1fb46f46cfc2d473665530fca6021dc9}{bus\+\_\+exit}} ()
+\item 
+void \mbox{\hyperlink{bus_8c_abc81b5b7a9a62f93afcdb14c418b378d}{bus\+\_\+clock}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{bus_8c_a298cb58f28928024d96e0ddb33dd7b47}{sys\+Bus\+\_\+read}} (uint16\+\_\+t addr)
+\item 
+void \mbox{\hyperlink{bus_8c_adb797361b85144ba196ad2672438f283}{sys\+Bus\+\_\+write}} (uint16\+\_\+t addr, uint8\+\_\+t data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{bus_8c_a42f9c53b4c8fbc4bd1f1e8771cc2835b}{controller}} \mbox{[}2\mbox{]} = \{0, 0\}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{bus_8c_ab370e5284bf4b0d0223317652ff2ce91}{controller\+\_\+state}} \mbox{[}2\mbox{]} = \{0, 0\}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{bus_8c_afaac1cb6fe3f375d5f97e607444af9fe}{dma\+\_\+page}} = 0x00
+\item 
+uint8\+\_\+t \mbox{\hyperlink{bus_8c_af823a62d1e5fed24b5a9467e5aa9482a}{dma\+\_\+addr}} = 0x00
+\item 
+uint8\+\_\+t \mbox{\hyperlink{bus_8c_a8c35fb71789d051ce165ef793038b5cb}{dma\+\_\+data}} = 0x00
+\item 
+bool \mbox{\hyperlink{bus_8c_a6776d8afbc3fa82912f05a6f0b4bf148}{dma\+\_\+dummy}} = true
+\item 
+bool \mbox{\hyperlink{bus_8c_aaf98dbd65f9c9697e8f1f39ed39044cc}{dma\+\_\+transfer}} = false
+\item 
+bool \mbox{\hyperlink{bus_8c_ad3d1c3515667218ebfd5da8d0ed6f77f}{ppu\+\_\+nmi}}
+\item 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{bus_8c_a7095bd1c3853c5c9d0790f89997967c6}{OAM\+\_\+ptr}}
+\item 
+FILE \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{bus_8c_a89d2a721c7f55fc2c00e46be773fad6a}{fp2}}
+\item 
+int \mbox{\hyperlink{bus_8c_aa7a5c94f1a00bbd7412a36049fc45b40}{readcounter}} = 0
+\item 
+int \mbox{\hyperlink{bus_8c_a91fca6da4b79d4300966d1db17055a9a}{write\+Counter}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{bus_8c_abc81b5b7a9a62f93afcdb14c418b378d}\label{bus_8c_abc81b5b7a9a62f93afcdb14c418b378d} 
+\index{bus.c@{bus.c}!bus\_clock@{bus\_clock}}
+\index{bus\_clock@{bus\_clock}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{bus\_clock()}{bus\_clock()}}
+{\footnotesize\ttfamily void bus\+\_\+clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bus_8c_abc81b5b7a9a62f93afcdb14c418b378d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{bus_8c_abc81b5b7a9a62f93afcdb14c418b378d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{bus_8c_a1fb46f46cfc2d473665530fca6021dc9}\label{bus_8c_a1fb46f46cfc2d473665530fca6021dc9} 
+\index{bus.c@{bus.c}!bus\_exit@{bus\_exit}}
+\index{bus\_exit@{bus\_exit}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{bus\_exit()}{bus\_exit()}}
+{\footnotesize\ttfamily int bus\+\_\+exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{bus_8c_a1fb46f46cfc2d473665530fca6021dc9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=251pt]{bus_8c_a1fb46f46cfc2d473665530fca6021dc9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{bus_8c_a56ccfff30ac358f5b475144260659c2b}\label{bus_8c_a56ccfff30ac358f5b475144260659c2b} 
+\index{bus.c@{bus.c}!bus\_init@{bus\_init}}
+\index{bus\_init@{bus\_init}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{bus\_init()}{bus\_init()}}
+{\footnotesize\ttfamily int bus\+\_\+init (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{cart\+\_\+file\+Path }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bus_8c_a56ccfff30ac358f5b475144260659c2b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{bus_8c_a56ccfff30ac358f5b475144260659c2b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{bus_8c_a298cb58f28928024d96e0ddb33dd7b47}\label{bus_8c_a298cb58f28928024d96e0ddb33dd7b47} 
+\index{bus.c@{bus.c}!sysBus\_read@{sysBus\_read}}
+\index{sysBus\_read@{sysBus\_read}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{sysBus\_read()}{sysBus\_read()}}
+{\footnotesize\ttfamily uint8\+\_\+t sys\+Bus\+\_\+read (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bus_8c_a298cb58f28928024d96e0ddb33dd7b47_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{bus_8c_a298cb58f28928024d96e0ddb33dd7b47_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{bus_8c_adb797361b85144ba196ad2672438f283}\label{bus_8c_adb797361b85144ba196ad2672438f283} 
+\index{bus.c@{bus.c}!sysBus\_write@{sysBus\_write}}
+\index{sysBus\_write@{sysBus\_write}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{sysBus\_write()}{sysBus\_write()}}
+{\footnotesize\ttfamily void sys\+Bus\+\_\+write (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr,  }\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bus_8c_adb797361b85144ba196ad2672438f283_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bus_8c_adb797361b85144ba196ad2672438f283_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{bus_8c_a42f9c53b4c8fbc4bd1f1e8771cc2835b}\label{bus_8c_a42f9c53b4c8fbc4bd1f1e8771cc2835b} 
+\index{bus.c@{bus.c}!controller@{controller}}
+\index{controller@{controller}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{controller}{controller}}
+{\footnotesize\ttfamily uint8\+\_\+t controller\mbox{[}2\mbox{]} = \{0, 0\}}
+
+\Hypertarget{bus_8c_ab370e5284bf4b0d0223317652ff2ce91}\label{bus_8c_ab370e5284bf4b0d0223317652ff2ce91} 
+\index{bus.c@{bus.c}!controller\_state@{controller\_state}}
+\index{controller\_state@{controller\_state}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{controller\_state}{controller\_state}}
+{\footnotesize\ttfamily uint8\+\_\+t controller\+\_\+state\mbox{[}2\mbox{]} = \{0, 0\}}
+
+\Hypertarget{bus_8c_af823a62d1e5fed24b5a9467e5aa9482a}\label{bus_8c_af823a62d1e5fed24b5a9467e5aa9482a} 
+\index{bus.c@{bus.c}!dma\_addr@{dma\_addr}}
+\index{dma\_addr@{dma\_addr}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{dma\_addr}{dma\_addr}}
+{\footnotesize\ttfamily uint8\+\_\+t dma\+\_\+addr = 0x00}
+
+\Hypertarget{bus_8c_a8c35fb71789d051ce165ef793038b5cb}\label{bus_8c_a8c35fb71789d051ce165ef793038b5cb} 
+\index{bus.c@{bus.c}!dma\_data@{dma\_data}}
+\index{dma\_data@{dma\_data}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{dma\_data}{dma\_data}}
+{\footnotesize\ttfamily uint8\+\_\+t dma\+\_\+data = 0x00}
+
+\Hypertarget{bus_8c_a6776d8afbc3fa82912f05a6f0b4bf148}\label{bus_8c_a6776d8afbc3fa82912f05a6f0b4bf148} 
+\index{bus.c@{bus.c}!dma\_dummy@{dma\_dummy}}
+\index{dma\_dummy@{dma\_dummy}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{dma\_dummy}{dma\_dummy}}
+{\footnotesize\ttfamily bool dma\+\_\+dummy = true}
+
+\Hypertarget{bus_8c_afaac1cb6fe3f375d5f97e607444af9fe}\label{bus_8c_afaac1cb6fe3f375d5f97e607444af9fe} 
+\index{bus.c@{bus.c}!dma\_page@{dma\_page}}
+\index{dma\_page@{dma\_page}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{dma\_page}{dma\_page}}
+{\footnotesize\ttfamily uint8\+\_\+t dma\+\_\+page = 0x00}
+
+\Hypertarget{bus_8c_aaf98dbd65f9c9697e8f1f39ed39044cc}\label{bus_8c_aaf98dbd65f9c9697e8f1f39ed39044cc} 
+\index{bus.c@{bus.c}!dma\_transfer@{dma\_transfer}}
+\index{dma\_transfer@{dma\_transfer}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{dma\_transfer}{dma\_transfer}}
+{\footnotesize\ttfamily bool dma\+\_\+transfer = false}
+
+\Hypertarget{bus_8c_a89d2a721c7f55fc2c00e46be773fad6a}\label{bus_8c_a89d2a721c7f55fc2c00e46be773fad6a} 
+\index{bus.c@{bus.c}!fp2@{fp2}}
+\index{fp2@{fp2}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{fp2}{fp2}}
+{\footnotesize\ttfamily FILE\texorpdfstring{$\ast$}{*} fp2}
+
+\Hypertarget{bus_8c_a7095bd1c3853c5c9d0790f89997967c6}\label{bus_8c_a7095bd1c3853c5c9d0790f89997967c6} 
+\index{bus.c@{bus.c}!OAM\_ptr@{OAM\_ptr}}
+\index{OAM\_ptr@{OAM\_ptr}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{OAM\_ptr}{OAM\_ptr}}
+{\footnotesize\ttfamily uint8\+\_\+t\texorpdfstring{$\ast$}{*} OAM\+\_\+ptr}
+
+\Hypertarget{bus_8c_ad3d1c3515667218ebfd5da8d0ed6f77f}\label{bus_8c_ad3d1c3515667218ebfd5da8d0ed6f77f} 
+\index{bus.c@{bus.c}!ppu\_nmi@{ppu\_nmi}}
+\index{ppu\_nmi@{ppu\_nmi}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{ppu\_nmi}{ppu\_nmi}}
+{\footnotesize\ttfamily bool ppu\+\_\+nmi}
+
+\Hypertarget{bus_8c_aa7a5c94f1a00bbd7412a36049fc45b40}\label{bus_8c_aa7a5c94f1a00bbd7412a36049fc45b40} 
+\index{bus.c@{bus.c}!readcounter@{readcounter}}
+\index{readcounter@{readcounter}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{readcounter}{readcounter}}
+{\footnotesize\ttfamily int readcounter = 0}
+
+\Hypertarget{bus_8c_a91fca6da4b79d4300966d1db17055a9a}\label{bus_8c_a91fca6da4b79d4300966d1db17055a9a} 
+\index{bus.c@{bus.c}!writeCounter@{writeCounter}}
+\index{writeCounter@{writeCounter}!bus.c@{bus.c}}
+\doxysubsubsection{\texorpdfstring{writeCounter}{writeCounter}}
+{\footnotesize\ttfamily int write\+Counter = 0}
+

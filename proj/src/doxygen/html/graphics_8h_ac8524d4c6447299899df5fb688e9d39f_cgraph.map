@@ -1,0 +1,5 @@
+<map id="vg_draw_xpm_partial" name="vg_draw_xpm_partial">
+<area shape="rect" id="Node000001" title="Draws partial (axle of x) of a xpm image on the screen." alt="" coords="5,5,148,31"/>
+<area shape="rect" id="Node000002" href="$graphics_8c.html#a6f895de9725f9f231f9a7f74b6087f60" title="Draws a pixel on the screen." alt="" coords="196,5,299,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,15,180,15,180,21,148,21"/>
+</map>

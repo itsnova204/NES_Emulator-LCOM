@@ -1,0 +1,14 @@
+<map id="drivers/VBE.h" name="drivers/VBE.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="105,5,207,31"/>
+<area shape="rect" id="Node000002" href="$graphics_8h.html" title="This file contains the implementation of the graphics functions allowing drawing on the screen of MIN..." alt="" coords="45,79,168,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,45,117,80,113,77,137,42"/>
+<area shape="rect" id="Node000004" href="$sprite_8h.html" title="This file contains the implementation of the sprite drawing and the xpm preloading function." alt="" coords="152,152,259,177"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="170,44,183,78,205,151,200,152,177,80,165,46"/>
+<area shape="rect" id="Node000003" href="$graphics_8c.html" title=" " alt="" coords="5,152,128,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,119,76,153,71,150,90,116"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="137,111,190,149,187,154,134,116"/>
+<area shape="rect" id="Node000005" href="$sprite_8c.html" title=" " alt="" coords="97,225,204,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="189,191,162,226,158,223,185,188"/>
+<area shape="rect" id="Node000006" href="$main_8c.html" title=" " alt="" coords="228,225,289,251"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="225,188,252,223,248,226,221,191"/>
+</map>

@@ -1,0 +1,429 @@
+\doxysection{drivers/graphics.h File Reference}
+\hypertarget{graphics_8h}{}\label{graphics_8h}\index{drivers/graphics.h@{drivers/graphics.h}}
+
+
+This file contains the implementation of the graphics functions allowing drawing on the screen of MINIX.  
+
+
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}VBE.\+h"{}}\newline
+{\ttfamily \#include "{}../nes\+\_\+emu/ppu.\+h"{}}\newline
+Include dependency graph for graphics.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{graphics_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{graphics_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{graphics_8h_a481adc9aa90796186615a9d4bf167920}{number\+Of\+Bytes\+For\+Bits}}(bits)~((bits + 7) / 8)
+\begin{DoxyCompactList}\small\item\em Macro to get the number of bytes for a given number of bits. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+vbe\+\_\+mode\+\_\+info\+\_\+t \mbox{\hyperlink{graphics_8h_aae3ff4c688394af50460bde20b5c46b1}{get\+\_\+vbe\+\_\+mode\+\_\+info}} ()
+\begin{DoxyCompactList}\small\item\em VBE mode info getter. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{graphics_8h_a16d73f78d19c944e160e8b3e7024f0cd}{set\+\_\+graphic\+\_\+mode}} (uint16\+\_\+t \mbox{\hyperlink{main_8c_af294e94ca5176720ef5e5cbedc95ca47}{mode}})
+\begin{DoxyCompactList}\small\item\em Sets the graphic mode. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{graphics_8h_affe13d565147951f3cc7a0cf456a8f63}{set\+\_\+frame\+\_\+buffer}} (uint16\+\_\+t \mbox{\hyperlink{main_8c_af294e94ca5176720ef5e5cbedc95ca47}{mode}})
+\begin{DoxyCompactList}\small\item\em Sets the frame buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{graphics_8h_a0d157d997329169f936545f9985e334b}{swap\+\_\+buffers}} ()
+\begin{DoxyCompactList}\small\item\em Swaps the buffers It should be use after drawed a complete frame It avoids flickering. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{graphics_8h_a6f895de9725f9f231f9a7f74b6087f60}{vg\+\_\+draw\+\_\+pixel}} (uint16\+\_\+t x, uint16\+\_\+t y, uint32\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Draws a pixel on the screen. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{graphics_8h_ae6d04baa609d357835cb8ac9880e6c1a}{vg\+\_\+draw\+\_\+xpm}} (xpm\+\_\+image\+\_\+t xpm\+\_\+image, uint8\+\_\+t \texorpdfstring{$\ast$}{*}xpm\+\_\+map, uint16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t \mbox{\hyperlink{main_8c_af294e94ca5176720ef5e5cbedc95ca47}{mode}})
+\begin{DoxyCompactList}\small\item\em Draws a xpm image on the screen. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{graphics_8h_ac8524d4c6447299899df5fb688e9d39f}{vg\+\_\+draw\+\_\+xpm\+\_\+partial}} (xpm\+\_\+image\+\_\+t xpm\+\_\+image, uint8\+\_\+t \texorpdfstring{$\ast$}{*}xpm\+\_\+map, uint16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t image\+\_\+start\+\_\+x, uint16\+\_\+t \mbox{\hyperlink{main_8c_af294e94ca5176720ef5e5cbedc95ca47}{mode}})
+\begin{DoxyCompactList}\small\item\em Draws partial (axle of x) of a xpm image on the screen. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{graphics_8h_a5f3244b060ba5f895174ac2f71eec5f3}{vg\+\_\+draw\+\_\+xpm\+\_\+from\+\_\+bottom\+\_\+left\+\_\+corner}} (xpm\+\_\+image\+\_\+t xpm\+\_\+image, uint8\+\_\+t \texorpdfstring{$\ast$}{*}xpm\+\_\+map, uint16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t \mbox{\hyperlink{main_8c_af294e94ca5176720ef5e5cbedc95ca47}{mode}})
+\begin{DoxyCompactList}\small\item\em Draws a xpm image on the screen from the bottom left corner. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{graphics_8h_a2f393bd448043b21eabf13c5bef2ed2a}{vg\+\_\+draw\+\_\+rectangle\+\_\+from\+\_\+bottom\+\_\+left\+\_\+corner}} (int16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t width, uint16\+\_\+t height, uint32\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Draws a rectangle on the screen from the bottom left corner. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{graphics_8h_ace93a2c1c7f1570aaf6ffbcbc8e73833}{vg\+\_\+draw\+\_\+rectangle\+\_\+border}} (int16\+\_\+t x, uint16\+\_\+t y, uint16\+\_\+t width, uint16\+\_\+t height, uint16\+\_\+t border\+\_\+width, uint32\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Draws a rectangle border on the screen. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{graphics_8h_a1e3ca998dbdc63970a75fe220745710b}{vg\+\_\+clear\+\_\+screen}} ()
+\begin{DoxyCompactList}\small\item\em clears the screen \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{graphics_8h_a281330c0bb1363ae7b12a38204015ca5}{vg\+\_\+draw\+\_\+color\+\_\+sprite}} (\mbox{\hyperlink{ppu_8h_a0c5cac9bee7a2b2016f09cd2e67b7ca3}{Sprite}} \texorpdfstring{$\ast$}{*}sprite, uint16\+\_\+t x, uint16\+\_\+t y, uint8\+\_\+t \mbox{\hyperlink{main_8c_a616c0a72f0e4af38b93c736773ac7210}{scale}})
+\begin{DoxyCompactList}\small\item\em Draws a sprite generated by the emulador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the graphics functions allowing drawing on the screen of MINIX. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{graphics_8h_a481adc9aa90796186615a9d4bf167920}\label{graphics_8h_a481adc9aa90796186615a9d4bf167920} 
+\index{graphics.h@{graphics.h}!numberOfBytesForBits@{numberOfBytesForBits}}
+\index{numberOfBytesForBits@{numberOfBytesForBits}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{numberOfBytesForBits}{numberOfBytesForBits}}
+{\footnotesize\ttfamily \#define number\+Of\+Bytes\+For\+Bits(\begin{DoxyParamCaption}\item[{}]{bits }\end{DoxyParamCaption})~((bits + 7) / 8)}
+
+
+
+Macro to get the number of bytes for a given number of bits. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{graphics_8h_aae3ff4c688394af50460bde20b5c46b1}\label{graphics_8h_aae3ff4c688394af50460bde20b5c46b1} 
+\index{graphics.h@{graphics.h}!get\_vbe\_mode\_info@{get\_vbe\_mode\_info}}
+\index{get\_vbe\_mode\_info@{get\_vbe\_mode\_info}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{get\_vbe\_mode\_info()}{get\_vbe\_mode\_info()}}
+{\footnotesize\ttfamily vbe\+\_\+mode\+\_\+info\+\_\+t get\+\_\+vbe\+\_\+mode\+\_\+info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+VBE mode info getter. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=297pt]{graphics_8h_aae3ff4c688394af50460bde20b5c46b1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{graphics_8h_affe13d565147951f3cc7a0cf456a8f63}\label{graphics_8h_affe13d565147951f3cc7a0cf456a8f63} 
+\index{graphics.h@{graphics.h}!set\_frame\_buffer@{set\_frame\_buffer}}
+\index{set\_frame\_buffer@{set\_frame\_buffer}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{set\_frame\_buffer()}{set\_frame\_buffer()}}
+{\footnotesize\ttfamily int set\+\_\+frame\+\_\+buffer (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Sets the frame buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & mode to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{graphics_8h_affe13d565147951f3cc7a0cf456a8f63_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{graphics_8h_a16d73f78d19c944e160e8b3e7024f0cd}\label{graphics_8h_a16d73f78d19c944e160e8b3e7024f0cd} 
+\index{graphics.h@{graphics.h}!set\_graphic\_mode@{set\_graphic\_mode}}
+\index{set\_graphic\_mode@{set\_graphic\_mode}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{set\_graphic\_mode()}{set\_graphic\_mode()}}
+{\footnotesize\ttfamily int set\+\_\+graphic\+\_\+mode (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Sets the graphic mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & mode to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{graphics_8h_a16d73f78d19c944e160e8b3e7024f0cd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{graphics_8h_a0d157d997329169f936545f9985e334b}\label{graphics_8h_a0d157d997329169f936545f9985e334b} 
+\index{graphics.h@{graphics.h}!swap\_buffers@{swap\_buffers}}
+\index{swap\_buffers@{swap\_buffers}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{swap\_buffers()}{swap\_buffers()}}
+{\footnotesize\ttfamily void swap\+\_\+buffers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Swaps the buffers It should be use after drawed a complete frame It avoids flickering. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=271pt]{graphics_8h_a0d157d997329169f936545f9985e334b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{graphics_8h_a1e3ca998dbdc63970a75fe220745710b}\label{graphics_8h_a1e3ca998dbdc63970a75fe220745710b} 
+\index{graphics.h@{graphics.h}!vg\_clear\_screen@{vg\_clear\_screen}}
+\index{vg\_clear\_screen@{vg\_clear\_screen}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{vg\_clear\_screen()}{vg\_clear\_screen()}}
+{\footnotesize\ttfamily int vg\+\_\+clear\+\_\+screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+clears the screen 
+
+\Hypertarget{graphics_8h_a281330c0bb1363ae7b12a38204015ca5}\label{graphics_8h_a281330c0bb1363ae7b12a38204015ca5} 
+\index{graphics.h@{graphics.h}!vg\_draw\_color\_sprite@{vg\_draw\_color\_sprite}}
+\index{vg\_draw\_color\_sprite@{vg\_draw\_color\_sprite}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{vg\_draw\_color\_sprite()}{vg\_draw\_color\_sprite()}}
+{\footnotesize\ttfamily void vg\+\_\+draw\+\_\+color\+\_\+sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ppu_8h_a0c5cac9bee7a2b2016f09cd2e67b7ca3}{Sprite}} \texorpdfstring{$\ast$}{*}}]{sprite,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint8\+\_\+t}]{scale }\end{DoxyParamCaption})}
+
+
+
+Draws a sprite generated by the emulador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sprite} & sprite to draw \\
+\hline
+{\em x} & x coordinate of top left corner \\
+\hline
+{\em y} & y coordinate of top left corner \\
+\hline
+{\em scale} & scale of the sprite how many times to multiply every pixel(1 is the original size) \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{graphics_8h_a281330c0bb1363ae7b12a38204015ca5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{graphics_8h_a281330c0bb1363ae7b12a38204015ca5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{graphics_8h_a6f895de9725f9f231f9a7f74b6087f60}\label{graphics_8h_a6f895de9725f9f231f9a7f74b6087f60} 
+\index{graphics.h@{graphics.h}!vg\_draw\_pixel@{vg\_draw\_pixel}}
+\index{vg\_draw\_pixel@{vg\_draw\_pixel}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{vg\_draw\_pixel()}{vg\_draw\_pixel()}}
+{\footnotesize\ttfamily int vg\+\_\+draw\+\_\+pixel (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint32\+\_\+t}]{color }\end{DoxyParamCaption})}
+
+
+
+Draws a pixel on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & x coordinate \\
+\hline
+{\em y} & y coordinate \\
+\hline
+{\em color} & color to draw \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{graphics_8h_a6f895de9725f9f231f9a7f74b6087f60_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{graphics_8h_ace93a2c1c7f1570aaf6ffbcbc8e73833}\label{graphics_8h_ace93a2c1c7f1570aaf6ffbcbc8e73833} 
+\index{graphics.h@{graphics.h}!vg\_draw\_rectangle\_border@{vg\_draw\_rectangle\_border}}
+\index{vg\_draw\_rectangle\_border@{vg\_draw\_rectangle\_border}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{vg\_draw\_rectangle\_border()}{vg\_draw\_rectangle\_border()}}
+{\footnotesize\ttfamily int vg\+\_\+draw\+\_\+rectangle\+\_\+border (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{width,  }\item[{uint16\+\_\+t}]{height,  }\item[{uint16\+\_\+t}]{border\+\_\+width,  }\item[{uint32\+\_\+t}]{color }\end{DoxyParamCaption})}
+
+
+
+Draws a rectangle border on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & x coordinate of inner rectangle \\
+\hline
+{\em y} & y coordinate of inner rectangle \\
+\hline
+{\em width} & rectangle width \\
+\hline
+{\em height} & rectangle height \\
+\hline
+{\em border\+\_\+width} & border width \\
+\hline
+{\em color} & color to draw \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{graphics_8h_ace93a2c1c7f1570aaf6ffbcbc8e73833_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{graphics_8h_ace93a2c1c7f1570aaf6ffbcbc8e73833_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{graphics_8h_a2f393bd448043b21eabf13c5bef2ed2a}\label{graphics_8h_a2f393bd448043b21eabf13c5bef2ed2a} 
+\index{graphics.h@{graphics.h}!vg\_draw\_rectangle\_from\_bottom\_left\_corner@{vg\_draw\_rectangle\_from\_bottom\_left\_corner}}
+\index{vg\_draw\_rectangle\_from\_bottom\_left\_corner@{vg\_draw\_rectangle\_from\_bottom\_left\_corner}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{vg\_draw\_rectangle\_from\_bottom\_left\_corner()}{vg\_draw\_rectangle\_from\_bottom\_left\_corner()}}
+{\footnotesize\ttfamily int vg\+\_\+draw\+\_\+rectangle\+\_\+from\+\_\+bottom\+\_\+left\+\_\+corner (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{width,  }\item[{uint16\+\_\+t}]{height,  }\item[{uint32\+\_\+t}]{color }\end{DoxyParamCaption})}
+
+
+
+Draws a rectangle on the screen from the bottom left corner. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & x coordinate \\
+\hline
+{\em y} & y coordinate \\
+\hline
+{\em width} & rectangle width \\
+\hline
+{\em height} & rectangle height \\
+\hline
+{\em color} & color to draw \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{graphics_8h_a2f393bd448043b21eabf13c5bef2ed2a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{graphics_8h_ae6d04baa609d357835cb8ac9880e6c1a}\label{graphics_8h_ae6d04baa609d357835cb8ac9880e6c1a} 
+\index{graphics.h@{graphics.h}!vg\_draw\_xpm@{vg\_draw\_xpm}}
+\index{vg\_draw\_xpm@{vg\_draw\_xpm}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{vg\_draw\_xpm()}{vg\_draw\_xpm()}}
+{\footnotesize\ttfamily int vg\+\_\+draw\+\_\+xpm (\begin{DoxyParamCaption}\item[{xpm\+\_\+image\+\_\+t}]{xpm\+\_\+image,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{xpm\+\_\+map,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Draws a xpm image on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xpm\+\_\+image} & xpm image to draw \\
+\hline
+{\em xpm\+\_\+map} & xpm color map pointer \\
+\hline
+{\em x} & x coordinate \\
+\hline
+{\em y} & y coordinate \\
+\hline
+{\em mode} & mode to draw \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{graphics_8h_ae6d04baa609d357835cb8ac9880e6c1a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{graphics_8h_ae6d04baa609d357835cb8ac9880e6c1a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{graphics_8h_a5f3244b060ba5f895174ac2f71eec5f3}\label{graphics_8h_a5f3244b060ba5f895174ac2f71eec5f3} 
+\index{graphics.h@{graphics.h}!vg\_draw\_xpm\_from\_bottom\_left\_corner@{vg\_draw\_xpm\_from\_bottom\_left\_corner}}
+\index{vg\_draw\_xpm\_from\_bottom\_left\_corner@{vg\_draw\_xpm\_from\_bottom\_left\_corner}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{vg\_draw\_xpm\_from\_bottom\_left\_corner()}{vg\_draw\_xpm\_from\_bottom\_left\_corner()}}
+{\footnotesize\ttfamily int vg\+\_\+draw\+\_\+xpm\+\_\+from\+\_\+bottom\+\_\+left\+\_\+corner (\begin{DoxyParamCaption}\item[{xpm\+\_\+image\+\_\+t}]{xpm\+\_\+image,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{xpm\+\_\+map,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Draws a xpm image on the screen from the bottom left corner. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xpm\+\_\+image} & xpm image to draw \\
+\hline
+{\em xpm\+\_\+map} & xpm color map pointer \\
+\hline
+{\em x} & x coordinate \\
+\hline
+{\em y} & y coordinate \\
+\hline
+{\em mode} & mode to draw \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{graphics_8h_a5f3244b060ba5f895174ac2f71eec5f3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{graphics_8h_a5f3244b060ba5f895174ac2f71eec5f3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{graphics_8h_ac8524d4c6447299899df5fb688e9d39f}\label{graphics_8h_ac8524d4c6447299899df5fb688e9d39f} 
+\index{graphics.h@{graphics.h}!vg\_draw\_xpm\_partial@{vg\_draw\_xpm\_partial}}
+\index{vg\_draw\_xpm\_partial@{vg\_draw\_xpm\_partial}!graphics.h@{graphics.h}}
+\doxysubsubsection{\texorpdfstring{vg\_draw\_xpm\_partial()}{vg\_draw\_xpm\_partial()}}
+{\footnotesize\ttfamily int vg\+\_\+draw\+\_\+xpm\+\_\+partial (\begin{DoxyParamCaption}\item[{xpm\+\_\+image\+\_\+t}]{xpm\+\_\+image,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{xpm\+\_\+map,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{image\+\_\+start\+\_\+x,  }\item[{uint16\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Draws partial (axle of x) of a xpm image on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xpm\+\_\+image} & xpm image to draw \\
+\hline
+{\em xpm\+\_\+map} & xpm color map pointer \\
+\hline
+{\em x} & x coordinate \\
+\hline
+{\em y} & y coordinate \\
+\hline
+{\em image\+\_\+start\+\_\+x} & x coordinate of the image to start drawing \\
+\hline
+{\em mode} & mode to draw \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{graphics_8h_ac8524d4c6447299899df5fb688e9d39f_cgraph}
+\end{center}
+\end{figure}

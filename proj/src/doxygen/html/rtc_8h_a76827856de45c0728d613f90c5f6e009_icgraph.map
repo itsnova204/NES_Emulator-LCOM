@@ -1,0 +1,24 @@
+<map id="rtc_read_reg" name="rtc_read_reg">
+<area shape="rect" id="Node000001" title="Reads a register from the RTC." alt="" coords="503,135,597,160"/>
+<area shape="rect" id="Node000002" href="$rtc_8c.html#af9899143b10300540808effb01aa292b" title="Clears bit 7 of register B." alt="" coords="320,84,447,110"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="491,133,427,113,428,108,492,128"/>
+<area shape="rect" id="Node000003" href="$rtc_8c.html#a4c1a7a6487a05aec45012e5298134758" title="Reads the date from the RTC." alt="" coords="163,35,264,60"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="535,122,504,70,481,44,453,25,427,15,399,10,342,11,289,23,246,37,244,32,287,17,342,6,400,5,429,10,456,20,485,40,508,67,540,120"/>
+<area shape="rect" id="Node000005" href="$rtc_8c.html#a75dad42881d64cf07cf1bdc2979a7056" title="RTC interrupt handler." alt="" coords="33,135,87,160"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="487,150,88,150,88,145,487,145"/>
+<area shape="rect" id="Node000006" href="$rtc_8c.html#a0a6fd09353e9e32173333e7a32997c88" title="Sets the alarm of the RTC." alt="" coords="163,84,264,110"/>
+<area shape="poly" id="edge10_Node000001_Node000006" title=" " alt="" coords="487,146,404,137,312,124,262,113,263,108,312,119,404,132,488,140"/>
+<area shape="rect" id="Node000007" href="$rtc_8c.html#ae17e9c9642400e83542d8170676ff50f" title="Disables RTC alarm interrupt." alt="" coords="330,236,437,262"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="523,172,456,219,419,238,416,233,453,215,520,168"/>
+<area shape="rect" id="Node000008" href="$rtc_8c.html#aae8111e1cb8e86c24e0becc84ee4ce29" title="Enables RTC alarm interrupt." alt="" coords="312,286,455,311"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="538,176,505,227,482,253,456,277,437,288,434,283,453,272,479,250,501,223,533,173"/>
+<area shape="rect" id="Node000009" href="$rtc_8c.html#a11e438d0669b30b2c97af0665ec96ed1" title="Sets bit 7 of register B to 1." alt="" coords="325,35,442,60"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="523,126,491,99,453,74,430,64,432,59,456,69,494,95,526,122"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="322,82,259,64,260,59,323,77"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="305,100,264,100,264,94,305,94"/>
+<area shape="rect" id="Node000004" href="$main_8c.html#a7a72220d8366dd84709e79ce415862e5" title=" " alt="" coords="5,35,115,60"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="147,50,115,50,115,45,147,45"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="171,70,164,74,117,107,78,137,75,133,113,102,161,70,168,66"/>
+<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="309,50,265,50,265,45,309,45"/>
+<area shape="poly" id="edge13_Node000009_Node000006" title=" " alt="" coords="323,68,260,86,259,81,322,63"/>
+</map>

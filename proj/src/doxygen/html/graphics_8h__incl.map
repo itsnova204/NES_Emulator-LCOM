@@ -1,0 +1,23 @@
+<map id="drivers/graphics.h" name="drivers/graphics.h">
+<area shape="rect" id="Node000001" title="This file contains the implementation of the graphics functions allowing drawing on the screen of MIN..." alt="" coords="93,5,216,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="45,299,123,324"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,34,54,51,37,64,23,80,12,106,8,133,11,162,18,190,42,244,68,285,64,288,37,246,13,192,5,163,3,133,7,104,19,77,34,60,52,47,91,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="34,79,99,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="141,33,95,71,91,67,138,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="124,79,185,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="157,31,157,63,152,63,152,31"/>
+<area shape="rect" id="Node000005" href="$VBE_8h.html" title=" " alt="" coords="210,79,270,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="171,29,216,67,212,71,167,33"/>
+<area shape="rect" id="Node000006" href="$ppu_8h.html" title="This file contains the implementation of NES PPU." alt="" coords="295,79,417,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="190,29,308,71,307,76,188,34"/>
+<area shape="rect" id="Node000007" href="$lcf__mock_8h.html" title=" " alt="" coords="129,225,215,251"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,105,244,122,220,136,199,154,183,181,176,211,171,210,178,179,195,150,217,132,242,117,293,100"/>
+<area shape="rect" id="Node000008" href="$cartridge_8h.html" title="This file contains the implementation of the NES cartridge loading, reading and writing." alt="" coords="209,152,292,177"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="340,107,282,145,279,141,337,102"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="317,152,395,177"/>
+<area shape="poly" id="edge10_Node000006_Node000009" title=" " alt="" coords="359,104,359,136,353,136,353,104"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="420,152,495,177"/>
+<area shape="poly" id="edge11_Node000006_Node000010" title=" " alt="" coords="375,102,429,141,426,145,372,107"/>
+<area shape="poly" id="edge7_Node000007_Node000002" title=" " alt="" coords="159,253,112,291,109,287,155,249"/>
+<area shape="poly" id="edge9_Node000008_Node000007" title=" " alt="" coords="239,180,198,217,195,213,235,176"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="drivers/KBC.h" name="drivers/KBC.h">
+<area shape="rect" id="Node000001" title="This file contains the implementation of the KBC functions allowing handling of the keyboard and mous..." alt="" coords="5,5,107,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="26,152,105,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="44,33,18,65,11,84,13,103,25,123,40,140,36,144,20,126,8,105,6,83,14,62,40,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="23,79,89,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="59,31,59,63,53,63,53,31"/>
+<area shape="rect" id="Node000004" href="$i8042_8h.html" title=" " alt="" coords="113,79,177,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="73,29,120,67,117,71,69,33"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="134,107,92,144,88,140,130,103"/>
+</map>

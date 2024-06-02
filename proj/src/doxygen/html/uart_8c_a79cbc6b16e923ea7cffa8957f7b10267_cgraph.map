@@ -1,0 +1,9 @@
+<map id="uart_exit" name="uart_exit">
+<area shape="rect" id="Node000001" title="Exits the uart freeing all resources." alt="" coords="5,31,77,56"/>
+<area shape="rect" id="Node000002" href="$byteQueue_8c.html#a2d40c5ca41323f55017e960e8e520198" title="Deletes the queue and frees the memory." alt="" coords="125,31,224,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,41,110,41,110,46,78,46"/>
+<area shape="rect" id="Node000003" href="$byteQueue_8c.html#ad4ef8ce8551114d1674c036d815d7ade" title="Checks if the queue is empty." alt="" coords="272,5,385,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="224,33,256,27,257,32,225,38"/>
+<area shape="rect" id="Node000004" href="$byteQueue_8c.html#a3b6dd43940f6396e389dbf7ddb55ffbe" title="Pops a byte from the queue." alt="" coords="291,55,366,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="225,48,277,57,276,62,224,54"/>
+</map>

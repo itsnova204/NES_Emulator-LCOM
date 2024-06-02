@@ -1,0 +1,418 @@
+\doxysection{drivers/sprite.h File Reference}
+\hypertarget{sprite_8h}{}\label{sprite_8h}\index{drivers/sprite.h@{drivers/sprite.h}}
+
+
+This file contains the implementation of the sprite drawing and the xpm preloading function.  
+
+
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}VBE.\+h"{}}\newline
+{\ttfamily \#include "{}graphics.\+h"{}}\newline
+{\ttfamily \#include "{}xpm\+\_\+image.\+h"{}}\newline
+Include dependency graph for sprite.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{sprite_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structXpmData}{Xpm\+Data}}
+\begin{DoxyCompactList}\small\item\em Struct that contains the xpm image and its map (color) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sprite_8h_a9cb64526659b4bebea0d36565debb187}{NUM\+\_\+\+IMAGES}}~21
+\item 
+\#define \mbox{\hyperlink{sprite_8h_a6e48a2a2d9dad4ac3e910d7bf6136709}{XPM\+\_\+\+TYPE\+\_\+\+MENU}}~XPM\+\_\+8\+\_\+8\+\_\+8\+\_\+8
+\item 
+\#define \mbox{\hyperlink{sprite_8h_a1a2135d400df405ccdcea1c7343ae93f}{OPTION\+\_\+\+WIDTH}}~300
+\item 
+\#define \mbox{\hyperlink{sprite_8h_aa641a67947c002df9a178dcb626d4371}{OPTION\+\_\+\+HEIGHT}}~419
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}} \{ \newline
+\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080ae117e3533122c80b262257b49b21cddf}{ZERO}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a7a725f13af144bdef532d0389ba75e0d}{ONE}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a0e793500a63ffa575b9b712ca3bc9851}{TWO}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a1251fbf93888ad32fe0ae54d49bcef17}{THREE}}
+, \newline
+\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a23d7ef5341c6930d19b2ecbb997977cf}{FOUR}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a3a40d11d30db182ab8f9846aa9458bec}{FIVE}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aadffddd32c3e7497e32cd7e430c9c106}{SIX}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a9a193f3e84352f3fbbe44f8d275a820c}{SEVEN}}
+, \newline
+\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a2fd39b67b424f4ea3b4c11ce3195ab8b}{EIGHT}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aea09d09b793ccc4a4b5983368d18a4ab}{NINE}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a4c40e60bc71a32b924ce1f08d57f9721}{MENU}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a29cf94637337909c3813bb50d6e9b3ee}{COLON}}
+, \newline
+\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aaabdfe7000ca535236502bb0c87ad944}{SLASH}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a63cd5d9b665699b0b17c898a414c63d5}{CURSOR}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aa24f22a325022caf9d37784d2694ade4}{CURSOR\+\_\+\+SELECTED}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a983579c57c972522422a1016b29d3ff3}{DEFAULT\+\_\+\+GAME}}
+, \newline
+\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aa37fe5edad0e60a4495879fc005414f2}{SUPER\+\_\+\+MARIO}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a7e6d655d06b74c57068c8e0332156f3b}{SOCCER}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a381f8e6eee5f3e386357320c455c0580}{DONKEY\+\_\+\+KONG}}
+, \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a50afc0b335d4a552c5988df459680f8e}{MSPACMAN}}
+, \newline
+\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a1012a829c59b8fd269fad72f98d279db}{BATTLECITY}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerates the different images that can be drawn. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sprite_8h_ae520a424499f5ba6c335eaa9768db0bd}{preload\+Sprites}} (uint16\+\_\+t vg\+\_\+mode)
+\begin{DoxyCompactList}\small\item\em Preloads all the sprites (xpm images) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structXpmData}{Xpm\+Data}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{sprite_8h_a1c93a3f23db18fca4a42fb1177992fc0}{get\+\_\+xpm\+\_\+data}} (\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}} name)
+\begin{DoxyCompactList}\small\item\em Returns the xpm data of a given image name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8h_afb64020b53c3c4dc80e836c6c08559d7}{draw\+\_\+sprite}} (\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}} name, uint16\+\_\+t x, uint16\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Draws a sprite on the screen. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8h_a1257b9fa59e90e8e1bb7fe8265065d33}{draw\+\_\+sprint\+\_\+from\+\_\+bottom\+\_\+left}} (\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}} name, uint16\+\_\+t x, uint16\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Draws a sprite on the screen from the bottom left corner. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8h_aca54722504caebf04ec7870c31e90cbd}{draw\+\_\+date}} (int day, int month, int year, int hour, int minutes, uint16\+\_\+t x, uint16\+\_\+t y, bool with\+\_\+colon)
+\begin{DoxyCompactList}\small\item\em Draws the date and time on the screen at the given coordinates with the format "{}dd/mm/yyyy hh\+:mm"{}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8h_a50051589f1bb707afbf8a65cb7a1f35c}{draw\+\_\+options}} (uint16\+\_\+t y, uint16\+\_\+t x\+\_\+mouse, uint16\+\_\+t y\+\_\+mouse, int \texorpdfstring{$\ast$}{*}selected\+\_\+option, int page)
+\begin{DoxyCompactList}\small\item\em Draws the game options thumbnails on the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the sprite drawing and the xpm preloading function. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{sprite_8h_a9cb64526659b4bebea0d36565debb187}\label{sprite_8h_a9cb64526659b4bebea0d36565debb187} 
+\index{sprite.h@{sprite.h}!NUM\_IMAGES@{NUM\_IMAGES}}
+\index{NUM\_IMAGES@{NUM\_IMAGES}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{NUM\_IMAGES}{NUM\_IMAGES}}
+{\footnotesize\ttfamily \#define NUM\+\_\+\+IMAGES~21}
+
+\Hypertarget{sprite_8h_aa641a67947c002df9a178dcb626d4371}\label{sprite_8h_aa641a67947c002df9a178dcb626d4371} 
+\index{sprite.h@{sprite.h}!OPTION\_HEIGHT@{OPTION\_HEIGHT}}
+\index{OPTION\_HEIGHT@{OPTION\_HEIGHT}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{OPTION\_HEIGHT}{OPTION\_HEIGHT}}
+{\footnotesize\ttfamily \#define OPTION\+\_\+\+HEIGHT~419}
+
+\Hypertarget{sprite_8h_a1a2135d400df405ccdcea1c7343ae93f}\label{sprite_8h_a1a2135d400df405ccdcea1c7343ae93f} 
+\index{sprite.h@{sprite.h}!OPTION\_WIDTH@{OPTION\_WIDTH}}
+\index{OPTION\_WIDTH@{OPTION\_WIDTH}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{OPTION\_WIDTH}{OPTION\_WIDTH}}
+{\footnotesize\ttfamily \#define OPTION\+\_\+\+WIDTH~300}
+
+\Hypertarget{sprite_8h_a6e48a2a2d9dad4ac3e910d7bf6136709}\label{sprite_8h_a6e48a2a2d9dad4ac3e910d7bf6136709} 
+\index{sprite.h@{sprite.h}!XPM\_TYPE\_MENU@{XPM\_TYPE\_MENU}}
+\index{XPM\_TYPE\_MENU@{XPM\_TYPE\_MENU}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{XPM\_TYPE\_MENU}{XPM\_TYPE\_MENU}}
+{\footnotesize\ttfamily \#define XPM\+\_\+\+TYPE\+\_\+\+MENU~XPM\+\_\+8\+\_\+8\+\_\+8\+\_\+8}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080} 
+\index{sprite.h@{sprite.h}!ImageName@{ImageName}}
+\index{ImageName@{ImageName}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{ImageName}{ImageName}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}}}
+
+
+
+Enumerates the different images that can be drawn. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ZERO@{ZERO}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!ZERO@{ZERO}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080ae117e3533122c80b262257b49b21cddf}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080ae117e3533122c80b262257b49b21cddf} 
+ZERO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ONE@{ONE}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!ONE@{ONE}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a7a725f13af144bdef532d0389ba75e0d}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a7a725f13af144bdef532d0389ba75e0d} 
+ONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TWO@{TWO}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!TWO@{TWO}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a0e793500a63ffa575b9b712ca3bc9851}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a0e793500a63ffa575b9b712ca3bc9851} 
+TWO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{THREE@{THREE}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!THREE@{THREE}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a1251fbf93888ad32fe0ae54d49bcef17}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a1251fbf93888ad32fe0ae54d49bcef17} 
+THREE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FOUR@{FOUR}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!FOUR@{FOUR}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a23d7ef5341c6930d19b2ecbb997977cf}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a23d7ef5341c6930d19b2ecbb997977cf} 
+FOUR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FIVE@{FIVE}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!FIVE@{FIVE}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a3a40d11d30db182ab8f9846aa9458bec}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a3a40d11d30db182ab8f9846aa9458bec} 
+FIVE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SIX@{SIX}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!SIX@{SIX}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aadffddd32c3e7497e32cd7e430c9c106}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aadffddd32c3e7497e32cd7e430c9c106} 
+SIX&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SEVEN@{SEVEN}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!SEVEN@{SEVEN}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a9a193f3e84352f3fbbe44f8d275a820c}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a9a193f3e84352f3fbbe44f8d275a820c} 
+SEVEN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EIGHT@{EIGHT}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!EIGHT@{EIGHT}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a2fd39b67b424f4ea3b4c11ce3195ab8b}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a2fd39b67b424f4ea3b4c11ce3195ab8b} 
+EIGHT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NINE@{NINE}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!NINE@{NINE}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aea09d09b793ccc4a4b5983368d18a4ab}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aea09d09b793ccc4a4b5983368d18a4ab} 
+NINE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MENU@{MENU}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!MENU@{MENU}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a4c40e60bc71a32b924ce1f08d57f9721}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a4c40e60bc71a32b924ce1f08d57f9721} 
+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COLON@{COLON}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!COLON@{COLON}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a29cf94637337909c3813bb50d6e9b3ee}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a29cf94637337909c3813bb50d6e9b3ee} 
+COLON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SLASH@{SLASH}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!SLASH@{SLASH}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aaabdfe7000ca535236502bb0c87ad944}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aaabdfe7000ca535236502bb0c87ad944} 
+SLASH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CURSOR@{CURSOR}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!CURSOR@{CURSOR}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a63cd5d9b665699b0b17c898a414c63d5}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a63cd5d9b665699b0b17c898a414c63d5} 
+CURSOR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CURSOR\_SELECTED@{CURSOR\_SELECTED}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!CURSOR\_SELECTED@{CURSOR\_SELECTED}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aa24f22a325022caf9d37784d2694ade4}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aa24f22a325022caf9d37784d2694ade4} 
+CURSOR\+\_\+\+SELECTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT\_GAME@{DEFAULT\_GAME}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!DEFAULT\_GAME@{DEFAULT\_GAME}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a983579c57c972522422a1016b29d3ff3}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a983579c57c972522422a1016b29d3ff3} 
+DEFAULT\+\_\+\+GAME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUPER\_MARIO@{SUPER\_MARIO}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!SUPER\_MARIO@{SUPER\_MARIO}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aa37fe5edad0e60a4495879fc005414f2}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080aa37fe5edad0e60a4495879fc005414f2} 
+SUPER\+\_\+\+MARIO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SOCCER@{SOCCER}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!SOCCER@{SOCCER}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a7e6d655d06b74c57068c8e0332156f3b}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a7e6d655d06b74c57068c8e0332156f3b} 
+SOCCER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DONKEY\_KONG@{DONKEY\_KONG}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!DONKEY\_KONG@{DONKEY\_KONG}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a381f8e6eee5f3e386357320c455c0580}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a381f8e6eee5f3e386357320c455c0580} 
+DONKEY\+\_\+\+KONG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MSPACMAN@{MSPACMAN}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!MSPACMAN@{MSPACMAN}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a50afc0b335d4a552c5988df459680f8e}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a50afc0b335d4a552c5988df459680f8e} 
+MSPACMAN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BATTLECITY@{BATTLECITY}!sprite.h@{sprite.h}}\index{sprite.h@{sprite.h}!BATTLECITY@{BATTLECITY}}}\Hypertarget{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a1012a829c59b8fd269fad72f98d279db}\label{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080a1012a829c59b8fd269fad72f98d279db} 
+BATTLECITY&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{sprite_8h_aca54722504caebf04ec7870c31e90cbd}\label{sprite_8h_aca54722504caebf04ec7870c31e90cbd} 
+\index{sprite.h@{sprite.h}!draw\_date@{draw\_date}}
+\index{draw\_date@{draw\_date}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{draw\_date()}{draw\_date()}}
+{\footnotesize\ttfamily int draw\+\_\+date (\begin{DoxyParamCaption}\item[{int}]{day,  }\item[{int}]{month,  }\item[{int}]{year,  }\item[{int}]{hour,  }\item[{int}]{minutes,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{bool}]{with\+\_\+colon }\end{DoxyParamCaption})}
+
+
+
+Draws the date and time on the screen at the given coordinates with the format "{}dd/mm/yyyy hh\+:mm"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em day} & Day of the month \\
+\hline
+{\em month} & Month of the year \\
+\hline
+{\em year} & Year \\
+\hline
+{\em hour} & Hour of the day \\
+\hline
+{\em minutes} & Minutes of the hour \\
+\hline
+{\em x} & X coordinate of the date \\
+\hline
+{\em y} & Y coordinate of the date \\
+\hline
+{\em with\+\_\+colon} & If true, the colon between the hours and minutes will be drawn. This parameter is to be able to have the blinking effect of the colon \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8h_aca54722504caebf04ec7870c31e90cbd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{sprite_8h_aca54722504caebf04ec7870c31e90cbd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sprite_8h_a50051589f1bb707afbf8a65cb7a1f35c}\label{sprite_8h_a50051589f1bb707afbf8a65cb7a1f35c} 
+\index{sprite.h@{sprite.h}!draw\_options@{draw\_options}}
+\index{draw\_options@{draw\_options}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{draw\_options()}{draw\_options()}}
+{\footnotesize\ttfamily int draw\+\_\+options (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{x\+\_\+mouse,  }\item[{uint16\+\_\+t}]{y\+\_\+mouse,  }\item[{int \texorpdfstring{$\ast$}{*}}]{selected\+\_\+option,  }\item[{int}]{page }\end{DoxyParamCaption})}
+
+
+
+Draws the game options thumbnails on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y} & Y coordinate of the options \\
+\hline
+{\em x\+\_\+mouse} & X coordinate of the mouse \\
+\hline
+{\em y\+\_\+mouse} & Y coordinate of the mouse \\
+\hline
+{\em selected\+\_\+option} & Pointer to the variable that will store the selected option, value will be -\/1 if no option is selected \\
+\hline
+{\em page} & Menu page of the options to draw \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8h_a50051589f1bb707afbf8a65cb7a1f35c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{sprite_8h_a50051589f1bb707afbf8a65cb7a1f35c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sprite_8h_a1257b9fa59e90e8e1bb7fe8265065d33}\label{sprite_8h_a1257b9fa59e90e8e1bb7fe8265065d33} 
+\index{sprite.h@{sprite.h}!draw\_sprint\_from\_bottom\_left@{draw\_sprint\_from\_bottom\_left}}
+\index{draw\_sprint\_from\_bottom\_left@{draw\_sprint\_from\_bottom\_left}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{draw\_sprint\_from\_bottom\_left()}{draw\_sprint\_from\_bottom\_left()}}
+{\footnotesize\ttfamily int draw\+\_\+sprint\+\_\+from\+\_\+bottom\+\_\+left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}}}]{name,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+Draws a sprite on the screen from the bottom left corner. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the image to draw \\
+\hline
+{\em x} & X coordinate of the image \\
+\hline
+{\em y} & Y coordinate of the image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8h_a1257b9fa59e90e8e1bb7fe8265065d33_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sprite_8h_afb64020b53c3c4dc80e836c6c08559d7}\label{sprite_8h_afb64020b53c3c4dc80e836c6c08559d7} 
+\index{sprite.h@{sprite.h}!draw\_sprite@{draw\_sprite}}
+\index{draw\_sprite@{draw\_sprite}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{draw\_sprite()}{draw\_sprite()}}
+{\footnotesize\ttfamily int draw\+\_\+sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}}}]{name,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+Draws a sprite on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the image to draw \\
+\hline
+{\em x} & X coordinate of the image \\
+\hline
+{\em y} & Y coordinate of the image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8h_afb64020b53c3c4dc80e836c6c08559d7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8h_afb64020b53c3c4dc80e836c6c08559d7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sprite_8h_a1c93a3f23db18fca4a42fb1177992fc0}\label{sprite_8h_a1c93a3f23db18fca4a42fb1177992fc0} 
+\index{sprite.h@{sprite.h}!get\_xpm\_data@{get\_xpm\_data}}
+\index{get\_xpm\_data@{get\_xpm\_data}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{get\_xpm\_data()}{get\_xpm\_data()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structXpmData}{Xpm\+Data}} \texorpdfstring{$\ast$}{*} get\+\_\+xpm\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}}}]{name }\end{DoxyParamCaption})}
+
+
+
+Returns the xpm data of a given image name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the xpm data of the image, NULL if the image is not found 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8h_a1c93a3f23db18fca4a42fb1177992fc0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sprite_8h_ae520a424499f5ba6c335eaa9768db0bd}\label{sprite_8h_ae520a424499f5ba6c335eaa9768db0bd} 
+\index{sprite.h@{sprite.h}!preloadSprites@{preloadSprites}}
+\index{preloadSprites@{preloadSprites}!sprite.h@{sprite.h}}
+\doxysubsubsection{\texorpdfstring{preloadSprites()}{preloadSprites()}}
+{\footnotesize\ttfamily void preload\+Sprites (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{vg\+\_\+mode }\end{DoxyParamCaption})}
+
+
+
+Preloads all the sprites (xpm images) 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{sprite_8h_ae520a424499f5ba6c335eaa9768db0bd_icgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,271 @@
+\doxysection{nes\+\_\+emu/cartridge.h File Reference}
+\hypertarget{cartridge_8h}{}\label{cartridge_8h}\index{nes\_emu/cartridge.h@{nes\_emu/cartridge.h}}
+
+
+This file contains the implementation of the NES cartridge loading, reading and writing.  
+
+
+{\ttfamily \#include "{}lcf\+\_\+mock.\+h"{}}\newline
+Include dependency graph for cartridge.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{cartridge_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cartridge_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{cartridge_8h_af32b022d54641d350cd8d0ef200c79fa}{MIRROR}} \{ \mbox{\hyperlink{cartridge_8h_af32b022d54641d350cd8d0ef200c79faa4dd51ad73508d6fc83a502966779e48e}{HORIZONTAL}}
+, \mbox{\hyperlink{cartridge_8h_af32b022d54641d350cd8d0ef200c79faa1a88641fcd39f2ed3e58a18526e97138}{VERTICAL}}
+, \mbox{\hyperlink{cartridge_8h_af32b022d54641d350cd8d0ef200c79faa7d68f73656936b1989889a5b88416510}{ONESCREEN\+\_\+\+LO}}
+, \mbox{\hyperlink{cartridge_8h_af32b022d54641d350cd8d0ef200c79faaf82b4c1892ca9dc89baf49b5be5aa0df}{ONESCREEN\+\_\+\+HI}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{cartridge_8h_af32b022d54641d350cd8d0ef200c79fa}{MIRROR}} \mbox{\hyperlink{cartridge_8h_a7c1ed30dc9eb54d745678b62c1a148f5}{cart\+\_\+get\+\_\+mirror\+\_\+type}} ()
+\item 
+int \mbox{\hyperlink{cartridge_8h_a015315296508507bc184c53300734fd0}{cart\+\_\+insert}} ()
+\item 
+void \mbox{\hyperlink{cartridge_8h_a0aa7ec60a6938fe80516adcc1f90fc51}{cart\+\_\+remove}} ()
+\item 
+void \mbox{\hyperlink{cartridge_8h_ae24dcdff6a5623486d87bc22d09b16a2}{header\+\_\+parse}} (FILE \texorpdfstring{$\ast$}{*}fp)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{cartridge_8h_a8858f3bddd89eb2f6575ce64886af8a3}{ines\+\_\+parse}} (FILE \texorpdfstring{$\ast$}{*}fp)
+\item 
+void \mbox{\hyperlink{cartridge_8h_aab0a749241244d13922556533aeb7069}{print\+\_\+header}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{cartridge_8h_aedfa2d3a016d7804c2d8428bccbf1e50}{sys\+\_\+read\+From\+Card}} (uint16\+\_\+t addr, bool \texorpdfstring{$\ast$}{*}hijack)
+\item 
+void \mbox{\hyperlink{cartridge_8h_a7466bac2d6b550452f3a62985028955b}{sys\+\_\+write\+To\+Card}} (uint16\+\_\+t addr, uint8\+\_\+t data, bool \texorpdfstring{$\ast$}{*}hijack)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{cartridge_8h_a188528781745a3287c57e8f64714ddc8}{ppu\+\_\+read\+From\+Card}} (uint16\+\_\+t addr, bool \texorpdfstring{$\ast$}{*}hijack)
+\item 
+void \mbox{\hyperlink{cartridge_8h_aa43fe82d032f800a19681bc4a3fed598}{ppu\+\_\+write\+To\+Card}} (uint16\+\_\+t addr, uint8\+\_\+t data, bool \texorpdfstring{$\ast$}{*}hijack)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the NES cartridge loading, reading and writing. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{cartridge_8h_af32b022d54641d350cd8d0ef200c79fa}\label{cartridge_8h_af32b022d54641d350cd8d0ef200c79fa} 
+\index{cartridge.h@{cartridge.h}!MIRROR@{MIRROR}}
+\index{MIRROR@{MIRROR}!cartridge.h@{cartridge.h}}
+\doxysubsubsection{\texorpdfstring{MIRROR}{MIRROR}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{cartridge_8h_af32b022d54641d350cd8d0ef200c79fa}{MIRROR}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HORIZONTAL@{HORIZONTAL}!cartridge.h@{cartridge.h}}\index{cartridge.h@{cartridge.h}!HORIZONTAL@{HORIZONTAL}}}\Hypertarget{cartridge_8h_af32b022d54641d350cd8d0ef200c79faa4dd51ad73508d6fc83a502966779e48e}\label{cartridge_8h_af32b022d54641d350cd8d0ef200c79faa4dd51ad73508d6fc83a502966779e48e} 
+HORIZONTAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VERTICAL@{VERTICAL}!cartridge.h@{cartridge.h}}\index{cartridge.h@{cartridge.h}!VERTICAL@{VERTICAL}}}\Hypertarget{cartridge_8h_af32b022d54641d350cd8d0ef200c79faa1a88641fcd39f2ed3e58a18526e97138}\label{cartridge_8h_af32b022d54641d350cd8d0ef200c79faa1a88641fcd39f2ed3e58a18526e97138} 
+VERTICAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ONESCREEN\_LO@{ONESCREEN\_LO}!cartridge.h@{cartridge.h}}\index{cartridge.h@{cartridge.h}!ONESCREEN\_LO@{ONESCREEN\_LO}}}\Hypertarget{cartridge_8h_af32b022d54641d350cd8d0ef200c79faa7d68f73656936b1989889a5b88416510}\label{cartridge_8h_af32b022d54641d350cd8d0ef200c79faa7d68f73656936b1989889a5b88416510} 
+ONESCREEN\+\_\+\+LO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ONESCREEN\_HI@{ONESCREEN\_HI}!cartridge.h@{cartridge.h}}\index{cartridge.h@{cartridge.h}!ONESCREEN\_HI@{ONESCREEN\_HI}}}\Hypertarget{cartridge_8h_af32b022d54641d350cd8d0ef200c79faaf82b4c1892ca9dc89baf49b5be5aa0df}\label{cartridge_8h_af32b022d54641d350cd8d0ef200c79faaf82b4c1892ca9dc89baf49b5be5aa0df} 
+ONESCREEN\+\_\+\+HI&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{cartridge_8h_a7c1ed30dc9eb54d745678b62c1a148f5}\label{cartridge_8h_a7c1ed30dc9eb54d745678b62c1a148f5} 
+\index{cartridge.h@{cartridge.h}!cart\_get\_mirror\_type@{cart\_get\_mirror\_type}}
+\index{cart\_get\_mirror\_type@{cart\_get\_mirror\_type}!cartridge.h@{cartridge.h}}
+\doxysubsubsection{\texorpdfstring{cart\_get\_mirror\_type()}{cart\_get\_mirror\_type()}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{cartridge_8h_af32b022d54641d350cd8d0ef200c79fa}{MIRROR}} cart\+\_\+get\+\_\+mirror\+\_\+type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cartridge_8h_a7c1ed30dc9eb54d745678b62c1a148f5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cartridge_8h_a015315296508507bc184c53300734fd0}\label{cartridge_8h_a015315296508507bc184c53300734fd0} 
+\index{cartridge.h@{cartridge.h}!cart\_insert@{cart\_insert}}
+\index{cart\_insert@{cart\_insert}!cartridge.h@{cartridge.h}}
+\doxysubsubsection{\texorpdfstring{cart\_insert()}{cart\_insert()}}
+{\footnotesize\ttfamily int cart\+\_\+insert (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{cartridge_8h_a015315296508507bc184c53300734fd0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cartridge_8h_a0aa7ec60a6938fe80516adcc1f90fc51}\label{cartridge_8h_a0aa7ec60a6938fe80516adcc1f90fc51} 
+\index{cartridge.h@{cartridge.h}!cart\_remove@{cart\_remove}}
+\index{cart\_remove@{cart\_remove}!cartridge.h@{cartridge.h}}
+\doxysubsubsection{\texorpdfstring{cart\_remove()}{cart\_remove()}}
+{\footnotesize\ttfamily void cart\+\_\+remove (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cartridge_8h_a0aa7ec60a6938fe80516adcc1f90fc51_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cartridge_8h_ae24dcdff6a5623486d87bc22d09b16a2}\label{cartridge_8h_ae24dcdff6a5623486d87bc22d09b16a2} 
+\index{cartridge.h@{cartridge.h}!header\_parse@{header\_parse}}
+\index{header\_parse@{header\_parse}!cartridge.h@{cartridge.h}}
+\doxysubsubsection{\texorpdfstring{header\_parse()}{header\_parse()}}
+{\footnotesize\ttfamily void header\+\_\+parse (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{cartridge_8h_ae24dcdff6a5623486d87bc22d09b16a2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{cartridge_8h_ae24dcdff6a5623486d87bc22d09b16a2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cartridge_8h_a8858f3bddd89eb2f6575ce64886af8a3}\label{cartridge_8h_a8858f3bddd89eb2f6575ce64886af8a3} 
+\index{cartridge.h@{cartridge.h}!ines\_parse@{ines\_parse}}
+\index{ines\_parse@{ines\_parse}!cartridge.h@{cartridge.h}}
+\doxysubsubsection{\texorpdfstring{ines\_parse()}{ines\_parse()}}
+{\footnotesize\ttfamily uint8\+\_\+t ines\+\_\+parse (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{cartridge_8h_a8858f3bddd89eb2f6575ce64886af8a3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cartridge_8h_a188528781745a3287c57e8f64714ddc8}\label{cartridge_8h_a188528781745a3287c57e8f64714ddc8} 
+\index{cartridge.h@{cartridge.h}!ppu\_readFromCard@{ppu\_readFromCard}}
+\index{ppu\_readFromCard@{ppu\_readFromCard}!cartridge.h@{cartridge.h}}
+\doxysubsubsection{\texorpdfstring{ppu\_readFromCard()}{ppu\_readFromCard()}}
+{\footnotesize\ttfamily uint8\+\_\+t ppu\+\_\+read\+From\+Card (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr,  }\item[{bool \texorpdfstring{$\ast$}{*}}]{hijack }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{cartridge_8h_a188528781745a3287c57e8f64714ddc8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cartridge_8h_a188528781745a3287c57e8f64714ddc8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cartridge_8h_aa43fe82d032f800a19681bc4a3fed598}\label{cartridge_8h_aa43fe82d032f800a19681bc4a3fed598} 
+\index{cartridge.h@{cartridge.h}!ppu\_writeToCard@{ppu\_writeToCard}}
+\index{ppu\_writeToCard@{ppu\_writeToCard}!cartridge.h@{cartridge.h}}
+\doxysubsubsection{\texorpdfstring{ppu\_writeToCard()}{ppu\_writeToCard()}}
+{\footnotesize\ttfamily void ppu\+\_\+write\+To\+Card (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr,  }\item[{uint8\+\_\+t}]{data,  }\item[{bool \texorpdfstring{$\ast$}{*}}]{hijack }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{cartridge_8h_aa43fe82d032f800a19681bc4a3fed598_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cartridge_8h_aa43fe82d032f800a19681bc4a3fed598_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cartridge_8h_aab0a749241244d13922556533aeb7069}\label{cartridge_8h_aab0a749241244d13922556533aeb7069} 
+\index{cartridge.h@{cartridge.h}!print\_header@{print\_header}}
+\index{print\_header@{print\_header}!cartridge.h@{cartridge.h}}
+\doxysubsubsection{\texorpdfstring{print\_header()}{print\_header()}}
+{\footnotesize\ttfamily void print\+\_\+header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cartridge_8h_aab0a749241244d13922556533aeb7069_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cartridge_8h_aedfa2d3a016d7804c2d8428bccbf1e50}\label{cartridge_8h_aedfa2d3a016d7804c2d8428bccbf1e50} 
+\index{cartridge.h@{cartridge.h}!sys\_readFromCard@{sys\_readFromCard}}
+\index{sys\_readFromCard@{sys\_readFromCard}!cartridge.h@{cartridge.h}}
+\doxysubsubsection{\texorpdfstring{sys\_readFromCard()}{sys\_readFromCard()}}
+{\footnotesize\ttfamily uint8\+\_\+t sys\+\_\+read\+From\+Card (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr,  }\item[{bool \texorpdfstring{$\ast$}{*}}]{hijack }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{cartridge_8h_aedfa2d3a016d7804c2d8428bccbf1e50_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{cartridge_8h_aedfa2d3a016d7804c2d8428bccbf1e50_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cartridge_8h_a7466bac2d6b550452f3a62985028955b}\label{cartridge_8h_a7466bac2d6b550452f3a62985028955b} 
+\index{cartridge.h@{cartridge.h}!sys\_writeToCard@{sys\_writeToCard}}
+\index{sys\_writeToCard@{sys\_writeToCard}!cartridge.h@{cartridge.h}}
+\doxysubsubsection{\texorpdfstring{sys\_writeToCard()}{sys\_writeToCard()}}
+{\footnotesize\ttfamily void sys\+\_\+write\+To\+Card (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr,  }\item[{uint8\+\_\+t}]{data,  }\item[{bool \texorpdfstring{$\ast$}{*}}]{hijack }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{cartridge_8h_a7466bac2d6b550452f3a62985028955b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cartridge_8h_a7466bac2d6b550452f3a62985028955b_icgraph}
+\end{center}
+\end{figure}

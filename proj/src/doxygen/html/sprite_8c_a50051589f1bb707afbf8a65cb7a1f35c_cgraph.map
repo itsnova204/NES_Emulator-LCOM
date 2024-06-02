@@ -1,0 +1,17 @@
+<map id="draw_options" name="draw_options">
+<area shape="rect" id="Node000001" title="Draws the game options thumbnails on the screen." alt="" coords="5,80,104,105"/>
+<area shape="rect" id="Node000002" href="$sprite_8c.html#afb64020b53c3c4dc80e836c6c08559d7" title="Draws a sprite on the screen." alt="" coords="193,55,281,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,83,178,73,178,78,105,89"/>
+<area shape="rect" id="Node000006" href="$graphics_8c.html#ace93a2c1c7f1570aaf6ffbcbc8e73833" title="Draws a rectangle border on the screen." alt="" coords="152,105,323,131"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="105,97,137,101,136,107,104,102"/>
+<area shape="rect" id="Node000003" href="$sprite_8c.html#a1c93a3f23db18fca4a42fb1177992fc0" title="Returns the xpm data of a given image name." alt="" coords="371,5,475,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="281,53,357,33,359,38,283,58"/>
+<area shape="rect" id="Node000004" href="$graphics_8c.html#a7ba2739a9936a380d7b6a44a7336ab90" title="Draws a xpm image on the screen." alt="" coords="373,55,473,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="282,65,357,65,357,70,282,70"/>
+<area shape="rect" id="Node000005" href="$graphics_8c.html#a6f895de9725f9f231f9a7f74b6087f60" title="Draws a pixel on the screen." alt="" coords="523,105,625,131"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="464,78,520,97,519,102,462,83"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="323,115,507,115,507,121,323,121"/>
+<area shape="rect" id="Node000007" href="$graphics_8c.html#adb08b276272848bc7f3bccc0f5e770c8" title=" " alt="" coords="371,156,474,181"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="287,129,360,149,358,154,286,134"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="462,153,519,134,520,139,464,158"/>
+</map>

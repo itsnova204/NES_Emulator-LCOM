@@ -1,0 +1,7 @@
+<map id="queue_delete" name="queue_delete">
+<area shape="rect" id="Node000001" title="Deletes the queue and frees the memory." alt="" coords="5,31,104,56"/>
+<area shape="rect" id="Node000002" href="$byteQueue_8c.html#ad4ef8ce8551114d1674c036d815d7ade" title="Checks if the queue is empty." alt="" coords="152,5,265,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,33,136,27,137,32,105,38"/>
+<area shape="rect" id="Node000003" href="$byteQueue_8c.html#a3b6dd43940f6396e389dbf7ddb55ffbe" title="Pops a byte from the queue." alt="" coords="171,55,246,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="105,48,157,57,156,62,104,54"/>
+</map>

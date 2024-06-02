@@ -1,0 +1,227 @@
+\doxysection{Ppu2\+C02 Struct Reference}
+\hypertarget{structPpu2C02}{}\label{structPpu2C02}\index{Ppu2C02@{Ppu2C02}}
+
+
+{\ttfamily \#include $<$ppu.\+h$>$}
+
+
+
+Collaboration diagram for Ppu2\+C02\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{structPpu2C02__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structPpu2C02_ab50340c5bb448ee897220c01cad1b7f8}{name\+Table}} \mbox{[}2\mbox{]}\mbox{[}1024\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structPpu2C02_ae65538bb0780b10d39bb9c5a4780c075}{palette\+Table}} \mbox{[}32\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structPpu2C02_a8d13387bc001ca0185cea3c3bc4f7fb0}{pattern\+Table}} \mbox{[}2\mbox{]}\mbox{[}4096\mbox{]}
+\item 
+\mbox{\hyperlink{structColor}{Color}} \mbox{\hyperlink{structPpu2C02_a2ef2953f31045c654a2f2deb9d1c3598}{palette\+Screen}} \mbox{[}64\mbox{]}
+\item 
+\mbox{\hyperlink{ppu_8h_a0c5cac9bee7a2b2016f09cd2e67b7ca3}{Sprite}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structPpu2C02_a2c397fe5db18e773e9dfab5024cbc488}{sprite\+Screen}}
+\item 
+\mbox{\hyperlink{ppu_8h_a0c5cac9bee7a2b2016f09cd2e67b7ca3}{Sprite}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structPpu2C02_accc6190b8962a8dccf6b08c232ceaaa8}{sprite\+Name\+Table}} \mbox{[}2\mbox{]}
+\item 
+\mbox{\hyperlink{ppu_8h_a0c5cac9bee7a2b2016f09cd2e67b7ca3}{Sprite}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structPpu2C02_ac002ed84ae702f4709c42fbd45e9c634}{sprite\+Pattern\+Table}} \mbox{[}2\mbox{]}
+\item 
+int \mbox{\hyperlink{structPpu2C02_a5b91d4a38c747a3c860f5530bef198eb}{scanline}}
+\item 
+int \mbox{\hyperlink{structPpu2C02_a0b1952dbe231bd9074fd719bc327865c}{cycle}}
+\item 
+bool \mbox{\hyperlink{structPpu2C02_af4f1192608f0abedfa5476378ebe9c9d}{frame\+Completed}}
+\item 
+\mbox{\hyperlink{structPpuRegisters}{Ppu\+Registers}} \mbox{\hyperlink{structPpu2C02_acf09da7d0cdee01f6f0c25775e007160}{registers}}
+\item 
+\mbox{\hyperlink{unionLoopyRegister}{Loopy\+Register}} \mbox{\hyperlink{structPpu2C02_a23c52f72d3d4a79f2bbd24b82ae2259b}{vram\+Addr}}
+\item 
+\mbox{\hyperlink{unionLoopyRegister}{Loopy\+Register}} \mbox{\hyperlink{structPpu2C02_a007c754c11acf82459e5d64d652cd9dc}{tram\+Addr}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structPpu2C02_add48c207d0c4a8b331373529a67731de}{address\+Latch}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structPpu2C02_a0e462207db4d3295e1cb1560373b13ed}{ppu\+Data\+Buffer}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structPpu2C02_ae6e2b0c1fec59699e0777c26c7b207af}{fineX}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structPpu2C02_a33f3cce3059091f03e36ec42854bad8b}{bg\+Next\+Tile\+Id}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structPpu2C02_a8a801762ecff9019edc40b83d33829fe}{bg\+Next\+Tile\+Attr}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structPpu2C02_a87bfe81b81bbb85fb6fd663520786e99}{bg\+Next\+Tile\+Lsb}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structPpu2C02_a7aed25892d07293feab657fab1d21586}{bg\+Next\+Tile\+Msb}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structPpu2C02_ad60ab64c7e55fa36532ee13cacddbef4}{bg\+Shifter\+Pattern\+Lo}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structPpu2C02_a8d486aecaad9f78f1126daeb69a8b2df}{bg\+Shifter\+Pattern\+Hi}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structPpu2C02_a4d56feed7cc0ad1924b3c6b1337d282a}{bg\+Shifter\+Attrib\+Lo}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structPpu2C02_adfae19e295cbbff9cb177f0108b76931}{bg\+Shifter\+Attrib\+Hi}}
+\item 
+bool \mbox{\hyperlink{structPpu2C02_a35f27f4d6125bd9a57f8a4ad33848418}{nmi}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structPpu2C02_add48c207d0c4a8b331373529a67731de}\label{structPpu2C02_add48c207d0c4a8b331373529a67731de} 
+\index{Ppu2C02@{Ppu2C02}!addressLatch@{addressLatch}}
+\index{addressLatch@{addressLatch}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{addressLatch}{addressLatch}}
+{\footnotesize\ttfamily uint8\+\_\+t Ppu2\+C02\+::address\+Latch}
+
+\Hypertarget{structPpu2C02_a8a801762ecff9019edc40b83d33829fe}\label{structPpu2C02_a8a801762ecff9019edc40b83d33829fe} 
+\index{Ppu2C02@{Ppu2C02}!bgNextTileAttr@{bgNextTileAttr}}
+\index{bgNextTileAttr@{bgNextTileAttr}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{bgNextTileAttr}{bgNextTileAttr}}
+{\footnotesize\ttfamily uint8\+\_\+t Ppu2\+C02\+::bg\+Next\+Tile\+Attr}
+
+\Hypertarget{structPpu2C02_a33f3cce3059091f03e36ec42854bad8b}\label{structPpu2C02_a33f3cce3059091f03e36ec42854bad8b} 
+\index{Ppu2C02@{Ppu2C02}!bgNextTileId@{bgNextTileId}}
+\index{bgNextTileId@{bgNextTileId}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{bgNextTileId}{bgNextTileId}}
+{\footnotesize\ttfamily uint8\+\_\+t Ppu2\+C02\+::bg\+Next\+Tile\+Id}
+
+\Hypertarget{structPpu2C02_a87bfe81b81bbb85fb6fd663520786e99}\label{structPpu2C02_a87bfe81b81bbb85fb6fd663520786e99} 
+\index{Ppu2C02@{Ppu2C02}!bgNextTileLsb@{bgNextTileLsb}}
+\index{bgNextTileLsb@{bgNextTileLsb}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{bgNextTileLsb}{bgNextTileLsb}}
+{\footnotesize\ttfamily uint8\+\_\+t Ppu2\+C02\+::bg\+Next\+Tile\+Lsb}
+
+\Hypertarget{structPpu2C02_a7aed25892d07293feab657fab1d21586}\label{structPpu2C02_a7aed25892d07293feab657fab1d21586} 
+\index{Ppu2C02@{Ppu2C02}!bgNextTileMsb@{bgNextTileMsb}}
+\index{bgNextTileMsb@{bgNextTileMsb}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{bgNextTileMsb}{bgNextTileMsb}}
+{\footnotesize\ttfamily uint8\+\_\+t Ppu2\+C02\+::bg\+Next\+Tile\+Msb}
+
+\Hypertarget{structPpu2C02_adfae19e295cbbff9cb177f0108b76931}\label{structPpu2C02_adfae19e295cbbff9cb177f0108b76931} 
+\index{Ppu2C02@{Ppu2C02}!bgShifterAttribHi@{bgShifterAttribHi}}
+\index{bgShifterAttribHi@{bgShifterAttribHi}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{bgShifterAttribHi}{bgShifterAttribHi}}
+{\footnotesize\ttfamily uint16\+\_\+t Ppu2\+C02\+::bg\+Shifter\+Attrib\+Hi}
+
+\Hypertarget{structPpu2C02_a4d56feed7cc0ad1924b3c6b1337d282a}\label{structPpu2C02_a4d56feed7cc0ad1924b3c6b1337d282a} 
+\index{Ppu2C02@{Ppu2C02}!bgShifterAttribLo@{bgShifterAttribLo}}
+\index{bgShifterAttribLo@{bgShifterAttribLo}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{bgShifterAttribLo}{bgShifterAttribLo}}
+{\footnotesize\ttfamily uint16\+\_\+t Ppu2\+C02\+::bg\+Shifter\+Attrib\+Lo}
+
+\Hypertarget{structPpu2C02_a8d486aecaad9f78f1126daeb69a8b2df}\label{structPpu2C02_a8d486aecaad9f78f1126daeb69a8b2df} 
+\index{Ppu2C02@{Ppu2C02}!bgShifterPatternHi@{bgShifterPatternHi}}
+\index{bgShifterPatternHi@{bgShifterPatternHi}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{bgShifterPatternHi}{bgShifterPatternHi}}
+{\footnotesize\ttfamily uint16\+\_\+t Ppu2\+C02\+::bg\+Shifter\+Pattern\+Hi}
+
+\Hypertarget{structPpu2C02_ad60ab64c7e55fa36532ee13cacddbef4}\label{structPpu2C02_ad60ab64c7e55fa36532ee13cacddbef4} 
+\index{Ppu2C02@{Ppu2C02}!bgShifterPatternLo@{bgShifterPatternLo}}
+\index{bgShifterPatternLo@{bgShifterPatternLo}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{bgShifterPatternLo}{bgShifterPatternLo}}
+{\footnotesize\ttfamily uint16\+\_\+t Ppu2\+C02\+::bg\+Shifter\+Pattern\+Lo}
+
+\Hypertarget{structPpu2C02_a0b1952dbe231bd9074fd719bc327865c}\label{structPpu2C02_a0b1952dbe231bd9074fd719bc327865c} 
+\index{Ppu2C02@{Ppu2C02}!cycle@{cycle}}
+\index{cycle@{cycle}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{cycle}{cycle}}
+{\footnotesize\ttfamily int Ppu2\+C02\+::cycle}
+
+\Hypertarget{structPpu2C02_ae6e2b0c1fec59699e0777c26c7b207af}\label{structPpu2C02_ae6e2b0c1fec59699e0777c26c7b207af} 
+\index{Ppu2C02@{Ppu2C02}!fineX@{fineX}}
+\index{fineX@{fineX}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{fineX}{fineX}}
+{\footnotesize\ttfamily uint8\+\_\+t Ppu2\+C02\+::fineX}
+
+\Hypertarget{structPpu2C02_af4f1192608f0abedfa5476378ebe9c9d}\label{structPpu2C02_af4f1192608f0abedfa5476378ebe9c9d} 
+\index{Ppu2C02@{Ppu2C02}!frameCompleted@{frameCompleted}}
+\index{frameCompleted@{frameCompleted}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{frameCompleted}{frameCompleted}}
+{\footnotesize\ttfamily bool Ppu2\+C02\+::frame\+Completed}
+
+\Hypertarget{structPpu2C02_ab50340c5bb448ee897220c01cad1b7f8}\label{structPpu2C02_ab50340c5bb448ee897220c01cad1b7f8} 
+\index{Ppu2C02@{Ppu2C02}!nameTable@{nameTable}}
+\index{nameTable@{nameTable}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{nameTable}{nameTable}}
+{\footnotesize\ttfamily uint8\+\_\+t Ppu2\+C02\+::name\+Table\mbox{[}2\mbox{]}\mbox{[}1024\mbox{]}}
+
+\Hypertarget{structPpu2C02_a35f27f4d6125bd9a57f8a4ad33848418}\label{structPpu2C02_a35f27f4d6125bd9a57f8a4ad33848418} 
+\index{Ppu2C02@{Ppu2C02}!nmi@{nmi}}
+\index{nmi@{nmi}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{nmi}{nmi}}
+{\footnotesize\ttfamily bool Ppu2\+C02\+::nmi}
+
+\Hypertarget{structPpu2C02_a2ef2953f31045c654a2f2deb9d1c3598}\label{structPpu2C02_a2ef2953f31045c654a2f2deb9d1c3598} 
+\index{Ppu2C02@{Ppu2C02}!paletteScreen@{paletteScreen}}
+\index{paletteScreen@{paletteScreen}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{paletteScreen}{paletteScreen}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structColor}{Color}} Ppu2\+C02\+::palette\+Screen\mbox{[}64\mbox{]}}
+
+\Hypertarget{structPpu2C02_ae65538bb0780b10d39bb9c5a4780c075}\label{structPpu2C02_ae65538bb0780b10d39bb9c5a4780c075} 
+\index{Ppu2C02@{Ppu2C02}!paletteTable@{paletteTable}}
+\index{paletteTable@{paletteTable}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{paletteTable}{paletteTable}}
+{\footnotesize\ttfamily uint8\+\_\+t Ppu2\+C02\+::palette\+Table\mbox{[}32\mbox{]}}
+
+\Hypertarget{structPpu2C02_a8d13387bc001ca0185cea3c3bc4f7fb0}\label{structPpu2C02_a8d13387bc001ca0185cea3c3bc4f7fb0} 
+\index{Ppu2C02@{Ppu2C02}!patternTable@{patternTable}}
+\index{patternTable@{patternTable}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{patternTable}{patternTable}}
+{\footnotesize\ttfamily uint8\+\_\+t Ppu2\+C02\+::pattern\+Table\mbox{[}2\mbox{]}\mbox{[}4096\mbox{]}}
+
+\Hypertarget{structPpu2C02_a0e462207db4d3295e1cb1560373b13ed}\label{structPpu2C02_a0e462207db4d3295e1cb1560373b13ed} 
+\index{Ppu2C02@{Ppu2C02}!ppuDataBuffer@{ppuDataBuffer}}
+\index{ppuDataBuffer@{ppuDataBuffer}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{ppuDataBuffer}{ppuDataBuffer}}
+{\footnotesize\ttfamily uint8\+\_\+t Ppu2\+C02\+::ppu\+Data\+Buffer}
+
+\Hypertarget{structPpu2C02_acf09da7d0cdee01f6f0c25775e007160}\label{structPpu2C02_acf09da7d0cdee01f6f0c25775e007160} 
+\index{Ppu2C02@{Ppu2C02}!registers@{registers}}
+\index{registers@{registers}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{registers}{registers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPpuRegisters}{Ppu\+Registers}} Ppu2\+C02\+::registers}
+
+\Hypertarget{structPpu2C02_a5b91d4a38c747a3c860f5530bef198eb}\label{structPpu2C02_a5b91d4a38c747a3c860f5530bef198eb} 
+\index{Ppu2C02@{Ppu2C02}!scanline@{scanline}}
+\index{scanline@{scanline}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{scanline}{scanline}}
+{\footnotesize\ttfamily int Ppu2\+C02\+::scanline}
+
+\Hypertarget{structPpu2C02_accc6190b8962a8dccf6b08c232ceaaa8}\label{structPpu2C02_accc6190b8962a8dccf6b08c232ceaaa8} 
+\index{Ppu2C02@{Ppu2C02}!spriteNameTable@{spriteNameTable}}
+\index{spriteNameTable@{spriteNameTable}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{spriteNameTable}{spriteNameTable}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ppu_8h_a0c5cac9bee7a2b2016f09cd2e67b7ca3}{Sprite}}\texorpdfstring{$\ast$}{*} Ppu2\+C02\+::sprite\+Name\+Table\mbox{[}2\mbox{]}}
+
+\Hypertarget{structPpu2C02_ac002ed84ae702f4709c42fbd45e9c634}\label{structPpu2C02_ac002ed84ae702f4709c42fbd45e9c634} 
+\index{Ppu2C02@{Ppu2C02}!spritePatternTable@{spritePatternTable}}
+\index{spritePatternTable@{spritePatternTable}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{spritePatternTable}{spritePatternTable}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ppu_8h_a0c5cac9bee7a2b2016f09cd2e67b7ca3}{Sprite}}\texorpdfstring{$\ast$}{*} Ppu2\+C02\+::sprite\+Pattern\+Table\mbox{[}2\mbox{]}}
+
+\Hypertarget{structPpu2C02_a2c397fe5db18e773e9dfab5024cbc488}\label{structPpu2C02_a2c397fe5db18e773e9dfab5024cbc488} 
+\index{Ppu2C02@{Ppu2C02}!spriteScreen@{spriteScreen}}
+\index{spriteScreen@{spriteScreen}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{spriteScreen}{spriteScreen}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ppu_8h_a0c5cac9bee7a2b2016f09cd2e67b7ca3}{Sprite}}\texorpdfstring{$\ast$}{*} Ppu2\+C02\+::sprite\+Screen}
+
+\Hypertarget{structPpu2C02_a007c754c11acf82459e5d64d652cd9dc}\label{structPpu2C02_a007c754c11acf82459e5d64d652cd9dc} 
+\index{Ppu2C02@{Ppu2C02}!tramAddr@{tramAddr}}
+\index{tramAddr@{tramAddr}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{tramAddr}{tramAddr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{unionLoopyRegister}{Loopy\+Register}} Ppu2\+C02\+::tram\+Addr}
+
+\Hypertarget{structPpu2C02_a23c52f72d3d4a79f2bbd24b82ae2259b}\label{structPpu2C02_a23c52f72d3d4a79f2bbd24b82ae2259b} 
+\index{Ppu2C02@{Ppu2C02}!vramAddr@{vramAddr}}
+\index{vramAddr@{vramAddr}!Ppu2C02@{Ppu2C02}}
+\doxysubsubsection{\texorpdfstring{vramAddr}{vramAddr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{unionLoopyRegister}{Loopy\+Register}} Ppu2\+C02\+::vram\+Addr}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+nes\+\_\+emu/\mbox{\hyperlink{ppu_8h}{ppu.\+h}}\end{DoxyCompactItemize}

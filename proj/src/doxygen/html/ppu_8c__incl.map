@@ -1,0 +1,16 @@
+<map id="nes_emu/ppu.c" name="nes_emu/ppu.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="85,5,195,31"/>
+<area shape="rect" id="Node000002" href="$ppu_8h.html" title="This file contains the implementation of NES PPU." alt="" coords="113,79,167,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,31,143,63,137,63,137,31"/>
+<area shape="rect" id="Node000003" href="$lcf__mock_8h.html" title=" " alt="" coords="5,225,91,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="113,102,72,120,52,135,37,153,32,167,31,181,38,210,33,212,26,182,27,166,32,151,48,131,69,116,111,97"/>
+<area shape="rect" id="Node000005" href="$cartridge_8h.html" title="This file contains the implementation of the NES cartridge loading, reading and writing." alt="" coords="47,152,129,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="134,106,108,141,104,138,129,103"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="154,152,233,177"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="151,103,177,138,173,141,147,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="257,152,332,177"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="167,102,256,143,254,148,165,107"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="9,299,87,324"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="51,251,51,283,45,283,45,251"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="84,179,65,213,60,210,79,176"/>
+</map>

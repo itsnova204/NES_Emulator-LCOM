@@ -1,0 +1,17 @@
+<map id="drivers/keyboard.c" name="drivers/keyboard.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="78,5,205,31"/>
+<area shape="rect" id="Node000002" href="$keyboard_8h.html" title="This file contains the implementation of the keyboard functions." alt="" coords="98,79,185,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,31,144,63,139,63,139,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="67,299,146,324"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="158,103,186,129,215,166,226,187,233,209,233,231,225,252,212,268,197,281,162,299,159,294,194,276,209,264,220,249,228,230,228,210,221,189,211,169,182,133,154,106"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="145,225,210,251"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="147,104,173,209,168,211,142,105"/>
+<area shape="rect" id="Node000005" href="$i8042_8h.html" title=" " alt="" coords="5,225,69,251"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="121,107,93,127,68,154,53,182,45,211,39,209,48,180,63,150,90,123,118,102"/>
+<area shape="rect" id="Node000006" href="$KBC_8h.html" title="This file contains the implementation of the KBC functions allowing handling of the keyboard and mous..." alt="" coords="77,152,137,177"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="138,106,122,139,117,137,133,103"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="51,249,86,286,83,289,47,253"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="109,178,109,283,104,283,104,178"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="120,176,157,212,153,216,116,180"/>
+<area shape="poly" id="edge9_Node000006_Node000005" title=" " alt="" coords="97,180,61,216,58,212,93,176"/>
+</map>
