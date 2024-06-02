@@ -1,0 +1,112 @@
+\doxysection{keyboard.\+h File Reference}
+\hypertarget{keyboard_8h}{}\label{keyboard_8h}\index{keyboard.h@{keyboard.h}}
+
+
+This file contains the implementation of the keyboard functions.  
+
+
+{\ttfamily \#include $<$lcom/lcf.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}i8042.\+h"{}}\newline
+{\ttfamily \#include "{}KBC.\+h"{}}\newline
+Include dependency graph for keyboard.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{keyboard_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{keyboard_8h_abc8ff8ed43aabe9661e0e21f3d7e6000}{get\+\_\+scancode}} ()
+\begin{DoxyCompactList}\small\item\em Function to get the scan code. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{keyboard_8h_af4d2f059b86d0249fcab31063634aa57}{is\+\_\+valid}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the scancode read on kbc\+\_\+ih is valid. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{keyboard_8h_aa7a491d4d95eab5ca5326c4000ad67f8}{kbd\+\_\+subscribe\+\_\+int}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}bit\+\_\+no)
+\begin{DoxyCompactList}\small\item\em Function to subscribe the keyboard interrupts. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{keyboard_8h_a5bdf6cfb570c375192b0d87913b65c57}{kbd\+\_\+unsubscribe\+\_\+int}} ()
+\begin{DoxyCompactList}\small\item\em Function to unsubscribe the keyboard interrupts. \end{DoxyCompactList}\item 
+\Hypertarget{keyboard_8h_ab9e6ed7960d60aa4834f2038247d4536}\label{keyboard_8h_ab9e6ed7960d60aa4834f2038247d4536} 
+void {\bfseries kbc\+\_\+ih} ()
+\begin{DoxyCompactList}\small\item\em Function to handle the keyboard interrupts. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{keyboard_8h_a6dc0c687594dee80580d775bd9cf7f39}{kbd\+\_\+interrupt\+\_\+enabler}} ()
+\begin{DoxyCompactList}\small\item\em Function to restore the keyboard state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the keyboard functions. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{keyboard_8h_abc8ff8ed43aabe9661e0e21f3d7e6000}\label{keyboard_8h_abc8ff8ed43aabe9661e0e21f3d7e6000} 
+\index{keyboard.h@{keyboard.h}!get\_scancode@{get\_scancode}}
+\index{get\_scancode@{get\_scancode}!keyboard.h@{keyboard.h}}
+\doxysubsubsection{\texorpdfstring{get\_scancode()}{get\_scancode()}}
+{\footnotesize\ttfamily uint8\+\_\+t get\+\_\+scancode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to get the scan code. 
+
+\begin{DoxyReturn}{Returns}
+scan code 
+\end{DoxyReturn}
+\Hypertarget{keyboard_8h_af4d2f059b86d0249fcab31063634aa57}\label{keyboard_8h_af4d2f059b86d0249fcab31063634aa57} 
+\index{keyboard.h@{keyboard.h}!is\_valid@{is\_valid}}
+\index{is\_valid@{is\_valid}!keyboard.h@{keyboard.h}}
+\doxysubsubsection{\texorpdfstring{is\_valid()}{is\_valid()}}
+{\footnotesize\ttfamily bool is\+\_\+valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if the scancode read on kbc\+\_\+ih is valid. 
+
+\begin{DoxyReturn}{Returns}
+True if the scancode is valid, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{keyboard_8h_a6dc0c687594dee80580d775bd9cf7f39}\label{keyboard_8h_a6dc0c687594dee80580d775bd9cf7f39} 
+\index{keyboard.h@{keyboard.h}!kbd\_interrupt\_enabler@{kbd\_interrupt\_enabler}}
+\index{kbd\_interrupt\_enabler@{kbd\_interrupt\_enabler}!keyboard.h@{keyboard.h}}
+\doxysubsubsection{\texorpdfstring{kbd\_interrupt\_enabler()}{kbd\_interrupt\_enabler()}}
+{\footnotesize\ttfamily int kbd\+\_\+interrupt\+\_\+enabler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to restore the keyboard state. 
+
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+\Hypertarget{keyboard_8h_aa7a491d4d95eab5ca5326c4000ad67f8}\label{keyboard_8h_aa7a491d4d95eab5ca5326c4000ad67f8} 
+\index{keyboard.h@{keyboard.h}!kbd\_subscribe\_int@{kbd\_subscribe\_int}}
+\index{kbd\_subscribe\_int@{kbd\_subscribe\_int}!keyboard.h@{keyboard.h}}
+\doxysubsubsection{\texorpdfstring{kbd\_subscribe\_int()}{kbd\_subscribe\_int()}}
+{\footnotesize\ttfamily int kbd\+\_\+subscribe\+\_\+int (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{bit\+\_\+no }\end{DoxyParamCaption})}
+
+
+
+Function to subscribe the keyboard interrupts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit\+\_\+no} & pointer to the variable to store the bit number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+\Hypertarget{keyboard_8h_a5bdf6cfb570c375192b0d87913b65c57}\label{keyboard_8h_a5bdf6cfb570c375192b0d87913b65c57} 
+\index{keyboard.h@{keyboard.h}!kbd\_unsubscribe\_int@{kbd\_unsubscribe\_int}}
+\index{kbd\_unsubscribe\_int@{kbd\_unsubscribe\_int}!keyboard.h@{keyboard.h}}
+\doxysubsubsection{\texorpdfstring{kbd\_unsubscribe\_int()}{kbd\_unsubscribe\_int()}}
+{\footnotesize\ttfamily int kbd\+\_\+unsubscribe\+\_\+int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to unsubscribe the keyboard interrupts. 
+
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
