@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
 
   //Sem comentario fica lento
   //lcf_trace_calls("/home/lcom/labs/proj/trace.txt");
-  //lcf_log_output("/home/lcom/labs/proj/output.txt");
+  lcf_log_output("/home/lcom/labs/proj/output.txt");
 
   // handles control over to LCF
   // [LCF handles command line arguments and invokes the right function]
@@ -321,6 +321,36 @@ int (proj_main_loop)() {
                         if(selected_option == 2){
                             if(!emulator_running){
                             char* cart_filePath = "/home/lcom/labs/proj/roms/DonkeyKong.nes";
+                            if (access(cart_filePath, F_OK) == 0) {
+                            printf("Rom found!\n");
+                            } else {
+                              printf("Rom not found!\n");
+                              break;
+                            }
+
+                            printf("Starting NES emulator\n");
+                            if(bus_init(cart_filePath)) return 1;
+                            emulator_running = true;
+                          }
+                        }
+                        if (selected_option == 3){
+                            if(!emulator_running){
+                            char* cart_filePath = "/home/lcom/labs/proj/roms/mspacman.nes";
+                            if (access(cart_filePath, F_OK) == 0) {
+                            printf("Rom found!\n");
+                            } else {
+                              printf("Rom not found!\n");
+                              break;
+                            }
+
+                            printf("Starting NES emulator\n");
+                            if(bus_init(cart_filePath)) return 1;
+                            emulator_running = true;
+                          }
+                        }
+                        if (selected_option == 4){
+                            if(!emulator_running){
+                            char* cart_filePath = "/home/lcom/labs/proj/roms/BattleCity.nes";
                             if (access(cart_filePath, F_OK) == 0) {
                             printf("Rom found!\n");
                             } else {
