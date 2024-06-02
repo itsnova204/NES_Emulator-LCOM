@@ -26,6 +26,8 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[16].name = SUPER_MARIO;
     images[17].name = SOCCER;
     images[18].name = DONKEY_KONG;
+    images[19].name = MSPACMAN;
+    images[20].name = BATTLECITY;
 
     images[0].map = xpm_load(zero, XPM_TYPE_MENU, &images[0].image);
     images[1].map = xpm_load(one, XPM_TYPE_MENU, &images[1].image);
@@ -46,6 +48,8 @@ void (preloadSprites)(uint16_t vg_mode) {
     images[16].map = xpm_load(super_mario, XPM_TYPE_MENU, &images[16].image);
     images[17].map = xpm_load(soccer, XPM_TYPE_MENU, &images[17].image);
     images[18].map = xpm_load(donkey_kong, XPM_TYPE_MENU, &images[18].image);
+    images[19].map = xpm_load(mspacman, XPM_TYPE_MENU, &images[19].image);
+    images[20].map = xpm_load(battle_city, XPM_TYPE_MENU, &images[20].image);
 
 }
 
@@ -131,7 +135,7 @@ int (draw_date)(int day, int month, int year, int hour, int minutes, uint16_t x,
     return 0;
 }
 
-int (draw_options)(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int* selected_option) {
+int (draw_options)(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int* selected_option, int page) {
 
     *selected_option = -1;
 
@@ -146,23 +150,39 @@ int (draw_options)(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int* selected
     };
 
     for (int i = 0; i < 3; i++) {
+        ImageName sprite;
 
-        switch (i) {
-            case 0:
-                if (draw_sprite(SUPER_MARIO, option_x_positions[i], y) != 0){
-                    printf("draw_sprite() failed\n");
-                };
-                break;
-            case 1:
-                if (draw_sprite(SOCCER, option_x_positions[i], y) != 0){
-                    printf("draw_sprite() failed\n");
-                };
-                break;
-            case 2:
-                if (draw_sprite(DONKEY_KONG, option_x_positions[i], y) != 0){
-                    printf("draw_sprite() failed\n");
-                };
-                break;
+        if (page == 0) {
+            switch (i) {
+                case 0:
+                    sprite = SUPER_MARIO;
+                    break;
+                case 1:
+                    sprite = SOCCER;
+                    break;
+                case 2:
+                    sprite = DONKEY_KONG;
+                    break;
+            }
+        } else if (page == 1) {
+            switch (i) {
+                case 0:
+                    sprite = MSPACMAN;
+                    break;
+                case 1:
+                    sprite = BATTLECITY;
+                    break;
+                case 2:
+                    sprite = DEFAULT_GAME;
+                    break;
+            }
+        } else {
+            sprite = DEFAULT_GAME;
+        }
+        // add more pages if necessary
+
+        if (draw_sprite(sprite, option_x_positions[i], y) != 0) {
+            return 1;
         }
 
         if (x_mouse >= option_x_positions[i] && x_mouse <= option_x_positions[i] + OPTION_WIDTH &&
@@ -172,7 +192,7 @@ int (draw_options)(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int* selected
                 return 1;
             }
 
-            *selected_option = i;
+            *selected_option = i + page * 3;
 
         }
         

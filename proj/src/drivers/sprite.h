@@ -15,7 +15,7 @@
 #ifndef _LCOM_SPRITE_H_
 #define _LCOM_SPRITE_H_
 
-#define NUM_IMAGES 19
+#define NUM_IMAGES 21
 #define XPM_TYPE_MENU XPM_8_8_8_8
 #define OPTION_WIDTH 300
 #define OPTION_HEIGHT 419
@@ -24,7 +24,7 @@
  * @brief Enumerates the different images that can be drawn
 */
 typedef enum {
-    ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, MENU, COLON, SLASH, CURSOR, CURSOR_SELECTED, DEFAULT_GAME, SUPER_MARIO, SOCCER, DONKEY_KONG
+    ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, MENU, COLON, SLASH, CURSOR, CURSOR_SELECTED, DEFAULT_GAME, SUPER_MARIO, SOCCER, DONKEY_KONG, MSPACMAN, BATTLECITY
 } ImageName;
 
 /**
@@ -87,9 +87,10 @@ int (draw_date)(int day, int month, int year, int hour, int minutes, uint16_t x,
  * @param x_mouse X coordinate of the mouse
  * @param y_mouse Y coordinate of the mouse
  * @param selected_option Pointer to the variable that will store the selected option, value will be -1 if no option is selected
+ * @param page Menu page of the options to draw
  * @return 0 if successful, non 0 otherwise
 */
-int (draw_options)(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int* selected_option);
+int (draw_options)(uint16_t y, uint16_t x_mouse, uint16_t y_mouse, int* selected_option, int page);
 
 
 #endif

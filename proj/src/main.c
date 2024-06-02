@@ -20,7 +20,7 @@ int get_counter();
 uint8_t scancode = 0;
 
 #define KEYBOARD_CTRLER 0
-#define SERIAL_CTRLER   0
+#define SERIAL_CTRLER   1
 #define PORT 1
 
 #define FPS 30
@@ -46,6 +46,10 @@ uint8_t scancode = 0;
 #define MAKE_X 0x2D
 #define BREAK_X 0xAD
 
+
+#define NUM_GAMES 4
+
+
 int main(int argc, char *argv[]) {
   // sets the language of LCF messages (can be either EN-US or PT-PT)
   lcf_set_language("EN-US");
@@ -53,7 +57,7 @@ int main(int argc, char *argv[]) {
 
   //Sem comentario fica lento
   //lcf_trace_calls("/home/lcom/labs/proj/trace.txt");
-  //lcf_log_output("/home/lcom/labs/proj/output.txt");
+  lcf_log_output("/home/lcom/labs/proj/output.txt");
 
   // handles control over to LCF
   // [LCF handles command line arguments and invokes the right function]
@@ -72,6 +76,8 @@ uint8_t irq_set_timer, irq_set_kbd, irq_set_mouse, irq_set_uart;
 bool is_second_scancode = false;
 
 bool uart_enabled = true;
+
+int current_menu_page = 0;
 
 int (proj_main_loop)() {
   uint16_t mode = VBE_MODE_DC_32;
@@ -117,9 +123,6 @@ int (proj_main_loop)() {
   if(mouse_write_command(ENABLE_DATA_REPORT) != 0) return 1;
   if(mouse_subscribe_int(&irq_set_mouse) != 0) return 1;
   
-  
-
-
   if (timer_set_frequency(0, 60) != 0) return 1;   
 
   rtc_read_date();
@@ -186,6 +189,16 @@ int (proj_main_loop)() {
                         }
                     }else{
                       if(scancode == KBD_ESC_BREAK_CODE) break;
+
+                      if (scancode == 0x4d) { // right arrow
+                          if (current_menu_page < (NUM_GAMES - 1) / 3) current_menu_page++;
+                      }
+
+                      else if (scancode == 0x4b) { // left arrow
+                          if (current_menu_page > 0) current_menu_page--;
+                      }
+
+
                     }
                     
                       
@@ -220,11 +233,16 @@ int (proj_main_loop)() {
 
 
                         // DRAW GAME OPTIONS
-                        if (draw_options(250, mouse_x, mouse_y, &selected_option) != 0) return 1;
+                        if (draw_options(250, mouse_x, mouse_y, &selected_option, current_menu_page) != 0) return 1;
 
 
                         // DRAW MOUSE CURSOR
-                        if (draw_sprite(CURSOR, mouse_x, mouse_y) != 0) return 1;
+                        if (selected_option != -1) {
+                          if (draw_sprite(CURSOR_SELECTED, mouse_x, mouse_y) != 0) return 1;
+                        } else {
+                          if (draw_sprite(CURSOR, mouse_x, mouse_y) != 0) return 1;
+                        }
+                        
 
                         swap_buffers();
                       }
@@ -312,6 +330,36 @@ int (proj_main_loop)() {
                             emulator_running = true;
                           }
                         }
+                        if (selected_option == 3){
+                            if(!emulator_running){
+                            char* cart_filePath = "/home/lcom/labs/proj/roms/mspacman.nes";
+                            if (access(cart_filePath, F_OK) == 0) {
+                            printf("Rom found!\n");
+                            } else {
+                              printf("Rom not found!\n");
+                              break;
+                            }
+
+                            printf("Starting NES emulator\n");
+                            if(bus_init(cart_filePath)) return 1;
+                            emulator_running = true;
+                          }
+                        }
+                        if (selected_option == 4){
+                            if(!emulator_running){
+                            char* cart_filePath = "/home/lcom/labs/proj/roms/BattleCity.nes";
+                            if (access(cart_filePath, F_OK) == 0) {
+                            printf("Rom found!\n");
+                            } else {
+                              printf("Rom not found!\n");
+                              break;
+                            }
+
+                            printf("Starting NES emulator\n");
+                            if(bus_init(cart_filePath)) return 1;
+                            emulator_running = true;
+                          }
+                        }
                       }
                     }
                   }
@@ -323,19 +371,20 @@ int (proj_main_loop)() {
   }
 
 
-  if(uart_enabled){
-    uart_set_IER(PORT,0);
-  }
 
-  if (bus_exit() != 0){
-    printf("bus_exit() failed\n");
-  };
+
+  printf("Exiting...\n");
+
   if (vg_exit() != 0) return 1;
   if (kbd_unsubscribe_int() != 0) return 1;
   if (mouse_unsubscribe_int() != 0) return 1;
   if (mouse_write_command(DISABLE_DATA_REPORT) != 0) return 1;
   if (timer_unsubscribe_int() != 0) return 1;
-  if(uart_unsubscribe_int(PORT)) return 1;
+
+  if(uart_enabled){
+    uart_set_IER(PORT,0);
+    if(uart_unsubscribe_int(PORT))return 1;
+  }
 
   return 0;
 }
