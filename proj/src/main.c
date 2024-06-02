@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
 uint8_t irq_set_timer, irq_set_kbd, irq_set_mouse, irq_set_uart;
 bool is_second_scancode = false;
 
-bool uart_enabled = false;
+bool uart_enabled = true;
 
 int current_menu_page = 0;
 
