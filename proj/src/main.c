@@ -138,6 +138,9 @@ int (proj_main_loop)(int argc, char *argv[]) {
     }
   }
 */
+  if (set_frame_buffer(mode_emulator) != 0) return 1;
+  if (set_graphic_mode(mode_emulator) != 0) return 1;
+
   vbe_mode_info_t vbe_info = get_vbe_mode_info();
   int x_offset = vbe_info.XResolution / 2 - 128*scale;
   int y_offset = vbe_info.YResolution / 2 - 120*scale;
