@@ -1,0 +1,11 @@
+<map id="cpuBus_readPPU" name="cpuBus_readPPU">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,131,56"/>
+<area shape="rect" id="Node000002" href="$ppu_8c.html#ad8acc013edad2c1a0391b38c3059771a" title=" " alt="" coords="179,31,277,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,41,163,41,163,46,131,46"/>
+<area shape="rect" id="Node000003" href="$cartridge_8c.html#a7c1ed30dc9eb54d745678b62c1a148f5" title=" " alt="" coords="325,5,467,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="277,33,310,28,310,34,278,39"/>
+<area shape="rect" id="Node000004" href="$cartridge_8c.html#a188528781745a3287c57e8f64714ddc8" title=" " alt="" coords="330,55,462,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="278,48,315,53,314,58,277,53"/>
+<area shape="rect" id="Node000005" href="$mapper_8c.html#ae8c091b689d3adb550f8070c774f929b" title=" " alt="" coords="515,55,612,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="462,65,499,65,499,70,462,70"/>
+</map>

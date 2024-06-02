@@ -1,0 +1,171 @@
+\doxysection{drivers/keyboard.c File Reference}
+\hypertarget{keyboard_8c}{}\label{keyboard_8c}\index{drivers/keyboard.c@{drivers/keyboard.c}}
+{\ttfamily \#include "{}keyboard.\+h"{}}\newline
+Include dependency graph for keyboard.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{keyboard_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{keyboard_8c_abc8ff8ed43aabe9661e0e21f3d7e6000}{get\+\_\+scancode}} ()
+\begin{DoxyCompactList}\small\item\em Function to get the scan code. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{keyboard_8c_af4d2f059b86d0249fcab31063634aa57}{is\+\_\+valid}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the scancode read on kbc\+\_\+ih is valid. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{keyboard_8c_aa7a491d4d95eab5ca5326c4000ad67f8}{kbd\+\_\+subscribe\+\_\+int}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}bit\+\_\+no)
+\begin{DoxyCompactList}\small\item\em Function to subscribe the keyboard interrupts. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{keyboard_8c_a5bdf6cfb570c375192b0d87913b65c57}{kbd\+\_\+unsubscribe\+\_\+int}} ()
+\begin{DoxyCompactList}\small\item\em Function to unsubscribe the keyboard interrupts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{keyboard_8c_ab9e6ed7960d60aa4834f2038247d4536}{kbc\+\_\+ih}} ()
+\begin{DoxyCompactList}\small\item\em Function to handle the keyboard interrupts. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{keyboard_8c_a6dc0c687594dee80580d775bd9cf7f39}{kbd\+\_\+interrupt\+\_\+enabler}} ()
+\begin{DoxyCompactList}\small\item\em Function to restore the keyboard state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{keyboard_8c_a74708534432e98d4ab30ba40e2e5dcc3}{kbd\+\_\+hook\+\_\+id}} = 1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{keyboard_8c_abc8ff8ed43aabe9661e0e21f3d7e6000}\label{keyboard_8c_abc8ff8ed43aabe9661e0e21f3d7e6000} 
+\index{keyboard.c@{keyboard.c}!get\_scancode@{get\_scancode}}
+\index{get\_scancode@{get\_scancode}!keyboard.c@{keyboard.c}}
+\doxysubsubsection{\texorpdfstring{get\_scancode()}{get\_scancode()}}
+{\footnotesize\ttfamily uint8\+\_\+t get\+\_\+scancode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to get the scan code. 
+
+\begin{DoxyReturn}{Returns}
+scan code 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{keyboard_8c_abc8ff8ed43aabe9661e0e21f3d7e6000_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{keyboard_8c_af4d2f059b86d0249fcab31063634aa57}\label{keyboard_8c_af4d2f059b86d0249fcab31063634aa57} 
+\index{keyboard.c@{keyboard.c}!is\_valid@{is\_valid}}
+\index{is\_valid@{is\_valid}!keyboard.c@{keyboard.c}}
+\doxysubsubsection{\texorpdfstring{is\_valid()}{is\_valid()}}
+{\footnotesize\ttfamily bool is\+\_\+valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if the scancode read on kbc\+\_\+ih is valid. 
+
+\begin{DoxyReturn}{Returns}
+True if the scancode is valid, false otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{keyboard_8c_af4d2f059b86d0249fcab31063634aa57_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{keyboard_8c_ab9e6ed7960d60aa4834f2038247d4536}\label{keyboard_8c_ab9e6ed7960d60aa4834f2038247d4536} 
+\index{keyboard.c@{keyboard.c}!kbc\_ih@{kbc\_ih}}
+\index{kbc\_ih@{kbc\_ih}!keyboard.c@{keyboard.c}}
+\doxysubsubsection{\texorpdfstring{kbc\_ih()}{kbc\_ih()}}
+{\footnotesize\ttfamily void kbc\+\_\+ih (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to handle the keyboard interrupts. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{keyboard_8c_ab9e6ed7960d60aa4834f2038247d4536_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{keyboard_8c_ab9e6ed7960d60aa4834f2038247d4536_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{keyboard_8c_a6dc0c687594dee80580d775bd9cf7f39}\label{keyboard_8c_a6dc0c687594dee80580d775bd9cf7f39} 
+\index{keyboard.c@{keyboard.c}!kbd\_interrupt\_enabler@{kbd\_interrupt\_enabler}}
+\index{kbd\_interrupt\_enabler@{kbd\_interrupt\_enabler}!keyboard.c@{keyboard.c}}
+\doxysubsubsection{\texorpdfstring{kbd\_interrupt\_enabler()}{kbd\_interrupt\_enabler()}}
+{\footnotesize\ttfamily int kbd\+\_\+interrupt\+\_\+enabler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to restore the keyboard state. 
+
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{keyboard_8c_a6dc0c687594dee80580d775bd9cf7f39_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{keyboard_8c_aa7a491d4d95eab5ca5326c4000ad67f8}\label{keyboard_8c_aa7a491d4d95eab5ca5326c4000ad67f8} 
+\index{keyboard.c@{keyboard.c}!kbd\_subscribe\_int@{kbd\_subscribe\_int}}
+\index{kbd\_subscribe\_int@{kbd\_subscribe\_int}!keyboard.c@{keyboard.c}}
+\doxysubsubsection{\texorpdfstring{kbd\_subscribe\_int()}{kbd\_subscribe\_int()}}
+{\footnotesize\ttfamily int kbd\+\_\+subscribe\+\_\+int (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{bit\+\_\+no }\end{DoxyParamCaption})}
+
+
+
+Function to subscribe the keyboard interrupts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit\+\_\+no} & pointer to the variable to store the bit number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{keyboard_8c_aa7a491d4d95eab5ca5326c4000ad67f8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{keyboard_8c_a5bdf6cfb570c375192b0d87913b65c57}\label{keyboard_8c_a5bdf6cfb570c375192b0d87913b65c57} 
+\index{keyboard.c@{keyboard.c}!kbd\_unsubscribe\_int@{kbd\_unsubscribe\_int}}
+\index{kbd\_unsubscribe\_int@{kbd\_unsubscribe\_int}!keyboard.c@{keyboard.c}}
+\doxysubsubsection{\texorpdfstring{kbd\_unsubscribe\_int()}{kbd\_unsubscribe\_int()}}
+{\footnotesize\ttfamily int kbd\+\_\+unsubscribe\+\_\+int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to unsubscribe the keyboard interrupts. 
+
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{keyboard_8c_a5bdf6cfb570c375192b0d87913b65c57_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{keyboard_8c_a74708534432e98d4ab30ba40e2e5dcc3}\label{keyboard_8c_a74708534432e98d4ab30ba40e2e5dcc3} 
+\index{keyboard.c@{keyboard.c}!kbd\_hook\_id@{kbd\_hook\_id}}
+\index{kbd\_hook\_id@{kbd\_hook\_id}!keyboard.c@{keyboard.c}}
+\doxysubsubsection{\texorpdfstring{kbd\_hook\_id}{kbd\_hook\_id}}
+{\footnotesize\ttfamily int kbd\+\_\+hook\+\_\+id = 1}
+

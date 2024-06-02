@@ -1,0 +1,7 @@
+<map id="nes_emu/controller.h" name="nes_emu/controller.h">
+<area shape="rect" id="Node000001" title="This file contains an API to interact with the NES controller regs." alt="" coords="5,5,148,31"/>
+<area shape="rect" id="Node000002" href="$lcf__mock_8h.html" title=" " alt="" coords="34,79,119,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,31,79,63,74,63,74,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="37,152,116,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="79,104,79,136,74,136,74,104"/>
+</map>

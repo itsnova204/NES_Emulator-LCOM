@@ -1,0 +1,7 @@
+<map id="is_two_byte_scancode" name="is_two_byte_scancode">
+<area shape="rect" id="Node000001" title="Function to check if the scan code is single byte or double byte." alt="" coords="164,31,319,56"/>
+<area shape="rect" id="Node000002" href="$KBC_8c.html#a963d228c66a5cc12d6f31267fd449f77" title="Function to print the scan code, mainly used for debugging." alt="" coords="5,5,116,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,33,116,28,117,23,149,28"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a7a72220d8366dd84709e79ce415862e5" title=" " alt="" coords="6,55,115,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,58,116,63,116,57,148,53"/>
+</map>

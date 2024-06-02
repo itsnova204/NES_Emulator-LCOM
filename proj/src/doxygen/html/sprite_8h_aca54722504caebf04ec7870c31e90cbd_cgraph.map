@@ -1,0 +1,11 @@
+<map id="draw_date" name="draw_date">
+<area shape="rect" id="Node000001" title="Draws the date and time on the screen at the given coordinates with the format &quot;dd/mm/yyyy hh:mm&quot;." alt="" coords="5,31,87,56"/>
+<area shape="rect" id="Node000002" href="$sprite_8c.html#afb64020b53c3c4dc80e836c6c08559d7" title="Draws a sprite on the screen." alt="" coords="135,31,223,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,41,119,41,119,46,87,46"/>
+<area shape="rect" id="Node000003" href="$sprite_8c.html#a1c93a3f23db18fca4a42fb1177992fc0" title="Returns the xpm data of a given image name." alt="" coords="271,5,375,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="223,33,255,27,256,32,224,38"/>
+<area shape="rect" id="Node000004" href="$graphics_8c.html#a7ba2739a9936a380d7b6a44a7336ab90" title="Draws a xpm image on the screen." alt="" coords="273,55,373,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="224,48,258,54,257,59,223,53"/>
+<area shape="rect" id="Node000005" href="$graphics_8c.html#a6f895de9725f9f231f9a7f74b6087f60" title="Draws a pixel on the screen." alt="" coords="423,55,525,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="373,65,407,65,407,70,373,70"/>
+</map>

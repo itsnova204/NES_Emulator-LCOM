@@ -1,0 +1,7 @@
+<map id="setBaud" name="setBaud">
+<area shape="rect" id="Node000001" title="Sets the baud rate of the uart." alt="" coords="279,5,349,31"/>
+<area shape="rect" id="Node000002" href="$uart_8c.html#a83e7f5ec4152bfb560bd263fe2c05bf9" title="Initializes the uart." alt="" coords="163,5,231,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="263,21,231,21,231,15,263,15"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a7a72220d8366dd84709e79ce415862e5" title=" " alt="" coords="5,5,115,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="147,21,115,21,115,15,147,15"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="nes_emu/controller.h" name="nes_emu/controller.h">
+<area shape="rect" id="Node000001" title="This file contains an API to interact with the NES controller regs." alt="" coords="75,5,218,31"/>
+<area shape="rect" id="Node000002" href="$main_8c.html" title=" " alt="" coords="5,79,67,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,42,56,80,53,76,114,37"/>
+<area shape="rect" id="Node000003" href="$bus_8c.html" title=" " alt="" coords="91,79,202,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,46,149,78,144,78,144,46"/>
+<area shape="rect" id="Node000004" href="$controller_8c.html" title=" " alt="" coords="226,79,369,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="187,35,273,76,271,81,185,40"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="uart_send_byte" name="uart_send_byte">
+<area shape="rect" id="Node000001" title="Sends a byte through the uart." alt="" coords="5,5,116,31"/>
+<area shape="rect" id="Node000002" href="$uart_8c.html#a3664ba594ebb5ec6581bb3753d37c799" title="Write the LSR register to." alt="" coords="164,5,303,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,15,149,15,149,21,116,21"/>
+<area shape="rect" id="Node000003" href="$utils_8c.html#a2b56f50ba159e9d5115ed1a75eff15d9" title=" " alt="" coords="351,5,441,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="303,15,335,15,335,21,303,21"/>
+</map>

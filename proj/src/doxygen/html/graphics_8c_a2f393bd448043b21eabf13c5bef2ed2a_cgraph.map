@@ -1,0 +1,7 @@
+<map id="vg_draw_rectangle_from_bottom_left_corner" name="vg_draw_rectangle_from_bottom_left_corner">
+<area shape="rect" id="Node000001" title="Draws a rectangle on the screen from the bottom left corner." alt="" coords="5,5,165,45"/>
+<area shape="rect" id="Node000002" href="$graphics_8c.html#adb08b276272848bc7f3bccc0f5e770c8" title=" " alt="" coords="213,13,316,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,23,197,23,197,28,166,28"/>
+<area shape="rect" id="Node000003" href="$graphics_8c.html#a6f895de9725f9f231f9a7f74b6087f60" title="Draws a pixel on the screen." alt="" coords="364,13,467,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="317,23,349,23,349,28,317,28"/>
+</map>

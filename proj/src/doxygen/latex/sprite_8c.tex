@@ -1,0 +1,244 @@
+\doxysection{drivers/sprite.c File Reference}
+\hypertarget{sprite_8c}{}\label{sprite_8c}\index{drivers/sprite.c@{drivers/sprite.c}}
+{\ttfamily \#include "{}sprite.\+h"{}}\newline
+Include dependency graph for sprite.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sprite_8c_ae520a424499f5ba6c335eaa9768db0bd}{preload\+Sprites}} (uint16\+\_\+t vg\+\_\+mode)
+\begin{DoxyCompactList}\small\item\em Preloads all the sprites (xpm images) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structXpmData}{Xpm\+Data}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{sprite_8c_a1c93a3f23db18fca4a42fb1177992fc0}{get\+\_\+xpm\+\_\+data}} (\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}} name)
+\begin{DoxyCompactList}\small\item\em Returns the xpm data of a given image name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8c_afb64020b53c3c4dc80e836c6c08559d7}{draw\+\_\+sprite}} (\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}} name, uint16\+\_\+t x, uint16\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Draws a sprite on the screen. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8c_a1257b9fa59e90e8e1bb7fe8265065d33}{draw\+\_\+sprint\+\_\+from\+\_\+bottom\+\_\+left}} (\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}} name, uint16\+\_\+t x, uint16\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Draws a sprite on the screen from the bottom left corner. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8c_aca54722504caebf04ec7870c31e90cbd}{draw\+\_\+date}} (int day, int month, int year, int hour, int minutes, uint16\+\_\+t x, uint16\+\_\+t y, bool with\+\_\+colon)
+\begin{DoxyCompactList}\small\item\em Draws the date and time on the screen at the given coordinates with the format "{}dd/mm/yyyy hh\+:mm"{}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sprite_8c_a50051589f1bb707afbf8a65cb7a1f35c}{draw\+\_\+options}} (uint16\+\_\+t y, uint16\+\_\+t x\+\_\+mouse, uint16\+\_\+t y\+\_\+mouse, int \texorpdfstring{$\ast$}{*}selected\+\_\+option, int page)
+\begin{DoxyCompactList}\small\item\em Draws the game options thumbnails on the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structXpmData}{Xpm\+Data}} \mbox{\hyperlink{sprite_8c_ae4bd41a4c2caa6d3db7c83fb6b76959f}{images}} \mbox{[}\mbox{\hyperlink{sprite_8h_a9cb64526659b4bebea0d36565debb187}{NUM\+\_\+\+IMAGES}}\mbox{]}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{sprite_8c_af294e94ca5176720ef5e5cbedc95ca47}{mode}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{sprite_8c_aca54722504caebf04ec7870c31e90cbd}\label{sprite_8c_aca54722504caebf04ec7870c31e90cbd} 
+\index{sprite.c@{sprite.c}!draw\_date@{draw\_date}}
+\index{draw\_date@{draw\_date}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{draw\_date()}{draw\_date()}}
+{\footnotesize\ttfamily int draw\+\_\+date (\begin{DoxyParamCaption}\item[{int}]{day,  }\item[{int}]{month,  }\item[{int}]{year,  }\item[{int}]{hour,  }\item[{int}]{minutes,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y,  }\item[{bool}]{with\+\_\+colon }\end{DoxyParamCaption})}
+
+
+
+Draws the date and time on the screen at the given coordinates with the format "{}dd/mm/yyyy hh\+:mm"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em day} & Day of the month \\
+\hline
+{\em month} & Month of the year \\
+\hline
+{\em year} & Year \\
+\hline
+{\em hour} & Hour of the day \\
+\hline
+{\em minutes} & Minutes of the hour \\
+\hline
+{\em x} & X coordinate of the date \\
+\hline
+{\em y} & Y coordinate of the date \\
+\hline
+{\em with\+\_\+colon} & If true, the colon between the hours and minutes will be drawn. This parameter is to be able to have the blinking effect of the colon \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8c_aca54722504caebf04ec7870c31e90cbd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{sprite_8c_aca54722504caebf04ec7870c31e90cbd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sprite_8c_a50051589f1bb707afbf8a65cb7a1f35c}\label{sprite_8c_a50051589f1bb707afbf8a65cb7a1f35c} 
+\index{sprite.c@{sprite.c}!draw\_options@{draw\_options}}
+\index{draw\_options@{draw\_options}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{draw\_options()}{draw\_options()}}
+{\footnotesize\ttfamily int draw\+\_\+options (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{y,  }\item[{uint16\+\_\+t}]{x\+\_\+mouse,  }\item[{uint16\+\_\+t}]{y\+\_\+mouse,  }\item[{int \texorpdfstring{$\ast$}{*}}]{selected\+\_\+option,  }\item[{int}]{page }\end{DoxyParamCaption})}
+
+
+
+Draws the game options thumbnails on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y} & Y coordinate of the options \\
+\hline
+{\em x\+\_\+mouse} & X coordinate of the mouse \\
+\hline
+{\em y\+\_\+mouse} & Y coordinate of the mouse \\
+\hline
+{\em selected\+\_\+option} & Pointer to the variable that will store the selected option, value will be -\/1 if no option is selected \\
+\hline
+{\em page} & Menu page of the options to draw \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8c_a50051589f1bb707afbf8a65cb7a1f35c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{sprite_8c_a50051589f1bb707afbf8a65cb7a1f35c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sprite_8c_a1257b9fa59e90e8e1bb7fe8265065d33}\label{sprite_8c_a1257b9fa59e90e8e1bb7fe8265065d33} 
+\index{sprite.c@{sprite.c}!draw\_sprint\_from\_bottom\_left@{draw\_sprint\_from\_bottom\_left}}
+\index{draw\_sprint\_from\_bottom\_left@{draw\_sprint\_from\_bottom\_left}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{draw\_sprint\_from\_bottom\_left()}{draw\_sprint\_from\_bottom\_left()}}
+{\footnotesize\ttfamily int draw\+\_\+sprint\+\_\+from\+\_\+bottom\+\_\+left (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}}}]{name,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+Draws a sprite on the screen from the bottom left corner. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the image to draw \\
+\hline
+{\em x} & X coordinate of the image \\
+\hline
+{\em y} & Y coordinate of the image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8c_a1257b9fa59e90e8e1bb7fe8265065d33_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sprite_8c_afb64020b53c3c4dc80e836c6c08559d7}\label{sprite_8c_afb64020b53c3c4dc80e836c6c08559d7} 
+\index{sprite.c@{sprite.c}!draw\_sprite@{draw\_sprite}}
+\index{draw\_sprite@{draw\_sprite}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{draw\_sprite()}{draw\_sprite()}}
+{\footnotesize\ttfamily int draw\+\_\+sprite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}}}]{name,  }\item[{uint16\+\_\+t}]{x,  }\item[{uint16\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+Draws a sprite on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the image to draw \\
+\hline
+{\em x} & X coordinate of the image \\
+\hline
+{\em y} & Y coordinate of the image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, non 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8c_afb64020b53c3c4dc80e836c6c08559d7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8c_afb64020b53c3c4dc80e836c6c08559d7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sprite_8c_a1c93a3f23db18fca4a42fb1177992fc0}\label{sprite_8c_a1c93a3f23db18fca4a42fb1177992fc0} 
+\index{sprite.c@{sprite.c}!get\_xpm\_data@{get\_xpm\_data}}
+\index{get\_xpm\_data@{get\_xpm\_data}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{get\_xpm\_data()}{get\_xpm\_data()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structXpmData}{Xpm\+Data}} \texorpdfstring{$\ast$}{*} get\+\_\+xpm\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sprite_8h_af9361b398b5cfcafbe93f82e8eaeb080}{Image\+Name}}}]{name }\end{DoxyParamCaption})}
+
+
+
+Returns the xpm data of a given image name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the xpm data of the image, NULL if the image is not found 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sprite_8c_a1c93a3f23db18fca4a42fb1177992fc0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sprite_8c_ae520a424499f5ba6c335eaa9768db0bd}\label{sprite_8c_ae520a424499f5ba6c335eaa9768db0bd} 
+\index{sprite.c@{sprite.c}!preloadSprites@{preloadSprites}}
+\index{preloadSprites@{preloadSprites}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{preloadSprites()}{preloadSprites()}}
+{\footnotesize\ttfamily void preload\+Sprites (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{vg\+\_\+mode }\end{DoxyParamCaption})}
+
+
+
+Preloads all the sprites (xpm images) 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{sprite_8c_ae520a424499f5ba6c335eaa9768db0bd_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{sprite_8c_ae4bd41a4c2caa6d3db7c83fb6b76959f}\label{sprite_8c_ae4bd41a4c2caa6d3db7c83fb6b76959f} 
+\index{sprite.c@{sprite.c}!images@{images}}
+\index{images@{images}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{images}{images}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structXpmData}{Xpm\+Data}} images\mbox{[}\mbox{\hyperlink{sprite_8h_a9cb64526659b4bebea0d36565debb187}{NUM\+\_\+\+IMAGES}}\mbox{]}}
+
+\Hypertarget{sprite_8c_af294e94ca5176720ef5e5cbedc95ca47}\label{sprite_8c_af294e94ca5176720ef5e5cbedc95ca47} 
+\index{sprite.c@{sprite.c}!mode@{mode}}
+\index{mode@{mode}!sprite.c@{sprite.c}}
+\doxysubsubsection{\texorpdfstring{mode}{mode}}
+{\footnotesize\ttfamily uint16\+\_\+t mode}
+

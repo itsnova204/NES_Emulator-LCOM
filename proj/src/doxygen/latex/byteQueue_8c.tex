@@ -1,0 +1,231 @@
+\doxysection{drivers/byte\+Queue.c File Reference}
+\hypertarget{byteQueue_8c}{}\label{byteQueue_8c}\index{drivers/byteQueue.c@{drivers/byteQueue.c}}
+{\ttfamily \#include "{}byte\+Queue.\+h"{}}\newline
+Include dependency graph for byte\+Queue.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{byteQueue_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{byteQueue_8c_a4d438c9a177003ae5b9726186f158896}{new\+Queue}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new \doxylink{structQueue}{Queue}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{byteQueue_8c_ac8775dd9ad8f5c36173aa80604e3672b}{push\+\_\+byte}} (\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}queue, uint8\+\_\+t byte)
+\begin{DoxyCompactList}\small\item\em Pushes a byte to the queue. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{byteQueue_8c_a3b6dd43940f6396e389dbf7ddb55ffbe}{pop\+\_\+byte}} (\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}queue)
+\begin{DoxyCompactList}\small\item\em Pops a byte from the queue. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{byteQueue_8c_a05ed57c273a1c8143f3a566f22510729}{queue\+\_\+head}} (\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}queue)
+\begin{DoxyCompactList}\small\item\em Gets the head of the queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{byteQueue_8c_a48c032546f67692a358c23661fed761a}{queue\+\_\+pop}} (\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}queue)
+\begin{DoxyCompactList}\small\item\em Pops the head of the queue. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{byteQueue_8c_ad4ef8ce8551114d1674c036d815d7ade}{is\+Queue\+\_\+empty}} (\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}queue)
+\begin{DoxyCompactList}\small\item\em Checks if the queue is empty. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{byteQueue_8c_a2d40c5ca41323f55017e960e8e520198}{queue\+\_\+delete}} (\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}queue)
+\begin{DoxyCompactList}\small\item\em Deletes the queue and frees the memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{byteQueue_8c_a036d2edaf763f00ab0f74d84b695a6d4}{queue\+\_\+clean}} (\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}queue)
+\begin{DoxyCompactList}\small\item\em Cleans the queue resetting the head and tail to NULL and freeing the memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{byteQueue_8c_ad4ef8ce8551114d1674c036d815d7ade}\label{byteQueue_8c_ad4ef8ce8551114d1674c036d815d7ade} 
+\index{byteQueue.c@{byteQueue.c}!isQueue\_empty@{isQueue\_empty}}
+\index{isQueue\_empty@{isQueue\_empty}!byteQueue.c@{byteQueue.c}}
+\doxysubsubsection{\texorpdfstring{isQueue\_empty()}{isQueue\_empty()}}
+{\footnotesize\ttfamily bool is\+Queue\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}}]{queue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the queue is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & \doxylink{structQueue}{Queue} to check if it is empty \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the queue is empty, false otherwise 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{byteQueue_8c_ad4ef8ce8551114d1674c036d815d7ade_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{byteQueue_8c_a4d438c9a177003ae5b9726186f158896}\label{byteQueue_8c_a4d438c9a177003ae5b9726186f158896} 
+\index{byteQueue.c@{byteQueue.c}!newQueue@{newQueue}}
+\index{newQueue@{newQueue}!byteQueue.c@{byteQueue.c}}
+\doxysubsubsection{\texorpdfstring{newQueue()}{newQueue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*} new\+Queue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new \doxylink{structQueue}{Queue}. 
+
+\begin{DoxyReturn}{Returns}
+the new \doxylink{structQueue}{Queue} 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=142pt]{byteQueue_8c_a4d438c9a177003ae5b9726186f158896_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=347pt]{byteQueue_8c_a4d438c9a177003ae5b9726186f158896_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{byteQueue_8c_a3b6dd43940f6396e389dbf7ddb55ffbe}\label{byteQueue_8c_a3b6dd43940f6396e389dbf7ddb55ffbe} 
+\index{byteQueue.c@{byteQueue.c}!pop\_byte@{pop\_byte}}
+\index{pop\_byte@{pop\_byte}!byteQueue.c@{byteQueue.c}}
+\doxysubsubsection{\texorpdfstring{pop\_byte()}{pop\_byte()}}
+{\footnotesize\ttfamily uint8\+\_\+t pop\+\_\+byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}}]{queue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pops a byte from the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & \doxylink{structQueue}{Queue} to pop the byte from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the byte that was popped 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{byteQueue_8c_a3b6dd43940f6396e389dbf7ddb55ffbe_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{byteQueue_8c_ac8775dd9ad8f5c36173aa80604e3672b}\label{byteQueue_8c_ac8775dd9ad8f5c36173aa80604e3672b} 
+\index{byteQueue.c@{byteQueue.c}!push\_byte@{push\_byte}}
+\index{push\_byte@{push\_byte}!byteQueue.c@{byteQueue.c}}
+\doxysubsubsection{\texorpdfstring{push\_byte()}{push\_byte()}}
+{\footnotesize\ttfamily void push\+\_\+byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}}]{queue,  }\item[{uint8\+\_\+t}]{byte }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pushes a byte to the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & \doxylink{structQueue}{Queue} to push the byte to \\
+\hline
+{\em byte} & Byte to push to the queue \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{byteQueue_8c_ac8775dd9ad8f5c36173aa80604e3672b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{byteQueue_8c_a036d2edaf763f00ab0f74d84b695a6d4}\label{byteQueue_8c_a036d2edaf763f00ab0f74d84b695a6d4} 
+\index{byteQueue.c@{byteQueue.c}!queue\_clean@{queue\_clean}}
+\index{queue\_clean@{queue\_clean}!byteQueue.c@{byteQueue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_clean()}{queue\_clean()}}
+{\footnotesize\ttfamily void queue\+\_\+clean (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}}]{queue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cleans the queue resetting the head and tail to NULL and freeing the memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & \doxylink{structQueue}{Queue} to clean \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{byteQueue_8c_a036d2edaf763f00ab0f74d84b695a6d4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{byteQueue_8c_a2d40c5ca41323f55017e960e8e520198}\label{byteQueue_8c_a2d40c5ca41323f55017e960e8e520198} 
+\index{byteQueue.c@{byteQueue.c}!queue\_delete@{queue\_delete}}
+\index{queue\_delete@{queue\_delete}!byteQueue.c@{byteQueue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_delete()}{queue\_delete()}}
+{\footnotesize\ttfamily void queue\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}}]{queue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deletes the queue and frees the memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & \doxylink{structQueue}{Queue} to delete \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{byteQueue_8c_a2d40c5ca41323f55017e960e8e520198_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{byteQueue_8c_a2d40c5ca41323f55017e960e8e520198_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{byteQueue_8c_a05ed57c273a1c8143f3a566f22510729}\label{byteQueue_8c_a05ed57c273a1c8143f3a566f22510729} 
+\index{byteQueue.c@{byteQueue.c}!queue\_head@{queue\_head}}
+\index{queue\_head@{queue\_head}!byteQueue.c@{byteQueue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_head()}{queue\_head()}}
+{\footnotesize\ttfamily uint8\+\_\+t queue\+\_\+head (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}}]{queue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the head of the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & \doxylink{structQueue}{Queue} to get the head from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of the head of the queue 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{byteQueue_8c_a05ed57c273a1c8143f3a566f22510729_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{byteQueue_8c_a48c032546f67692a358c23661fed761a}\label{byteQueue_8c_a48c032546f67692a358c23661fed761a} 
+\index{byteQueue.c@{byteQueue.c}!queue\_pop@{queue\_pop}}
+\index{queue\_pop@{queue\_pop}!byteQueue.c@{byteQueue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_pop()}{queue\_pop()}}
+{\footnotesize\ttfamily void queue\+\_\+pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQueue}{Queue}} \texorpdfstring{$\ast$}{*}}]{queue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pops the head of the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & \doxylink{structQueue}{Queue} to pop the head from \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{byteQueue_8c_a48c032546f67692a358c23661fed761a_icgraph}
+\end{center}
+\end{figure}

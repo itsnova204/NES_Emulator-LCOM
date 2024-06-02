@@ -1,0 +1,11 @@
+<map id="cart_insert" name="cart_insert">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,88,80"/>
+<area shape="rect" id="Node000002" href="$cartridge_8c.html#ae24dcdff6a5623486d87bc22d09b16a2" title=" " alt="" coords="136,5,236,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,52,133,34,134,39,86,57"/>
+<area shape="rect" id="Node000004" href="$cartridge_8c.html#a8858f3bddd89eb2f6575ce64886af8a3" title=" " alt="" coords="143,55,229,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="89,65,128,65,128,70,89,70"/>
+<area shape="rect" id="Node000005" href="$mapper_8c.html#a30382e268c6c2dd72f5effdfebd92da6" title=" " alt="" coords="141,104,231,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="86,78,134,96,133,101,84,83"/>
+<area shape="rect" id="Node000003" href="$cartridge_8c.html#aab0a749241244d13922556533aeb7069" title=" " alt="" coords="284,5,377,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="237,15,268,15,268,21,237,21"/>
+</map>

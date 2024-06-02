@@ -1,0 +1,18 @@
+<map id="rtc_read_date" name="rtc_read_date">
+<area shape="rect" id="Node000001" title="Reads the date from the RTC." alt="" coords="5,81,107,107"/>
+<area shape="rect" id="Node000002" href="$rtc_8c.html#ad01b060b01d5a6021392d1453f86a733" title="Converts a binary number to BCD." alt="" coords="155,5,281,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,78,175,35,177,40,86,83"/>
+<area shape="rect" id="Node000003" href="$rtc_8c.html#af9899143b10300540808effb01aa292b" title="Clears bit 7 of register B." alt="" coords="155,107,281,132"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="108,99,140,104,139,110,107,105"/>
+<area shape="rect" id="Node000004" href="$rtc_8c.html#a76827856de45c0728d613f90c5f6e009" title="Reads a register from the RTC." alt="" coords="330,107,425,132"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="107,88,189,86,282,91,322,99,321,105,281,97,189,91,107,93"/>
+<area shape="rect" id="Node000007" href="$rtc_8c.html#a11e438d0669b30b2c97af0665ec96ed1" title="Sets bit 7 of register B to 1." alt="" coords="159,156,277,181"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="82,105,156,142,167,147,165,152,154,147,80,110"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="282,117,314,117,314,122,282,122"/>
+<area shape="rect" id="Node000006" href="$rtc_8c.html#aa1fd64645937078b75ec6046b11b432e" title="Writes a register from the RTC." alt="" coords="329,156,425,181"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="262,130,320,148,319,153,261,135"/>
+<area shape="rect" id="Node000005" href="$utils_8c.html#a2b56f50ba159e9d5115ed1a75eff15d9" title=" " alt="" coords="473,107,564,132"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="425,117,458,117,458,122,425,122"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="261,153,319,135,320,140,262,158"/>
+<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="277,166,314,166,314,171,277,171"/>
+</map>

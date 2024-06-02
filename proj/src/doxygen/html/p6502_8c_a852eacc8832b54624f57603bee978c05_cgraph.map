@@ -1,0 +1,18 @@
+<map id="ADR_ZPX" name="ADR_ZPX">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,84,105"/>
+<area shape="rect" id="Node000002" href="$bus_8c.html#a298cb58f28928024d96e0ddb33dd7b47" title=" " alt="" coords="132,80,231,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,90,116,90,116,95,84,95"/>
+<area shape="rect" id="Node000003" href="$ppu_8c.html#aece33e1a5ce1c47ccbe08bdc005546ed" title=" " alt="" coords="279,55,404,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="231,82,263,77,264,82,232,87"/>
+<area shape="rect" id="Node000008" href="$cartridge_8c.html#aedfa2d3a016d7804c2d8428bccbf1e50" title=" " alt="" coords="452,105,584,131"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="231,94,436,109,436,115,231,99"/>
+<area shape="rect" id="Node000004" href="$ppu_8c.html#ad8acc013edad2c1a0391b38c3059771a" title=" " alt="" coords="469,55,567,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="405,65,453,65,453,70,405,70"/>
+<area shape="rect" id="Node000005" href="$cartridge_8c.html#a7c1ed30dc9eb54d745678b62c1a148f5" title=" " alt="" coords="632,5,773,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="567,52,637,33,638,38,568,57"/>
+<area shape="rect" id="Node000006" href="$cartridge_8c.html#a188528781745a3287c57e8f64714ddc8" title=" " alt="" coords="637,55,769,80"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="568,65,621,65,621,70,568,70"/>
+<area shape="rect" id="Node000007" href="$mapper_8c.html#ae8c091b689d3adb550f8070c774f929b" title=" " alt="" coords="821,80,919,105"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="769,75,806,80,806,86,769,80"/>
+<area shape="poly" id="edge8_Node000008_Node000007" title=" " alt="" coords="584,111,806,95,806,100,585,116"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="queue_delete" name="queue_delete">
+<area shape="rect" id="Node000001" title="Deletes the queue and frees the memory." alt="" coords="125,5,224,31"/>
+<area shape="rect" id="Node000002" href="$uart_8c.html#a79cbc6b16e923ea7cffa8957f7b10267" title="Exits the uart freeing all resources." alt="" coords="5,5,77,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,21,78,21,78,15,109,15"/>
+</map>

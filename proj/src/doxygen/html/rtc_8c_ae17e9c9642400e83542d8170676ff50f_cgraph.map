@@ -1,0 +1,9 @@
+<map id="rtc_disable_int" name="rtc_disable_int">
+<area shape="rect" id="Node000001" title="Disables RTC alarm interrupt." alt="" coords="5,31,112,56"/>
+<area shape="rect" id="Node000002" href="$rtc_8c.html#a76827856de45c0728d613f90c5f6e009" title="Reads a register from the RTC." alt="" coords="161,5,255,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,32,145,26,146,31,113,37"/>
+<area shape="rect" id="Node000004" href="$rtc_8c.html#aa1fd64645937078b75ec6046b11b432e" title="Writes a register from the RTC." alt="" coords="160,55,256,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="113,49,145,54,144,60,112,55"/>
+<area shape="rect" id="Node000003" href="$utils_8c.html#a2b56f50ba159e9d5115ed1a75eff15d9" title=" " alt="" coords="304,5,395,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="256,15,289,15,289,21,256,21"/>
+</map>

@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['name_0',['name',['../structXpmData.html#a0621bf454764c6c6d26036c95ddd087a',1,'XpmData::name'],['../structcart__header.html#a80d8ff2cbdb079a32742ecf59438e746',1,'cart_header::name'],['../structinstructionSet.html#ad161e221aa78dc305f3045065ed4beb2',1,'instructionSet::name']]],
+  ['nametable_1',['nameTable',['../structPpu2C02.html#ab50340c5bb448ee897220c01cad1b7f8',1,'Ppu2C02']]],
+  ['nametablex_2',['nametableX',['../unionPpuCtrl.html#a02ae4a356c4565e1334b35babddec4cd',1,'PpuCtrl::nametableX'],['../unionLoopyRegister.html#a762c2364ac7b7b0484e376d46d939b32',1,'LoopyRegister::nametableX']]],
+  ['nametabley_3',['nametableY',['../unionPpuCtrl.html#a57c0407e3e25eb86be6f256bf1458c6a',1,'PpuCtrl::nametableY'],['../unionLoopyRegister.html#a7a7cc7b63d738b83920fc93d83326f9e',1,'LoopyRegister::nametableY']]],
+  ['nchr_5from_5fchunks_4',['nCHR_rom_chunks',['../structcart__header.html#aef98a6741815a5ff52fba5ab973a4e08',1,'cart_header']]],
+  ['negative_5fbit_5',['negative_bit',['../p6502_8h.html#aa8197b2001b3c401bcfca5c6d0dcebb6a4787ca4e92b9eab723c96f81faf048ef',1,'p6502.h']]],
+  ['nes_6',['NES',['../cartridge_8c.html#a08a07eb203d738f9bcc3dd4fc9c8d80daebf704c080f803d412d24b07ad6cf11b',1,'cartridge.c']]],
+  ['nes2_7',['NES2',['../cartridge_8c.html#a08a07eb203d738f9bcc3dd4fc9c8d80dae1d8904c9bd506042ad7edad9b71fcf6',1,'cartridge.c']]],
+  ['newqueue_8',['newQueue',['../byteQueue_8c.html#a4d438c9a177003ae5b9726186f158896',1,'newQueue():&#160;byteQueue.c'],['../byteQueue_8h.html#a4d438c9a177003ae5b9726186f158896',1,'newQueue():&#160;byteQueue.c']]],
+  ['next_9',['next',['../structbyte__node.html#abeb1b58220d20a646d6804f0481164eb',1,'byte_node']]],
+  ['nine_10',['NINE',['../sprite_8h.html#af9361b398b5cfcafbe93f82e8eaeb080aea09d09b793ccc4a4b5983368d18a4ab',1,'sprite.h']]],
+  ['nine_11',['nine',['../xpm__image_8c.html#a9a5221153885b5f64e02f0e78c6d8247',1,'nine:&#160;xpm_image.c'],['../xpm__image_8h.html#a9a5221153885b5f64e02f0e78c6d8247',1,'nine:&#160;xpm_image.c']]],
+  ['nmi_12',['nmi',['../structPpu2C02.html#a35f27f4d6125bd9a57f8a4ad33848418',1,'Ppu2C02']]],
+  ['no_5fparity_13',['NO_PARITY',['../uart_8h.html#a6e39c5c443322398878f10e0f1e6f023',1,'uart.h']]],
+  ['nprg_5from_5fchunks_14',['nPRG_rom_chunks',['../structcart__header.html#a2be432489a0db7f286a22185e12637d0',1,'cart_header']]],
+  ['num_5fgames_15',['NUM_GAMES',['../main_8c.html#a954dbf0ef368ee9efd481a83f56143c8',1,'main.c']]],
+  ['num_5fimages_16',['NUM_IMAGES',['../sprite_8h.html#a9cb64526659b4bebea0d36565debb187',1,'sprite.h']]],
+  ['numberofbytesforbits_17',['numberOfBytesForBits',['../graphics_8h.html#a481adc9aa90796186615a9d4bf167920',1,'graphics.h']]]
+];

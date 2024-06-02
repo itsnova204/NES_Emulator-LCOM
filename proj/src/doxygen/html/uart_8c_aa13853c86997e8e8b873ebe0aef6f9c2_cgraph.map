@@ -1,0 +1,5 @@
+<map id="uart_get_int_id" name="uart_get_int_id">
+<area shape="rect" id="Node000001" title="Gets the Interrupt Identification Register (IIR)" alt="" coords="5,5,112,31"/>
+<area shape="rect" id="Node000002" href="$utils_8c.html#a2b56f50ba159e9d5115ed1a75eff15d9" title=" " alt="" coords="160,5,251,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,15,144,15,144,21,112,21"/>
+</map>

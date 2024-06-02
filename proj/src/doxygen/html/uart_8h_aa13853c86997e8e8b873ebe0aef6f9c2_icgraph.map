@@ -1,0 +1,8 @@
+<map id="uart_get_int_id" name="uart_get_int_id">
+<area shape="rect" id="Node000001" title="Gets the Interrupt Identification Register (IIR)" alt="" coords="272,5,379,31"/>
+<area shape="rect" id="Node000002" href="$main_8c.html#a7a72220d8366dd84709e79ce415862e5" title=" " alt="" coords="5,5,115,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="257,21,115,21,115,15,257,15"/>
+<area shape="rect" id="Node000003" href="$uart_8c.html#a40ac6bc4df05fedd1ca9e9a29657ae71" title="Handles the uart interrupt." alt="" coords="163,31,224,56"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="257,34,225,40,224,35,256,29"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="147,37,115,31,116,26,148,32"/>
+</map>

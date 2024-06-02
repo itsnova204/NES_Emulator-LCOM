@@ -1,0 +1,8 @@
+<map id="newQueue" name="newQueue">
+<area shape="rect" id="Node000001" title="Creates a new Queue." alt="" coords="279,29,361,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="340,16,333,10,320,8,308,10,301,14,300,20,303,28,298,30,294,21,297,11,306,5,320,3,335,5,344,12"/>
+<area shape="rect" id="Node000002" href="$uart_8c.html#a83e7f5ec4152bfb560bd263fe2c05bf9" title="Initializes the uart." alt="" coords="163,29,231,55"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="263,45,231,45,231,39,263,39"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a7a72220d8366dd84709e79ce415862e5" title=" " alt="" coords="5,29,115,55"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="147,45,115,45,115,39,147,39"/>
+</map>

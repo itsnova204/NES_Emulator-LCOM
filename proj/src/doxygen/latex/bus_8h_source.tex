@@ -1,0 +1,33 @@
+\doxysection{bus.\+h}
+\hypertarget{bus_8h_source}{}\label{bus_8h_source}\index{nes\_emu/bus.h@{nes\_emu/bus.h}}
+\mbox{\hyperlink{bus_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{lcf__mock_8h}{lcf\_mock.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{bus_8h_abc81b5b7a9a62f93afcdb14c418b378d}{bus\_clock}}();}
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bus_8h_a56ccfff30ac358f5b475144260659c2b}{bus\_init}}(\textcolor{keywordtype}{char}*\ cart\_filePath);}
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{bus_8h_a1fb46f46cfc2d473665530fca6021dc9}{bus\_exit}}();}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{bus_8h_adb797361b85144ba196ad2672438f283}{sysBus\_write}}(uint16\_t\ addr,\ uint8\_t\ data);}
+\DoxyCodeLine{00015\ uint8\_t\ \mbox{\hyperlink{bus_8h_a298cb58f28928024d96e0ddb33dd7b47}{sysBus\_read}}(uint16\_t\ addr);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{union\ }\mbox{\hyperlink{unioncontroler__t}{controler\_t}}\{}
+\DoxyCodeLine{00018\ \ \ \textcolor{comment}{//Dpad}}
+\DoxyCodeLine{00019\ \ \ uint8\_t\ \mbox{\hyperlink{unioncontroler__t_a7872eb4768e1f9624353f9398a7b9319}{up}}\ :\ 1;}
+\DoxyCodeLine{00020\ \ \ uint8\_t\ \mbox{\hyperlink{unioncontroler__t_aa7a4cb1ce508943e659bd81c3e8ce068}{left}}\ :\ 1;}
+\DoxyCodeLine{00021\ \ \ uint8\_t\ \mbox{\hyperlink{unioncontroler__t_a5c9b731f471da33a3a06bf4395a184b2}{down}}\ :\ 1;}
+\DoxyCodeLine{00022\ \ \ uint8\_t\ \mbox{\hyperlink{unioncontroler__t_a9bb0ec98470344f854e34da07ed0052b}{right}}\ :\ 1;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \textcolor{comment}{//menus}}
+\DoxyCodeLine{00025\ \ \ uint8\_t\ \mbox{\hyperlink{unioncontroler__t_a1f3a5452bf51a526256080d94cbb78b4}{start}}\ :\ 1;}
+\DoxyCodeLine{00026\ \ \ uint8\_t\ \mbox{\hyperlink{unioncontroler__t_a43d7b28cfaebe637f1cfb88a53bd54cd}{select}}\ :\ 1;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \textcolor{comment}{//right\ buttons}}
+\DoxyCodeLine{00029\ \ \ uint8\_t\ \mbox{\hyperlink{unioncontroler__t_ad108989804664bb668db57e905e02b18}{a}}\ :\ 1;}
+\DoxyCodeLine{00030\ \ \ uint8\_t\ \mbox{\hyperlink{unioncontroler__t_a6896c98af7bca3f104c978bd417c5375}{b}}\ :\ 1;}
+\DoxyCodeLine{00031\ \};}
+
+\end{DoxyCode}

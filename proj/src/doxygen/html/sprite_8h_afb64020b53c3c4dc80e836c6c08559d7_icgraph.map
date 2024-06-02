@@ -1,0 +1,11 @@
+<map id="draw_sprite" name="draw_sprite">
+<area shape="rect" id="Node000001" title="Draws a sprite on the screen." alt="" coords="309,56,397,81"/>
+<area shape="rect" id="Node000002" href="$sprite_8c.html#aca54722504caebf04ec7870c31e90cbd" title="Draws the date and time on the screen at the given coordinates with the format &quot;dd/mm/yyyy hh:mm&quot;." alt="" coords="171,5,253,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="301,53,249,34,250,29,303,48"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a7a72220d8366dd84709e79ce415862e5" title=" " alt="" coords="5,56,115,81"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="294,71,115,71,115,66,294,66"/>
+<area shape="rect" id="Node000004" href="$sprite_8c.html#a50051589f1bb707afbf8a65cb7a1f35c" title="Draws the game options thumbnails on the screen." alt="" coords="163,107,261,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="303,90,250,109,249,104,301,85"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="158,39,101,58,99,53,156,34"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="156,104,99,84,101,79,158,99"/>
+</map>

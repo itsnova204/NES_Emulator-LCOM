@@ -1,0 +1,7 @@
+<map id="nes_emu/types.h" name="nes_emu/types.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="34,5,157,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,84,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,33,64,67,60,64,85,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="109,79,183,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="106,29,131,64,127,67,102,33"/>
+</map>
