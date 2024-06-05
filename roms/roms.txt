@@ -1,0 +1,6 @@
+the roms that the emulator is expecting are:
+supermariobros.nes
+soccer.nes
+DonkeyKong.nes
+mspacman.nes
+BattleCity.nes
