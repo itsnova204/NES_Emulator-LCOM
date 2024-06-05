@@ -1,7 +1,0 @@
-<map id="ppu_init" name="ppu_init">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,72,56"/>
-<area shape="rect" id="Node000002" href="$ppu_8c.html#abd456b5340c0c7225ca74b1620da512d" title=" " alt="" coords="127,5,208,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="72,34,111,26,112,32,73,39"/>
-<area shape="rect" id="Node000003" href="$ppu_8c.html#ac02b057a50cd7dc869a228f969986063" title=" " alt="" coords="120,55,215,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="73,47,105,53,104,58,72,52"/>
-</map>

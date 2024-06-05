@@ -1,5 +1,0 @@
-<map id="rtc_read_reg" name="rtc_read_reg">
-<area shape="rect" id="Node000001" title="Reads a register from the RTC." alt="" coords="5,5,100,31"/>
-<area shape="rect" id="Node000002" href="$utils_8c.html#a2b56f50ba159e9d5115ed1a75eff15d9" title=" " alt="" coords="148,5,239,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,15,132,15,132,21,100,21"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="kbc_ih" name="kbc_ih">
-<area shape="rect" id="Node000001" title="Function to handle the keyboard interrupts." alt="" coords="5,5,65,31"/>
-<area shape="rect" id="Node000002" href="$KBC_8c.html#ab90a9774eaabd0949d73b61e9f3fba88" title="Function to read the output buffer of the KBC." alt="" coords="113,5,232,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,15,98,15,98,21,66,21"/>
-<area shape="rect" id="Node000003" href="$utils_8c.html#a2b56f50ba159e9d5115ed1a75eff15d9" title=" " alt="" coords="280,5,371,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="232,15,264,15,264,21,232,21"/>
-</map>

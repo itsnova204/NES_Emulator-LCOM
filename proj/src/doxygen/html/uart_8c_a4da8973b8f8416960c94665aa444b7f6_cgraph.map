@@ -1,5 +1,0 @@
-<map id="uart_push" name="uart_push">
-<area shape="rect" id="Node000001" title="Pushes a byte to the uart output fifo." alt="" coords="5,5,84,31"/>
-<area shape="rect" id="Node000002" href="$byteQueue_8c.html#ac8775dd9ad8f5c36173aa80604e3672b" title="Pushes a byte to the queue." alt="" coords="132,5,215,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,15,116,15,116,21,84,21"/>
-</map>

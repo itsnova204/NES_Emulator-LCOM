@@ -1,9 +1,0 @@
-<map id="kbc_write_command" name="kbc_write_command">
-<area shape="rect" id="Node000001" title="Function to write a command to the KBC." alt="" coords="369,31,511,56"/>
-<area shape="rect" id="Node000002" href="$keyboard_8c.html#a6dc0c687594dee80580d775bd9cf7f39" title="Function to restore the keyboard state." alt="" coords="169,5,315,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="354,35,315,30,316,25,354,30"/>
-<area shape="rect" id="Node000003" href="$mouse_8c.html#ac2d791ac2ef89e466be15a7d07af293c" title="Writes a command to the mouse." alt="" coords="163,55,321,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="354,56,322,60,321,55,353,51"/>
-<area shape="rect" id="Node000004" href="$main_8c.html#a7a72220d8366dd84709e79ce415862e5" title=" " alt="" coords="5,55,115,80"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="147,70,115,70,115,65,147,65"/>
-</map>

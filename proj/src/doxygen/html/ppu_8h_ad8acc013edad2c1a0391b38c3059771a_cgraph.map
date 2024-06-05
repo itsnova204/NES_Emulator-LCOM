@@ -1,9 +1,0 @@
-<map id="ppuBus_read" name="ppuBus_read">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,104,56"/>
-<area shape="rect" id="Node000002" href="$cartridge_8c.html#a7c1ed30dc9eb54d745678b62c1a148f5" title=" " alt="" coords="152,5,293,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,33,136,28,137,34,105,39"/>
-<area shape="rect" id="Node000003" href="$cartridge_8c.html#a188528781745a3287c57e8f64714ddc8" title=" " alt="" coords="157,55,289,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="105,48,141,53,141,58,104,53"/>
-<area shape="rect" id="Node000004" href="$mapper_8c.html#ae8c091b689d3adb550f8070c774f929b" title=" " alt="" coords="341,55,439,80"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="289,65,326,65,326,70,289,70"/>
-</map>

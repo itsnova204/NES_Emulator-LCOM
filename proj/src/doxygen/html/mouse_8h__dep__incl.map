@@ -1,7 +1,0 @@
-<map id="drivers/mouse.h" name="drivers/mouse.h">
-<area shape="rect" id="Node000001" title="This file contains the implementation of the mouse functions." alt="" coords="61,5,175,31"/>
-<area shape="rect" id="Node000002" href="$mouse_8c.html" title=" " alt="" coords="5,79,119,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,44,74,80,69,76,97,41"/>
-<area shape="rect" id="Node000003" href="$main_8c.html" title=" " alt="" coords="143,79,205,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="139,41,167,76,162,80,134,44"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="kbc_write_command" name="kbc_write_command">
-<area shape="rect" id="Node000001" title="Function to write a command to the KBC." alt="" coords="5,5,147,31"/>
-<area shape="rect" id="Node000002" href="$utils_8c.html#a2b56f50ba159e9d5115ed1a75eff15d9" title=" " alt="" coords="195,5,285,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,15,179,15,179,21,147,21"/>
-</map>

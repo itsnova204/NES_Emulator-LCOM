@@ -1,5 +1,0 @@
-<map id="ppu_writeToCard" name="ppu_writeToCard">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,124,31"/>
-<area shape="rect" id="Node000002" href="$mapper_8c.html#ae8c091b689d3adb550f8070c774f929b" title=" " alt="" coords="172,5,269,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,15,156,15,156,21,124,21"/>
-</map>

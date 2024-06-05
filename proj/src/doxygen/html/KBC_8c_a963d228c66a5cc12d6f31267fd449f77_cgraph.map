@@ -1,7 +1,0 @@
-<map id="print_scancode" name="print_scancode">
-<area shape="rect" id="Node000001" title="Function to print the scan code, mainly used for debugging." alt="" coords="5,5,116,31"/>
-<area shape="rect" id="Node000002" href="$KBC_8c.html#a57ec1f3719aaaa7bf43e20e0dbf788e5" title="Function to check if the scan code is single byte or double byte." alt="" coords="164,5,319,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,15,149,15,149,21,116,21"/>
-<area shape="rect" id="Node000003" href="$KBC_8c.html#aad850a34bdc0827006b47baa7f592928" title="Function to get the size of a scancode, can be 1 or 2." alt="" coords="367,5,493,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="319,15,352,15,352,21,319,21"/>
-</map>

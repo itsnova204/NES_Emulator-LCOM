@@ -1,7 +1,0 @@
-<map id="drivers/sprite.h" name="drivers/sprite.h">
-<area shape="rect" id="Node000001" title="This file contains the implementation of the sprite drawing and the xpm preloading function." alt="" coords="59,5,165,31"/>
-<area shape="rect" id="Node000002" href="$sprite_8c.html" title=" " alt="" coords="5,79,112,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,45,70,80,66,76,92,42"/>
-<area shape="rect" id="Node000003" href="$main_8c.html" title=" " alt="" coords="136,79,197,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,42,160,76,155,80,128,45"/>
-</map>

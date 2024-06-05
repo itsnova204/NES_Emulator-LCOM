@@ -1,9 +1,0 @@
-<map id="uart_recv_front" name="uart_recv_front">
-<area shape="rect" id="Node000001" title="Retrive a byte from the uart input fifo." alt="" coords="5,55,112,80"/>
-<area shape="rect" id="Node000002" href="$byteQueue_8c.html#ad4ef8ce8551114d1674c036d815d7ade" title="Checks if the queue is empty." alt="" coords="160,5,273,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,52,159,33,160,38,102,57"/>
-<area shape="rect" id="Node000003" href="$byteQueue_8c.html#a05ed57c273a1c8143f3a566f22510729" title="Gets the head of the queue." alt="" coords="171,55,263,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="113,65,155,65,155,70,113,70"/>
-<area shape="rect" id="Node000004" href="$byteQueue_8c.html#a48c032546f67692a358c23661fed761a" title="Pops the head of the queue." alt="" coords="174,104,259,129"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="102,78,160,96,159,101,101,83"/>
-</map>

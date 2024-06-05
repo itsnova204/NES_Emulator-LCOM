@@ -1,5 +1,0 @@
-<map id="is_two_byte_scancode" name="is_two_byte_scancode">
-<area shape="rect" id="Node000001" title="Function to check if the scan code is single byte or double byte." alt="" coords="5,5,160,31"/>
-<area shape="rect" id="Node000002" href="$KBC_8c.html#aad850a34bdc0827006b47baa7f592928" title="Function to get the size of a scancode, can be 1 or 2." alt="" coords="208,5,335,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,15,193,15,193,21,160,21"/>
-</map>

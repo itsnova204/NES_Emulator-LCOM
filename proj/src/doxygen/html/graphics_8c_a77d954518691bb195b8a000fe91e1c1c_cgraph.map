@@ -1,5 +1,0 @@
-<map id="vg_draw_xpm_from_bottom_left_corner" name="vg_draw_xpm_from_bottom_left_corner">
-<area shape="rect" id="Node000001" title="Draws a xpm image on the screen from the bottom left corner." alt="" coords="5,5,184,45"/>
-<area shape="rect" id="Node000002" href="$graphics_8c.html#a6f895de9725f9f231f9a7f74b6087f60" title="Draws a pixel on the screen." alt="" coords="232,13,335,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,23,216,23,216,28,185,28"/>
-</map>

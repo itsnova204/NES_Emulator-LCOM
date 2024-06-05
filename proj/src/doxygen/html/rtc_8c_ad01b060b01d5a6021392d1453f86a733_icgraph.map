@@ -1,9 +1,0 @@
-<map id="rtc_bcd_to_binary" name="rtc_bcd_to_binary">
-<area shape="rect" id="Node000001" title="Converts a binary number to BCD." alt="" coords="312,31,437,56"/>
-<area shape="rect" id="Node000002" href="$rtc_8c.html#a4c1a7a6487a05aec45012e5298134758" title="Reads the date from the RTC." alt="" coords="163,31,264,56"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="296,46,264,46,264,41,296,41"/>
-<area shape="rect" id="Node000003" href="$main_8c.html#a7a72220d8366dd84709e79ce415862e5" title=" " alt="" coords="5,5,115,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="147,35,115,30,116,24,148,30"/>
-<area shape="rect" id="Node000004" href="$rtc_8c.html#a75dad42881d64cf07cf1bdc2979a7056" title="RTC interrupt handler." alt="" coords="33,55,87,80"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="148,56,88,66,87,60,147,51"/>
-</map>

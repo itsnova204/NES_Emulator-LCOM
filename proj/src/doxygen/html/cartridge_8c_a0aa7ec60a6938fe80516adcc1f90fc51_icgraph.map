@@ -1,7 +1,0 @@
-<map id="cart_remove" name="cart_remove">
-<area shape="rect" id="Node000001" title=" " alt="" coords="281,5,373,31"/>
-<area shape="rect" id="Node000002" href="$bus_8c.html#a1fb46f46cfc2d473665530fca6021dc9" title=" " alt="" coords="163,5,233,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,21,234,21,234,15,266,15"/>
-<area shape="rect" id="Node000003" href="$main_8c.html#a7a72220d8366dd84709e79ce415862e5" title=" " alt="" coords="5,5,115,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="147,21,115,21,115,15,147,15"/>
-</map>

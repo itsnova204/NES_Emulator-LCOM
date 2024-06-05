@@ -1,7 +1,0 @@
-<map id="KBC.h" name="KBC.h">
-<area shape="rect" id="Node000001" title="This file contains the implementation of the KBC functions allowing handling of the keyboard and mous..." alt="" coords="69,5,129,31"/>
-<area shape="rect" id="Node000002" href="$keyboard_8h.html" title="This file contains the implementation of the keyboard functions." alt="" coords="5,79,91,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,45,59,80,54,77,79,42"/>
-<area shape="rect" id="Node000003" href="$mouse_8h.html" title="This file contains the implementation of the mouse functions." alt="" coords="115,79,186,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="118,42,144,77,140,80,114,45"/>
-</map>

@@ -1,9 +1,0 @@
-<map id="IncrementScrollX" name="IncrementScrollX">
-<area shape="rect" id="Node000001" title=" " alt="" coords="421,5,540,31"/>
-<area shape="rect" id="Node000002" href="$ppu_8c.html#a7a607e229831703a48186004bf7ac0c5" title=" " alt="" coords="292,5,373,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="406,21,374,21,374,15,406,15"/>
-<area shape="rect" id="Node000003" href="$bus_8c.html#abc81b5b7a9a62f93afcdb14c418b378d" title=" " alt="" coords="163,5,244,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="277,21,244,21,244,15,277,15"/>
-<area shape="rect" id="Node000004" href="$main_8c.html#a7a72220d8366dd84709e79ce415862e5" title=" " alt="" coords="5,5,115,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="147,21,115,21,115,15,147,15"/>
-</map>

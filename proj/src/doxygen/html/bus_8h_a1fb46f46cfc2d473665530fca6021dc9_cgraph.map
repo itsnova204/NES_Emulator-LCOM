@@ -1,7 +1,0 @@
-<map id="bus_exit" name="bus_exit">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,76,56"/>
-<area shape="rect" id="Node000002" href="$cartridge_8c.html#a0aa7ec60a6938fe80516adcc1f90fc51" title=" " alt="" coords="124,5,216,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,34,108,27,109,33,77,39"/>
-<area shape="rect" id="Node000003" href="$ppu_8c.html#a313d592cf727023eb2fac260cf596371" title=" " alt="" coords="135,55,205,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="77,47,120,55,119,61,76,53"/>
-</map>

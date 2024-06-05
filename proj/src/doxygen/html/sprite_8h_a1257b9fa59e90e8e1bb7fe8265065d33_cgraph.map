@@ -1,9 +1,0 @@
-<map id="draw_sprint_from_bottom_left" name="draw_sprint_from_bottom_left">
-<area shape="rect" id="Node000001" title="Draws a sprite on the screen from the bottom left corner." alt="" coords="5,35,196,60"/>
-<area shape="rect" id="Node000002" href="$sprite_8c.html#a1c93a3f23db18fca4a42fb1177992fc0" title="Returns the xpm data of a given image name." alt="" coords="281,5,385,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,33,266,24,267,29,197,38"/>
-<area shape="rect" id="Node000003" href="$graphics_8c.html#a77d954518691bb195b8a000fe91e1c1c" title="Draws a xpm image on the screen from the bottom left corner." alt="" coords="244,55,423,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="197,56,229,60,228,65,196,61"/>
-<area shape="rect" id="Node000004" href="$graphics_8c.html#a6f895de9725f9f231f9a7f74b6087f60" title="Draws a pixel on the screen." alt="" coords="471,63,573,88"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="423,73,455,73,455,78,423,78"/>
-</map>

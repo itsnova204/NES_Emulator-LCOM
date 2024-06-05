@@ -1,9 +1,0 @@
-<map id="rtc_set_regB_bit" name="rtc_set_regB_bit">
-<area shape="rect" id="Node000001" title="Sets bit 7 of register B to 1." alt="" coords="5,31,123,56"/>
-<area shape="rect" id="Node000002" href="$rtc_8c.html#a76827856de45c0728d613f90c5f6e009" title="Reads a register from the RTC." alt="" coords="171,5,266,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,31,156,26,156,31,124,36"/>
-<area shape="rect" id="Node000004" href="$rtc_8c.html#aa1fd64645937078b75ec6046b11b432e" title="Writes a register from the RTC." alt="" coords="171,55,267,80"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="124,50,156,55,155,60,123,55"/>
-<area shape="rect" id="Node000003" href="$utils_8c.html#a2b56f50ba159e9d5115ed1a75eff15d9" title=" " alt="" coords="315,5,405,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="267,15,299,15,299,21,267,21"/>
-</map>

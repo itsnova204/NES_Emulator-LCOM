@@ -1,5 +1,0 @@
-<map id="uart_get_line_status" name="uart_get_line_status">
-<area shape="rect" id="Node000001" title="Write the LSR register to." alt="" coords="5,5,144,31"/>
-<area shape="rect" id="Node000002" href="$utils_8c.html#a2b56f50ba159e9d5115ed1a75eff15d9" title=" " alt="" coords="192,5,283,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,15,176,15,176,21,144,21"/>
-</map>
