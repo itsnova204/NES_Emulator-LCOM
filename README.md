@@ -1,6 +1,8 @@
 # MINIX-NES Emulator 
 An NES emulator codded intirely on C using device drivers developed in for LCOM@FEUP
+<br><br/>
 ![Static Badge](https://img.shields.io/badge/OS-Minix%203-blue)
+<br><br/>
 
 ## Table of Contents
 1. [Introduction](#introduction)
