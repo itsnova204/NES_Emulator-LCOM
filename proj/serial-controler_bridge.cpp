@@ -3,7 +3,7 @@
 //The NES controler is a shift register with 8 buttons
 //The serial output is the state of the buttons !when they change!
 
-//Tiago Aleixo, May 2021
+//Tiago Aleixo, May 2024
 
 //usefull doc: https://tresi.github.io/nes/
 
